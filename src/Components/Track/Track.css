@@ -1,0 +1,38 @@
+.Track {
+  display: flex;
+  width: 50%;
+}
+
+.Track-action {
+  cursor: pointer;
+  margin-right: 1.25rem;
+  background-color: inherit;
+  border: 0;
+  color: white;
+  transition: color .25s;
+}
+
+.Track-action:focus {
+  outline: none;
+}
+
+.Track-action:hover {
+  color: rgba(265, 265, 265, .5);
+}
+
+.Track-information img {
+  height: 40px;
+  max-width: auto;
+  margin: 0.5rem 2rem;
+}
+
+.Track-information {
+  flex-grow: 1;
+  display: flex;
+}
+
+.Track-information button {
+  font-size: .6rem;
+  font-weight: 300;
+  color: rgba(256, 256, 256, 0.8);
+}

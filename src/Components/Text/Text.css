@@ -1,0 +1,9 @@
+.Text p {
+  font-size: 0.67rem;
+  margin: 8px 0;  
+  overflow: hidden;
+}
+
+p:last-child {
+  font-weight: 100;
+}

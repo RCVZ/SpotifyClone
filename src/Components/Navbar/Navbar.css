@@ -1,0 +1,6 @@
+.Navbar {
+  grid-area: Navbar;
+  height: 100%;
+  background-color: rgba(0, 0, 60, 0.7);
+  box-shadow: 5px 0px 40px 20px rgba(0,0,1,0.80);
+}

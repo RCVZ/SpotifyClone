@@ -1,0 +1,31 @@
+.SearchResults {
+  width: 100%;
+  max-height: 650px;
+  padding: 0 4rem;
+  overflow-y: scroll;
+  z-index: 999;
+}
+
+@media only screen and (max-width: 1020px) {
+  .SearchResults {
+    width: 90%;
+    margin-bottom: 2rem;
+  }
+}
+
+.Tracklist {
+  display: flex;
+  width: 100%;
+}
+
+.Tracklist-tracks {
+  width: 50%;
+}
+
+.Tracklist-artists {
+
+}
+
+.Button {
+  float: right;
+}

@@ -1,0 +1,26 @@
+.Player {
+  grid-area: Player;
+  display: flex;
+  justify-content: center;
+  background-color: rgba(0, 0, 60, 0.7);
+  box-shadow: 0px -10px 15px 10px rgba(0,0,1,0.8);
+  height: 80px;
+  width: auto;
+}
+
+.track-info {
+  margin: auto 0;
+  width: 40%;
+  border-radius: 10px;
+}
+
+.track-info span {
+  font-size: 0.8rem;
+  margin: 10px;
+}
+
+.Player .Control {
+  display: flex;
+  justify-content: space-around;
+  width: 10%;
+}

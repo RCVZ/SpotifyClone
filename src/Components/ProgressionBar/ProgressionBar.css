@@ -1,0 +1,12 @@
+.Bar-container {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 5rem;
+  width: 40%;
+}
+
+.Bar {
+  height: 2px;
+  background-color: yellow;
+}
