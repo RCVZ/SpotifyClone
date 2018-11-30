@@ -1,6 +1,6 @@
 .SearchResults {
   width: 100%;
-  max-height: 650px;
+  max-height: 729px;
   padding: 0 4rem;
   overflow-y: scroll;
   z-index: 999;
@@ -22,10 +22,12 @@
   width: 50%;
 }
 
-.Tracklist-artists {
+/* .Tracklist-artists {
 
-}
+} */
 
 .Button {
   float: right;
+  padding: .40rem !important;
 }
+

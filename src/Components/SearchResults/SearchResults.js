@@ -13,9 +13,9 @@ class SearchResults extends Component {
   render() {
     const { trackList, addToPlaylist } = this.props;
     return(
-      <React.Fragment>
-        <Button type="button" onClick={this.handleOnClick} name="CLOSE"/>
+      <React.Fragment>        
         <div className="SearchResults">
+          <Button type="button" onClick={this.handleOnClick} name="CLOSE" />
           <PlaylistDisplay playlists={trackList.playlists}/>
           <div className="Tracklist">
             <div className="Tracklist-tracks">

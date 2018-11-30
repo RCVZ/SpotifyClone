@@ -44,10 +44,9 @@ class App extends PureComponent {
 
   componentWillMount() {
     SpotifyApi.getAccesToken();
-    //SpotifyApi.fullSearch('the weeknd');
   }
 
-  addToPlaylist = (track, trackIndex=0 ) => {
+  addToPlaylist = (track, trackIndex=0) => {
     let tracks = this.props.playlist.filter(element => element.id !== track.id);
     tracks.splice(trackIndex, 0, track);
     this.props.onUpdatePlaylist(tracks);
@@ -67,7 +66,7 @@ class App extends PureComponent {
       const playlistUris = this.props.playlist.map(track => track.uri);
       SpotifyApi.sendPlayList(this.props.playlistName, playlistUris).then(()=> {
         this.props.onUpdatePlaylistName('');
-        this.props.onUpdatePlaylist([]);
+        this.props.onUpdatePlaylist();
       });
     }
   }

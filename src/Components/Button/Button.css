@@ -1,4 +1,4 @@
-.Button {
+button.Button {
   cursor: pointer;
   padding: .40rem 2rem;
   height: 1.7rem;
@@ -11,14 +11,12 @@
   transition: background-color .25s;
 }
 
-.Button:focus {
+/* .Button:focus {
   outline: none;
-}
+} */
 
-.Button:hover {
+button.Button:hover {
   background-color: rgba(108, 65, 233, .7);
   box-shadow: 0 2px 1px 1px #000000;
-  padding: .40rem 2rem;
-  text-align: center;
-  font-size: .833rem;
+  /* font-size: .833rem; */
 }
