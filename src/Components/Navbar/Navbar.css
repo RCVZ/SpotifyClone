@@ -4,3 +4,21 @@
   background-color: rgba(0, 0, 60, 0.7);
   box-shadow: 5px 0px 40px 20px rgba(0,0,1,0.80);
 }
+
+.Playlists {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 300px;
+  margin: 10rem 2rem;
+}
+
+.Playlists h3 {
+  font-size: 1rem;
+}
+
+.Playlists h4 {
+  font-size: 0.88rem;
+  font-weight: 100;
+  margin: 0.22rem
+}

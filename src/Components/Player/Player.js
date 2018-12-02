@@ -57,7 +57,7 @@ class Player extends Component {
       let { device_id } = data;
       console.log("Let the music play on!");
       this.setState({ deviceId: device_id });
-      // SpotifyApi.transferPlaybackHere(device_id)
+      //SpotifyApi.transferPlaybackHere(device_id)
     });
   }
 

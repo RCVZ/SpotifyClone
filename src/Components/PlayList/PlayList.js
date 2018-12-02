@@ -3,6 +3,15 @@ import './PlayList.css';
 
 import TrackList from '../TrackList/TrackList';
 
+import { connect } from 'react-redux';
+
+
+const mapStateToProps = (state) => {
+  return{
+    playlist: state.updatePlayList.playlist
+  }
+}
+
 class PlayList extends PureComponent {
   handleChange = (e) => {
     this.props.setPlayListName(e.target.value);
@@ -10,13 +19,13 @@ class PlayList extends PureComponent {
 
 
   render() {
-    const { defaultValue, trackList, deleteTrack, savePlayList } = this.props;
+    const { defaultValue, playlist, deleteTrack, savePlayList  } = this.props;
     return(
       <div className="Playlist">
         <input
           onChange={this.handleChange}
           value={defaultValue}/>
-        <TrackList trackList={trackList}
+        <TrackList trackList={playlist}
           deleteTrack={deleteTrack}
           inPlayList={true}/>
         <button type="submit" onClick={savePlayList} className="Playlist-save">SAVE TO SPOTIFY</button>
@@ -25,4 +34,4 @@ class PlayList extends PureComponent {
   }
 }
 
-export default PlayList;
+export default connect(mapStateToProps)(PlayList);

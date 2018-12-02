@@ -33,7 +33,6 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-
 class App extends PureComponent {
   constructor(props){
     super(props);
@@ -76,7 +75,7 @@ class App extends PureComponent {
   }
 
   render() {
-    const { playlist, playlistName, searchResults, onSearchTracks } = this.props;
+    const { playlistName, searchResults, onSearchTracks } = this.props;
     //this.props.playlistName should be passed down into playlistcom direct from store.
     return (
       <div className="App">
@@ -84,22 +83,21 @@ class App extends PureComponent {
           searchSpotify={onSearchTracks}
           onRouteChange={this.onRouteChange}
         />
-        <Navbar />
+        <Navbar onRouteChange={this.onRouteChange}/>
         <div className='Main'>
           {this.state.route === 'searchResults' ?
             <SearchResults
               trackList={searchResults}
               addToPlaylist={this.addToPlaylist}
               onRouteChange={this.onRouteChange}
-            /> : <div></div>
+            />                                  : 
+            <PlayList 
+              deleteTrack={this.deleteTrack}
+              setPlayListName={this.setPlayListName}
+              savePlayList={this.savePlayList}
+              defaultValue={playlistName}
+            />
           }
-        </div>
-        <div className="App-playlist">
-          <PlayList trackList={playlist}
-            deleteTrack={this.deleteTrack}
-            setPlayListName={this.setPlayListName}
-            savePlayList={this.savePlayList}
-            defaultValue={playlistName}/>
         </div>
         <Player />
       </div>
