@@ -5,22 +5,37 @@ import TrackList from '../TrackList/TrackList';
 import PlaylistDisplay from '../PlaylistDisplay/PlaylistDisplay';
 import Button from '../Button/Button';
 
+import { connect } from 'react-redux';
+import { updatePlayList } from './../../actions';
+
+const mapStateToProps = (state) => {
+  return {
+    searchResults: state.searchTracks.searchResults
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onUpdatePlaylist: (playlist) => dispatch(updatePlayList(playlist))
+  }
+}
+
 class SearchResults extends Component {
   handleOnClick = (e) => {
     this.props.onRouteChange('');
   }
 
   render() {
-    const { trackList, addToPlaylist } = this.props;
+    const { searchResults, addToPlaylist, onSearchTracks } = this.props;
     return(
       <React.Fragment>        
         <div className="SearchResults">
           <Button type="button" onClick={this.handleOnClick} name="CLOSE" />
-          <PlaylistDisplay playlists={trackList.playlists}/>
+          <PlaylistDisplay playlists={searchResults.playlists}/>
           <div className="Tracklist">
             <div className="Tracklist-tracks">
               <TrackList
-                trackList={trackList.tracks}
+                trackList={searchResults.tracks}
                 addToPlaylist={addToPlaylist}/>
             </div>
             <div className="Tracklist-artists">
@@ -35,4 +50,4 @@ class SearchResults extends Component {
 
 
 
-export default SearchResults;
+export default connect(mapStateToProps, mapDispatchToProps)(SearchResults);

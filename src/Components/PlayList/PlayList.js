@@ -4,19 +4,26 @@ import './PlayList.css';
 import TrackList from '../TrackList/TrackList';
 
 import { connect } from 'react-redux';
+import { updatePlaylistName } from './../../actions';
 
 
 const mapStateToProps = (state) => {
   return{
-    playlist: state.updatePlayList.playlist
+    playlist: state.updatePlayList.playlist,
+    playlistName: state.updatePlaylistName.playlistName,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return{
+    onUpdatePlaylistName: (playlistName) => dispatch(updatePlaylistName(playlistName))
   }
 }
 
 class PlayList extends PureComponent {
   handleChange = (e) => {
-    this.props.setPlayListName(e.target.value);
+    this.props.onUpdatePlaylistName(e.target.value);
   }
-
 
   render() {
     const { defaultValue, playlist, deleteTrack, savePlayList  } = this.props;
@@ -28,10 +35,15 @@ class PlayList extends PureComponent {
         <TrackList trackList={playlist}
           deleteTrack={deleteTrack}
           inPlayList={true}/>
-        <button type="submit" onClick={savePlayList} className="Playlist-save">SAVE TO SPOTIFY</button>
+        <button 
+          className="Playlist-save"
+          type="submit" 
+          onClick={savePlayList} 
+          >SAVE TO SPOTIFY
+        </button>
       </div>
     );
   }
 }
 
-export default connect(mapStateToProps)(PlayList);
+export default connect(mapStateToProps, mapDispatchToProps)(PlayList);

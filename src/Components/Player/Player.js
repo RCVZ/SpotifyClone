@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import SpotifyApi from '../../util/Spotify';
 import './Player.css';
 
@@ -7,7 +7,7 @@ import ProgressionBar from '../ProgressionBar/ProgressionBar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBackward, faPlay, faPause, faForward } from '@fortawesome/free-solid-svg-icons'
 
-class Player extends Component {
+class Player extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -61,7 +61,7 @@ class Player extends Component {
     });
   }
 
-  onStateChanged(state) {
+  onStateChanged(state) { // dubbel track state check should be restructured                
   // if we're no longer listening to music, we'll get a null state.
     if (state !== null) {
       const { current_track: currentTrack } = state.track_window;
@@ -118,25 +118,25 @@ class Player extends Component {
   }
 
  render() {
+   const { artistName, trackName,  percentage, playing } = this.state;
     return(
       <div className="Player">
         <div className="track-info">
-          <span>{this.state.artistName}</span>
-          <span>{this.state.trackName}</span>
-          {/* <span>{this.state.albumName}</span> */}
+          <span>{artistName}</span>
+          <span>{trackName}</span>
         </div>
         <div className="Control">
           <button className="back" onClick={this.onPrevClick} >
             <FontAwesomeIcon className="button"  icon={faBackward} />
           </button>
           <button className="play-pause" onClick={this.onPlayClick} >
-            <FontAwesomeIcon className="button" icon={this.state.playing ? faPause : faPlay} />
+            <FontAwesomeIcon className="button" icon={playing ? faPause : faPlay} />
           </button>
           <button className="forward" onClick={this.onNextClick} >
             <FontAwesomeIcon className="button"  icon={faForward} />
           </button>
         </div>
-        <ProgressionBar percentage={this.state.percentage}/>
+        <ProgressionBar percentage={percentage}/>
       </div>
     );
   }

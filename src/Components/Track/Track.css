@@ -5,7 +5,7 @@
 
 .Track-action {
   cursor: pointer;
-  margin-right: 1.25rem;
+  margin: 0 1.25rem;
   background-color: inherit;
   border: 0;
   color: white;
@@ -22,8 +22,8 @@
 
 .Track-information img {
   height: 40px;
-  max-width: auto;
-  margin: 0.5rem 2rem;
+  max-width: 40px;
+  margin: 0.5rem 1.5rem;
 }
 
 .Track-information {
@@ -35,4 +35,8 @@
   font-size: .6rem;
   font-weight: 300;
   color: rgba(256, 256, 256, 0.8);
+}
+
+.Track span{
+  margin: auto 1.25rem;
 }

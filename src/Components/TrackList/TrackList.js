@@ -3,7 +3,7 @@ import './TrackList.css'
 
 import Track from '../Track/Track';
 
-const TrackList = ({ addToPlaylist, deleteTrack, inPlayList, onDragStart, handleTrackIndex, trackList }) => {
+const TrackList = ({ addToPlaylist, deleteTrack, inPlayList, trackList }) => {
   return (
     <div className="TrackList">
       {

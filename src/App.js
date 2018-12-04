@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import './App.css';
 
 import { connect } from 'react-redux';
-import { searchTracks, updatePlayList, updateSearchResults, updatePlaylistName } from './actions';
+import { searchTracks, updatePlayList } from './actions';
 
 import SearchBar from './Components/SearchBar/SearchBar';
 import Navbar from './Components/Navbar/Navbar';
@@ -27,9 +27,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onSearchTracks: (searchTerm) => dispatch(searchTracks(searchTerm)),
-    onUpdatePlaylist: (playlist) => dispatch(updatePlayList(playlist)),
-    onUpdateSearchResults: (updatedResults) => dispatch(updateSearchResults(updatedResults)),
-    onUpdatePlaylistName: (playlistName) => dispatch(updatePlaylistName(playlistName))
+    onUpdatePlaylist: (playlist) => dispatch(updatePlayList(playlist))
   }
 }
 
@@ -75,8 +73,7 @@ class App extends PureComponent {
   }
 
   render() {
-    const { playlistName, searchResults, onSearchTracks } = this.props;
-    //this.props.playlistName should be passed down into playlistcom direct from store.
+    const { searchResults, onSearchTracks } = this.props;
     return (
       <div className="App">
         <SearchBar
@@ -95,7 +92,6 @@ class App extends PureComponent {
               deleteTrack={this.deleteTrack}
               setPlayListName={this.setPlayListName}
               savePlayList={this.savePlayList}
-              defaultValue={playlistName}
             />
           }
         </div>

@@ -19,14 +19,6 @@ class Track extends PureComponent {
     this.props.deleteTrack(this.props.track);
   }
 
-  renderButton = () => {
-    if (this.props.inPlayList) {
-      return <button type="button" className="Track-action" onClick={this.deleteOnClick}>-</button>
-    } else {
-      return <button type="button" className="Track-action" onClick={this.addOnClick}>+</button>
-    }
-  }
-
   handlePlay = (e) => {
     console.log("this is the: ", e.target.value);
     SpotifyApi.playTrack(this.props.track.uri);
@@ -41,7 +33,7 @@ class Track extends PureComponent {
   }
 
   render() {
-    const { id, trackIndex, artists, name, album, uri } = this.props.track;
+    const { id, trackIndex, artists, name, album, uri, duration_ms } = this.props.track;
     return(
       <div className="Track" id={trackIndex} key={id}>
         <div className="Track-information" onClick={this.handlePlay} value={uri}>
@@ -50,7 +42,21 @@ class Track extends PureComponent {
           </div>
           <Text name={name} artist={artists[0].name}/>
         </div>
-        {this.renderButton()}
+          {this.props.inPlayList ? 
+          <React.Fragment>
+          <span>{this.time(duration_ms)}</span>
+          <button
+            className="Track-action"  //maybe it can be improve by giving it the right prop from parentcomponent
+            type="button"
+            onClick={this.deleteOnClick}>-
+          </button>
+          </React.Fragment> :
+          <button
+            className="Track-action" 
+            type="button"
+            onClick={this.addOnClick}>+
+          </button>
+          }
       </div>
     );
   }

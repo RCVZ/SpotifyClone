@@ -1,7 +1,14 @@
+.Text {
+  margin: auto 0;
+}
+
 .Text p {
   font-size: 0.67rem;
   margin: 8px 0;  
+  white-space: nowrap;
+  width: 20ch;
   overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 p:last-child {
