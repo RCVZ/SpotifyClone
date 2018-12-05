@@ -26,7 +26,7 @@ class SearchResults extends Component {
   }
 
   render() {
-    const { searchResults, addToPlaylist, onSearchTracks } = this.props;
+    const { searchResults, addToPlaylist } = this.props;
     return(
       <React.Fragment>        
         <div className="SearchResults">
@@ -39,7 +39,7 @@ class SearchResults extends Component {
                 addToPlaylist={addToPlaylist}/>
             </div>
             <div className="Tracklist-artists">
-              Placeholder
+              <h2 style={{marginLeft: '50px'}}>Coming Soon</h2>
             </div>
           </div>
         </div>

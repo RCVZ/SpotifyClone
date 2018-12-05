@@ -2,11 +2,10 @@ import React, { PureComponent } from 'react';
 import './App.css';
 
 import { connect } from 'react-redux';
-import { searchTracks, updatePlayList } from './actions';
+import { updatePlayList } from './actions';
 
 import SearchBar from './Components/SearchBar/SearchBar';
 import Navbar from './Components/Navbar/Navbar';
-// import Main from './Components/Main/Main';
 import PlayList from './Components/PlayList/PlayList';
 import SearchResults from './Components/SearchResults/SearchResults';
 import Player from './Components/Player/Player';
@@ -16,8 +15,6 @@ import SpotifyApi from './util/Spotify';
 
 const mapStateToProps = (state) => {
   return {
-    searchResults: state.searchTracks.searchResults,
-    isPending: state.searchTracks.isPending,
     playlist: state.updatePlayList.playlist,
     playlistName: state.updatePlaylistName.playlistName,
     searchTerm: state.searchChange.searchTerm
@@ -26,7 +23,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onSearchTracks: (searchTerm) => dispatch(searchTracks(searchTerm)),
     onUpdatePlaylist: (playlist) => dispatch(updatePlayList(playlist))
   }
 }
@@ -73,26 +69,19 @@ class App extends PureComponent {
   }
 
   render() {
-    const { searchResults, onSearchTracks } = this.props;
     return (
       <div className="App">
-        <SearchBar
-          searchSpotify={onSearchTracks}
-          onRouteChange={this.onRouteChange}
-        />
+        <SearchBar onRouteChange={this.onRouteChange}/>
         <Navbar onRouteChange={this.onRouteChange}/>
-        <div className='Main'>
-          {this.state.route === 'searchResults' ?
-            <SearchResults
-              trackList={searchResults}
-              addToPlaylist={this.addToPlaylist}
-              onRouteChange={this.onRouteChange}
-            />                                  : 
-            <PlayList 
-              deleteTrack={this.deleteTrack}
-              setPlayListName={this.setPlayListName}
-              savePlayList={this.savePlayList}
-            />
+        <div className='Main'> 
+          {this.state.route === 'searchResults' 
+          ?
+          <SearchResults addToPlaylist={this.addToPlaylist}  onRouteChange={this.onRouteChange}/>
+          : 
+          <PlayList 
+            deleteTrack={this.deleteTrack}
+            setPlayListName={this.setPlayListName}
+            savePlayList={this.savePlayList} />
           }
         </div>
         <Player />

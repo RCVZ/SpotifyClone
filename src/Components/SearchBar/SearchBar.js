@@ -3,17 +3,21 @@ import './SearchBar.css';
 
 import { connect } from 'react-redux';
 import { searchChange } from './actions';
+import { searchTracks } from './../../actions';
 
 import Button from '../Button/Button';
 
 const mapStateToProps = (state) => {
   return {
+    searchResults: state.searchTracks.searchResults,
+    isPending: state.searchTracks.isPending,
     searchTerm: state.searchChange.searchTerm
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    onSearchTracks: (searchTerm) => dispatch(searchTracks(searchTerm)),
     onSearchTermChange: (searchTerm) => dispatch(searchChange(searchTerm))
   }
 }
@@ -21,18 +25,19 @@ const mapDispatchToProps = (dispatch) => {
 class SearchBar extends PureComponent {
   handleSearchTerm = (e) => {
     this.props.onSearchTermChange(e.target.value);
-    // this.props.searchSpotify(e.target.value);
+    this.props.onSearchTracks(this.props.searchTerm);
+    this.props.onRouteChange('searchResults');
   }
 
   handleEnter = (e) => {
     if(e.key === 'Enter') {
-      this.props.searchSpotify(this.props.searchTerm);
+      this.props.onSearchTracks(this.props.searchTerm);
       this.props.onRouteChange('searchResults'); // should be changed
     }
   }
 
   submitSearch = (e) => {
-    this.props.searchSpotify(this.props.searchTerm);
+    this.props.onSearchTracks(this.props.searchTerm);
     this.props.onRouteChange('searchResults'); // should be changed
   }
 
