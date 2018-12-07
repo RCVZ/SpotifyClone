@@ -4,7 +4,7 @@ import './PlayList.css';
 import TrackList from '../TrackList/TrackList';
 
 import { connect } from 'react-redux';
-import { updatePlaylistName } from './../../actions';
+import { updatePlaylistName } from './actions';
 
 
 const mapStateToProps = (state) => {
