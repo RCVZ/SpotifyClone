@@ -2,8 +2,8 @@ import React, { PureComponent } from 'react';
 import './SearchBar.css';
 
 import { connect } from 'react-redux';
-import { searchChange } from './actions';
-import { searchTracks } from './../../actions';
+import { searchChange, searchTracks } from './actions';
+//import { searchTracks } from './../../actions';
 
 import Button from '../Button/Button';
 
