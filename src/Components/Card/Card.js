@@ -3,10 +3,10 @@ import './Card.css';
 
 import Text from '../Text/Text';
 
-const Card = ({ playlist }) => {
+const Card = ({ playlist, handleOnclick, id }) => {
   return(
     <div className="Card">
-      <div>
+      <div onClick={()=>handleOnclick(id)}>
         <img src={playlist.images[0].url} alt="img"/>
         <Text name={playlist.name}/>
       </div>
