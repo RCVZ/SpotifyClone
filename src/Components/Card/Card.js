@@ -1,19 +1,17 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import './Card.css';
 
 import Text from '../Text/Text';
 
-class Card extends PureComponent {
-  render() {
-    return(
-      <div className="Card">
-        <div>
-          <img src={this.props.playlist.images[0].url} alt="img"/>
-          <Text name={this.props.playlist.name}/>
-        </div>
+const Card = ({ playlist }) => {
+  return(
+    <div className="Card">
+      <div>
+        <img src={playlist.images[0].url} alt="img"/>
+        <Text name={playlist.name}/>
       </div>
-    );
-  }
+    </div>
+  )
 }
 
 export default Card;

@@ -6,7 +6,6 @@ const ProgressionBar = ({percentage}) => {
     <div className="Bar-container">
       <div className="Bar" style={{width: `${percentage}%` }}/>
     </div>
-
   )
 }
 

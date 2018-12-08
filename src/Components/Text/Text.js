@@ -1,11 +1,11 @@
 import React from 'react';
 import './Text.css';
 
-const Text = (props) => {
+const Text = ({ name, artist }) => {
   return(
     <div className="Text">
-      <p>{props.name}</p>
-      <p>{props.artist}</p>
+      <p>{name}</p>
+      <p>{artist}</p>
     </div>
   )
 }
