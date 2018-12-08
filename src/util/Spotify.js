@@ -153,7 +153,7 @@ const SpotifyApi = {
       if(response.ok) {
         const jsonResponse = await response.json();
         const playlistId = jsonResponse.id;
-
+        
         try {
           const response = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
             headers: authorization,
@@ -189,7 +189,11 @@ const SpotifyApi = {
     });
   },
 
-  async getPlaylist() {
+  async getPlaylist(playlistId='', playlist='user' ) {
+    const url = {
+      user: `https://api.spotify.com/v1/me/playlists`,
+      spotify: `https://api.spotify.com/v1/playlists/${playlistId}/tracks` 
+    }
     const access = this.getAccesToken();
     const authorization = {
       Authorization: `Bearer ${access}`,
@@ -197,7 +201,7 @@ const SpotifyApi = {
     };
 
     try {
-      const response = await fetch('https://api.spotify.com/v1/me/playlists', {
+      const response = await fetch(url[playlist], {
         headers: authorization
       });
 

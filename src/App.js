@@ -16,8 +16,7 @@ import SpotifyApi from './util/Spotify';
 const mapStateToProps = (state) => {
   return {
     playlist: state.updatePlayList.playlist,
-    playlistName: state.updatePlaylistName.playlistName,
-    searchTerm: state.searchChange.searchTerm
+    playlistName: state.updatePlaylistName.playlistName
   }
 }
 

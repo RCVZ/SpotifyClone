@@ -8,15 +8,17 @@ const TrackList = ({ addToPlaylist, deleteTrack, inPlayList, trackList }) => {
     <div className="TrackList">
       {
         trackList.map((track, index) => {
-          return <Track
-            track={track}
-            trackIndex={index}
-            id={index}
-            key={track.id}
-            addToPlaylist={addToPlaylist}
-            deleteTrack={deleteTrack}
-            inPlayList={inPlayList}
-                 />
+          return(
+            <Track
+              track={track}
+              trackIndex={index}
+              id={index}
+              key={track.id}
+              addToPlaylist={addToPlaylist}
+              deleteTrack={deleteTrack}
+              inPlayList={inPlayList}
+            />
+          )
         })
       }
     </div>
