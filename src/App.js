@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import './App.css';
 
 import { connect } from 'react-redux';
-import { updatePlayList } from './actions';
+import { updatePlayList, updatePlaylistName } from './actions';
 
 import SearchBar from './Components/SearchBar/SearchBar';
 import Navbar from './Components/Navbar/Navbar';
@@ -23,7 +23,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onUpdatePlaylist: (playlist) => dispatch(updatePlayList(playlist))
+    onUpdatePlaylist: (playlist) => dispatch(updatePlayList(playlist)),
+    onUpdatePlaylistName: (playlistName) => dispatch(updatePlaylistName(playlistName))
   }
 }
 
@@ -57,10 +58,7 @@ class App extends PureComponent {
   savePlayList = () => {
     if (this.props.playlist.length > 0 && this.props.playlistName.length > 0 ) {
       const playlistUris = this.props.playlist.map(track => track.uri);
-      SpotifyApi.sendPlayList(this.props.playlistName, playlistUris).then(()=> {
-        this.props.onUpdatePlaylistName('');
-        this.props.onUpdatePlaylist();
-      });
+      SpotifyApi.sendPlayList(this.props.playlistName, playlistUris);
     }
   }
 

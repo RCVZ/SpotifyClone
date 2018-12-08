@@ -23,10 +23,15 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 class SearchBar extends PureComponent {
+
   handleSearchTerm = (e) => {
-    this.props.onSearchTermChange(e.target.value);
-    this.props.onSearchTracks(this.props.searchTerm);
-    this.props.onRouteChange('searchResults');
+    this.props.onSearchTermChange(e.target.value); 
+    let timeout = null;
+    clearTimeout(timeout);       
+    timeout = setTimeout(() => {    
+      this.props.onSearchTracks(this.props.searchTerm);
+      this.props.onRouteChange('searchResults');
+    }, 800)
   }
 
   handleEnter = (e) => {

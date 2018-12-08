@@ -26,12 +26,12 @@ class PlayList extends PureComponent {
   }
 
   render() {
-    const { defaultValue, playlist, deleteTrack, savePlayList  } = this.props;
+    const { playlist, deleteTrack, savePlayList  } = this.props;
     return(
       <div className="Playlist">
         <input
           onChange={this.handleChange}
-          value={defaultValue}/>
+          placeholder="Playlist"/>
         <TrackList trackList={playlist}
           deleteTrack={deleteTrack}
           inPlayList={true}/>
