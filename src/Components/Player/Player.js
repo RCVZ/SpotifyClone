@@ -57,7 +57,7 @@ class Player extends PureComponent {
       let { device_id } = data;
       console.log("Let the music play on!");
       this.setState({ deviceId: device_id });
-      //SpotifyApi.transferPlaybackHere(device_id)
+      SpotifyApi.transferPlaybackHere(device_id)
     });
   }
 
@@ -78,31 +78,32 @@ class Player extends PureComponent {
         playing: playing,
         percentage: 0
       });
-      this.trackDurationTimer = setInterval(()=> this.getPlayerCurrentstate(), 500)
+      console.log('I am updating');
+      if (!this.trackDurationTimer === null) {
+        clearInterval(this.trackDurationTimer);
+      } else {
+        this.trackDurationTimer = setInterval(() => this.getPlayerCurrentstate(), 100);
+      }
     }
   }
 
   getPlayerCurrentstate = () => {
     this.player.getCurrentState().then((state) =>{
+      console.log(state);
       this.durationCountDown(state.position);
-      // console.log("new state object", state.position);
-      //
     })
   }
 
   onPrevClick = () => {
     this.player.previousTrack();
-    console.log(this.player.getCurrentState())
   }
 
   onPlayClick = () => {
     this.player.togglePlay();
-    console.log(this.player.getCurrentState())
   }
 
   onNextClick = () => {
     this.player.nextTrack();
-    console.log(this.player.getCurrentState())
   }
 
   onVolumeClick = (e) => {

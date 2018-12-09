@@ -224,7 +224,8 @@ const SpotifyApi = {
         method: "PUT",
         headers: authorization,
         body: JSON.stringify({
-          "uris": [ uri ]
+          "uris": uris ,
+          "offset": {"uri": uri }
         })
       });
       const jsonResponse = await response.json();
