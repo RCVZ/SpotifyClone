@@ -31,7 +31,7 @@ class PlaylistDisplay extends PureComponent {
 
   handleOnclick = (key) => {
     let newPlaylist = [];
-    SpotifyApi.getPlaylist(key, 'spotify').then((playlist) => {
+    SpotifyApi.getPlaylist(key, 'spotify').then((playlist) => { // eslint-disable-next-line 
       playlist.map((playlists)=>{
         newPlaylist.push(playlists.track);
       })
