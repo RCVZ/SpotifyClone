@@ -7,7 +7,7 @@ class Playlists extends Component {
   render() {
     const { results } = this.state;
     return(
-
+      <div></div>
     );
   }
 }

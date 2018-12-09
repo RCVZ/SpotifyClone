@@ -34,7 +34,7 @@ class Main extends Component {
   render() {
     const { trackList, addToPlayList, onDragStart } = this.props;
     return(
-
+      <div></div>
     );
   }
 }
