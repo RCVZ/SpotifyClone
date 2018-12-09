@@ -11,6 +11,7 @@ class Track extends PureComponent {
       trackUri: ''
     }
   }
+
   addOnClick = (e) => {
     this.props.addToPlaylist(this.props.track);
   }
@@ -19,9 +20,10 @@ class Track extends PureComponent {
     this.props.deleteTrack(this.props.track);
   }
   
-  handlePlay = (e) => {
-    console.log("this is the: ", e.target.value);
-    SpotifyApi.playTrack(this.props.track.uri);
+  handlePlay = (e) => {    
+    const urisList = this.props.getUrisList();
+    console.log("this is the: ", urisList);
+    SpotifyApi.playTrack(this.props.track.uri, urisList);
   }
 
   time = (ms) => {
@@ -34,7 +36,6 @@ class Track extends PureComponent {
 
   render() {
     const { id, trackIndex, artists, name, album, uri, duration_ms } = this.props.track;
-    console.log(this.props.track);
     return(
       <div className="Track" id={trackIndex} key={id}>
         <div className="Track-information" onClick={this.handlePlay} value={uri}>

@@ -32,7 +32,8 @@ class PlayList extends PureComponent {
         <input
           onChange={this.handleChange}
           placeholder="Playlist"/>
-        <TrackList trackList={playlist}
+        <TrackList 
+          trackList={playlist}
           deleteTrack={deleteTrack}
           inPlayList={true}/>
         <button 

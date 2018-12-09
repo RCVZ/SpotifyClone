@@ -214,7 +214,7 @@ const SpotifyApi = {
     }
   },
 
-  async playTrack(uri) {
+  async playTrack(uri, uris=0) {
     console.log('at Api', uri);
     const access = this.getAccesToken();
     const authorization = {Authorization: `Bearer ${access}`};
