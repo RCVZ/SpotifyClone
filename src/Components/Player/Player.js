@@ -14,15 +14,16 @@ class Player extends PureComponent {
       token: "",
       deviceId: "",
       loggedIn: true,
+      playing: false,
       error: "",
       trackName: "Track Name",
       artistName: "Artist Name",
       albumName: "Album Name",
-      playing: false,
       position: 0,
       duration: 0,
-      percentage: 0
-    };
+      percentage: 0,
+      volume: 1,
+    }
 
     this.playerCheckInterval = null;
     this.trackDurationTimer = null;
@@ -37,10 +38,7 @@ class Player extends PureComponent {
     const { token } = this.state;
     if (window.Spotify !== null) {
       clearInterval(this.playerCheckInterval);
-      this.player = new window.Spotify.Player({
-        name: "SpotifyClone",
-        getOAuthToken: cb => { cb(token) },
-      });
+      this.player = new window.Spotify.Player({ name: "SpotifyClone", getOAuthToken: cb => { cb(token) } });
       this.createEventHandlers();
       this.player.connect();
     }
@@ -48,16 +46,14 @@ class Player extends PureComponent {
 
   createEventHandlers() {
     this.player.on('initialization_error', e => console.error(e));
-    this.player.on('authentication_error', e => console.error(e) );
+    this.player.on('authentication_error', e => console.error(e));
     this.player.on('account_error', e => console.error(e));
     this.player.on('playback_error', e => console.error(e));
-    // Playback status updates
     this.player.on('player_state_changed', state => this.onStateChanged(state));
     this.player.on('ready', data => {
       let { device_id } = data;
-      console.log("Let the music play on!");
       this.setState({ deviceId: device_id });
-      SpotifyApi.transferPlaybackHere(device_id)
+      //SpotifyApi.transferPlaybackHere(device_id)
     });
   }
 
@@ -78,20 +74,12 @@ class Player extends PureComponent {
         playing: playing,
         percentage: 0
       });
-      console.log('I am updating');
-      if (!this.trackDurationTimer === null) {
-        clearInterval(this.trackDurationTimer);
-      } else {
-        this.trackDurationTimer = setInterval(() => this.getPlayerCurrentstate(), 100);
-      }
+      this.trackDurationTimer = setInterval(() => this.getPlayerCurrentstate(), 100);
     }
   }
 
   getPlayerCurrentstate = () => {
-    this.player.getCurrentState().then((state) =>{
-      console.log(state);
-      this.durationCountDown(state.position);
-    })
+    this.player.getCurrentState().then((state) => this.durationCountDown(state.position));
   }
 
   onPrevClick = () => {
@@ -107,9 +95,7 @@ class Player extends PureComponent {
   }
 
   onVolumeClick = (e) => {
-    this.player.setVolume(e.target.value).then(() => {
-      console.log('Volume updated!');
-    })
+    this.player.setVolume(e.target.value).then(() => console.log('Volume updated!'));
   }
 
   durationCountDown = (ms) => {

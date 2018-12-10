@@ -8,6 +8,7 @@ import Button from '../Button/Button';
 import { connect } from 'react-redux';
 import { updatePlayList } from './../../actions';
 
+
 const mapStateToProps = (state) => {
   return {
     searchResults: state.searchTracks.searchResults
@@ -20,8 +21,9 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
+
 class SearchResults extends Component {
-  handleOnClick = (e) => {
+  handleOnClose = (e) => {
     this.props.onRouteChange('');
   }
 
@@ -30,7 +32,7 @@ class SearchResults extends Component {
     return(
       <React.Fragment>        
         <div className="SearchResults">
-          <Button type="button" onClick={this.handleOnClick} name="CLOSE" />
+          <Button type="button" onClick={this.handleOnClose} name="CLOSE" />
           <PlaylistDisplay playlists={searchResults.playlists}/>
           <div className="Tracklist">
             <div className="Tracklist-tracks">

@@ -8,14 +8,14 @@ import { updatePlaylistName } from './actions';
 
 
 const mapStateToProps = (state) => {
-  return{
+  return {
     playlist: state.updatePlayList.playlist,
-    playlistName: state.updatePlaylistName.playlistName,
+    playlistName: state.updatePlaylistName.playlistName
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return{
+  return { 
     onUpdatePlaylistName: (playlistName) => dispatch(updatePlaylistName(playlistName))
   }
 }

@@ -5,12 +5,6 @@ import './Track.css'
 import Text from '../Text/Text';
 
 class Track extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      trackUri: ''
-    }
-  }
 
   addOnClick = (e) => {
     this.props.addToPlaylist(this.props.track);
@@ -22,7 +16,6 @@ class Track extends PureComponent {
   
   handlePlay = (e) => {    
     const urisList = this.props.getUrisList();
-    console.log("this is the: ", urisList);
     SpotifyApi.playTrack(this.props.track.uri, urisList);
   }
 
@@ -63,9 +56,5 @@ class Track extends PureComponent {
     );
   }
 }
-
-/*draggable
-onDragStart={this.handleOnDrag}
-onDragOver={this.handeDragover}*/
 
 export default Track;

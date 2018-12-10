@@ -30,20 +30,24 @@ class SearchBar extends PureComponent {
     clearTimeout(timeout);       
     timeout = setTimeout(() => {    
       this.props.onSearchTracks(this.props.searchTerm);
-      this.props.onRouteChange('searchResults');
-    }, 800)
+      this.changeRoute();
+    }, 800);
   }
 
   handleEnter = (e) => {
     if(e.key === 'Enter') {
       this.props.onSearchTracks(this.props.searchTerm);
-      this.props.onRouteChange('searchResults'); // should be changed
+      this.changeRoute();
     }
   }
 
   submitSearch = (e) => {
     this.props.onSearchTracks(this.props.searchTerm);
-    this.props.onRouteChange('searchResults'); // should be changed
+    
+  }
+
+  changeRoute = () => {
+    this.props.onRouteChange('searchResults'); 
   }
 
   render() {

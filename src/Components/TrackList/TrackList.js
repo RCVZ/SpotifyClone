@@ -4,19 +4,10 @@ import './TrackList.css'
 import Track from '../Track/Track';
 
 class TrackList extends PureComponent {
-  constructor(props){
-    super(props);
-    this.state = {
-      tracklistUris: []
-    }
-  }
 
   getUrisList = () => {
-    //console.log("this is the uri at trackList.js", uris);
-    const newList = []; // eslint-disable-next-line 
-    this.props.trackList.map((track)=> {
-      newList.push(track.uri);
-    })  
+    const newList = []; 
+    this.props.trackList.map((track)=>  newList.push(track.uri));  
     return newList;
   }
 
