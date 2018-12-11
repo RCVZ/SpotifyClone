@@ -2,6 +2,7 @@ const clientId = '7234ae8b9cac4739b9af4f2806d43c7c';
 let userAccesToken;
 
 const SpotifyApi = {
+
   getAccesToken() {
     if(typeof userAccesToken !== 'undefined') {
       return userAccesToken;
@@ -45,11 +46,10 @@ const SpotifyApi = {
 
   async search(searchTerm) {
     const access = this.getAccesToken();
+    const authorization = { Authorization: `Bearer ${access}` };
     try {
       const response = await fetch(`https://api.spotify.com/v1/search?q=${searchTerm}&type=track`, {
-        headers: {
-          Authorization: `Bearer ${access}`
-        }
+        headers: authorization
       });
       if(response.ok){
         const jsonResponse = await response.json();
@@ -71,6 +71,7 @@ const SpotifyApi = {
 
   async fullSearch(searchTerm) {
     const access = this.getAccesToken();
+    const authorization = { Authorization: `Bearer ${access}` };
     const resultsList = {
       playlists: [],
       artists: [],
@@ -79,9 +80,7 @@ const SpotifyApi = {
     };
     try {
       const response = await fetch(`https://api.spotify.com/v1/search?q=${searchTerm}&type=playlist`, {
-        headers: {
-          Authorization: `Bearer ${access}`
-        }
+        headers: authorization
       });
       if(response.ok){
         const playlists = await response.json();
@@ -93,9 +92,7 @@ const SpotifyApi = {
     }
     try {
       const response = await fetch(`https://api.spotify.com/v1/search?q=${searchTerm}&type=artist`, {
-        headers: {
-          Authorization: `Bearer ${access}`
-        }
+        headers: authorization
       });
       if(response.ok){
         const artists = await response.json();
@@ -107,9 +104,7 @@ const SpotifyApi = {
     }
     try {
       const response = await fetch(`https://api.spotify.com/v1/search?q=${searchTerm}&type=album`, {
-        headers: {
-          Authorization: `Bearer ${access}`
-        }
+        headers: authorization
       });
       if(response.ok){
         const albums = await response.json();
@@ -121,15 +116,12 @@ const SpotifyApi = {
     }
     try {
       const response = await fetch(`https://api.spotify.com/v1/search?q=${searchTerm}&type=track`, {
-        headers: {
-          Authorization: `Bearer ${access}`
-        }
+        headers: authorization
       });
       if(response.ok){
         const tracks = await response.json();
-        resultsList.tracks = tracks.tracks.items
-        console.log(resultsList);
-        return resultsList
+        resultsList.tracks = tracks.tracks.items;
+        return resultsList;
       }
     }
     catch(error) {
@@ -140,7 +132,6 @@ const SpotifyApi = {
   async sendPlayList(playlistName, playlistUris) {
     const access = this.getAccesToken();
     const userId = await this.getUserId();
-
     const authorization = {Authorization: `Bearer ${access}`};
 
     try {
@@ -175,13 +166,16 @@ const SpotifyApi = {
   },
 
   async transferPlaybackHere(deviceId) { // should be changed
-    const access = this.getAccesToken();
+    const access = this.getAccesToken();    
+
+    const authorization = {
+      Authorization: `Bearer ${access}`,
+      "Content-Type": "application/json"
+    };
+    
     fetch("https://api.spotify.com/v1/me/player", {
       method: "PUT",
-      headers: {
-        authorization: `Bearer ${access}`,
-        "Content-Type": "application/json",
-      },
+      headers: authorization,
       body: JSON.stringify({
         "device_ids": [ deviceId ],
         "play": true,
@@ -190,11 +184,14 @@ const SpotifyApi = {
   },
 
   async getPlaylist(playlistId='', playlist='user' ) {
+    const access = this.getAccesToken();
+
     const url = {
       user: `https://api.spotify.com/v1/me/playlists`,
       spotify: `https://api.spotify.com/v1/playlists/${playlistId}/tracks` 
     }
-    const access = this.getAccesToken();
+
+    
     const authorization = {
       Authorization: `Bearer ${access}`,
      "Content-Type": "application/json"
@@ -215,7 +212,6 @@ const SpotifyApi = {
   },
 
   async playTrack(uri, uris=0) {
-    console.log('at Api', uri);
     const access = this.getAccesToken();
     const authorization = {Authorization: `Bearer ${access}`};
 
@@ -238,9 +234,3 @@ const SpotifyApi = {
 
 
 export default SpotifyApi;
-
-
-// {
-//   "context_uri": "spotify:album:5ht7ItJgpBH7W6vJ5BqpPr",
-//    "offset": { "position": 5}, "position_ms": 0
-// }

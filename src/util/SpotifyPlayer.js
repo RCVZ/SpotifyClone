@@ -16,7 +16,6 @@ const SpotifyPlayer = {
     durationCountDown: 0,
     position: 0,
     duration: 0,
-    percentage: 0,
     volume: 1,
     playerCheckInterval: null,
     checkStatePlayer: null
@@ -41,7 +40,7 @@ const SpotifyPlayer = {
     this.player.on('playback_error', e => console.error(e));
     this.player.on('player_state_changed', (state) => {
       this.onStateChanged(state);
-      this.state.checkStatePlayer = setInterval(() => {this.getPlayerCurrentstate()}, 500);
+      this.state.checkStatePlayer = setInterval(() => {this.getPlayerCurrentState()}, 500);
     });
     this.player.on('ready', data => {
       let { device_id } = data;
@@ -73,7 +72,7 @@ const SpotifyPlayer = {
     }
   },
 
-   getPlayerCurrentstate() {
+   getPlayerCurrentState() {
      this.player.getCurrentState().then((state) => this.state.position = state.position);
    },
 

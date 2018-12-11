@@ -13,9 +13,9 @@ class Player extends PureComponent {
     super(props);
 
     this.state = {
-      trackName: SpotifyPlayer.state.trackName,
-      artistName: SpotifyPlayer.state.artistName,
-      albumName: SpotifyPlayer.state.albumName,
+      trackName: '',
+      artistName: '',
+      albumName: '',
       position: 0,
       duration: 0,
       percentage: 0,
@@ -30,18 +30,18 @@ class Player extends PureComponent {
     const token = SpotifyApi.getAccesToken();
     SpotifyPlayer.state.playerCheckInterval = setInterval(() => SpotifyPlayer.checkForPlayer(token), 1000); //  can be improved
     SpotifyPlayer.check();
-    this.checkPlayerStateUpdate = setInterval(() => this.getPlayerCurrentstate(), 800);
+    this.checkPlayerStateUpdate = setInterval(() => this.getPlayerCurrentState(), 800);
   }
 
-  getPlayerCurrentstate = () => {
+  getPlayerCurrentState = () => {
     this.setState({ 
-      durationCountDown: SpotifyPlayer.state.position,
+      position: SpotifyPlayer.state.position,
       trackName: SpotifyPlayer.state.trackName,
       artistName: SpotifyPlayer.state.artistName,
       albumName: SpotifyPlayer.state.albumName,
       duration: SpotifyPlayer.state.duration
      });
-    this.durationCountDown(this.state.durationCountDown);
+    this.durationCountDown(this.state.position);
     console.log(SpotifyPlayer.state);
   }
 
