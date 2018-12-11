@@ -29,7 +29,6 @@ class Player extends PureComponent {
   componentDidMount() {
     const token = SpotifyApi.getAccesToken();
     SpotifyPlayer.state.playerCheckInterval = setInterval(() => SpotifyPlayer.checkForPlayer(token), 1000); //  can be improved
-    SpotifyPlayer.check();
     this.checkPlayerStateUpdate = setInterval(() => this.getPlayerCurrentState(), 800);
   }
 

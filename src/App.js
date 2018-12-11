@@ -3,6 +3,7 @@ import './App.css';
 
 import { connect } from 'react-redux';
 import { updatePlayList, updatePlaylistName } from './actions';
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 import SearchBar from './Components/SearchBar/SearchBar';
 import Navbar from './Components/Navbar/Navbar';
@@ -63,23 +64,28 @@ class App extends PureComponent {
 
   onRouteChange = (route) => {
     this.setState({ route: route });
+    this.props.history.push('/searchresults');
   }
+
+ 
+          
+  
 
   render() {
     return (
       <div className="App">
         <SearchBar onRouteChange={this.onRouteChange}/>
         <Navbar onRouteChange={this.onRouteChange}/>
-        <div className='Main'> 
-          {this.state.route === 'searchResults' 
-          ?
-          <SearchResults addToPlaylist={this.addToPlaylist}  onRouteChange={this.onRouteChange}/>
-          : 
-          <PlayList 
-            deleteTrack={this.deleteTrack}
-            setPlayListName={this.setPlayListName}
-            savePlayList={this.savePlayList} />
-          }
+        <div className='Main'>
+          <Router>
+            <Switch>
+              <Route path="/searchresults" component={props => <SearchResults addToPlaylist={this.addToPlaylist} onRouteChange={this.onRouteChange} />} />
+              <Route path="/PlayList" component={props => <PlayList
+                deleteTrack={this.deleteTrack}
+                setPlayListName={this.setPlayListName}
+                savePlayList={this.savePlayList} />} />
+            </Switch>            
+          </Router>        
         </div>
         <Player />
       </div>
