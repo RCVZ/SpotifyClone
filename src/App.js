@@ -3,7 +3,7 @@ import './App.css';
 
 import { connect } from 'react-redux';
 import { updatePlayList, updatePlaylistName } from './actions';
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { Route, Switch, withRouter } from "react-router-dom";
 
 import SearchBar from './Components/SearchBar/SearchBar';
 import Navbar from './Components/Navbar/Navbar';
@@ -29,12 +29,6 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 class App extends PureComponent {
-  constructor(props){
-    super(props);
-    this.state = {
-      route: ''
-    }
-  }
 
   componentWillMount() {
     SpotifyApi.getAccesToken();
@@ -64,28 +58,18 @@ class App extends PureComponent {
 
   onRouteChange = (route) => {
     this.setState({ route: route });
-    this.props.history.push('/searchresults');
   }
-
- 
-          
-  
 
   render() {
     return (
       <div className="App">
-        <SearchBar onRouteChange={this.onRouteChange}/>
-        <Navbar onRouteChange={this.onRouteChange}/>
+        <SearchBar/>
+        <Navbar/>
         <div className='Main'>
-          <Router>
-            <Switch>
-              <Route path="/searchresults" component={props => <SearchResults addToPlaylist={this.addToPlaylist} onRouteChange={this.onRouteChange} />} />
-              <Route path="/PlayList" component={props => <PlayList
-                deleteTrack={this.deleteTrack}
-                setPlayListName={this.setPlayListName}
-                savePlayList={this.savePlayList} />} />
-            </Switch>            
-          </Router>        
+          <Switch>
+            <Route path="/current-playlist" render={(props) => (<PlayList deleteTrack={this.deleteTrack} setPlayListName={this.setPlayListName} savePlayList={this.savePlayList} {...props} />)} />
+            <Route path="/search" render={(props) => (<SearchResults addToPlaylist={this.addToPlaylist} {...props} />)} />
+          </Switch>
         </div>
         <Player />
       </div>
@@ -93,4 +77,4 @@ class App extends PureComponent {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

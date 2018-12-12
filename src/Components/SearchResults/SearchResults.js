@@ -23,16 +23,13 @@ const mapDispatchToProps = (dispatch) => {
 
 
 class SearchResults extends Component {
-  handleOnClose = (e) => {
-    this.props.onRouteChange('');
-  }
 
   render() {
     const { searchResults, addToPlaylist } = this.props;
     return(
       <React.Fragment>        
         <div className="SearchResults">
-          <Button type="button" onClick={this.handleOnClose} name="CLOSE" />
+          <Button type="button" name="CLOSE" />
           <PlaylistDisplay playlists={searchResults.playlists}/>
           <div className="Tracklist">
             <div className="Tracklist-tracks">
