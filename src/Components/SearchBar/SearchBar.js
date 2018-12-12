@@ -3,7 +3,7 @@ import './SearchBar.css';
 
 import { connect } from 'react-redux';
 import { searchChange, searchTracks } from './actions';
-//import { searchTracks } from './../../actions';
+import { Link } from "react-router-dom";
 
 import Button from '../Button/Button';
 
@@ -30,11 +30,13 @@ class SearchBar extends PureComponent {
     clearTimeout(timeout);       
     timeout = setTimeout(() => {    
       this.props.onSearchTracks(this.props.searchTerm);
-    }, 800);
+    }, 1000);
   }
 
   handleEnter = (e) => {
-    e.key === 'Enter' ? this.props.onSearchTracks(this.props.searchTerm) : this.props.onSearchTracks('');
+    if (e.key === 'Enter') {
+      this.props.onSearchTracks(this.props.searchTerm)
+    }
   }
 
   submitSearch = (e) => {
@@ -45,7 +47,7 @@ class SearchBar extends PureComponent {
     return(
       <div className='SearchBar' onKeyPress={this.handleEnter}>
         <input onChange={this.handleSearchTerm}  placeholder="Enter A Song, Album, or Artist"/>
-        <Button type="submit" onClick={this.submitSearch} name="SEARCH" />
+        <Link to="/search"><Button type="submit" onClick={this.submitSearch} name="SEARCH" /></Link>
       </div>
     );
   }
