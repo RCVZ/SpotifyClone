@@ -11,12 +11,7 @@ button.Button {
   transition: background-color .25s;
 }
 
-/* .Button:focus {
-  outline: none;
-} */
-
 button.Button:hover {
   background-color: rgba(108, 65, 233, .7);
   box-shadow: 0 2px 1px 1px #000000;
-  /* font-size: .833rem; */
 }

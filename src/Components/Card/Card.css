@@ -6,7 +6,7 @@
 }
 
 .Card:hover {
-  box-shadow: 0px 18px 25px 15px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 20px 10px 20px rgb(0, 0, 0);
 }
 
 .Card img {

@@ -12,10 +12,6 @@
   transition: color .25s;
 }
 
-.Track-action:focus {
-  outline: none;
-}
-
 .Track-action:hover {
   color: rgba(265, 265, 265, .5);
 }

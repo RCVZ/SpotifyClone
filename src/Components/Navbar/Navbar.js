@@ -25,8 +25,8 @@ class Navbar extends PureComponent {
 
   render() {
     return(
-      <div className='Navbar'>
-        <div className='Playlists'>
+      <div className='Navbar-wrapper'>
+        <div className='Navbar'>
           <Link to="/current-playlist">Current Playlist</Link>
           <Link to="/new">New</Link>
           <Link to="/search">Search</Link>

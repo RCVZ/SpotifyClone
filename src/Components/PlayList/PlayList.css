@@ -34,10 +34,6 @@
   transition: background-color .25s;
 }
 
-.Playlist-save:focus {
-  outline: none;
-}
-
 .Playlist-save:hover {
   background-color: rgba(108, 65, 233, .7);
   padding: .5rem 0;

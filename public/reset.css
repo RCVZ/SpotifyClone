@@ -56,5 +56,9 @@ button:focus {
   color: inherit;
   background-color: transparent;
   cursor: pointer;
-	outline: none;
+  outline: none;
+}
+
+input:focus {
+  outline: none;
 }

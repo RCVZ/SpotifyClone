@@ -30,7 +30,7 @@ const mapDispatchToProps = (dispatch) => {
 
 class App extends PureComponent {
 
-  componentWillMount() {
+  componentDidMount() {
     SpotifyApi.getAccesToken();
   }
 
@@ -56,21 +56,15 @@ class App extends PureComponent {
     }
   }
 
-  onRouteChange = (route) => {
-    this.setState({ route: route });
-  }
-
   render() {
     return (
       <div className="App">
         <SearchBar/>
         <Navbar/>
-        <div className='Main'>
-          <Switch>
-            <Route path="/current-playlist" render={(props) => (<PlayList deleteTrack={this.deleteTrack} setPlayListName={this.setPlayListName} savePlayList={this.savePlayList} {...props} />)} />
-            <Route path="/search" render={(props) => (<SearchResults addToPlaylist={this.addToPlaylist} {...props} />)} />
-          </Switch>
-        </div>
+        <Switch>
+          <Route path="/current-playlist" render={(props) => (<PlayList deleteTrack={this.deleteTrack} setPlayListName={this.setPlayListName} savePlayList={this.savePlayList} {...props} />)} />
+          <Route path="/search" render={(props) => (<SearchResults addToPlaylist={this.addToPlaylist} {...props} />)} />
+        </Switch>
         <Player />
       </div>
     );

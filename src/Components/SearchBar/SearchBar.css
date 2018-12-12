@@ -19,7 +19,3 @@
   margin-left: 25%;
   margin-right: 10px;
 }
-
-.SearchBar input:focus {
-  outline: none;
-}
