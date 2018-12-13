@@ -9,7 +9,7 @@
   grid-template-areas: "Navbar SearchBar SearchBar SearchBar"
                        "Navbar Main Main Main"
                        "Player Player Player Player";
-  grid-template-columns: 0.65fr repeat(3, 1fr);
+  grid-template-columns: 0.6fr repeat(3, 1fr);
   grid-template-rows: 50px 1fr 80px;
   background-color: rgb(0, 0, 20);
   font-family: 'Work Sans', sans-serif;

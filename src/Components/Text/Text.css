@@ -6,7 +6,7 @@
   font-size: 0.67rem;
   margin: 8px 0;  
   white-space: nowrap;
-  width: 20ch;
+  width: 18ch;
   overflow: hidden;
   text-overflow: ellipsis;
 }

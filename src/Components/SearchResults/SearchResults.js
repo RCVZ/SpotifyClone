@@ -3,7 +3,6 @@ import './SearchResults.css';
 
 import TrackList from '../TrackList/TrackList';
 import PlaylistDisplay from '../PlaylistDisplay/PlaylistDisplay';
-import Button from '../Button/Button';
 
 import { connect } from 'react-redux';
 import { updatePlayList } from './../../actions';
@@ -21,7 +20,6 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-
 class SearchResults extends Component {
 
   render() {
@@ -29,7 +27,6 @@ class SearchResults extends Component {
     return(
       <React.Fragment>        
         <div className="SearchResults">
-          <Button type="button" name="CLOSE" />
           <PlaylistDisplay playlists={searchResults.playlists}/>
           <div className="Tracklist">
             <div className="Tracklist-tracks">
@@ -37,8 +34,8 @@ class SearchResults extends Component {
                 trackList={searchResults.tracks}
                 addToPlaylist={addToPlaylist}/>
             </div>
-            <div className="Tracklist-artists">
-              <h2 style={{marginLeft: '50px'}}>Coming Soon</h2>
+            <div className="Tracklist-albums">
+              <PlaylistDisplay playlists={searchResults.albums} />
             </div>
           </div>
         </div>
