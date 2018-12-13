@@ -4,11 +4,7 @@ import './Main.css';
 import { connect } from 'react-redux';
 import SearchResults from '../SearchResults/SearchResults';
 
-const mapStateToProps = (state) => {
-  return {
-    searchResults: state.searchTracks.searchResults
-  }
-}
+
 
 class Main extends Component {
   constructor(props) {
@@ -18,25 +14,17 @@ class Main extends Component {
     }
   }
 
-  // this.props.updateRoute = () => {
-  //   onRouteChange('searchResults')
-  // }
-
-  onRouteChange = (route) => {
-    console.log('test2')
-    if(route === 'searchResults') {
-      this.setState({ route: route });
-    } else {
-      this.setState({ route: route });
-    }
-  }
 
   render() {
-    const { trackList, addToPlayList, onDragStart } = this.props;
     return(
-      <div></div>
+      <div className="Main">
+        <Switch>
+          <Route path="/current-playlist" render={(props) => (<PlayList deleteTrack={this.deleteTrack} setPlayListName={this.setPlayListName} savePlayList={this.savePlayList} {...props} />)} />
+          <Route path="/search" render={(props) => (<SearchResults addToPlaylist={this.addToPlaylist} {...props} />)} />
+        </Switch>
+      </div>
     );
   }
 }
 
-export default connect(mapStateToProps)(Main);
+export default Main;
