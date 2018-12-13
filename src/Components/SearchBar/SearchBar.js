@@ -3,6 +3,7 @@ import './SearchBar.css';
 
 import { connect } from 'react-redux';
 import { searchChange, searchTracks } from './actions';
+import { updatePlayList } from './../PlayList/actions';
 import { Link } from "react-router-dom";
 
 import Button from '../Button/Button';
@@ -11,14 +12,16 @@ const mapStateToProps = (state) => {
   return {
     searchResults: state.searchTracks.searchResults,
     isPending: state.searchTracks.isPending,
-    searchTerm: state.searchChange.searchTerm
+    searchTerm: state.searchChange.searchTerm,
+    playlist: state.updatePlayList.playlist,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     onSearchTracks: (searchTerm) => dispatch(searchTracks(searchTerm)),
-    onSearchTermChange: (searchTerm) => dispatch(searchChange(searchTerm))
+    onSearchTermChange: (searchTerm) => dispatch(searchChange(searchTerm)),
+    onUpdatePlaylist: (playlist) => dispatch(updatePlayList(playlist))
   }
 }
 
@@ -31,6 +34,12 @@ class SearchBar extends PureComponent {
     timeout = setTimeout(() => {    
       this.props.onSearchTracks(this.props.searchTerm);
     }, 1000);
+  }
+
+  addToPlaylist = (track, trackIndex = 0) => {
+    let tracks = this.props.playlist.filter(element => element.id !== track.id);
+    tracks.splice(trackIndex, 0, track);
+    this.props.onUpdatePlaylist(tracks);
   }
 
   handleEnter = (e) => {

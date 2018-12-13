@@ -1,9 +1,10 @@
 import React, { PureComponent } from 'react';
-import SpotifyApi from '../../util/Spotify';
-import SpotifyPlayer from '../../util/SpotifyPlayer';
 import './Player.css';
 
 import ProgressionBar from '../ProgressionBar/ProgressionBar';
+
+import SpotifyApi from '../../util/Spotify';
+import SpotifyPlayer from '../../util/SpotifyPlayer';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBackward, faPlay, faPause, faForward } from '@fortawesome/free-solid-svg-icons'

@@ -2,7 +2,8 @@ import {
   REQUEST_TRACKS_PENDING,
   REQUEST_TRACKS_SUCCESS,
   REQUEST_TRACKS_FAILED,
-  SEARCHTERM_CHANGE} from './constants';
+  SEARCHTERM_CHANGE
+  } from './constants';
 
   
 import SpotifyApi from './../../util/Spotify';

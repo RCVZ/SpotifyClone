@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import './Main.css';
 
-import { connect } from 'react-redux';
 import SearchResults from '../SearchResults/SearchResults';
+import PlayList from '../PlayList/PlayList';
 
 
+import { Route, Switch, withRouter } from "react-router-dom";
 
 class Main extends Component {
   constructor(props) {
@@ -19,12 +20,12 @@ class Main extends Component {
     return(
       <div className="Main">
         <Switch>
-          <Route path="/current-playlist" render={(props) => (<PlayList deleteTrack={this.deleteTrack} setPlayListName={this.setPlayListName} savePlayList={this.savePlayList} {...props} />)} />
-          <Route path="/search" render={(props) => (<SearchResults addToPlaylist={this.addToPlaylist} {...props} />)} />
+          <Route path="/current-playlist" component={PlayList} />
+          <Route path="/search" component={SearchResults} />
         </Switch>
       </div>
     );
   }
 }
 
-export default Main;
+export default withRouter(Main);
