@@ -12,6 +12,7 @@
 }
 
 .Card img {
-  max-height: 125px;
-  width: auto;
+  height: 125px;
+  max-width: 100%;
+  background-color: black;
 }

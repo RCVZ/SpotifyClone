@@ -4,8 +4,7 @@ import './Main.css';
 import SearchResults from '../SearchResults/SearchResults';
 import PlayList from '../PlayList/PlayList';
 
-
-import { Route, Switch, withRouter } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 class Main extends Component {
   constructor(props) {
@@ -27,4 +26,4 @@ class Main extends Component {
   }
 }
 
-export default withRouter(Main);
+export default Main;

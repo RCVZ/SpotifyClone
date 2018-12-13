@@ -224,10 +224,12 @@ const SpotifyApi = {
           "offset": {"uri": uri }
         })
       });
-      const jsonResponse = await response.json();
-      console.log("playresponse",jsonResponse);
+      if (response.ok) {
+        const jsonResponse = await response.json();
+        console.log(jsonResponse);
+      }
     } catch (e) {
-      console.log(e)
+      console.log(e);
     }
   }
 };
