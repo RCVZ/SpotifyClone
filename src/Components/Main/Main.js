@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import './Main.css';
 
 import SearchResults from '../SearchResults/SearchResults';
 import PlayList from '../PlayList/PlayList';
 
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, withRouter } from "react-router-dom";
 
-class Main extends Component {
+class Main extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -20,10 +20,10 @@ class Main extends Component {
         <Switch>
           <Route path="/current-playlist" component={PlayList} />
           <Route path="/search" component={SearchResults} />
-        </Switch>
+        </Switch> 
       </div>
     );
   }
 }
 
-export default Main;
+export default withRouter(Main);

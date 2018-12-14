@@ -1,10 +1,10 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import './Navbar.css';
 
 import SpotifyApi from '../../util/Spotify';
 import { Link } from "react-router-dom";
 
-class Navbar extends PureComponent {
+class Navbar extends Component {
   constructor(props) {
     super(props);
     this.state = {

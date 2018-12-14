@@ -46,7 +46,7 @@ const SpotifyPlayer = {
       let { device_id } = data;
       console.log("Let the music play on!");
       this.state.deviceId = device_id;
-      SpotifyApi.transferPlaybackHere(device_id);
+      //SpotifyApi.transferPlaybackHere(device_id);
     });
   },
 

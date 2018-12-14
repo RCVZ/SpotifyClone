@@ -33,7 +33,7 @@ class SearchBar extends PureComponent {
     clearTimeout(timeout);       
     timeout = setTimeout(() => {    
       this.props.onSearchTracks(this.props.searchTerm);
-    }, 1000);
+    }, 600);
   }
 
   addToPlaylist = (track, trackIndex = 0) => {
