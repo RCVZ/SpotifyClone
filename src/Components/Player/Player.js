@@ -6,8 +6,8 @@ import ProgressionBar from '../ProgressionBar/ProgressionBar';
 import SpotifyApi from '../../util/Spotify';
 import SpotifyPlayer from '../../util/SpotifyPlayer';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBackward, faPlay, faPause, faForward } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBackward, faPlay, faPause, faForward } from '@fortawesome/free-solid-svg-icons';
 
 class Player extends PureComponent {
   constructor(props) {

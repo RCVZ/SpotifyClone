@@ -21,3 +21,13 @@
   font-weight: 100;
   margin: 0.22rem
 }
+
+a.LinkButton  {
+  text-decoration: none;
+  text-align: left;
+  color: white;
+}
+
+a.active.LinkButton {
+  color: rgb(247, 9, 9);
+}
