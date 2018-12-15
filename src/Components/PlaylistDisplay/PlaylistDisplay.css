@@ -4,7 +4,6 @@
 
 .Grid {
   display: grid;
-  /* min-height: 250px; */
   grid: repeat(auto-fill, 150px) / repeat(auto-fill, minmax(125px, 1fr));
   grid-gap: 40px;
   justify-items: center;

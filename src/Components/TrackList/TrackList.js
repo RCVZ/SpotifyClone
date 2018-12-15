@@ -15,8 +15,7 @@ class TrackList extends PureComponent {
     const { addToPlaylist, deleteTrack, inPlayList, trackList  } = this.props;
     return (
       <div className="TrackList">
-        {
-          trackList.map((track, index) => {
+        {trackList.map((track, index) => {
             return (
               <Track
                 track={track}
