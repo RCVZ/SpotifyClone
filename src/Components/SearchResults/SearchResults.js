@@ -35,7 +35,7 @@ class SearchResults extends Component {
                 addToPlaylist={addToPlaylist}/>
             </div>
             <div className="Tracklist-albums">
-              <PlaylistDisplay playlists={searchResults.albums} />
+              <PlaylistDisplay playlists={searchResults.albums} albums={true}/>
             </div>
           </div>
         </div>

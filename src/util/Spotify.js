@@ -184,13 +184,13 @@ const SpotifyApi = {
   },
 
   async getPlaylist(playlistId='', playlist='user' ) {
-    const access = this.getAccesToken();
+    const access = await this.getAccesToken();
 
     const url = {
       user: `https://api.spotify.com/v1/me/playlists`,
-      spotify: `https://api.spotify.com/v1/playlists/${playlistId}/tracks` 
+      spotify: `https://api.spotify.com/v1/playlists/${playlistId}/tracks` ,
+      spotifyAlbum: `https://api.spotify.com/v1/albums/${playlistId}/tracks` 
     }
-
     
     const authorization = {
       Authorization: `Bearer ${access}`,
@@ -204,10 +204,11 @@ const SpotifyApi = {
 
       if(response.ok) {
         const jsonResponse = await response.json();
+        console.log(jsonResponse);
         return jsonResponse.items;
       }
     } catch (e) {
-      console.log(e)
+      console.log(e);
     }
   },
 

@@ -29,13 +29,24 @@ class PlaylistDisplay extends PureComponent {
     this.state.results === 10 ? this.setState({results: 20}) :  this.setState({results: 10});
   }
 
-  handleOnclick = (key) => {
+  handleOnclick = (key, images) => {
     let newPlaylist = [];
-    SpotifyApi.getPlaylist(key, 'spotify').then((playlist) => { // eslint-disable-next-line 
-      playlist.map((playlists)=>{
-        newPlaylist.push(playlists.track);
-      })
-    });
+    let secondPram = 'spotify';
+    if(this.props.albums === true) {
+      secondPram = 'spotifyAlbum';
+      SpotifyApi.getPlaylist(key, secondPram).then((playlist) => {
+        playlist.map((item)=>{
+          item['album'] = {images};
+          return newPlaylist.push(item);
+        });
+      });
+    } else {
+      SpotifyApi.getPlaylist(key, secondPram).then((playlist) => { 
+        playlist.map((playlists) => {
+          return newPlaylist.push(playlists.track);
+        })
+      });
+    }
     this.props.onUpdatePlaylist(newPlaylist) 
   }
 

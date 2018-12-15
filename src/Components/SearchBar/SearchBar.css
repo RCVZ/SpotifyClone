@@ -3,8 +3,7 @@
   display: flex;
   align-items: center;
   height: 50px;
-  background-color: rgb(0, 5, 56);
-  z-index: 9999;
+  background-color: rgba(255, 255, 255, 0);
 }
 
 .SearchBar input {
