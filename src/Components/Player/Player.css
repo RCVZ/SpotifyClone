@@ -2,7 +2,7 @@
   grid-area: Player;
   display: flex;
   justify-content: center;
-  background-color: rgba(0, 0, 40, 0.7);
+  background-color: rgb(3, 0, 51);
   height: 80px;
   width: auto;
 }
