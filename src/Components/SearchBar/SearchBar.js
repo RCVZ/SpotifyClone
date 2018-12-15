@@ -6,7 +6,9 @@ import { searchChange, searchTracks } from './actions';
 import { updatePlayList } from './../PlayList/actions';
 import { Link } from "react-router-dom";
 
-import Button from '../Button/Button';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 const mapStateToProps = (state) => {
   return {
@@ -56,7 +58,7 @@ class SearchBar extends PureComponent {
     return(
       <div className='SearchBar' onKeyPress={this.handleEnter}>
         <input onChange={this.handleSearchTerm}  placeholder="Enter A Song, Album, or Artist"/>
-        <Link to="/search"><Button type="submit" onClick={this.submitSearch} name="SEARCH" /></Link>
+        <Link to="/search"><FontAwesomeIcon className="Search_Button" icon={faSearch}/><button type="submit" onClick={this.submitSearch} name="SEARCH" /></Link>
       </div>
     );
   }
