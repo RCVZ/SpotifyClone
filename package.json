@@ -1,5 +1,5 @@
 {
-  "name": "Spotifyclone",
+  "name": "spotifyclone",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -9,7 +9,10 @@
     "i": "^0.3.6",
     "npm": "^6.4.1",
     "react": "^16.6.3",
+    "react-app-rewire-hot-loader": "^1.0.3",
+    "react-app-rewired": "^1.6.2",
     "react-dom": "^16.6.3",
+    "react-hot-loader": "^4.6.0",
     "react-load-script": "0.0.6",
     "react-redux": "^5.1.1",
     "react-router-dom": "^4.3.1",
@@ -18,12 +21,14 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
+
+    "scripts": {
+      "start": "react-app-rewired start",
+      "build": "react-app-rewired build",
+      "test": "react-app-rewired test --env=jsdom",
+      "eject": "react-app-rewired eject"
+    },
+
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -34,3 +39,5 @@
     "not op_mini all"
   ]
 }
+
+

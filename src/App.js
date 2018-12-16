@@ -9,6 +9,8 @@ import Player from './Components/Player/Player';
 import { withRouter } from "react-router-dom";
 import SpotifyApi from './util/Spotify';
 
+import { hot } from 'react-hot-loader'
+
 class App extends PureComponent {
 
   componentDidMount() {
@@ -27,4 +29,4 @@ class App extends PureComponent {
   }
 }
 
-export default withRouter(App);
+export default hot(module)(withRouter(App));
