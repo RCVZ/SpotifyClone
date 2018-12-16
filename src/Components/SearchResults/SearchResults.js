@@ -25,20 +25,24 @@ class SearchResults extends Component {
   render() {
     const { searchResults, addToPlaylist } = this.props;
     return(
-      <React.Fragment>        
-        <div className="SearchResults">
-          <PlaylistDisplay playlists={searchResults.playlists}/>
-          <div className="Tracklist">
-            <div className="Tracklist-tracks">
-              <TrackList
-                trackList={searchResults.tracks}
-                addToPlaylist={addToPlaylist}/>
+      <React.Fragment>
+        {
+          searchResults.playlists.length > 0 ?
+          <div className="SearchResults">
+            <PlaylistDisplay playlists={searchResults.playlists} />
+            <div className="Tracklist">
+              <div className="Tracklist-tracks">
+                <TrackList
+                  trackList={searchResults.tracks}
+                  addToPlaylist={addToPlaylist} />
+              </div>
+              <div className="Tracklist-albums">
+                <PlaylistDisplay playlists={searchResults.albums} albums={true} />
+              </div>
             </div>
-            <div className="Tracklist-albums">
-              <PlaylistDisplay playlists={searchResults.albums} albums={true}/>
-            </div>
-          </div>
-        </div>
+          </div> :
+          <React.Fragment></React.Fragment>
+        }      
       </React.Fragment>
     );
   }

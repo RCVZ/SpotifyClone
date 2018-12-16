@@ -18,15 +18,15 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 class PlaylistDisplay extends PureComponent {
-  constructor(props){
+  constructor(props){ 
     super(props);
     this.state= {
-      results: 10
+      results: 6
     }
   }
 
   handleOnMore = (e) => {
-    this.state.results === 10 ? this.setState({results: 20}) :  this.setState({results: 10});
+    this.state.results === 10 ? this.setState({results: 20}) :  this.setState({results: 6});
   }
 
   handleOnclick = (key, images) => {
@@ -58,7 +58,13 @@ class PlaylistDisplay extends PureComponent {
           {this.props.playlists
             .slice(0,results)
             .map(playlist => {
-              return <Card playlist={playlist} id={playlist.id} key={playlist.id} handleOnclick={this.handleOnclick}/>
+              return (
+                <Card 
+                playlist={playlist} 
+                id={playlist.id} 
+                key={playlist.id} 
+                handleOnclick={this.handleOnclick}
+                />)
             })}
           <div>
             <Button type="button" onClick={this.handleOnMore} name="More....."/>
