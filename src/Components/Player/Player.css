@@ -4,22 +4,34 @@
   justify-content: center;
   background-color: rgb(3, 0, 51);
   height: 80px;
-  width: auto;
+  width: 100%;
 }
 
 .track-info {
-  margin: auto 0;
-  width: 40%;
-  border-radius: 10px;
-}
-
-.track-info span {
-  font-size: 0.8rem;
-  margin: 10px;
+  margin: auto;
+  width: 33%;
+  text-align: center;
 }
 
 .Player .Control {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 33%;
+  height: 100%;
+}
+
+
+.Player .Player-buttons {
+  display: flex;
+  flex-direction: row;
   justify-content: space-around;
-  width: 10%;
+  height: 100%;
+  width: 20%;
+  margin-top: 20px;
+}
+
+.volume {
+  width: 33%;
 }

@@ -2,9 +2,9 @@ import React, { PureComponent } from 'react';
 import './Player.css';
 
 import ProgressionBar from '../ProgressionBar/ProgressionBar';
+import Text from '../Text/Text';
 
 import SpotifyApi from '../../util/Spotify';
-import SpotifyPlayer from '../../util/SpotifyPlayer';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBackward, faPlay, faPause, faForward } from '@fortawesome/free-solid-svg-icons';
@@ -30,8 +30,7 @@ class Player extends PureComponent {
     }
 
     this.playerCheckInterval = null;
-    this.trackDurationTimer = null;
-      
+    this.trackDurationTimer = null;      
   }
 
   componentDidMount() {
@@ -115,21 +114,25 @@ class Player extends PureComponent {
     return(
       <div className="Player">
         <div className="track-info">
-          <span>{artistName}</span>
-          <span>{trackName}</span>
+          <Text name={trackName} artist={artistName} textSize={'0.8rem'} overfl={'visible'} />
         </div>
         <div className="Control">
-          <button className="back" onClick={this.onPrevClick} >
-            <FontAwesomeIcon className="button"  icon={faBackward} />
-          </button>
-          <button className="play-pause" onClick={this.onPlayClick} >
-            <FontAwesomeIcon className="button" icon={playing ? faPause : faPlay} />
-          </button>
-          <button className="forward" onClick={this.onNextClick} >
-            <FontAwesomeIcon className="button"  icon={faForward} />
-          </button>
+          <div className="Player-buttons"> 
+            <button className="back" onClick={this.onPrevClick} >
+              <FontAwesomeIcon className="button" icon={faBackward} />
+            </button>
+            <button className="play-pause" onClick={this.onPlayClick} >
+              <FontAwesomeIcon className="button" icon={playing ? faPause : faPlay} />
+            </button>
+            <button className="forward" onClick={this.onNextClick} >
+              <FontAwesomeIcon className="button" icon={faForward} />
+            </button>
+          </div>          
+          <ProgressionBar percentage={percentage} />
         </div>
-        <ProgressionBar percentage={percentage}/>
+        <div className="volume">
+          <p>volume</p>
+        </div>
       </div>
     );
   }

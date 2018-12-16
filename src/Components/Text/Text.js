@@ -1,11 +1,11 @@
 import React from 'react';
 import './Text.css';
 
-const Text = ({ name, artist }) => {
+const Text = ({ name, artist, textSize, overfl }) => {
   return(
     <div className="Text">
-      <p>{name}</p>
-      <p>{artist}</p>
+      <p style={{ fontSize: textSize, overflow: overfl  }}>{name}</p>
+      <p style={{ fontSize: textSize, overflow: overfl  }}>{artist}</p>
     </div>
   )
 }
