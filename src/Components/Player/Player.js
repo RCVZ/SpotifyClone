@@ -14,6 +14,11 @@ class Player extends PureComponent {
     super(props);
 
     this.state = {
+      token: "",
+      deviceId: "",
+      loggedIn: true,
+      playing: false,
+      error: "",
       trackName: '',
       artistName: '',
       albumName: '',
@@ -23,41 +28,80 @@ class Player extends PureComponent {
       volume: 1,
       durationCountDown: 0
     }
-    this.checkPlayerStateUpdate = null;
+
+    this.playerCheckInterval = null;
+    this.trackDurationTimer = null;
+      
   }
 
   componentDidMount() {
-    const token = SpotifyApi.getAccesToken();
-    SpotifyPlayer.state.playerCheckInterval = setInterval(() => SpotifyPlayer.checkForPlayer(token), 1000); //  can be improved
-    this.checkPlayerStateUpdate = setInterval(() => this.getPlayerCurrentState(), 800);
+    this.setState({ 
+      token: SpotifyApi.getAccesToken()
+    });
+    this.playerCheckInterval = setInterval(() => this.checkForPlayer(), 1000);
+  }
+ 
+  checkForPlayer = () => {
+    const { token } = this.state;
+    if (window.Spotify !== null) {
+      clearInterval(this.playerCheckInterval);
+      this.player = new window.Spotify.Player({ name: "SpotifyClone", getOAuthToken: cb => { cb(token) } });
+      this.createEventHandlers();
+      this.player.connect();
+    }
   }
 
-  getPlayerCurrentState = () => {
-    this.setState({ 
-      position: SpotifyPlayer.state.position,
-      trackName: SpotifyPlayer.state.trackName,
-      artistName: SpotifyPlayer.state.artistName,
-      albumName: SpotifyPlayer.state.albumName,
-      duration: SpotifyPlayer.state.duration
-     });
-    this.durationCountDown(this.state.position);
-    //console.log(SpotifyPlayer.state);
+  createEventHandlers = () => {
+    this.player.on('initialization_error', e => console.error(e));
+    this.player.on('authentication_error', e => console.error(e));
+    this.player.on('account_error', e => console.error(e));
+    this.player.on('playback_error', e => console.error(e));
+    this.player.on('player_state_changed', state => this.onStateChanged(state));
+    this.player.on('ready', data => {
+      let { device_id } = data;
+      this.setState({ deviceId: device_id });
+      SpotifyApi.transferPlaybackHere(device_id)
+    });
+  }
+
+  onStateChanged = (state) => { 
+    if (state !== null) {
+      const { current_track: currentTrack } = state.track_window;
+      const trackName = currentTrack.name;
+      const albumName = currentTrack.album.name;
+      const artistName = currentTrack.artists.map(artist => artist.name).join(", ");
+      const playing = !state.paused;
+      const duration = currentTrack.duration_ms;
+      this.setState({
+        duration: duration,
+        trackName: trackName,
+        albumName: albumName,
+        artistName: artistName,
+        playing: playing,
+        percentage: 0
+      });
+      this.trackDurationTimer = setInterval(() => this.getPlayerCurrentstate(), 100);
+    }
+  }
+
+  getPlayerCurrentstate = () => {
+    this.player.getCurrentState().then((state) => this.durationCountDown(state.position));
   }
 
   onPrevClick = () => {
-    SpotifyPlayer.player.previousTrack();
+    this.player.previousTrack();
   }
 
   onPlayClick = () => {
-    SpotifyPlayer.player.togglePlay();
+    this.player.togglePlay();
   }
 
   onNextClick = () => {
-    SpotifyPlayer.player.nextTrack();
+    this.player.nextTrack();
   }
 
   onVolumeClick = (e) => {
-    SpotifyPlayer.player.setVolume(e.target.value);
+    this.player.setVolume(e.target.value).then(() => console.log('Volume updated!'));
   }
 
   durationCountDown = (ms) => {
