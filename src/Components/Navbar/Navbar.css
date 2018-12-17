@@ -9,17 +9,7 @@
   flex-direction: column;
   justify-content: space-between;
   height: 400px;
-  margin: 10rem 2rem;
-}
-
-.Navbar h3 {
-  font-size: 1rem;
-}
-
-.Navbar h4 {
-  font-size: 0.88rem;
-  font-weight: 100;
-  margin: 0.22rem
+  margin: 9rem 0 auto 1rem;
 }
 
 a.LinkButton  {
