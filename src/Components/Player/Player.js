@@ -2,12 +2,12 @@ import React, { PureComponent } from 'react';
 import './Player.css';
 
 import ProgressionBar from '../ProgressionBar/ProgressionBar';
-import Text from '../Text/Text';
+import Track from '../Track/Track';
 
 import SpotifyApi from '../../util/Spotify';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBackward, faPlay, faPause, faForward } from '@fortawesome/free-solid-svg-icons';
+import { faBackward, faPlay, faPause, faForward, faVolumeUp } from '@fortawesome/free-solid-svg-icons';
 
 class Player extends PureComponent {
   constructor(props) {
@@ -19,6 +19,7 @@ class Player extends PureComponent {
       loggedIn: true,
       playing: false,
       error: "",
+      currentTrack: '',
       trackName: '',
       artistName: '',
       albumName: '',
@@ -34,9 +35,7 @@ class Player extends PureComponent {
   }
 
   componentDidMount() {
-    this.setState({ 
-      token: SpotifyApi.getAccesToken()
-    });
+    this.setState({ token: SpotifyApi.getAccesToken() });
     this.playerCheckInterval = setInterval(() => this.checkForPlayer(), 1000);
   }
  
@@ -65,13 +64,14 @@ class Player extends PureComponent {
 
   onStateChanged = (state) => { 
     if (state !== null) {
-      const { current_track: currentTrack } = state.track_window;
-      const trackName = currentTrack.name;
-      const albumName = currentTrack.album.name;
-      const artistName = currentTrack.artists.map(artist => artist.name).join(", ");
+      const { current_track } = state.track_window;
+      const trackName = current_track.name;
+      const albumName = current_track.album.name;
+      const artistName = current_track.artists.map(artist => artist.name).join(", ");
       const playing = !state.paused;
-      const duration = currentTrack.duration_ms;
+      const duration = current_track.duration_ms;
       this.setState({
+        currentTrack: current_track, 
         duration: duration,
         trackName: trackName,
         albumName: albumName,
@@ -84,7 +84,9 @@ class Player extends PureComponent {
   }
 
   getPlayerCurrentstate = () => {
-    this.player.getCurrentState().then((state) => this.durationCountDown(state.position));
+    this.player.getCurrentState().then((state) => {
+      // console.log(state);
+      this.durationCountDown(state.position)});
   }
 
   onPrevClick = () => {
@@ -109,29 +111,37 @@ class Player extends PureComponent {
     this.setState({percentage: barPercentage});
   }
 
+  sliderAction = (e) => {
+    console.log(e.target.value)
+  }
+
  render() {
-   const { artistName, trackName, percentage, playing } = this.state;
+  //  console.log(this.state);
+   const { percentage, playing, currentTrack } = this.state;
     return(
       <div className="Player">
         <div className="track-info">
-          <Text name={trackName} artist={artistName} textSize={'0.8rem'} overfl={'visible'} />
+          {this.state.playing ? <Track track={currentTrack} /> : null   }
         </div>
         <div className="Control">
           <div className="Player-buttons"> 
             <button className="back" onClick={this.onPrevClick} >
-              <FontAwesomeIcon className="button" icon={faBackward} />
+              <FontAwesomeIcon className="button" icon={faBackward} size="sm"/>
             </button>
             <button className="play-pause" onClick={this.onPlayClick} >
-              <FontAwesomeIcon className="button" icon={playing ? faPause : faPlay} />
+              <FontAwesomeIcon className="button" icon={playing ? faPause : faPlay} size="lg"/>
             </button>
             <button className="forward" onClick={this.onNextClick} >
-              <FontAwesomeIcon className="button" icon={faForward} />
+              <FontAwesomeIcon className="button" icon={faForward} size="sm"/>
             </button>
           </div>          
-          <ProgressionBar percentage={percentage} />
+          <ProgressionBar percentage={percentage} sliderAction={this.sliderAction}/>
         </div>
         <div className="volume">
-          <p>volume</p>
+          <FontAwesomeIcon icon={faVolumeUp} size="s"/>
+          <div className="volume-bar">
+            <ProgressionBar percentage={"20"} />
+          </div>
         </div>
       </div>
     );
