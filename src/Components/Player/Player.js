@@ -107,9 +107,12 @@ class Player extends PureComponent {
   }
 
   onVolumeClick = (e) => {
-    let volume = e.target.value / 100;
-    this.player.setVolume(volume).then(() => console.log('Volume updated!'));
-    this.setState({ volume: volume })
+    let volume = e.target.value;
+    console.log('state', this.state.volume, 'volume', volume, e.target.value);
+    this.player.setVolume(volume/100).then(() => {
+      this.setState({ volume: volume })
+      console.log('Volume updated!')
+    });
   }
   onSeek = (ms) => {
     this.player.seek(ms).then(() => {
