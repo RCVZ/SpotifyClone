@@ -9,11 +9,30 @@
 .Bar {
   height: 3px;
   background-color: yellow;
+  width: 100%;
+  appearance: none;
+  border-radius: 10px;
 }
 
-.slider {
-  height: 12px;
-  width: 7px;
-  background-color: white;
-  border-radius: 40%;
-}
+input[type=range]::-webkit-slider-thumb {
+  height: 15px;
+  width: 10px;
+  border-radius: 5px;
+  background: #FFFFFF;
+  cursor: pointer;
+  -webkit-appearance: none;
+} 
+
+input[type=range]::-webkit-slider-thumb {
+  height: 15px;
+  width: 10px;
+  border-radius: 5px;
+  background: #FFFFFF;
+  cursor: pointer;
+  -webkit-appearance: none;
+} 
+
+
+
+
+

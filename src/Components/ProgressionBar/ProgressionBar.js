@@ -1,13 +1,10 @@
 import React from 'react';
 import './ProgressionBar.css';
 
-const ProgressionBar = ({ percentage, sliderAction }) => {
+const ProgressionBar = ({ percentage, sliderAction, maxValue }) => {
   return(
     <div className="Bar-container">
-      <div className="Bar" style={{width: `${percentage}%` }}>
-        {/* <input onChange={sliderAction} type="range" min="1" value={`${percentage}`} max="100" className="Bar" /> */}
-      </div>
-      <div className="slider"/>
+      <input className="Bar" onChange={(e) => sliderAction(e)} step='1' type="range" min="1" value={percentage} max={maxValue}/>
     </div>
   )
 }

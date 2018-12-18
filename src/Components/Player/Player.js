@@ -26,7 +26,7 @@ class Player extends PureComponent {
       position: 0,
       duration: 0,
       percentage: 0,
-      volume: 1,
+      volume: 0,
       durationCountDown: 0
     }
 
@@ -80,6 +80,11 @@ class Player extends PureComponent {
         percentage: 0
       });
       this.trackDurationTimer = setInterval(() => this.getPlayerCurrentstate(), 100);
+      this.player.getVolume().then(volume => {
+        let volume_percentage = volume * 100; 
+        this.setState({volume: volume_percentage})
+        console.log(`The volume of the player is ${volume_percentage}%`);
+      });
     }
   }
 
@@ -102,22 +107,35 @@ class Player extends PureComponent {
   }
 
   onVolumeClick = (e) => {
-    this.player.setVolume(e.target.value).then(() => console.log('Volume updated!'));
+    let volume = e.target.value / 100;
+    this.player.setVolume(volume).then(() => console.log('Volume updated!'));
+    this.setState({ volume: volume })
   }
-
+  onSeek = (ms) => {
+    this.player.seek(ms).then(() => {
+      console.log('Changed position!');
+    });
+  }
+ 
   durationCountDown = (ms) => {
     let onePercentage  = this.state.duration / 100;
-    let barPercentage = ms /onePercentage;
+    let barPercentage = (ms / onePercentage) *10;
     this.setState({percentage: barPercentage});
   }
 
+  reversedurationCountDown = (p) => {
+    let onePercentage =  1000 / p ;
+    let barPercentage = this.state.duration / onePercentage;
+    this.onSeek(barPercentage);
+  }
+
   sliderAction = (e) => {
-    console.log(e.target.value)
+    this.reversedurationCountDown(e.target.value)
   }
 
  render() {
-  //  console.log(this.state);
-   const { percentage, playing, currentTrack } = this.state;
+   //console.log(this.state.duration, this.state.percentage);
+   const { percentage, playing, currentTrack, volume } = this.state;
     return(
       <div className="Player">
         <div className="track-info">
@@ -135,12 +153,12 @@ class Player extends PureComponent {
               <FontAwesomeIcon className="button" icon={faForward} size="sm"/>
             </button>
           </div>          
-          <ProgressionBar percentage={percentage} sliderAction={this.sliderAction}/>
+          <ProgressionBar percentage={percentage} sliderAction={this.sliderAction} maxValue={"1000"}/>
         </div>
         <div className="volume">
-          <FontAwesomeIcon icon={faVolumeUp} size="s"/>
+          <FontAwesomeIcon icon={faVolumeUp} size="sm"/>
           <div className="volume-bar">
-            <ProgressionBar percentage={"20"} />
+            <ProgressionBar percentage={volume} sliderAction={this.onVolumeClick} maxValue={"100"}/>
           </div>
         </div>
       </div>
