@@ -27,7 +27,8 @@ class Player extends PureComponent {
       duration: 0,
       percentage: 0,
       volume: 0,
-      durationCountDown: 0
+      durationCountDown: 0,
+      mute: false
     }
 
     this.playerCheckInterval = null;
@@ -79,7 +80,7 @@ class Player extends PureComponent {
         playing: playing,
         percentage: 0
       });
-      this.trackDurationTimer = setInterval(() => this.getPlayerCurrentstate(), 100);
+      this.trackDurationTimer = setInterval(() => this.getPlayerCurrentstate(), 300);
       this.player.getVolume().then(volume => {
         let volume_percentage = volume * 100; 
         this.setState({volume: volume_percentage})
@@ -117,6 +118,7 @@ class Player extends PureComponent {
   onSeek = (ms) => {
     this.player.seek(ms).then(() => {
       console.log('Changed position!');
+      this.trackDurationTimer = setInterval(() => this.getPlayerCurrentstate(), 300);
     });
   }
  
@@ -133,8 +135,12 @@ class Player extends PureComponent {
   }
 
   sliderAction = (e) => {
-    this.reversedurationCountDown(e.target.value)
+    this.reversedurationCountDown(e.target.value);
   }
+
+  toggleMute = (e) => {
+    !this.state.mute ? this.player.setVolume(0) : this.player.setVolume(this.state.volume);
+  } 
 
  render() {
    //console.log(this.state.duration, this.state.percentage);
@@ -159,7 +165,7 @@ class Player extends PureComponent {
           <ProgressionBar percentage={percentage} sliderAction={this.sliderAction} maxValue={"1000"}/>
         </div>
         <div className="volume">
-          <FontAwesomeIcon icon={faVolumeUp} size="sm"/>
+          <FontAwesomeIcon icon={faVolumeUp} size="sm" onClick={this.toggleMute}/>
           <div className="volume-bar">
             <ProgressionBar percentage={volume} sliderAction={this.onVolumeClick} maxValue={"100"}/>
           </div>
