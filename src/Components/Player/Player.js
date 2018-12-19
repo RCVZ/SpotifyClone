@@ -63,7 +63,8 @@ class Player extends PureComponent {
     });
   }
 
-  onStateChanged = (state) => { 
+  onStateChanged = (state) => {
+    console.log("I am fukcin up you program")
     if (state !== null) {
       const { current_track } = state.track_window;
       const trackName = current_track.name;
@@ -111,17 +112,36 @@ class Player extends PureComponent {
   }
 
   onSeek = (e) => {
-    console.log("onSeek", this.state)
-    clearInterval(this.trackDurationTimer); 
     const ms = this.reversedurationCount(e.target.value);
-    this.setState({postion: ms});
+    this.setState({ position: ms });
+    console.log("onSeek", ms);
     this.durationCount(ms);
+    this.player.seek(ms).then(() => {
+      console.log('Changed position!');
+    });
+  }
+
+  handleOnMouseDown = (e) => {
+    console.log("I should clear the timer", this.trackDurationTimer)
+    clearInterval(this.trackDurationTimer); 
+    this.trackDurationTimer = null;  
+  }
+
+  handleMouseUp = (e) => {
+    console.log("handleMousUp", this.state)
+    this.player.seek(this.state.position).then(() => {
+      console.log('Changed position!');
+    });
+    this.trackDurationTimer = setInterval(() => this.getPlayerCurrentstate(), 100);
   }
  
   durationCount = (ms) => {
     let onePercentage = this.state.duration / 100;
     let barPercentage = (ms / onePercentage) * 10;
-    this.setState({percentage: barPercentage});
+    // this.setState({percentage: barPercentage});
+    this.setState((state) => {
+      return { percentage: barPercentage };
+    });
   }
 
   reversedurationCount = (p) => {
@@ -138,14 +158,6 @@ class Player extends PureComponent {
       this.player.setVolume(this.state.volume/100);
       this.setState({ mute: false });
     }   
-  } 
-
-  handleMousUp = (e) => {
-    console.log("handleMousUp", this.state)
-    this.player.seek(this.state.position).then(() => {
-      console.log('Changed position!');
-    });
-    this.trackDurationTimer = setInterval(() => this.getPlayerCurrentstate(), 100);
   }
 
   render() {
@@ -167,7 +179,7 @@ class Player extends PureComponent {
               <FontAwesomeIcon className="button" icon={faForward} size="sm"/>
             </button>
           </div>          
-          <ProgressionBar percentage={percentage} sliderAction={this.onSeek} maxValue={"1000"} handleMousUp={this.handleMousUp} />
+          <ProgressionBar percentage={percentage} sliderAction={this.onSeek} maxValue={"1000"} handleMouseUp={this.handleMouseUp} handleOnMouseDown={this.handleOnMouseDown} />
         </div>
         <div className="volume">
           <FontAwesomeIcon icon={faVolumeUp} size="sm" onClick={this.toggleMute}/>
