@@ -37,7 +37,7 @@ class Player extends PureComponent {
 
   componentDidMount() {
     this.setState({ token: SpotifyApi.getAccesToken() });
-    this.playerCheckInterval = setInterval(() => this.checkForPlayer(), 1000);
+    this.playerCheckInterval = setInterval(() => this.checkForPlayer(), 800);
   }
  
   checkForPlayer = () => {
@@ -89,7 +89,7 @@ class Player extends PureComponent {
   }
 
   getPlayerCurrentstate = () => {
-    //console.log("I am fukcin up you program")
+    console.log(this.state.position);
     this.player.getCurrentState().then((state) => this.setState({ position: state.position}));
   }
 
@@ -135,11 +135,11 @@ class Player extends PureComponent {
   }
 
   render() {
-    const { playing, currentTrack, volume, duration, position } = this.state;    
+    const { playing, currentTrack, volume, duration, position, artistName, trackName } = this.state;    
     return(
       <div className="Player">
         <div className="track-info">
-          {this.state.playing ? <Track track={currentTrack} /> : null   }
+          {this.state.playing ? <Track track={currentTrack} /> : <p>{artistName}: {trackName}</p>   }
         </div>
         <div className="Control">
           <div className="Player-buttons"> 

@@ -12,6 +12,7 @@
   width: 100%;
   appearance: none;
   border-radius: 10px;
+  transition: 0.4s all ease-out;
 }
 
 input[type=range]::-webkit-slider-thumb {
@@ -21,6 +22,7 @@ input[type=range]::-webkit-slider-thumb {
   background: #FFFFFF;
   cursor: pointer;
   -webkit-appearance: none;
+  transition: all ease-in-out 0.05s;
 } 
 
 
