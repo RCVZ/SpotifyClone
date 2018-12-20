@@ -32,7 +32,7 @@ class Player extends PureComponent {
     }
 
     this.playerCheckInterval = null;
-    this.trackDurationTimer = null;      
+    this.getPlayerStateTimer = null;      
   }
 
   componentDidMount() {
@@ -47,6 +47,7 @@ class Player extends PureComponent {
       this.player = new window.Spotify.Player({ name: "SpotifyClone", getOAuthToken: cb => { cb(token) } });
       this.createEventHandlers();
       this.player.connect();
+      this.getPlayerStateTimer = setInterval(() => this.getPlayerCurrentstate(), 500);
     }
   }
 
@@ -64,7 +65,6 @@ class Player extends PureComponent {
   }
 
   onStateChanged = (state) => {
-    console.log("I am fukcin up you program")
     if (state !== null) {
       const { current_track } = state.track_window;
       const trackName = current_track.name;
@@ -81,17 +81,16 @@ class Player extends PureComponent {
         playing: playing,
         percentage: 0
       });
-      this.trackDurationTimer = setInterval(() => this.getPlayerCurrentstate(), 100);
       this.player.getVolume().then(volume => {
         let volume_percentage = volume * 100; 
-        this.setState({volume: volume_percentage})
-        console.log(`The volume of the player is ${volume_percentage}%`);
+        this.setState({volume: volume_percentage});
       });
     }
   }
 
   getPlayerCurrentstate = () => {
-    this.player.getCurrentState().then((state) => this.durationCount(state.position));
+    //console.log("I am fukcin up you program")
+    this.player.getCurrentState().then((state) => this.setState({ position: state.position}));
   }
 
   onPrevClick = () => {
@@ -112,44 +111,19 @@ class Player extends PureComponent {
   }
 
   onSeek = (e) => {
-    const ms = this.reversedurationCount(e.target.value);
-    this.setState({ position: ms });
-    console.log("onSeek", ms);
-    this.durationCount(ms);
-    this.player.seek(ms).then(() => {
-      console.log('Changed position!');
-    });
+    this.setState({ position: e.target.value });
   }
 
-  handleOnMouseDown = (e) => {
-    console.log("I should clear the timer", this.trackDurationTimer)
-    clearInterval(this.trackDurationTimer); 
-    this.trackDurationTimer = null;  
+  handleOnMouseDown = (e) => { 
+    clearInterval(this.getPlayerStateTimer);
   }
 
   handleMouseUp = (e) => {
-    console.log("handleMousUp", this.state)
     this.player.seek(this.state.position).then(() => {
-      console.log('Changed position!');
-    });
-    this.trackDurationTimer = setInterval(() => this.getPlayerCurrentstate(), 100);
+      this.getPlayerStateTimer = setInterval(() => this.getPlayerCurrentstate(), 100);
+    });    
   }
  
-  durationCount = (ms) => {
-    let onePercentage = this.state.duration / 100;
-    let barPercentage = (ms / onePercentage) * 10;
-    // this.setState({percentage: barPercentage});
-    this.setState((state) => {
-      return { percentage: barPercentage };
-    });
-  }
-
-  reversedurationCount = (p) => {
-    let percentage =  1000 / p ;
-    let ms = this.state.duration / percentage;
-    return ms;
-  }
-
   toggleMute = (e) => {
     if (!this.state.mute) {
       this.player.setVolume(0);
@@ -161,7 +135,7 @@ class Player extends PureComponent {
   }
 
   render() {
-    const { percentage, playing, currentTrack, volume } = this.state;    
+    const { playing, currentTrack, volume, duration, position } = this.state;    
     return(
       <div className="Player">
         <div className="track-info">
@@ -179,12 +153,13 @@ class Player extends PureComponent {
               <FontAwesomeIcon className="button" icon={faForward} size="sm"/>
             </button>
           </div>          
-          <ProgressionBar percentage={percentage} sliderAction={this.onSeek} maxValue={"1000"} handleMouseUp={this.handleMouseUp} handleOnMouseDown={this.handleOnMouseDown} />
+          <ProgressionBar currentPostion={position} sliderAction={this.onSeek} maxValue={duration} handleMouseUp={this.handleMouseUp} handleOnMouseDown={this.handleOnMouseDown} />
         </div>
         <div className="volume">
           <FontAwesomeIcon icon={faVolumeUp} size="sm" onClick={this.toggleMute}/>
           <div className="volume-bar">
-            <ProgressionBar percentage={volume} sliderAction={this.onVolumeClick} maxValue={"100"}/>
+            <ProgressionBar currentPostion={volume} sliderAction={this.onVolumeClick} maxValue={"100"}/>
+            <div>{this.durationCount}</div>
           </div>
         </div>
       </div>
