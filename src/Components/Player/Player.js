@@ -3,6 +3,7 @@ import './Player.css';
 
 import ProgressionBar from '../ProgressionBar/ProgressionBar';
 import Track from '../Track/Track';
+import Time from '../Time/Time';
 
 import SpotifyApi from '../../util/Spotify';
 
@@ -132,10 +133,10 @@ class Player extends PureComponent {
     return(
       <div className="Player">
         <div className="track-info">
-          {this.state.playing ? <Track track={currentTrack} /> : <p>{artistName}: {trackName}</p>   }
+          {this.state.playing ? <Track track={currentTrack} /> : <p>{artistName}: {trackName}</p>   }          
         </div>
         <div className="Control">
-          <div className="Player-buttons"> 
+          <div className="Player-buttons">
             <button className="back" onClick={this.onPrevClick} >
               <FontAwesomeIcon className="button" icon={faBackward} size="sm"/>
             </button>
@@ -144,15 +145,18 @@ class Player extends PureComponent {
             </button>
             <button className="forward" onClick={this.onNextClick} >
               <FontAwesomeIcon className="button" icon={faForward} size="sm"/>
-            </button>
-          </div>          
-          <ProgressionBar currentPostion={position} sliderAction={this.onSeek} maxValue={duration} handleMouseUp={this.handleMouseUp} />
+            </button>            
+          </div>
+          <div style={{display: 'flex', width:'100%'}}>
+            <Time ms={duration} />
+            <ProgressionBar currentPostion={position} sliderAction={this.onSeek} maxValue={duration} handleMouseUp={this.handleMouseUp} />
+            <Time ms={position} />
+          </div>
         </div>
         <div className="volume">
           <FontAwesomeIcon icon={faVolumeUp} size="sm" onClick={this.toggleMute}/>
           <div className="volume-bar">
             <ProgressionBar currentPostion={volume} sliderAction={this.onVolumeClick} maxValue={"100"}/>
-            <div>{this.durationCount}</div>
           </div>
         </div>
       </div>
