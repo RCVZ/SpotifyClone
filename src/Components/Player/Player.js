@@ -86,7 +86,6 @@ class Player extends PureComponent {
   }
 
   getPlayerCurrentstate = () => {
-    console.log(this.state.position);
     this.player.getCurrentState().then((state) => this.setState({ position: state.position}));
   }
 

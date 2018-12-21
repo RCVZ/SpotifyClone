@@ -1,5 +1,6 @@
 .Bar-container {
   display: flex;
+  position: relative;
   align-items: center;
   height: 100%;
   width: 100%;
@@ -10,20 +11,33 @@
   height: 3px;
   background-color: yellow;
   width: 100%;
+  opacity: 0.5;
   appearance: none;
-  border-radius: 10px;
-  transition: 0.4s all ease-out;
+  border-radius: 10px;  
+  margin: 0;
+  z-index: 1;
 }
 
 input[type=range]::-webkit-slider-thumb {
-  height: 15px;
-  width: 10px;
+  height: 20px;
+  width: 20px;
   border-radius: 5px;
-  background: #FFFFFF;
+  background: yellow;
   cursor: pointer;
   -webkit-appearance: none;
-  transition: all ease-in-out 0.05s;
+  opacity: 0;
+  z-index: 99;
+  margin: 0 2px; 
 } 
+
+
+.progression {
+  position: absolute;
+  height: 4px;
+  background-color: yellow;
+  border-radius: 10px;
+  z-index: 1;
+}
 
 
 
