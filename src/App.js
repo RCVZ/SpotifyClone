@@ -6,9 +6,9 @@ import Navbar from './Components/Navbar/Navbar';
 import Main from './Components/Main/Main';
 import Player from './Components/Player/Player';
 
-import { withRouter } from "react-router-dom";
 import SpotifyApi from './util/Spotify';
 
+import { withRouter } from "react-router-dom";
 import { hot } from 'react-hot-loader'
 
 class App extends PureComponent {

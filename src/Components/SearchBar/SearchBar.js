@@ -4,7 +4,7 @@ import './SearchBar.css';
 import { connect } from 'react-redux';
 import { searchChange, searchTracks } from './actions';
 import { updatePlayList } from './../PlayList/actions';
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -35,6 +35,7 @@ class SearchBar extends PureComponent {
     clearTimeout(timeout);       
     timeout = setTimeout(() => {    
       this.props.onSearchTracks(this.props.searchTerm);
+      this.props.history.push('/search');
     }, 600);
   }
 
@@ -46,7 +47,8 @@ class SearchBar extends PureComponent {
 
   handleEnter = (e) => {
     if (e.key === 'Enter') {
-      this.props.onSearchTracks(this.props.searchTerm)
+      this.props.onSearchTracks(this.props.searchTerm);
+      this.props.history.push('/search');
     }
   }
 
@@ -64,4 +66,4 @@ class SearchBar extends PureComponent {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchBar));
