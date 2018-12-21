@@ -1,12 +1,11 @@
 import React from 'react';
 import './ProgressionBar.css';
 
-const ProgressionBar = ({ currentPostion, sliderAction, maxValue, handleMouseUp, handleOnMouseDown }) => {
+const ProgressionBar = ({ currentPostion, sliderAction, maxValue, handleMouseUp }) => {
   return(
     <div className="Bar-container">
       <input className="Bar" 
-        onMouseUp={handleMouseUp} 
-        onMouseDown={handleOnMouseDown} 
+        onMouseUp={handleMouseUp}
         onChange={(e) => sliderAction(e)} 
         step='1' 
         type="range" 

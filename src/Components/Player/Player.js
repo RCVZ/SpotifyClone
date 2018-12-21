@@ -111,11 +111,8 @@ class Player extends PureComponent {
   }
 
   onSeek = (e) => {
-    this.setState({ position: e.target.value });
-  }
-
-  handleOnMouseDown = (e) => { 
     clearInterval(this.getPlayerStateTimer);
+    this.setState({ position: e.target.value });
   }
 
   handleMouseUp = (e) => {
@@ -153,7 +150,7 @@ class Player extends PureComponent {
               <FontAwesomeIcon className="button" icon={faForward} size="sm"/>
             </button>
           </div>          
-          <ProgressionBar currentPostion={position} sliderAction={this.onSeek} maxValue={duration} handleMouseUp={this.handleMouseUp} handleOnMouseDown={this.handleOnMouseDown} />
+          <ProgressionBar currentPostion={position} sliderAction={this.onSeek} maxValue={duration} handleMouseUp={this.handleMouseUp} />
         </div>
         <div className="volume">
           <FontAwesomeIcon icon={faVolumeUp} size="sm" onClick={this.toggleMute}/>
