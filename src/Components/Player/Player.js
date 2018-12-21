@@ -25,9 +25,7 @@ class Player extends PureComponent {
       albumName: '',
       position: 0,
       duration: 0,
-      percentage: 0,
       volume: 0,
-      durationCountDown: 0,
       mute: false
     }
 
@@ -78,8 +76,7 @@ class Player extends PureComponent {
         trackName: trackName,
         albumName: albumName,
         artistName: artistName,
-        playing: playing,
-        percentage: 0
+        playing: playing
       });
       this.player.getVolume().then(volume => {
         let volume_percentage = volume * 100; 
