@@ -132,7 +132,7 @@ class Player extends PureComponent {
     const { playing, currentTrack, volume, duration, position, artistName, trackName } = this.state;    
     return(
       <div className="Player">
-        <div className="track-info">
+        <div className="Track-info">
           {this.state.playing ? <Track track={currentTrack} /> : <p>{artistName}: {trackName}</p>   }          
         </div>
         <div className="Control">
@@ -147,9 +147,11 @@ class Player extends PureComponent {
               <FontAwesomeIcon className="button" icon={faForward} size="sm"/>
             </button>            
           </div>
-          <div style={{display: 'flex', width:'100%'}}>
+          <div className="Track-Progression" >
             <Time ms={duration} />
-            <ProgressionBar currentPostion={position} sliderAction={this.onSeek} maxValue={duration} handleMouseUp={this.handleMouseUp} />
+            <div className="Track-Bar">
+              <ProgressionBar currentPostion={position} sliderAction={this.onSeek} maxValue={duration} handleMouseUp={this.handleMouseUp} />
+            </div>            
             <Time ms={position} />
           </div>
         </div>
