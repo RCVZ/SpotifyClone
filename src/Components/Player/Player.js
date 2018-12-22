@@ -8,7 +8,7 @@ import Time from '../Time/Time';
 import SpotifyApi from '../../util/Spotify';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBackward, faPlay, faPause, faForward, faVolumeUp } from '@fortawesome/free-solid-svg-icons';
+import { faBackward, faPlay, faPause, faForward, faVolumeUp, faListUl } from '@fortawesome/free-solid-svg-icons';
 
 class Player extends PureComponent {
   constructor(props) {
@@ -154,10 +154,15 @@ class Player extends PureComponent {
             <Time ms={position} />
           </div>
         </div>
-        <div className="volume">
-          <FontAwesomeIcon icon={faVolumeUp} size="sm" onClick={this.toggleMute}/>
-          <div className="volume-bar">
-            <ProgressionBar currentPostion={volume} sliderAction={this.onVolumeClick} maxValue={"100"}/>
+        <div className="Control-Leftside">
+          <div className="Playlist-Button">
+            <FontAwesomeIcon icon={faListUl} />
+          </div>
+          <div className="volume">
+            <FontAwesomeIcon icon={faVolumeUp} size="sm" onClick={this.toggleMute} />
+            <div className="volume-bar">
+              <ProgressionBar currentPostion={volume} sliderAction={this.onVolumeClick} maxValue={"100"} />
+            </div>
           </div>
         </div>
       </div>

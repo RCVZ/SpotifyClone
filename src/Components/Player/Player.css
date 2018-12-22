@@ -60,11 +60,18 @@
   margin-top: 10px;
 }
 
-.volume {
+.Control-Leftside {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   width: 30%;
+}
+
+.volume {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 50%;
 }
 
 .volume-bar {
@@ -86,4 +93,14 @@
 .Track-Bar {
   width: 80%;
   margin: 0 10px;
+}
+
+.Playlist-Button {
+  opacity: 0.5;
+  transition: 300ms;
+}
+
+.Playlist-Button:hover {
+  opacity: 1;
+  transform: scale(1.1)
 }
