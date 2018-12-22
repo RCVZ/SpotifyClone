@@ -46,7 +46,7 @@ class Player extends PureComponent {
       this.player = new window.Spotify.Player({ name: "SpotifyClone", getOAuthToken: cb => { cb(token) } });
       this.createEventHandlers();
       this.player.connect();
-      this.getPlayerStateTimer = setInterval(() => this.getPlayerCurrentstate(), 500);
+      this.getPlayerStateTimer = setInterval(() => this.getPlayerCurrentstate(), 600);
     }
   }
 
@@ -64,6 +64,7 @@ class Player extends PureComponent {
   }
 
   onStateChanged = (state) => {
+
     if (state !== null) {
       const { current_track } = state.track_window;
       const trackName = current_track.name;
@@ -79,10 +80,8 @@ class Player extends PureComponent {
         artistName: artistName,
         playing: playing
       });
-      this.player.getVolume().then(volume => {
-        let volume_percentage = volume * 100; 
-        this.setState({volume: volume_percentage});
-      });
+
+      this.player.getVolume().then(volume => this.setState({ volume: volume * 100 }));
     }
   }
 
