@@ -3,6 +3,7 @@ import SpotifyApi from '../../util/Spotify';
 import './Track.css'
 
 import Text from '../Text/Text';
+import Time from '../Time/Time';
 
 class Track extends PureComponent {
 
@@ -19,14 +20,6 @@ class Track extends PureComponent {
     SpotifyApi.playTrack(this.props.track.uri, urisList);
   }
 
-  time = (ms) => {
-    let minute, seconds;
-    seconds = Math.floor(ms / 1000);
-    minute = Math.floor(seconds / 60);
-    seconds = seconds % 60;
-    return `${minute}:${seconds}`;
-  }
-
   render() {
     const { id, trackIndex, artists, name, album, uri, duration_ms } = this.props.track;
     return(
@@ -36,22 +29,22 @@ class Track extends PureComponent {
             <img src={album.images[2].url} alt="album"/>
           </div>
           <Text name={name} artist={artists[0].name}/>
+          <Time ms={duration_ms} />
         </div>
-          {this.props.inPlayList ? 
-          <React.Fragment>
-          <span>{this.time(duration_ms)}</span>
+        {this.props.inPlayList ? 
+        <React.Fragment>
           <button
             className="Track-action"  //maybe it can be improve by giving it the right prop from parentcomponent
             type="button"
             onClick={this.deleteOnClick}>-
           </button>
-          </React.Fragment> :
-          <button
-            className="Track-action" 
-            type="button"
-            onClick={this.addOnClick}>+
-          </button>
-          }
+        </React.Fragment> :
+        <button
+           className="Track-action" 
+           type="button"
+           onClick={this.addOnClick}>+
+        </button>
+        }
       </div>
     );
   }

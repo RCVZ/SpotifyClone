@@ -1,19 +1,17 @@
 .Track {
   display: flex;
-  max-width: 50%;
   cursor: pointer;
-  margin: 0.5rem 0.2rem;
   transition: transform 300ms;
+  margin: 0 0.5rem;
 }
 
 .Track:hover {
   box-shadow: 0px 5px 8px 2px rgb(0, 0, 0.7);
-  transform: scale(1.1);
+  transform: scale(1.09);
 }
 
 .Track-action {  
-  margin: 0 1.25rem;
-  border: 0;
+  margin: 0 0.75rem;
   color: white;
   transition: color .25s;
 }
@@ -23,8 +21,8 @@
 }
 
 .Track-information img {
-  height: 64px;
-  max-width: 64px;
+  height: 50px;
+  max-width: 50px;
   margin: 0.5rem;
 }
 
@@ -39,5 +37,5 @@
 }
 
 .Track span{
-  margin: auto 1.25rem;
+  margin: auto;
 }

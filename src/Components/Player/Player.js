@@ -157,11 +157,11 @@ class Player extends PureComponent {
             </button>            
           </div>
           <div className="Track-Progression" >
-            <Time ms={duration} />
+            <Time ms={position} />
             <div className="Track-Bar">
               <ProgressionBar currentPostion={position} sliderAction={this.onSeek} maxValue={duration} handleMouseUp={this.handleMouseUp} />
             </div>            
-            <Time ms={position} />
+            <Time ms={duration} />
           </div>
         </div>
         <div className="Control-Leftside">
