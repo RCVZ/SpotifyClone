@@ -28,15 +28,24 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 class SearchBar extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      searchTerm: ''
+    }
+  }
 
   handleSearchTerm = (e) => {
-    this.props.onSearchTermChange(e.target.value); 
+    let searchTerm = e.target.value;
     let timeout = null;
     clearTimeout(timeout);       
     timeout = setTimeout(() => {    
-      this.props.onSearchTracks(this.props.searchTerm);
-      this.props.history.push('/search');
-    }, 600);
+      this.setState({ searchTerm: searchTerm }, ()=>{
+        this.props.search(this.state.searchTerm);
+        this.props.history.push('/search');
+      })
+    }, 300);
   }
 
   addToPlaylist = (track, trackIndex = 0) => {
@@ -47,20 +56,23 @@ class SearchBar extends PureComponent {
 
   handleEnter = (e) => {
     if (e.key === 'Enter') {
-      this.props.onSearchTracks(this.props.searchTerm);
+      this.props.search(this.state.searchTerm);
       this.props.history.push('/search');
     }
   }
 
   submitSearch = (e) => {
-    this.props.onSearchTracks(this.props.searchTerm);    
+    this.props.search(this.state.searchTerm);   
   }
 
   render() {
     return(
       <div className='SearchBar' onKeyPress={this.handleEnter}>
         <input onChange={this.handleSearchTerm}  placeholder="Enter A Song, Album, or Artist"/>
-        <Link to="/search"><FontAwesomeIcon className="Search_Button" icon={faSearch}/><button type="submit" onClick={this.submitSearch} name="SEARCH" /></Link>
+        <Link to="/search">
+          <FontAwesomeIcon className="Search_Button" icon={faSearch}/>
+          <button type="submit" onClick={this.submitSearch} name="SEARCH" />
+        </Link>
       </div>
     );
   }

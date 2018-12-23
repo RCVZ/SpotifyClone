@@ -4,40 +4,25 @@ import './SearchResults.css';
 import TrackList from '../TrackList/TrackList';
 import PlaylistDisplay from '../PlaylistDisplay/PlaylistDisplay';
 
-import { connect } from 'react-redux';
-import { updatePlayList } from './../../actions';
-
-
-const mapStateToProps = (state) => {
-  return {
-    searchResults: state.searchTracks.searchResults
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onUpdatePlaylist: (playlist) => dispatch(updatePlayList(playlist))
-  }
-}
-
 class SearchResults extends Component {
 
   render() {
-    const { searchResults, addToPlaylist } = this.props;
+    const { searchResults, addToPlaylist , results } = this.props;
+    console.log("test1", results);
     return(
       <React.Fragment>
         {
-          searchResults.playlists.length > 0 ?
+          results.playlists.length > 0 ?
           <div className="SearchResults">
-            <PlaylistDisplay playlists={searchResults.playlists} />
+            <PlaylistDisplay playlists={results.playlists} />
             <div className="Tracklist">
               <div className="Tracklist-tracks">
                 <TrackList
-                  trackList={searchResults.tracks}
+                  trackList={results.tracks}
                   addToPlaylist={addToPlaylist} />
               </div>
               <div className="Tracklist-albums">
-                <PlaylistDisplay playlists={searchResults.albums} albums={true} />
+                <PlaylistDisplay playlists={results.albums} albums/>
               </div>
             </div>
           </div> :
@@ -50,4 +35,4 @@ class SearchResults extends Component {
 
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchResults);
+export default SearchResults;
