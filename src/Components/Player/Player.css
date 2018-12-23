@@ -108,17 +108,17 @@
 
 .Current-Playlist-Container {
   position: relative;
-  width: 300px;
+  width: 350px;
   height: 400px;
   background-color: rgb(0, 8, 33);
-  right: -225px;
+  right: -210px;
   bottom: 250px;
   overflow-y: scroll;
 }
 
-/* .Current-Playlist-Container .Track-information {
+.Current-Playlist-Container .Track-information {
   margin: 0 5px;
-} */
+}
 
 .Current-Playlist-Container .Track-information img {
   display: none;
