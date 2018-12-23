@@ -1,31 +1,12 @@
 import React, { PureComponent } from 'react';
 import './SearchBar.css';
 
-import { connect } from 'react-redux';
-import { searchChange, searchTracks } from './actions';
-import { updatePlayList } from './../PlayList/actions';
 import { Link, withRouter } from "react-router-dom";
 
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
-const mapStateToProps = (state) => {
-  return {
-    searchResults: state.searchTracks.searchResults,
-    isPending: state.searchTracks.isPending,
-    searchTerm: state.searchChange.searchTerm,
-    playlist: state.updatePlayList.playlist,
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onSearchTracks: (searchTerm) => dispatch(searchTracks(searchTerm)),
-    onSearchTermChange: (searchTerm) => dispatch(searchChange(searchTerm)),
-    onUpdatePlaylist: (playlist) => dispatch(updatePlayList(playlist))
-  }
-}
 
 class SearchBar extends PureComponent {
   constructor(props) {
@@ -41,17 +22,11 @@ class SearchBar extends PureComponent {
     let timeout = null;
     clearTimeout(timeout);       
     timeout = setTimeout(() => {    
-      this.setState({ searchTerm: searchTerm }, ()=>{
+      this.setState({ searchTerm: searchTerm }, () => {
         this.props.search(this.state.searchTerm);
-        this.props.history.push('/search');
+        //this.props.history.push('/search'); bugg
       })
-    }, 300);
-  }
-
-  addToPlaylist = (track, trackIndex = 0) => {
-    let tracks = this.props.playlist.filter(element => element.id !== track.id);
-    tracks.splice(trackIndex, 0, track);
-    this.props.onUpdatePlaylist(tracks);
+    }, 800);
   }
 
   handleEnter = (e) => {
@@ -78,4 +53,4 @@ class SearchBar extends PureComponent {
   }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchBar));
+export default withRouter(SearchBar);

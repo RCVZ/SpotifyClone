@@ -34,7 +34,7 @@ class Track extends PureComponent {
         {this.props.inPlayList ? 
         <React.Fragment>
           <button
-            className="Track-action"  //maybe it can be improve by giving it the right prop from parentcomponent
+            className="Track-action"  //maybe it can be improve by giving it the right prop from grantparentcomponent
             type="button"
             onClick={this.deleteOnClick}>-
           </button>

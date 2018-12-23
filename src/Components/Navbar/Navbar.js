@@ -31,8 +31,8 @@ class Navbar extends Component {
       <div className='Navbar-wrapper'>
         <div className='Navbar'>
           <NavLink className="LinkButton" to="/search"><FontAwesomeIcon icon={faSearch} />  Search</NavLink>
-          <NavLink className="LinkButton" to="/current-playlist"><FontAwesomeIcon icon={faAlignJustify} /> Current Playlist</NavLink>
-          <NavLink className="LinkButton" to="/new"><FontAwesomeIcon icon={faPlusSquare} /> New</NavLink>
+          <NavLink className="LinkButton" to="/currentPlaylist"><FontAwesomeIcon icon={faAlignJustify} /> Current Playlist</NavLink>
+          <NavLink className="LinkButton" to="/newPlaylist"><FontAwesomeIcon icon={faPlusSquare} /> New Playlist</NavLink>
           <NavLink className="LinkButton" to="/Library"><FontAwesomeIcon icon={faTh} /> Library</NavLink>
           <NavLink className="LinkButton" to="/-"><FontAwesomeIcon icon={faListUl} /> Playlists</NavLink>
         </div>

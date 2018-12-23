@@ -6,17 +6,6 @@ import Button from '../Button/Button';
 
 import SpotifyApi from './../../util/Spotify';
 
-import { connect } from 'react-redux';
-import { updatePlaylistName, updatePlayList } from './actions';
-
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onUpdatePlaylistName: (playlistName) => dispatch(updatePlaylistName(playlistName)),
-    onUpdatePlaylist: (playlist) => dispatch(updatePlayList(playlist)),
-  }
-}
-
 class PlaylistDisplay extends PureComponent {
   constructor(props){ 
     super(props);
@@ -47,7 +36,7 @@ class PlaylistDisplay extends PureComponent {
         })
       });
     }
-    this.props.onUpdatePlaylist(newPlaylist) 
+    this.props.addToCurrentPlaylist(newPlaylist) 
   }
 
   render() {
@@ -75,4 +64,4 @@ class PlaylistDisplay extends PureComponent {
   }
 }
 
-export default connect(null , mapDispatchToProps)(PlaylistDisplay);
+export default PlaylistDisplay;

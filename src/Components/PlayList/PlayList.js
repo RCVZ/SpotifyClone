@@ -4,33 +4,13 @@ import './PlayList.css';
 import TrackList from '../TrackList/TrackList';
 import SpotifyApi from './../../util/Spotify';
 
-import { connect } from 'react-redux';
-import { updatePlaylistName, updatePlayList } from './actions';
-
-
-const mapStateToProps = (state) => {
-  return {
-    playlist: state.updatePlayList.playlist,
-    playlistName: state.updatePlaylistName.playlistName
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onUpdatePlaylist: (playlist) => dispatch(updatePlayList(playlist)),
-    onUpdatePlaylistName: (playlistName) => dispatch(updatePlaylistName(playlistName))
-  }
-}
-
 class PlayList extends PureComponent {
+  constructor(props){
+    super(props);
 
-  deleteTrack = (track) => {
-    let tracks = this.props.playlist.filter(element => element.id !== track.id);
-    this.props.onUpdatePlaylist(tracks);
-  }
-
-  setPlayListName = (playlistName) => {
-    this.props.onUpdatePlaylistName(playlistName);
+    this.state = {
+      playlistName: ''
+    }
   }
 
   savePlayList = () => {
@@ -41,11 +21,11 @@ class PlayList extends PureComponent {
   }
 
   handleChange = (e) => {
-    this.props.onUpdatePlaylistName(e.target.value);
+    this.setState({ playlistName: e.target.value });
   }
 
   render() {
-    const { playlist } = this.props;
+    const { playlist, deleteTrack } = this.props;
     return(
       <div className="Playlist">
         <input
@@ -53,7 +33,7 @@ class PlayList extends PureComponent {
           placeholder="Playlist"/>
         <TrackList 
           trackList={playlist}
-          deleteTrack={this.deleteTrack}
+          deleteTrack={deleteTrack}
           inPlayList={true}/>
         <button 
           className="Playlist-save"
@@ -65,4 +45,4 @@ class PlayList extends PureComponent {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PlayList);
+export default PlayList;

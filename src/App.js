@@ -5,7 +5,6 @@ import './Components/Main/Main.css';
 import SearchBar from './Components/SearchBar/SearchBar';
 import Navbar from './Components/Navbar/Navbar';
 
-//import Main from './Components/Main/Main';
 import SearchResults from './Components/SearchResults/SearchResults';
 import PlayList from './Components/PlayList/PlayList';
 
@@ -21,7 +20,6 @@ class App extends PureComponent {
     super(props);
 
     this.state = {
-      searchTerm: '',
       searchResults: {
         playlist: [],
         artists: [],
@@ -31,7 +29,6 @@ class App extends PureComponent {
       newPlaylist: [],
       currentPlaylist: []
     }
-
   }
 
   componentDidMount() {
@@ -39,12 +36,24 @@ class App extends PureComponent {
   }
   
   searchSpotify = (searchTerm) => {
-    console.log("searchTerm", searchTerm);
     SpotifyApi.fullSearch(searchTerm).then((results) => {
-      console.log(results);
       this.setState({ searchResults: results })
-      console.log("this is the state", this.state);
     })
+  }
+
+  addToNewPlaylist = (track, trackIndex = 0) => {
+    let tracks = this.state.newPlaylist.filter(element => element.id !== track.id);
+    tracks.splice(trackIndex, 0, track);
+    this.setState({ newPlaylist: tracks });
+  }
+
+  addToCurrentPlaylist = (tracks) => {
+    this.setState({ currentPlaylist: tracks });
+  }
+
+  deleteTrack = (track) => {
+    let tracks = this.state.newPlaylist.filter(element => element.id !== track.id);
+    this.setState({ newPlaylist: tracks });
   }
 
   render() {
@@ -54,8 +63,8 @@ class App extends PureComponent {
         <Navbar />
         <div className="Main">
           <Switch>
-            <Route path="/current-playlist" render={() => <PlayList />} />
-            <Route path="/search" render={() => <SearchResults results={this.state.searchResults} />} />
+            <Route path="/search" render={() => <SearchResults results={this.state.searchResults} addToPlaylist={this.addToNewPlaylist} addToCurrentPlaylist={this.addToCurrentPlaylist} />} />
+            <Route path="/newPlaylist" render={() => <PlayList playlist={this.state.newPlaylist} deleteTrack={this.deleteTrack} />} />
           </Switch>
         </div>
         <Player />
