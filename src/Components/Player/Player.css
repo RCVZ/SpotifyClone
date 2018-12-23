@@ -102,5 +102,15 @@
 
 .Playlist-Button:hover {
   opacity: 1;
-  transform: scale(1.1)
+  transform: scale(1.1);
+}
+
+.Current-Playlist-Container {
+  position: absolute;
+  width: 300px;
+  height: 400px;
+  background-color: rgb(0, 8, 33);
+  right: 0;
+  bottom: 102px;
+  overflow-y: scroll;
 }

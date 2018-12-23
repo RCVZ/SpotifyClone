@@ -12,7 +12,7 @@ const ProgressionBar = ({ currentPostion, sliderAction, maxValue, handleMouseUp 
         min="1" 
         value={currentPostion} 
         max={maxValue}/>
-        <div class="progression" style={{ width: `${(100 / maxValue) * currentPostion}%` }} />      
+        <div className="progression" style={{ width: `${(100 / maxValue) * currentPostion}%` }} />      
     </div>
   )
 }

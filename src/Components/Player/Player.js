@@ -4,6 +4,7 @@ import './Player.css';
 import ProgressionBar from '../ProgressionBar/ProgressionBar';
 import Track from '../Track/Track';
 import Time from '../Time/Time';
+import PlayList from '../PlayList/PlayList';
 
 import SpotifyApi from '../../util/Spotify';
 
@@ -27,7 +28,8 @@ class Player extends PureComponent {
       position: 0,
       duration: 0,
       volume: 0,
-      mute: false
+      mute: false,
+      showPlaylist: false,
     }
 
     this.playerCheckInterval = null;
@@ -127,6 +129,14 @@ class Player extends PureComponent {
     }   
   }
 
+  togglePlaylist = (e) => {
+    if (!this.state.showPlaylist) {
+      this.setState({ showPlaylist: true });
+    } else {
+      this.setState({ showPlaylist: false });
+    }
+  } 
+
   render() {
     const { playing, currentTrack, volume, duration, position, artistName, trackName } = this.state;    
     return(
@@ -155,8 +165,13 @@ class Player extends PureComponent {
           </div>
         </div>
         <div className="Control-Leftside">
+          {this.state.showPlaylist ?
+            <div className="Current-Playlist-Container">
+              <PlayList />
+            </div> : null
+          }
           <div className="Playlist-Button">
-            <FontAwesomeIcon icon={faListUl} />
+            <FontAwesomeIcon icon={faListUl} onClick={this.togglePlaylist} />            
           </div>
           <div className="volume">
             <FontAwesomeIcon icon={faVolumeUp} size="sm" onClick={this.toggleMute} />
@@ -164,7 +179,7 @@ class Player extends PureComponent {
               <ProgressionBar currentPostion={volume} sliderAction={this.onVolumeClick} maxValue={"100"} />
             </div>
           </div>
-        </div>
+        </div>        
       </div>
     );
   }
