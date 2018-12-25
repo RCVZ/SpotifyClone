@@ -23,9 +23,8 @@ class SearchBar extends PureComponent {
     timeout = setTimeout(() => {    
       this.setState({ searchTerm: searchTerm }, () => {
         this.props.search(this.state.searchTerm);
-        //this.props.history.push('/search'); bugg
       })
-    }, 800);
+    }, 400);
   }
 
   handleEnter = (e) => {

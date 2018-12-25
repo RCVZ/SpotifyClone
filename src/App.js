@@ -37,7 +37,9 @@ class App extends PureComponent {
   
   searchSpotify = (searchTerm) => {
     SpotifyApi.fullSearch(searchTerm).then((results) => {
-      this.setState({ searchResults: results })
+      this.setState({ searchResults: results }, () => {
+        this.props.history.push('/search'); 
+      })
     })
   }
 
