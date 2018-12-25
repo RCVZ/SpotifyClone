@@ -6,11 +6,17 @@ import PlaylistDisplay from '../PlaylistDisplay/PlaylistDisplay';
 
 class SearchResults extends Component {
 
+  componentDidMount() {
+    
+  } 
+
   render() {
     const { addToPlaylist, results, addToCurrentPlaylist } = this.props;
     return(
+      <React.Fragment>
+        {this.props.results.playlists.length > 0 ?
           <div className="SearchResults">
-          <PlaylistDisplay playlists={results.playlists} addToCurrentPlaylist={addToCurrentPlaylist} />
+            <PlaylistDisplay playlists={results.playlists} addToCurrentPlaylist={addToCurrentPlaylist} />
             <div className="Tracklist">
               <div className="Tracklist-tracks">
                 <TrackList
@@ -18,10 +24,13 @@ class SearchResults extends Component {
                   addToPlaylist={addToPlaylist} />
               </div>
               <div className="Tracklist-albums">
-              <PlaylistDisplay addToCurrentPlaylist={addToCurrentPlaylist} playlists={results.albums} albums/>
+                <PlaylistDisplay addToCurrentPlaylist={addToCurrentPlaylist} playlists={results.albums} albums />
               </div>
             </div>
-          </div> 
+          </div> :
+          <h1>No results</h1>        
+        }
+      </React.Fragment>
     );
   }
 }
