@@ -7,6 +7,7 @@ import Navbar from './Components/Navbar/Navbar';
 
 import SearchResults from './Components/SearchResults/SearchResults';
 import PlayList from './Components/PlayList/PlayList';
+import CurrentPlaylist from './Components/CurrentPlaylist/CurrentPlaylist';
 
 import Player from './Components/Player/Player';
 
@@ -72,21 +73,22 @@ class App extends PureComponent {
         <Navbar />
         <div className="Main">
           <Switch>
-            <Route path="/search" 
-              render={() => {
-                <SearchResults 
-                  results={this.state.searchResults}
-                  addToPlaylist={this.addToNewPlaylist} 
-                  addToCurrentPlaylist={this.addToCurrentPlaylist} 
-                 />}} 
+            <Route path="/search"  render={() => (
+              <SearchResults 
+                results={this.state.searchResults}
+                addToPlaylist={this.addToNewPlaylist} 
+                addToCurrentPlaylist={this.addToCurrentPlaylist} 
+               />)} 
             />
-            <Route path="/newPlaylist" 
-              render={() => {
-                <PlayList 
-                  savePlayList={this.savePlayList} 
-                  playlist={this.state.newPlaylist} 
-                  deleteTrack={this.deleteTrack} 
-                 />}} 
+            <Route path="/newPlaylist" render={() => (
+              <PlayList 
+                savePlayList={this.savePlayList} 
+                playlist={this.state.newPlaylist} 
+                deleteTrack={this.deleteTrack} 
+              />)} 
+            />
+            <Route path="/currentPlaylist" render={() => (
+              <CurrentPlaylist playlist={this.state.currentPlaylist} />)}
             />
           </Switch>
         </div>
