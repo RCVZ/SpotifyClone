@@ -56,6 +56,13 @@ class App extends PureComponent {
     this.setState({ newPlaylist: tracks });
   }
 
+  savePlayList = (playlistName) => {
+    if (this.state.newPlaylist.length > 0 && playlistName.length > 0) {
+      const playlistUris = this.state.newPlaylist.map(track => track.uri);
+      SpotifyApi.sendPlayList(playlistName, playlistUris);
+    }
+  }
+
   render() {
     return (
       <div className="App">
@@ -64,7 +71,7 @@ class App extends PureComponent {
         <div className="Main">
           <Switch>
             <Route path="/search" render={() => <SearchResults results={this.state.searchResults} addToPlaylist={this.addToNewPlaylist} addToCurrentPlaylist={this.addToCurrentPlaylist} />} />
-            <Route path="/newPlaylist" render={() => <PlayList playlist={this.state.newPlaylist} deleteTrack={this.deleteTrack} />} />
+            <Route path="/newPlaylist" render={() => <PlayList savePlayList={this.savePlayList} playlist={this.state.newPlaylist} deleteTrack={this.deleteTrack} />} />
           </Switch>
         </div>
         <Player />

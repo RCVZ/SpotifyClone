@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import './PlayList.css';
 
 import TrackList from '../TrackList/TrackList';
-import SpotifyApi from './../../util/Spotify';
 
 class PlayList extends PureComponent {
   constructor(props){
@@ -13,15 +12,12 @@ class PlayList extends PureComponent {
     }
   }
 
-  savePlayList = () => {
-    if (this.props.playlist.length > 0 && this.props.playlistName.length > 0) {
-      const playlistUris = this.props.playlist.map(track => track.uri);
-      SpotifyApi.sendPlayList(this.props.playlistName, playlistUris);
-    }
-  }
-
   handleChange = (e) => {
     this.setState({ playlistName: e.target.value });
+  }
+
+  handleOnsubmit = () => {
+    this.props.savePlayList(this.state.playlistName);
   }
 
   render() {
@@ -38,7 +34,7 @@ class PlayList extends PureComponent {
         <button 
           className="Playlist-save"
           type="submit" 
-          onClick={this.savePlayList}>SAVE TO SPOTIFY
+          onClick={this.handleOnsubmit}>SAVE TO SPOTIFY
         </button>
       </div>
     );
