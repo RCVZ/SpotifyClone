@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import './NewPlaylist.css';
 
 import TrackList from '../TrackList/TrackList';
+import Button from '../Button/Button';
 
 class NewPlaylist extends PureComponent {
   constructor(props){
@@ -31,11 +32,7 @@ class NewPlaylist extends PureComponent {
           trackList={playlist}
           deleteTrack={deleteTrack}
           inPlayList={true}/>
-        <button 
-          className="Playlist-save"
-          type="submit" 
-          onClick={this.handleOnsubmit}>SAVE TO SPOTIFY
-        </button>
+        <Button type="submit" onClick={this.handleOnsubmit} name="SAVE TO SPOTIFY" />
       </div>
     );
   }
