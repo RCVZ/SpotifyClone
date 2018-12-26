@@ -5,13 +5,13 @@ button.Button {
   border: 0;
   color: white;
   border-radius: 20px;
-  background-color: #000766;
+  background-color: rgb(0, 8, 33);
   font-size: .833rem;
-  box-shadow: 0 4px 2px 2px #000000;
+  box-shadow: 0 4px 2px 2px #000000d0;
   transition: background-color .25s;
 }
 
 button.Button:hover {
-  background-color: rgba(108, 65, 233, .7);
-  box-shadow: 0 2px 1px 1px #000000;
+  background-color: rgb(0, 64, 132);
+  box-shadow: 0 2px 1px 1px #000000d0;
 }
