@@ -2,8 +2,9 @@
   grid-area: SearchBar;
   display: flex;
   align-items: center;
-  height: 50px;
-  background-color: rgba(255, 255, 255, 0);
+  height: 40px;
+  width: auto;
+  background-color: rgba(0, 0, 0, 0);
 }
 
 .SearchBar input {

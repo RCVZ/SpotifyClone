@@ -204,7 +204,7 @@ const SpotifyApi = {
 
       if(response.ok) {
         const jsonResponse = await response.json();
-        console.log(jsonResponse);
+        //console.log(jsonResponse);
         return jsonResponse.items;
       }
     } catch (e) {
@@ -232,7 +232,36 @@ const SpotifyApi = {
     } catch (e) {
       console.log(e);
     }
+  },
+
+  async browserSpotify() {
+    const access = await this.getAccesToken();
+
+    const authorization = {
+      Authorization: `Bearer ${access}`,
+      "Content-Type": "application/json"
+    };
+
+    try {
+      const response = await fetch('https://api.spotify.com/v1/browse/categories', {
+        headers: authorization
+      });
+
+      if (response.ok) {
+        const jsonResponse = await response.json();
+        let items = jsonResponse.categories.items;
+        let rearrangedItems = items.map((item) => {
+          item['images'] = item.icons
+          return item;
+        })
+        console.log(rearrangedItems);
+        return rearrangedItems;
+      }
+    } catch (e) {
+      console.log(e);
+    }
   }
+
 };
 
 

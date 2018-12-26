@@ -8,6 +8,7 @@ import Navbar from './Components/Navbar/Navbar';
 import SearchResults from './Components/SearchResults/SearchResults';
 import NewPlaylist from './Components/NewPlaylist/NewPlaylist';
 import CurrentPlaylist from './Components/CurrentPlaylist/CurrentPlaylist';
+import Library from './Components/Library/Library';
 
 import Player from './Components/Player/Player';
 
@@ -89,6 +90,9 @@ class App extends PureComponent {
             />
             <Route path="/currentPlaylist" render={() => (
               <CurrentPlaylist playlist={this.state.currentPlaylist} />)}
+            />
+            <Route path="/library" render={() => (
+              <Library playlists={this.state.library} />)}
             />
           </Switch>
         </div>

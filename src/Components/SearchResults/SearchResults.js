@@ -5,11 +5,7 @@ import TrackList from '../TrackList/TrackList';
 import PlaylistDisplay from '../PlaylistDisplay/PlaylistDisplay';
 
 class SearchResults extends Component {
-
-  componentDidMount() {
-    
-  } 
-
+  
   render() {
     const { addToPlaylist, results, addToCurrentPlaylist } = this.props;
     return(
