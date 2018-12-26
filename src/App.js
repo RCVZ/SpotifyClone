@@ -92,7 +92,7 @@ class App extends PureComponent {
             />
           </Switch>
         </div>
-        <Player />
+        <Player currentPlaylist={this.state.currentPlaylist} />
       </div>
     );
   }

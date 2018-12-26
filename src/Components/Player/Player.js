@@ -4,7 +4,7 @@ import './Player.css';
 import ProgressionBar from '../ProgressionBar/ProgressionBar';
 import Track from '../Track/Track';
 import Time from '../Time/Time';
-import PlayList from '../PlayList/PlayList';
+import CurrentPlaylist from '../CurrentPlaylist/CurrentPlaylist';
 
 import SpotifyApi from '../../util/Spotify';
 
@@ -167,7 +167,7 @@ class Player extends PureComponent {
         <div className="Control-Leftside">
           {this.state.showPlaylist ?
             <div className="Current-Playlist-Container">
-              <PlayList />
+              <CurrentPlaylist playlist={this.props.currentPlaylist} />
             </div> : null
           }
           <div className="Playlist-Button">
