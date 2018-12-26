@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import './TrackList.css'
 
 import Track from '../Track/Track';
+import Border from '../Border/Border';
 
 class TrackList extends PureComponent {
 
@@ -14,8 +15,10 @@ class TrackList extends PureComponent {
   render() {
     const { addToPlaylist, deleteTrack, inPlayList, trackList  } = this.props;
     return (
-      <div className="TrackList">
-        {trackList.map((track, index) => {
+      <React.Fragment>
+        <Border />
+        <div className="TrackList">
+          {trackList.map((track, index) => {
             return (
               <Track
                 track={track}
@@ -29,8 +32,9 @@ class TrackList extends PureComponent {
               />
             )
           })
-        }
-      </div>
+          }
+        </div>
+      </React.Fragment>      
     );
   }
 }

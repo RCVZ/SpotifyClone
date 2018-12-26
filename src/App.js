@@ -6,7 +6,7 @@ import SearchBar from './Components/SearchBar/SearchBar';
 import Navbar from './Components/Navbar/Navbar';
 
 import SearchResults from './Components/SearchResults/SearchResults';
-import PlayList from './Components/PlayList/PlayList';
+import NewPlaylist from './Components/NewPlaylist/NewPlaylist';
 import CurrentPlaylist from './Components/CurrentPlaylist/CurrentPlaylist';
 
 import Player from './Components/Player/Player';
@@ -81,7 +81,7 @@ class App extends PureComponent {
                />)} 
             />
             <Route path="/newPlaylist" render={() => (
-              <PlayList 
+              <NewPlaylist 
                 savePlayList={this.savePlayList} 
                 playlist={this.state.newPlaylist} 
                 deleteTrack={this.deleteTrack} 

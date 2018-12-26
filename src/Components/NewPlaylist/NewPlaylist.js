@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
-import './PlayList.css';
+import './NewPlaylist.css';
 
 import TrackList from '../TrackList/TrackList';
 
-class PlayList extends PureComponent {
+class NewPlaylist extends PureComponent {
   constructor(props){
     super(props);
 
@@ -41,4 +41,4 @@ class PlayList extends PureComponent {
   }
 }
 
-export default PlayList;
+export default NewPlaylist;

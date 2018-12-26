@@ -3,6 +3,7 @@ import './PlaylistDisplay.css';
 
 import Card from '../Card/Card';
 import Button from '../Button/Button';
+import Border from '../Border/Border';
 
 import SpotifyApi from './../../util/Spotify';
 
@@ -43,6 +44,7 @@ class PlaylistDisplay extends PureComponent {
     const { results } = this.state;
     return(
       <div className="PlaylistDisplay">
+        <Border />
         <div className="Grid">
           {this.props.playlists
             .slice(0,results)

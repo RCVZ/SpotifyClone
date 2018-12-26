@@ -14,7 +14,9 @@ class CurrentPlaylist extends PureComponent {
     const { playlist } = this.props;
     return (
       <div className="CurrentPlaylist">
-        <h3>Current-Playlist</h3>
+        <div className="Title">
+          <h3>Current-Playlist</h3>
+        </div>        
         <TrackList trackList={playlist} />
       </div>
     );
