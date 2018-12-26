@@ -16,7 +16,7 @@ class PlaylistDisplay extends PureComponent {
   }
 
   handleOnMore = (e) => {
-    this.state.results === 6 ? this.setState({results: 20}) :  this.setState({results: 6});
+    this.state.results === 6 ? this.setState({results: 50}) :  this.setState({results: 6});
   }
 
   handleOnclick = (key, images) => {

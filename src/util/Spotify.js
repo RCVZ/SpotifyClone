@@ -243,7 +243,7 @@ const SpotifyApi = {
     };
 
     try {
-      const response = await fetch('https://api.spotify.com/v1/browse/categories', {
+      const response = await fetch('https://api.spotify.com/v1/browse/categories?&limit=50', {
         headers: authorization
       });
 

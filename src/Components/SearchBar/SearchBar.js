@@ -24,7 +24,7 @@ class SearchBar extends PureComponent {
       this.setState({ searchTerm: searchTerm }, () => {
         this.props.search(this.state.searchTerm);
       })
-    }, 400);
+    }, 600);
   }
 
   handleEnter = (e) => {
