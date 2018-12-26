@@ -18,28 +18,3 @@
   color: #fff;
 }
 
-.Playlist-save {
-  cursor: pointer;
-  color: white;
-  width: 8rem;
-  padding: .5rem 0;
-  border: 0;
-  border-radius: 54px;
-  margin-top: 1.27rem;
-  background-color: #6c41ec;
-  text-align: center;
-  font-size: .7rem;
-  transition: background-color .25s;
-}
-
-.Playlist-save:hover {
-  background-color: rgba(108, 65, 233, .7);
-  padding: .5rem 0;
-}
-
-::-webkit-scrollbar {
-    width: 0px;
-    background: transparent;
-}
-
-

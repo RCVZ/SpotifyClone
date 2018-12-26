@@ -29,7 +29,7 @@ class Player extends PureComponent {
       duration: 0,
       volume: 0,
       mute: false,
-      showPlaylist: false,
+      showPlaylist: 'hidden',
     }
 
     this.playerCheckInterval = null;
@@ -130,15 +130,15 @@ class Player extends PureComponent {
   }
 
   togglePlaylist = (e) => {
-    if (!this.state.showPlaylist) {
-      this.setState({ showPlaylist: true });
+    if (this.state.showPlaylist === 'hidden') {
+      this.setState({ showPlaylist: 'visible' });
     } else {
-      this.setState({ showPlaylist: false });
+      this.setState({ showPlaylist: 'hidden' });
     }
   } 
 
   render() {
-    const { playing, currentTrack, volume, duration, position, artistName, trackName } = this.state;    
+    const { playing, currentTrack, volume, duration, position, artistName, trackName, showPlaylist } = this.state;    
     return(
       <div className="Player">
         <div className="Track-info">
@@ -165,11 +165,9 @@ class Player extends PureComponent {
           </div>
         </div>
         <div className="Control-Leftside">
-          {this.state.showPlaylist ?
-            <div className="Current-Playlist-Container">
-              <CurrentPlaylist playlist={this.props.currentPlaylist} />
-            </div> : null
-          }
+          <div className="Current-Playlist-Container" style={{ visibility: showPlaylist }}>
+            <CurrentPlaylist playlist={this.props.currentPlaylist} />
+          </div>
           <div className="Playlist-Button">
             <FontAwesomeIcon icon={faListUl} onClick={this.togglePlaylist} />            
           </div>
