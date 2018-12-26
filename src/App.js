@@ -22,7 +22,7 @@ class App extends PureComponent {
 
     this.state = {
       searchResults: {
-        playlist: [],
+        playlists: [],
         artists: [],
         albums: [],
         tracks: []
