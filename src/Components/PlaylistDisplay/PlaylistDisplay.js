@@ -15,7 +15,7 @@ class PlaylistDisplay extends PureComponent {
   }
 
   handleOnMore = (e) => {
-    this.state.results === 6 ? this.setState({results: 50}) :  this.setState({results: 6});
+    //this.state.results === 6 ? this.setState({results: 50}) :  this.setState({results: 6});
   }
 
   handleOnclick = (key, images) => {
@@ -44,15 +44,13 @@ class PlaylistDisplay extends PureComponent {
     return(
       <div className="PlaylistDisplay">
         <div className="Grid">
-          {this.props.playlists
-            .slice(0,results)
-            .map(playlist => {
-              return (
+          {this.props.playlists.map(playlist => {
+              return ( 
                 <Card 
-                playlist={playlist} 
-                id={playlist.id} 
-                key={playlist.id} 
-                handleOnclick={this.handleOnclick}
+                  playlist={playlist} 
+                  id={playlist.id} 
+                  key={playlist.id} 
+                  handleOnclick={this.handleOnclick}
                 />)
             })}
           <div>

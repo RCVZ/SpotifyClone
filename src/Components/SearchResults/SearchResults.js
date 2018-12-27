@@ -9,6 +9,7 @@ import ResultSubContainer from '../ResultSubContainer/ResultSubContainer';
 class SearchResults extends Component {
   
   render() {
+    console.log("results: ", this.props.results);
     const { addToPlaylist, results, addToCurrentPlaylist } = this.props;
     return(
       <ResultContainer>

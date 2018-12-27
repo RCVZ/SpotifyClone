@@ -44,89 +44,91 @@ const SpotifyApi = {
     }
   },
 
-  async search(searchTerm) {
+  async searchPlaylist(searchTerm, offset, limit=50) {
     const access = this.getAccesToken();
     const authorization = { Authorization: `Bearer ${access}` };
+
     try {
-      const response = await fetch(`https://api.spotify.com/v1/search?q=${searchTerm}&type=track`, {
+      const response = await fetch(`https://api.spotify.com/v1/search?q=${searchTerm}&type=playlist&limit=${limit}&offset=${offset}`, {
         headers: authorization
       });
-      if(response.ok){
-        const jsonResponse = await response.json();
-        return await jsonResponse.tracks.items.map(track => ({
-          id: track.id,
-          name: track.artists[0].name,
-          songname: track.name,
-          album: track.album.name,
-          uri: track.uri,
-          albumImg: track.album.images[2],
-          duration: track.duration_ms
-        }));
+      if (response.ok) {
+        const playlists = await response.json();
+        return playlists.playlists.items;
       }
     }
-    catch(error) {
+    catch (error) {
+      console.log(error);
+    }
+  },
+
+  async searchArtist(searchTerm, offset, limit=50) {
+    const access = this.getAccesToken();
+    const authorization = { Authorization: `Bearer ${access}` };
+
+    try {
+      const response = await fetch(`https://api.spotify.com/v1/search?q=${searchTerm}&type=artist&limit=${limit}&offset=${offset}`, {
+        headers: authorization
+      });
+      if (response.ok) {
+        const artists = await response.json();
+        return artists.artists.items;
+      }
+    }
+    catch (error) {
+      console.log(error);
+    }
+
+  },
+
+  async searchAlbum(searchTerm, offset, limit=50) {
+    const access = this.getAccesToken();
+    const authorization = { Authorization: `Bearer ${access}` };
+
+    try {
+      const response = await fetch(`https://api.spotify.com/v1/search?q=${searchTerm}&type=album&limit=${limit}&offset=${offset}`, {
+        headers: authorization
+      });
+      if (response.ok) {
+        const albums = await response.json();
+        return albums.albums.items;
+      }
+    }
+    catch (error) {
+      console.log(error);
+    }
+  },
+
+  async searchTrack(searchTerm, offset, limit=50) {
+    const access = this.getAccesToken();
+    const authorization = { Authorization: `Bearer ${access}` };
+
+    try {
+      const response = await fetch(`https://api.spotify.com/v1/search?q=${searchTerm}&type=track&limit=${limit}&offset=${offset}`, {
+        headers: authorization
+      });
+      if (response.ok) {
+        const tracks = await response.json();
+        return tracks.tracks.items;
+      }
+    }
+    catch (error) {
       console.log(error);
     }
   },
 
   async fullSearch(searchTerm) {
-    const access = this.getAccesToken();
-    const authorization = { Authorization: `Bearer ${access}` };
-    const resultsList = {
-      playlists: [],
-      artists: [],
-      albums: [],
-      tracks: []
+    const offset = 0;
+    const limit = 4;
+    let resultsList;
+
+    return resultsList = {
+      playlists: await this.searchPlaylist(searchTerm, offset, limit),
+      artists: await this.searchArtist(searchTerm, offset, limit),
+      albums: await this.searchAlbum(searchTerm, offset, limit),
+      tracks: await this.searchTrack(searchTerm, offset, limit)
     };
-    try {
-      const response = await fetch(`https://api.spotify.com/v1/search?q=${searchTerm}&type=playlist`, {
-        headers: authorization
-      });
-      if(response.ok){
-        const playlists = await response.json();
-        resultsList.playlists = playlists.playlists.items;
-      }
-    }
-    catch(error) {
-      console.log(error);
-    }
-    try {
-      const response = await fetch(`https://api.spotify.com/v1/search?q=${searchTerm}&type=artist`, {
-        headers: authorization
-      });
-      if(response.ok){
-        const artists = await response.json();
-        resultsList.artists = artists.artists.items;
-      }
-    }
-    catch(error) {
-      console.log(error);
-    }
-    try {
-      const response = await fetch(`https://api.spotify.com/v1/search?q=${searchTerm}&type=album`, {
-        headers: authorization
-      });
-      if(response.ok){
-        const albums = await response.json();
-        resultsList.albums = albums.albums.items;
-      }
-    }
-    catch(error) {
-      console.log(error);
-    }
-    try {
-      const response = await fetch(`https://api.spotify.com/v1/search?q=${searchTerm}&type=track`, {
-        headers: authorization
-      });
-      if(response.ok){
-        const tracks = await response.json();
-        resultsList.tracks = tracks.tracks.items;
-        return resultsList;
-      }
-    }
-    catch(error) {
-      console.log(error);
-    }
+
   },
 
   async sendPlayList(playlistName, playlistUris) {
