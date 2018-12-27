@@ -5,17 +5,4 @@
   overflow-y: scroll;
 }
 
-.Tracklist {
-  display: flex;
-  width: 100%;
-}
-
-.Tracklist-tracks {
-  width: 50%;
-}
-
-.Tracklist-albums {
-  width: 50%;
-}
-
 

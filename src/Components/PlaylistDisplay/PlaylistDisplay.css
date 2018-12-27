@@ -1,7 +1,7 @@
 .Grid {
   display: grid;
-  grid: repeat(auto-fill, 150px) / repeat(auto-fill, minmax(125px, 1fr));
+  grid: repeat(auto-fill, 150px) / repeat(auto-fill, minmax(150px, 1fr));
   grid-gap: 40px;
   justify-items: center;
-  margin: 50px auto 50px auto;  
+  margin: auto;  
 }

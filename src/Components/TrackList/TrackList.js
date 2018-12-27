@@ -15,8 +15,6 @@ class TrackList extends PureComponent {
   render() {
     const { addToPlaylist, deleteTrack, inPlayList, trackList  } = this.props;
     return (
-      <React.Fragment>
-        <Border />
         <div className="TrackList">
           {trackList.map((track, index) => {
             return (
@@ -33,8 +31,7 @@ class TrackList extends PureComponent {
             )
           })
           }
-        </div>
-      </React.Fragment>      
+        </div>  
     );
   }
 }

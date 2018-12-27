@@ -12,21 +12,18 @@ class SearchResults extends Component {
     const { addToPlaylist, results, addToCurrentPlaylist } = this.props;
     return(
       <ResultContainer>
-        {this.props.results.playlists.length > 0 ?
-         <React.Fragment>
-            <PlaylistDisplay playlists={results.playlists} addToCurrentPlaylist={addToCurrentPlaylist} />
-              <ResultSubContainer>
-                <TrackList
-                  trackList={results.tracks}
-                  addToPlaylist={addToPlaylist} />
-              </ResultSubContainer> 
-              <ResultSubContainer> 
-                <PlaylistDisplay addToCurrentPlaylist={addToCurrentPlaylist} playlists={results.albums} albums />
-              </ResultSubContainer>
-          </React.Fragment>   :
-          <h1>No results</h1>
-               
-        }
+        <ResultSubContainer>
+          <PlaylistDisplay playlists={results.playlists} addToCurrentPlaylist={addToCurrentPlaylist} />
+        </ResultSubContainer>
+        <ResultSubContainer>
+          <TrackList
+            trackList={results.tracks}
+            addToPlaylist={addToPlaylist}
+          />
+        </ResultSubContainer>
+        <ResultSubContainer>
+          <PlaylistDisplay addToCurrentPlaylist={addToCurrentPlaylist} playlists={results.albums} albums />
+        </ResultSubContainer>
       </ResultContainer>
     );
   }
