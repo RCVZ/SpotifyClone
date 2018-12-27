@@ -13,18 +13,18 @@ class SearchResults extends Component {
     const { addToPlaylist, results, addToCurrentPlaylist } = this.props;
     return(
       <ResultContainer>
-        <ResultSubContainer>
           <PlaylistDisplay playlists={results.playlists} addToCurrentPlaylist={addToCurrentPlaylist} />
-        </ResultSubContainer>
-        <ResultSubContainer>
-          <TrackList
-            trackList={results.tracks}
-            addToPlaylist={addToPlaylist}
-          />
-        </ResultSubContainer>
-        <ResultSubContainer>
-          <PlaylistDisplay addToCurrentPlaylist={addToCurrentPlaylist} playlists={results.albums} albums />
-        </ResultSubContainer>
+          <div className="Tracklist" >
+            <div className="Tracklist-tracks">
+              <TrackList
+                trackList={results.tracks}
+                addToPlaylist={addToPlaylist}
+              />
+            </div>
+            <div className="Tracklist-albums" >
+              <PlaylistDisplay addToCurrentPlaylist={addToCurrentPlaylist} playlists={results.albums} albums />
+            </div>
+          </div>
       </ResultContainer>
     );
   }

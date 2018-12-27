@@ -3,6 +3,21 @@
   max-height: 705px;
   padding: 0 3rem;
   overflow-y: scroll;
+  z-index: 999;
+}
+
+.Tracklist {
+  display: flex;
+  width: 100%;
+}
+
+.Tracklist-tracks {
+  width: 55%;
+  margin: 2rem 1rem;
+}
+
+.Tracklist-albums {
+  width: 45%;
 }
 
 
