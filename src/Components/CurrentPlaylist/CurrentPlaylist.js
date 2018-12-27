@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import './CurrentPlaylist.css';
 
 import TrackList from '../TrackList/TrackList';
+import ResultContainer from '../ResultContainer/ResultContainer';
 
 class CurrentPlaylist extends PureComponent {
   constructor(props) {
@@ -13,12 +14,9 @@ class CurrentPlaylist extends PureComponent {
   render() {
     const { playlist } = this.props;
     return (
-      <div className="CurrentPlaylist">
-        <div className="Title">
-          <h3>Current-Playlist</h3>
-        </div>        
+      <ResultContainer>
         <TrackList trackList={playlist} />
-      </div>
+      </ResultContainer>        
     );
   }
 }

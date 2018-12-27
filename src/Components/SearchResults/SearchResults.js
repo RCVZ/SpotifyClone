@@ -3,30 +3,31 @@ import './SearchResults.css';
 
 import TrackList from '../TrackList/TrackList';
 import PlaylistDisplay from '../PlaylistDisplay/PlaylistDisplay';
+import ResultContainer from '../ResultContainer/ResultContainer';
+import ResultSubContainer from '../ResultSubContainer/ResultSubContainer';
 
 class SearchResults extends Component {
   
   render() {
     const { addToPlaylist, results, addToCurrentPlaylist } = this.props;
     return(
-      <React.Fragment>
+      <ResultContainer>
         {this.props.results.playlists.length > 0 ?
-          <div className="SearchResults">
+         <React.Fragment>
             <PlaylistDisplay playlists={results.playlists} addToCurrentPlaylist={addToCurrentPlaylist} />
-            <div className="Tracklist">
-              <div className="Tracklist-tracks">
+              <ResultSubContainer>
                 <TrackList
                   trackList={results.tracks}
                   addToPlaylist={addToPlaylist} />
-              </div>
-              <div className="Tracklist-albums">
+              </ResultSubContainer> 
+              <ResultSubContainer> 
                 <PlaylistDisplay addToCurrentPlaylist={addToCurrentPlaylist} playlists={results.albums} albums />
-              </div>
-            </div>
-          </div> :
-          <h1>No results</h1>        
+              </ResultSubContainer>
+          </React.Fragment>   :
+          <h1>No results</h1>
+               
         }
-      </React.Fragment>
+      </ResultContainer>
     );
   }
 }
