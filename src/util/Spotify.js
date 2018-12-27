@@ -204,7 +204,6 @@ const SpotifyApi = {
 
       if(response.ok) {
         const jsonResponse = await response.json();
-        //console.log(jsonResponse);
         return jsonResponse.items;
       }
     } catch (e) {
@@ -253,8 +252,7 @@ const SpotifyApi = {
         let rearrangedItems = items.map((item) => {
           item['images'] = item.icons
           return item;
-        })
-        console.log(rearrangedItems);
+        });
         return rearrangedItems;
       }
     } catch (e) {

@@ -8,39 +8,14 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 
 class SearchBar extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      searchTerm: ''
-    }
-  }
-
   handleSearchTerm = (e) => {
     let searchTerm = e.target.value;
-    let timeout = null;
-    clearTimeout(timeout);       
-    timeout = setTimeout(() => {    
-      this.setState({ searchTerm: searchTerm }, () => {
-        this.props.search(this.state.searchTerm);
-      })
-    }, 600);
-  }
-
-  handleEnter = (e) => {
-    if (e.key === 'Enter') {
-      this.props.search(this.state.searchTerm);
-      this.props.history.push('/search');
-    }
-  }
-
-  submitSearch = (e) => {
-    this.props.search(this.state.searchTerm);   
+    this.props.search(searchTerm);
   }
 
   render() {
     return(
-      <div className='SearchBar' onKeyPress={this.handleEnter}>
+      <div className='SearchBar'>
         <input onChange={this.handleSearchTerm}  placeholder="Enter A Song, Album, or Artist"/>
         <Link to="/search">
           <FontAwesomeIcon className="Search_Button" icon={faSearch}/>

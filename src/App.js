@@ -68,6 +68,7 @@ class App extends PureComponent {
   }
 
   render() {
+    const { searchResults, currentPlaylist } = this.state;
     return (
       <div className="App">
         <SearchBar search={this.searchSpotify}/>
@@ -76,7 +77,7 @@ class App extends PureComponent {
           <Switch>
             <Route path="/search"  render={() => (
               <SearchResults 
-                results={this.state.searchResults}
+                results={searchResults}
                 addToPlaylist={this.addToNewPlaylist} 
                 addToCurrentPlaylist={this.addToCurrentPlaylist} 
                />)} 
@@ -89,14 +90,14 @@ class App extends PureComponent {
               />)} 
             />
             <Route path="/currentPlaylist" render={() => (
-              <CurrentPlaylist playlist={this.state.currentPlaylist} />)}
+              <CurrentPlaylist playlist={currentPlaylist} />)}
             />
             <Route path="/library" render={() => (
-              <Library playlists={this.state.library} />)}
+              <Library />)}
             />
           </Switch>
         </div>
-        <Player currentPlaylist={this.state.currentPlaylist} />
+        <Player currentPlaylist={currentPlaylist} />
       </div>
     );
   }
