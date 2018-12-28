@@ -9,8 +9,9 @@ import SearchResults from './Components/SearchResults/SearchResults';
 import NewPlaylist from './Components/NewPlaylist/NewPlaylist';
 import CurrentPlaylist from './Components/CurrentPlaylist/CurrentPlaylist';
 import Library from './Components/Library/Library';
+import UserPlaylists from './Components/UserPlaylists/UserPlaylists';
 
-import Player from './Components/Player/Player';
+import Player from './Components/Player/Player'; 
 
 import SpotifyApi from './util/Spotify';
 
@@ -95,6 +96,9 @@ class App extends PureComponent {
             <Route path="/library" render={() => (
               <Library />)}
             />
+            <Route path="/userPlaylists" render={() => (
+              <UserPlaylists />)}
+            />
           </Switch>
         </div>
         <Player currentPlaylist={currentPlaylist} />
@@ -104,3 +108,5 @@ class App extends PureComponent {
 }
 
 export default hot(module)(withRouter(App));
+
+
