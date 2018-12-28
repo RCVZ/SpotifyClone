@@ -10,18 +10,24 @@ class UserPlaylists extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      playlists: []
+      userPlaylists: []
     }
+  }
+
+  componentWillMount() {
+    SpotifyApi.getPlaylist().then((playlists) => {
+      this.setState({ userPlaylists: playlists });
+    })
   }
   
   render() {
-    const { playlist } = this.props;
+    const { userPlaylists } = this.state;
     return (
       <ResultContainer>
-        <PlaylistDisplay playlists={playlists} />
+        <PlaylistDisplay playlists={userPlaylists} />
       </ResultContainer>
     );
   }
 }
 
-export default Playlists;
+export default UserPlaylists;
