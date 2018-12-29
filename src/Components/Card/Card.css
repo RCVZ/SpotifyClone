@@ -21,6 +21,9 @@
 
 .Card-Overlay {
   position: absolute;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   height: 150px;
   width: 150px;
   top: 0;
