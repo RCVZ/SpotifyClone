@@ -39,16 +39,6 @@ class PlaylistDisplay extends PureComponent {
     this.props.addToCurrentPlaylist(newPlaylist) 
   }
 
-  // handleMouseEnter = (e) => {
-  //   console.log('i am doing');
-  //   visibility = 'visible'
-  // }
-
-  // handleMouseLeave = (e) => {
-
-  //   visibility = 'visible'
-  // }
-
   render() {
     //const { results } = this.state;
     return(
@@ -61,8 +51,6 @@ class PlaylistDisplay extends PureComponent {
                   id={playlist.id} 
                   key={playlist.id} 
                   andleOnclick={this.handleOnclick}
-                 // handleMouseEnter={this.handleMouseEnter}
-
                 />)
             })}
           <div>

@@ -25,13 +25,14 @@ class Card extends PureComponent {
 
   render() {
     const { playlist, handleOnclick, id } = this.props;
+    const { visibility } = this.state;
     return (
       <div className="Card" onMouseLeave={this.handleMouseLeave} onMouseEnter={this.handleMouseEnter} >
         <div className="Card-Img" onClick={() => handleOnclick(id, playlist.images)} >
           <img src={playlist.images[0].url} alt="img" />
           <Text name={playlist.name} />
         </div>
-        <div className="Card-Overlay" style={{ visibility: this.state.visibility }}>
+        <div className="Card-Overlay" style={{ visibility: visibility }}>
           <div>
             <p>.</p>
             <p>.</p>
