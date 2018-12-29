@@ -1,17 +1,38 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import './Card.css';
 
 import Text from '../Text/Text';
 
-const Card = ({ playlist, handleOnclick, id }) => {
-  return(
-    <div className="Card">
-      <div onClick={() => handleOnclick(id, playlist.images)} >
-        <img src={playlist.images[0].url} alt="img"/>
-        <Text name={playlist.name}/>
+class Card extends PureComponent {
+  constructor(props){
+    super(props);
+
+    this.state = {
+      visibility: 'hidden'
+    }
+  }
+
+  handleMouseEnter = (e) => {
+    this.setState({ visibility: 'visible' });    
+  }
+
+  handleMouseLeave = (e) => {
+    this.setState({ visibility: 'hidden'})    
+  }
+
+  render() {
+    const { playlist, handleOnclick, id } = this.props;
+    return (
+      <div className="Card" onMouseLeave={this.handleMouseLeave} onMouseEnter={this.handleMouseEnter} >
+        <div className="Card-Img" onClick={() => handleOnclick(id, playlist.images)} >
+          <img src={playlist.images[0].url} alt="img" />
+          <Text name={playlist.name} />
+        </div>
+        <div className="Card-Overlay" style={{ visibility: this.state.visibility }}>
+        </div>
       </div>
-    </div>
-  )
+      )
+    }
 }
 
 export default Card;

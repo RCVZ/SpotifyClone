@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import './TrackList.css'
 
 import Track from '../Track/Track';
-import Border from '../Border/Border';
 
 class TrackList extends PureComponent {
 
