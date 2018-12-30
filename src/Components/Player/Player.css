@@ -120,6 +120,6 @@
 }
 
 .Current-Playlist-Container .Track-information img,
-.Action-Overlay {
+.Current-Playlist-Container .Track-information .Action-Overlay {
   display: none;
 }

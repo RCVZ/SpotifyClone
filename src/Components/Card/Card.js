@@ -7,11 +7,11 @@ import ActionOverlay from '../ActionOverlay/ActionOverlay';
 const Card = ({ playlist, handleOnclick, id }) => {
   return (
     <div className="Card">
-      <div className="Card-Img" onClick={() => handleOnclick(id, playlist.images)} >
+      <div className="Card-Img" >
         <img src={playlist.images[0].url} alt="img" />
         <Text name={playlist.name} />
       </div>
-      <ActionOverlay />
+      <ActionOverlay trackAction={() => handleOnclick(id, playlist.images)}/>
     </div>
   )
 }

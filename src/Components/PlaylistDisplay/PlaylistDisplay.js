@@ -19,12 +19,13 @@ class PlaylistDisplay extends PureComponent {
   }
 
   handleOnclick = (key, images) => {
+    console.log('testtttt1')
     let newPlaylist = [];
     let secondPram = 'spotify';
     if(this.props.albums === true) {
       secondPram = 'spotifyAlbum';
       SpotifyApi.getPlaylist(key, secondPram).then((playlist) => {
-        playlist.map((item)=>{
+        playlist.map((item)=> {
           item['album'] = {images};
           return newPlaylist.push(item);
         });
@@ -50,7 +51,7 @@ class PlaylistDisplay extends PureComponent {
                   playlist={playlist} 
                   id={playlist.id} 
                   key={playlist.id} 
-                  andleOnclick={this.handleOnclick}
+                  handleOnclick={this.handleOnclick}
                 />)
             })}
           <div>

@@ -53,6 +53,7 @@ class App extends PureComponent {
   }
 
   addToCurrentPlaylist = (tracks) => {
+    console.log('testtttt')
     this.setState({ currentPlaylist: tracks });
   }
 
@@ -94,10 +95,14 @@ class App extends PureComponent {
               <CurrentPlaylist playlist={currentPlaylist} />)}
             />
             <Route path="/library" render={() => (
-              <Library />)}
+              <Library 
+                addToCurrentPlaylist={this.addToCurrentPlaylist} 
+              />)}
             />
             <Route path="/userPlaylists" render={() => (
-              <UserPlaylists />)}
+              <UserPlaylists 
+                addToCurrentPlaylist={this.addToCurrentPlaylist} 
+              />)}
             />
           </Switch>
         </div>

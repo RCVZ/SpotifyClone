@@ -23,9 +23,13 @@ class Library extends PureComponent {
 
   render() {
     const { playlists } = this.state;
+    const { addToCurrentPlaylist } = this.props; 
     return (
       <ResultContainer>
-        <PlaylistDisplay playlists={playlists} />
+        <PlaylistDisplay 
+          playlists={playlists} 
+          addToCurrentPlaylist={addToCurrentPlaylist}
+        />
       </ResultContainer>
     );
   }

@@ -22,9 +22,13 @@ class UserPlaylists extends PureComponent {
   
   render() {
     const { userPlaylists } = this.state;
+    const { addToCurrentPlaylist } = this.props; 
     return (
       <ResultContainer>
-        <PlaylistDisplay playlists={userPlaylists} />
+        <PlaylistDisplay 
+          playlists={userPlaylists} 
+          addToCurrentPlaylist={addToCurrentPlaylist}
+        />
       </ResultContainer>
     );
   }
