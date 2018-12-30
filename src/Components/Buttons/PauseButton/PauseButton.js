@@ -1,14 +1,14 @@
 import React from 'react';
-import './PlayButton.css';
+import './PauseButton.css';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlay } from '@fortawesome/free-solid-svg-icons';
+import { faPause } from '@fortawesome/free-solid-svg-icons';
 
 const PlayButton = ({ onPlayClick }) => {
   return (
     <React.Fragment>
       <button className="play-pause" onClick={onPlayClick} >
-        <FontAwesomeIcon className="button" icon={faPlay} size="lg" />
+        <FontAwesomeIcon className="button" icon={faPause} size="lg" />
       </button>
     </React.Fragment>
   );

@@ -4,12 +4,22 @@ import './Player.css';
 import ProgressionBar from '../ProgressionBar/ProgressionBar';
 import Track from '../Track/Track';
 import Time from '../Time/Time';
+
+import PlayButton from '../Buttons/PlayButton/PlayButton';
+import PauseButton from '../Buttons/PlayButton/PlayButton';
+import ForwardButton from '../Buttons/ForwardButton/ForwardButton';
+import BackwardButton from '../Buttons/BackwardButton/BackwardButton';
+
+// import ForwardButton from '../Buttons/ForwardButton/ForwardButton';
+// import ForwardButton from '../Buttons/ForwardButton/ForwardButton';
+
+
 import CurrentPlaylist from '../CurrentPlaylist/CurrentPlaylist';
 
 import SpotifyApi from '../../util/Spotify';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBackward, faPlay, faPause, faForward, faVolumeUp, faListUl } from '@fortawesome/free-solid-svg-icons';
+import { faVolumeUp, faListUl } from '@fortawesome/free-solid-svg-icons';
 
 class Player extends PureComponent {
   constructor(props) {
@@ -146,15 +156,11 @@ class Player extends PureComponent {
         </div>
         <div className="Control">
           <div className="Player-buttons">
-            <button className="back" onClick={this.onPrevClick} >
-              <FontAwesomeIcon className="button" icon={faBackward} size="sm"/>
-            </button>
-            <button className="play-pause" onClick={this.onPlayClick} >
-              <FontAwesomeIcon className="button" icon={playing ? faPause : faPlay} size="lg"/>
-            </button>
-            <button className="forward" onClick={this.onNextClick} >
-              <FontAwesomeIcon className="button" icon={faForward} size="sm"/>
-            </button>            
+            <BackwardButton onBackward={this.onPrevClick} />        
+            {playing ? 
+            <PauseButton onPlayClick={this.onPlayClick} /> : 
+            <PlayButton onPlayClick={this.onPlayClick}/>}
+            <ForwardButton onForward={this.onNextClick} />             
           </div>
           <div className="Track-Progression" >
             <Time ms={position} />
