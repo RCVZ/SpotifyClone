@@ -1,0 +1,16 @@
+.Action-Overlay {
+  position: absolute;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: inherit;
+  width: inherit;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  opacity:0;
+  transition: opacity 0.3s linear;
+}
+
+.Action-Overlay:hover {
+  opacity: 1;
+}
