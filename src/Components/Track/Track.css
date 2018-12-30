@@ -1,5 +1,6 @@
 .Track {
   display: flex;
+  position: relative;
   cursor: pointer;
   transition: transform 300ms;
   margin: 0.1rem 0.7rem;
@@ -10,7 +11,7 @@
   transform: scale(1.09);
 }
 
-.Track-action {  
+/* .Track-action {  
   margin: 0 0.75rem;
   color: white;
   transition: color .25s;
@@ -18,7 +19,7 @@
 
 .Track-action:hover {
   color: rgba(265, 265, 265, .5);
-}
+} */
 
 .Track-information img {
   height: 50px;

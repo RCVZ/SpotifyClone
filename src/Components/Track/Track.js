@@ -3,7 +3,8 @@ import SpotifyApi from '../../util/Spotify';
 import './Track.css'
 
 import Text from '../Text/Text';
-import Time from '../Time/Time';
+import Time from '../Time/Time'; 
+import ActionOverlay from '../ActionOverlay/ActionOverlay';
 
 class Track extends PureComponent {
 
@@ -29,25 +30,29 @@ class Track extends PureComponent {
             <img src={album.images[2].url} alt="album"/>
           </div>
           <Text name={name} artist={artists[0].name}/>
-          <Time ms={duration_ms} />
-        </div>
-        {this.props.inPlayList ? 
-        <React.Fragment>
-          <button
-            className="Track-action"  //maybe it can be improve by giving it the right prop from grantparentcomponent
-            type="button"
-            onClick={this.deleteOnClick}>-
-          </button>
-        </React.Fragment> :
-        <button
-           className="Track-action" 
-           type="button"
-           onClick={this.addOnClick}>+
-        </button>
-        }
-      </div>
+          <Time ms={duration_ms} />          
+        </div>    
+        <ActionOverlay />   
+      </div> 
     );
   }
 }
 
 export default Track;
+
+
+// {
+//   this.props.inPlayList ?
+//   <React.Fragment>
+//     <button
+//       className="Track-action"  //maybe it can be improve by giving it the right prop from grantparentcomponent
+//       type="button"
+//       onClick={this.deleteOnClick}>-
+//           </button>
+//   </React.Fragment> :
+//   <button
+//     className="Track-action"
+//     type="button"
+//     onClick={this.addOnClick}>+
+//         </button>
+// }

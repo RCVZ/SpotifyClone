@@ -3,8 +3,8 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: inherit;
-  width: inherit;
+  height: 100%;
+  width: 100%;
   top: 0;
   background-color: rgba(0, 0, 0, 0.75);
   opacity:0;
