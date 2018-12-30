@@ -19,7 +19,6 @@ class PlaylistDisplay extends PureComponent {
   }
 
   handleOnclick = (key, images) => {
-    console.log('testtttt1')
     let newPlaylist = [];
     let secondPram = 'spotify';
     if(this.props.albums === true) {

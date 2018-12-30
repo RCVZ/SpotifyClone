@@ -28,7 +28,7 @@ class Library extends PureComponent {
       <ResultContainer>
         <PlaylistDisplay 
           playlists={playlists} 
-          addToCurrentPlaylist={addToCurrentPlaylist}
+          addToCurrentPlaylist={console.log('not working yet')}
         />
       </ResultContainer>
     );
