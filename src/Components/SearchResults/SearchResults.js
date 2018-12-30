@@ -16,7 +16,7 @@ class SearchResults extends Component {
             <div className="Tracklist-tracks">
               <TrackList
                 trackList={results.tracks}
-                addToPlaylist={addToPlaylist}
+                trackAction={addToPlaylist}
               />
             </div>
             <div className="Tracklist-albums" >

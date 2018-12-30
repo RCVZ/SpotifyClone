@@ -12,7 +12,7 @@ class TrackList extends PureComponent {
   }
 
   render() {
-    const { addToPlaylist, deleteTrack, inPlayList, trackList  } = this.props;
+    const { trackAction, inPlayList, trackList  } = this.props;
     return (
         <div className="TrackList">
           {trackList.map((track, index) => {
@@ -22,8 +22,7 @@ class TrackList extends PureComponent {
                 trackIndex={index}
                 id={index}
                 key={track.id}
-                addToPlaylist={addToPlaylist}
-                deleteTrack={deleteTrack}
+                trackAction={trackAction}
                 inPlayList={inPlayList}
                 getUrisList={this.getUrisList}
               />
