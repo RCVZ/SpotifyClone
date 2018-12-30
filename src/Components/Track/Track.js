@@ -26,7 +26,7 @@ class Track extends PureComponent {
           <Text name={name} artist={artists[0].name}/>
           <Time ms={duration_ms} />          
         </div>    
-        <ActionOverlay addToPlaylist={this.handleTrackAction} onPlayClick={this.handlePlay} />   
+        <ActionOverlay trackAction={this.handleTrackAction} onPlayClick={this.handlePlay} inPlaylist={this.props.inPlaylist}/>   
       </div> 
     );
   }

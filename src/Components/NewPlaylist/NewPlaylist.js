@@ -31,7 +31,7 @@ class NewPlaylist extends PureComponent {
         <TrackList 
           trackList={playlist}
           trackAction={deleteTrack}
-          inPlayList={true}/>
+          inPlaylist/>
         <Button type="submit" onClick={this.handleOnsubmit} name="SAVE TO SPOTIFY" />
       </div>
     );
