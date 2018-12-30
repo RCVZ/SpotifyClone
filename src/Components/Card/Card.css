@@ -4,7 +4,7 @@
   height: 150px;
   background-color: rgba(0, 0, 20, 0.7);
   box-shadow: 0px 4px 25px 5px rgba(0, 0, 0, 0.5), 0px 4px 10px 1px rgba(0, 0, 0, 0.8);
-  transition: transform 300ms;
+  transition: all 300ms;
   text-align: center;
 }
 
@@ -19,13 +19,19 @@
   background-color: black;
 }
 
-.Card-Overlay {
+.Action-Overlay {
   position: absolute;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: 150px;
-  width: 150px;
+  height: inherit;
+  width: inherit;
   top: 0;
-  background-color: rgba(0, 0, 0, 0.712);
+  background-color: rgba(0, 0, 0, 0.75);
+  opacity:0;
+  transition: opacity 0.3s linear;
+}
+
+.Action-Overlay:hover {
+  opacity: 1;
 }
