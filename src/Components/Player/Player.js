@@ -10,8 +10,8 @@ import PauseButton from '../Buttons/PlayButton/PlayButton';
 import ForwardButton from '../Buttons/ForwardButton/ForwardButton';
 import BackwardButton from '../Buttons/BackwardButton/BackwardButton';
 
-// import ForwardButton from '../Buttons/ForwardButton/ForwardButton';
-// import ForwardButton from '../Buttons/ForwardButton/ForwardButton';
+import PlaylistButton from '../Buttons/PlaylistButton/PlaylistButton';
+import TrackProgression from '../TrackProgression/TrackProgression';
 
 
 import CurrentPlaylist from '../CurrentPlaylist/CurrentPlaylist';
@@ -162,21 +162,19 @@ class Player extends PureComponent {
             <PlayButton onPlayClick={this.onPlayClick}/>}
             <ForwardButton onForward={this.onNextClick} />             
           </div>
-          <div className="Track-Progression" >
+          <TrackProgression >
             <Time ms={position} />
             <div className="Track-Bar">
               <ProgressionBar currentPostion={position} sliderAction={this.onSeek} maxValue={duration} handleMouseUp={this.handleMouseUp} />
             </div>            
             <Time ms={duration} />
-          </div>
+          </TrackProgression>
         </div>
         <div className="Control-Leftside">
           <div className="Current-Playlist-Container" style={{ visibility: showPlaylist }}>
             <CurrentPlaylist playlist={this.props.currentPlaylist} />
           </div>
-          <div className="Playlist-Button">
-            <FontAwesomeIcon icon={faListUl} onClick={this.togglePlaylist} />            
-          </div>
+          <PlaylistButton togglePlaylist={this.togglePlaylist} />
           <div className="volume">
             <FontAwesomeIcon icon={faVolumeUp} size="sm" onClick={this.toggleMute} />
             <div className="volume-bar">

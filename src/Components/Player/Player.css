@@ -55,17 +55,10 @@
   transform: none;
 }
 
-.Track-Progression {
-  display: flex;
-  width: 100% ;
-  align-items: center;
-}
-
 .Track-Bar {
   width: 80%;
   margin: 0 10px;
 }
-
 
 .Current-Playlist-Container {
   position: relative;
