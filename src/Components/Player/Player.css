@@ -66,15 +66,6 @@
   margin: 0 10px;
 }
 
-.Playlist-Button {
-  opacity: 0.5;
-  transition: 300ms;
-}
-
-.Playlist-Button:hover {
-  opacity: 1;
-  transform: scale(1.1);
-}
 
 .Current-Playlist-Container {
   position: relative;
