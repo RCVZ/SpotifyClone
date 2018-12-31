@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import './TrackList.css'
 
 import Track from '../Track/Track';
+import Grid from '../Grid/Grid';
 
 class TrackList extends PureComponent {
 
@@ -14,7 +15,7 @@ class TrackList extends PureComponent {
   render() {
     const { trackAction, inPlaylist, trackList  } = this.props;
     return (
-        <div className="TrackList">
+        <Grid>
           {trackList.map((track, index) => {
             return (
               <Track
@@ -29,7 +30,7 @@ class TrackList extends PureComponent {
             )
           })
           }
-        </div>  
+        </Grid>  
     );
   }
 }
