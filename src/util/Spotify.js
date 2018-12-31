@@ -123,9 +123,9 @@ const SpotifyApi = {
     let resultsList;
 
     return resultsList = {
-      playlists: await this.searchPlaylist(searchTerm, offset, 3),
+      playlists: await this.searchPlaylist(searchTerm, offset, 6),
       artists: await this.searchArtist(searchTerm, offset, limit),
-      albums: await this.searchAlbum(searchTerm, offset, 3),
+      albums: await this.searchAlbum(searchTerm, offset, 6),
       tracks: await this.searchTrack(searchTerm, offset, 8)
     };
 

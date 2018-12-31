@@ -1,7 +1,7 @@
-.Grid {
-  display: grid;
-  grid: repeat(auto-fill, 150px) / repeat(auto-fill, minmax(150px, 1fr));
-  grid-gap: 40px;
-  justify-items: center;
-  margin: 2rem 0;
+.PlaylistDisplay {
+  display: flex;
+  width: 100%;
+  justify-items: flex-start;
+  flex-wrap: wrap;
+  padding: 0 20px 30px 20px;
 }

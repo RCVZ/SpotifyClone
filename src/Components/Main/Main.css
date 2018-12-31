@@ -2,4 +2,6 @@
   grid-area: Main;
   height: 100%;
   background-color: rgb(0, 5, 56);
+  max-height: 720px;
+  overflow-y: scroll;
 }

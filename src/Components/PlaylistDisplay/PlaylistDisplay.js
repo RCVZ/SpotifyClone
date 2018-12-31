@@ -43,20 +43,18 @@ class PlaylistDisplay extends PureComponent {
     //const { results } = this.state;
     return(
       <div className="PlaylistDisplay">
-        <div className="Grid">
-          {this.props.playlists.map(playlist => {
-              return ( 
-                <Card 
-                  playlist={playlist} 
-                  id={playlist.id} 
-                  key={playlist.id} 
-                  handleOnclick={this.handleOnclick}
-                />)
-            })}
-          <div>
+        {this.props.playlists.map(playlist => {
+          return (
+            <Card
+              playlist={playlist}
+              id={playlist.id}
+              key={playlist.id}
+              handleOnclick={this.handleOnclick}
+            />)
+        })}
+        {/* <div>
             <Button type="button" onClick={this.handleOnMore} name="More....."/>
-          </div>
-        </div>
+          </div> */}
       </div>
     );
   }
