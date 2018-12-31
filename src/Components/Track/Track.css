@@ -11,20 +11,9 @@
   transform: scale(1.09);
 }
 
-/* .Track-action {  
-  margin: 0 0.75rem;
-  color: white;
-  transition: color .25s;
-}
-
-.Track-action:hover {
-  color: rgba(265, 265, 265, .5);
-} */
-
 .Track-information img {
   height: 50px;
-  max-width: 50px;
-  margin: 0.5rem;
+  margin: auto 0.5rem;
 }
 
 .Track-information {

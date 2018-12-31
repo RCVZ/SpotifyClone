@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import './UserPlaylists.css';
 
 import PlaylistDisplay from '../PlaylistDisplay/PlaylistDisplay';
-import ResultContainer from '../ResultContainer/ResultContainer';
+import Grid from '../Grid/Grid';
 
 import SpotifyApi from './../../util/Spotify';
 
@@ -24,12 +24,12 @@ class UserPlaylists extends PureComponent {
     const { userPlaylists } = this.state;
     const { addToCurrentPlaylist } = this.props; 
     return (
-      <ResultContainer>
+      <Grid>
         <PlaylistDisplay 
           playlists={userPlaylists} 
           addToCurrentPlaylist={addToCurrentPlaylist}
         />
-      </ResultContainer>
+      </Grid>
     );
   }
 }

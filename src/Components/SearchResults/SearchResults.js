@@ -3,18 +3,18 @@ import './SearchResults.css';
 
 import TrackList from '../TrackList/TrackList';
 import PlaylistDisplay from '../PlaylistDisplay/PlaylistDisplay';
-import ResultContainer from '../ResultContainer/ResultContainer';
+import Grid from '../Grid/Grid';
 
 class SearchResults extends Component {
   
   render() {
     const { addToPlaylist, results, addToCurrentPlaylist } = this.props;
     return(
-      <ResultContainer>
+      <Grid>
           <PlaylistDisplay playlists={results.playlists} addToCurrentPlaylist={addToCurrentPlaylist} />
           <TrackList trackList={results.tracks} trackAction={addToPlaylist} />
           <PlaylistDisplay addToCurrentPlaylist={addToCurrentPlaylist} playlists={results.albums} albums />
-      </ResultContainer>
+      </Grid>
     );
   }
 }
