@@ -4,22 +4,18 @@ import './Player.css';
 import ProgressionBar from '../ProgressionBar/ProgressionBar';
 import Track from '../Track/Track';
 import Time from '../Time/Time';
-
 import PlayButton from '../Buttons/PlayButton/PlayButton';
 import PauseButton from '../Buttons/PlayButton/PlayButton';
 import ForwardButton from '../Buttons/ForwardButton/ForwardButton';
 import BackwardButton from '../Buttons/BackwardButton/BackwardButton';
-
 import PlaylistButton from '../Buttons/PlaylistButton/PlaylistButton';
 import TrackProgression from '../TrackProgression/TrackProgression';
-
-
 import CurrentPlaylist from '../CurrentPlaylist/CurrentPlaylist';
 
 import SpotifyApi from '../../util/Spotify';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faVolumeUp, faListUl } from '@fortawesome/free-solid-svg-icons';
+import { faVolumeUp } from '@fortawesome/free-solid-svg-icons';
 
 class Player extends PureComponent {
   constructor(props) {
@@ -157,9 +153,7 @@ class Player extends PureComponent {
         <div className="Control">
           <div className="Player-buttons">
             <BackwardButton onBackward={this.onPrevClick} />        
-            {playing ? 
-            <PauseButton onPlayClick={this.onPlayClick} /> : 
-            <PlayButton onPlayClick={this.onPlayClick}/>}
+              {playing ? <PauseButton onPlayClick={this.onPlayClick} /> : <PlayButton onPlayClick={this.onPlayClick}/>}
             <ForwardButton onForward={this.onNextClick} />             
           </div>
           <TrackProgression >

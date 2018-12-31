@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import './NewPlaylist.css';
 
 import TrackList from '../TrackList/TrackList';
-import Button from '../Button/Button';
+import Button from '../Buttons/Button/Button';
 
 class NewPlaylist extends PureComponent {
   constructor(props){

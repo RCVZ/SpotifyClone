@@ -70,11 +70,11 @@
   overflow-y: scroll;
 }
 
-.Current-Playlist-Container .Track-information {
+.Player .Track-information {
   margin: 0 5px;
 }
 
-.Current-Playlist-Container .Track-information img,
-.Current-Playlist-Container .Track-information .Action-Overlay {
+.Player .Track-information img,
+.Player .Action-Overlay {
   display: none;
 }
