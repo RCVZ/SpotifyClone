@@ -3,7 +3,8 @@
   position: relative;
   cursor: pointer;
   transition: transform 300ms;
-  margin: 0.1rem 0.7rem;
+  width: 100%;
+  margin: 0.1rem 1rem;
 }
 
 .Track:hover {
@@ -13,19 +14,12 @@
 
 .Track-information img {
   height: 50px;
-  margin: auto 0.5rem;
+  margin: auto 2rem auto 0.5rem;
+  align-content: flex-end;
 }
 
 .Track-information {
   display: flex;
-}
-
-.Track-information button {
-  font-size: .6rem;
-  font-weight: 300;
-  color: rgba(256, 256, 256, 0.8);
-}
-
-.Track span{
-  margin: auto;
+  margin: 1rem 0.5rem;
+  flex-grow: 1;
 }
