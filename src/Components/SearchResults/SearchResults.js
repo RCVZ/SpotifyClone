@@ -14,10 +14,7 @@ class SearchResults extends Component {
           <PlaylistDisplay playlists={results.playlists} addToCurrentPlaylist={addToCurrentPlaylist} />
           <div className="Tracklist" >
             <div className="Tracklist-tracks">
-              <TrackList
-                trackList={results.tracks}
-                trackAction={addToPlaylist}
-              />
+              <TrackList trackList={results.tracks} trackAction={addToPlaylist} />
             </div>
             <div className="Tracklist-albums" >
               <PlaylistDisplay addToCurrentPlaylist={addToCurrentPlaylist} playlists={results.albums} albums />
