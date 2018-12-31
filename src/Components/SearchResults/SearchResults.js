@@ -8,12 +8,10 @@ import Grid from '../Grid/Grid';
 class SearchResults extends Component {
   
   render() {
-    const { addToPlaylist, results, addToCurrentPlaylist } = this.props;
+    const { addToPlaylist, results, addToCurrentPlaylist, children } = this.props;
     return(
       <Grid>
-          <PlaylistDisplay playlists={results.playlists} addToCurrentPlaylist={addToCurrentPlaylist} />
-          <TrackList trackList={results.tracks} trackAction={addToPlaylist} />
-          <PlaylistDisplay addToCurrentPlaylist={addToCurrentPlaylist} playlists={results.albums} albums />
+        {children}
       </Grid>
     );
   }

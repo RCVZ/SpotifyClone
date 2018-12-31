@@ -22,8 +22,12 @@ class Track extends PureComponent {
     return(
       <div className="Track" id={trackIndex} key={id}>
         <div className="Track-information" value={uri}>
-          <img src={album.images[2].url} alt="album" />          
-          <Text name={name} artist={artists[0].name}/>
+          <div className="Album-img" >
+            <img src={album.images[2].url} alt="album" /> 
+          </div> 
+          <div className="Track-name">
+            <Text name={name} artist={artists[0].name} />
+          </div>  
           <Time ms={duration_ms} />          
         </div>    
         <ActionOverlay trackAction={this.handleTrackAction} onPlayClick={this.handlePlay} inPlaylist={this.props.inPlaylist}/>   

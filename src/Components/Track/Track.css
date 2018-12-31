@@ -4,22 +4,32 @@
   cursor: pointer;
   transition: transform 300ms;
   width: 100%;
-  margin: 0.1rem 1rem;
 }
 
 .Track:hover {
   box-shadow: 0px 5px 8px 2px rgb(0, 0, 0.7);
-  transform: scale(1.09);
+  transform: scale(1.05);
 }
 
 .Track-information img {
-  height: 50px;
-  margin: auto 2rem auto 0.5rem;
-  align-content: flex-end;
+  height: 60px;
+  margin: 10px;
 }
 
 .Track-information {
   display: flex;
-  margin: 1rem 0.5rem;
+  align-items: center;
+  width: 100%;
+}
+
+.Album-img {
+  flex-grow: 0.5;
+}
+
+.Track-name {
+  flex-grow: 6;
+}
+
+.Track-information .Time {
   flex-grow: 1;
 }

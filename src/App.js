@@ -11,6 +11,9 @@ import CurrentPlaylist from './Components/CurrentPlaylist/CurrentPlaylist';
 import Library from './Components/Library/Library';
 import UserPlaylists from './Components/UserPlaylists/UserPlaylists';
 
+import TrackList from './Components/TrackList/TrackList';
+import PlaylistDisplay from './Components/PlaylistDisplay/PlaylistDisplay';
+
 import Main from './Components/Main/Main';
 
 import Player from './Components/Player/Player'; 
@@ -77,11 +80,20 @@ class App extends PureComponent {
         <SearchBar search={this.searchSpotify}/>
         <Navbar />
         <Main>
-          <SearchResults
-            results={searchResults}
-            addToPlaylist={this.addToNewPlaylist}
-            addToCurrentPlaylist={this.addToCurrentPlaylist}
-          />
+          <SearchResults>
+            <PlaylistDisplay  
+              playlists={searchResults.playlists}  
+              addToCurrentPlaylist={this.addToCurrentPlaylist} 
+            />
+            <TrackList  
+              trackList={searchResults.tracks}  
+              trackAction={this.addToPlaylist} 
+            />
+            <PlaylistDisplay 
+              addToCurrentPlaylist={this.addToCurrentPlaylist} 
+              playlists={searchResults.albums} albums 
+            />
+          </SearchResults>
           <CurrentPlaylist playlist={currentPlaylist} />
           <NewPlaylist
             savePlayList={this.savePlayList}
