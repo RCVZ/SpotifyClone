@@ -4,23 +4,19 @@ import './Components/Main/Main.css';
 
 import SearchBar from './Components/SearchBar/SearchBar';
 import Navbar from './Components/Navbar/Navbar';
-
 import SearchResults from './Components/SearchResults/SearchResults';
 import NewPlaylist from './Components/NewPlaylist/NewPlaylist';
 import CurrentPlaylist from './Components/CurrentPlaylist/CurrentPlaylist';
 import Library from './Components/Library/Library';
 import UserPlaylists from './Components/UserPlaylists/UserPlaylists';
-
 import TrackList from './Components/TrackList/TrackList';
 import PlaylistDisplay from './Components/PlaylistDisplay/PlaylistDisplay';
-
 import Main from './Components/Main/Main';
-
 import Player from './Components/Player/Player'; 
 
 import SpotifyApi from './util/Spotify';
 
-import { Switch, Route, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { hot } from 'react-hot-loader'
 
 class App extends PureComponent {
@@ -81,31 +77,27 @@ class App extends PureComponent {
         <Navbar />
         <Main>
           <SearchResults>
-            <PlaylistDisplay  
+            <PlaylistDisplay  // playlists
               playlists={searchResults.playlists}  
               addToCurrentPlaylist={this.addToCurrentPlaylist} 
             />
-            <TrackList  
+            <TrackList  // tracks
               trackList={searchResults.tracks}  
               trackAction={this.addToPlaylist} 
             />
-            <PlaylistDisplay 
+            <PlaylistDisplay // albums
               addToCurrentPlaylist={this.addToCurrentPlaylist} 
               playlists={searchResults.albums} albums 
             />
           </SearchResults>
           <CurrentPlaylist playlist={currentPlaylist} />
-          <NewPlaylist
+          <NewPlaylist 
             savePlayList={this.savePlayList}
             playlist={this.state.newPlaylist}
             deleteTrack={this.deleteTrack}
           />
-          <Library
-            addToCurrentPlaylist={this.addToCurrentPlaylist}
-          />
-          <UserPlaylists
-            addToCurrentPlaylist={this.addToCurrentPlaylist}
-          />
+          <Library addToCurrentPlaylist={this.addToCurrentPlaylist} />
+          <UserPlaylists  addToCurrentPlaylist={this.addToCurrentPlaylist}  />
         </Main>        
         <Player currentPlaylist={currentPlaylist} />
       </div>

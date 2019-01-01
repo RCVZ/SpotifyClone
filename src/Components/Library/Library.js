@@ -23,7 +23,7 @@ class Library extends PureComponent {
 
   render() {
     const { playlists } = this.state;
-    const { addToCurrentPlaylist } = this.props; 
+    //const { addToCurrentPlaylist } = this.props; 
     return (
       <Grid>
         <PlaylistDisplay 
