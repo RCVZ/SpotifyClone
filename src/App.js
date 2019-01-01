@@ -10,7 +10,7 @@ import CurrentPlaylist from './Components/CurrentPlaylist/CurrentPlaylist';
 import Library from './Components/Library/Library';
 import UserPlaylists from './Components/UserPlaylists/UserPlaylists';
 import TrackList from './Components/TrackList/TrackList';
-import PlaylistDisplay from './Components/PlaylistDisplay/PlaylistDisplay';
+import PlaylistDisplay from './Containers/PlaylistDisplay/PlaylistDisplay';
 import Main from './Components/Main/Main';
 import Player from './Components/Player/Player'; 
 

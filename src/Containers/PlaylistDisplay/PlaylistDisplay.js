@@ -1,10 +1,10 @@
 import React, { PureComponent } from 'react';
 import './PlaylistDisplay.css';
 
-import Card from '../Card/Card';
-import Button from '../Buttons/Button/Button';
+import Card from '../../Components/Card/Card';
+import Button from '../../Components/Buttons/Button/Button';
 
-import SpotifyApi from './../../util/Spotify';
+import SpotifyApi from '../../util/Spotify';
 
 class PlaylistDisplay extends PureComponent {
 
