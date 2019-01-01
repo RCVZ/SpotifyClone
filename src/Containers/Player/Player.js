@@ -1,16 +1,16 @@
 import React, { PureComponent } from 'react';
 import './Player.css';
 
-import ProgressionBar from '../ProgressionBar/ProgressionBar';
-import Track from '../Track/Track';
-import Time from '../Time/Time';
-import PlayButton from '../Buttons/PlayButton/PlayButton';
-import PauseButton from '../Buttons/PlayButton/PlayButton';
-import ForwardButton from '../Buttons/ForwardButton/ForwardButton';
-import BackwardButton from '../Buttons/BackwardButton/BackwardButton';
-import PlaylistButton from '../Buttons/PlaylistButton/PlaylistButton';
-import TrackProgression from '../TrackProgression/TrackProgression';
-import CurrentPlaylist from '../CurrentPlaylist/CurrentPlaylist';
+import ProgressionBar from '../../Components/ProgressionBar/ProgressionBar';
+import Track from '../../Components/Track/Track';
+import Time from '../../Components/Time/Time';
+import PlayButton from '../../Components/Buttons/PlayButton/PlayButton';
+import PauseButton from '../../Components/Buttons/PlayButton/PlayButton';
+import ForwardButton from '../../Components/Buttons/ForwardButton/ForwardButton';
+import BackwardButton from '../../Components/Buttons/BackwardButton/BackwardButton';
+import PlaylistButton from '../../Components/Buttons/PlaylistButton/PlaylistButton';
+import TrackProgression from '../../Components/TrackProgression/TrackProgression';
+import CurrentPlaylist from '../../Components/CurrentPlaylist/CurrentPlaylist';
 
 import SpotifyApi from '../../util/Spotify';
 

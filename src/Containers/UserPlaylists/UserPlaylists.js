@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import './UserPlaylists.css';
 
 import PlaylistDisplay from '../../Containers/PlaylistDisplay/PlaylistDisplay';
-import Grid from '../Grid/Grid';
+import Grid from '../../Components/Grid/Grid';
 
 import SpotifyApi from './../../util/Spotify';
 

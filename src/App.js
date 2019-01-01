@@ -2,17 +2,17 @@ import React, { PureComponent } from 'react';
 import './App.css';
 import './Components/Main/Main.css';
 
-import SearchBar from './Components/SearchBar/SearchBar';
+import SearchBar from './Containers/SearchBar/SearchBar';
 import Navbar from './Components/Navbar/Navbar';
 import SearchResults from './Components/SearchResults/SearchResults';
-import NewPlaylist from './Components/NewPlaylist/NewPlaylist';
+import NewPlaylist from './Containers/NewPlaylist/NewPlaylist';
 import CurrentPlaylist from './Components/CurrentPlaylist/CurrentPlaylist';
 import Library from './Components/Library/Library';
-import UserPlaylists from './Components/UserPlaylists/UserPlaylists';
+import UserPlaylists from './Containers/UserPlaylists/UserPlaylists';
 import TrackList from './Components/TrackList/TrackList';
 import PlaylistDisplay from './Containers/PlaylistDisplay/PlaylistDisplay';
-import Main from './Components/Main/Main';
-import Player from './Components/Player/Player'; 
+import Main from './Containers/Main/Main';
+import Player from './Containers/Player/Player'; 
 
 import SpotifyApi from './util/Spotify';
 
