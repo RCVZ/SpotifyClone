@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import './PlaylistDisplay.css';
 
 import Card from '../Card/Card';
-//import Button from '../Buttons/Button/Button';
+import Button from '../Buttons/Button/Button';
 
 import SpotifyApi from './../../util/Spotify';
 
@@ -41,9 +41,9 @@ class PlaylistDisplay extends PureComponent {
               handleOnclick={this.handleOnclick}
             />)
         })}
-        {/* <div>
-            <Button type="button" onClick={this.handleOnMore} name="More....."/>
-          </div> */}
+        <div>
+          <Button type="button" onClick={console.log('test')} name="More....."/>
+        </div>
       </div>
     );
   }

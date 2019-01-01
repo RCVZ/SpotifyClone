@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './Navbar.css';
 
-import SpotifyApi from '../../util/Spotify';
 import { withRouter, NavLink } from "react-router-dom";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
