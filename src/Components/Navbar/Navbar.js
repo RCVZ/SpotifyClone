@@ -8,24 +8,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faAlignJustify, faListUl, faPlusSquare, faTh } from '@fortawesome/free-solid-svg-icons';
 
 class Navbar extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      userPlaylists: [],
-      results: 3
-    }
-  }
-
-  componentDidMount() {
-    SpotifyApi.getPlaylist().then( Playlists => {
-      this.setState({ userPlaylists: Playlists })
-    })
-  }
-
-  handleOnClick = (e) => {
-    this.state.results === 3 ? this.setState({results: 6}) :  this.setState({results: 3});
-  }
-
   render() {
     return(
       <div className='Navbar-wrapper'>

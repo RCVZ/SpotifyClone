@@ -7,16 +7,6 @@ import Card from '../Card/Card';
 import SpotifyApi from './../../util/Spotify';
 
 class PlaylistDisplay extends PureComponent {
-  constructor(props){ 
-    super(props);
-    this.state= {
-      results: 6
-    }
-  }
-
-  handleOnMore = (e) => {
-    //this.state.results === 6 ? this.setState({results: 50}) :  this.setState({results: 6});
-  }
 
   handleOnclick = (key, images) => {
     let newPlaylist = [];
@@ -40,7 +30,6 @@ class PlaylistDisplay extends PureComponent {
   }
 
   render() {
-    //const { results } = this.state;
     return(
       <div className="PlaylistDisplay">
         {this.props.playlists.map(playlist => {
