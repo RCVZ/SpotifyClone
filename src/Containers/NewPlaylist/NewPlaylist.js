@@ -29,7 +29,7 @@ class NewPlaylist extends PureComponent {
           onChange={this.handleChange}
           placeholder="Playlist"/>
         <TrackList 
-          trackList={playlist}
+          tracklist={playlist}
           trackAction={deleteTrack}
           inPlaylist/>
         <Button type="submit" onClick={this.handleOnsubmit} name="SAVE TO SPOTIFY" />

@@ -7,7 +7,7 @@ class CurrentPlaylist extends PureComponent {
   render() {
     const { playlist } = this.props;
     return (
-        <TrackList trackList={playlist} />    
+        <TrackList tracklist={playlist} />    
     );
   }
 }

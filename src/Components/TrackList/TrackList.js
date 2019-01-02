@@ -5,18 +5,17 @@ import Track from '../Track/Track';
 import Grid from '../Grid/Grid';
 
 class TrackList extends PureComponent {
-
   getUrisList = () => {
     const newList = []; 
-    this.props.trackList.map((track) => newList.push(track.uri));  
+    this.props.tracklist.map((track) => newList.push(track.uri));  
     return newList;
   }
 
   render() {
-    const { trackAction, inPlaylist, trackList  } = this.props;
+    const { trackAction, inPlaylist, tracklist  } = this.props;
     return (
         <Grid>
-          {trackList.map((track, index) => {
+          {tracklist.map((track, index) => {
             return (
               <Track
                 track={track}
@@ -27,8 +26,7 @@ class TrackList extends PureComponent {
                 inPlaylist={inPlaylist}
                 getUrisList={this.getUrisList}
               />
-            )
-          })
+            )})
           }
         </Grid>  
     );

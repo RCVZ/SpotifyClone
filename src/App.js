@@ -8,10 +8,9 @@ import NewPlaylist from './Containers/NewPlaylist/NewPlaylist';
 import CurrentPlaylist from './Components/CurrentPlaylist/CurrentPlaylist';
 import Library from './Components/Library/Library';
 import UserPlaylists from './Containers/UserPlaylists/UserPlaylists';
-import TrackList from './Components/TrackList/TrackList';
+import ResultsTracklist from './Components/ResultsTracklist/ResultsTracklist';
 import Albumslist from './Components/Albumslist/Albumslist';
 import Playlists from './Components/Playlists/Playlists';
-import PlaylistDisplay from './Containers/PlaylistDisplay/PlaylistDisplay';
 import Main from './Containers/Main/Main';
 import Player from './Containers/Player/Player'; 
 
@@ -81,10 +80,10 @@ class App extends PureComponent {
             <Playlists 
               playlists={searchResults.playlists}
               addToCurrentPlaylist={this.addToCurrentPlaylist}  
-              />
-            <TrackList
-              trackList={searchResults.tracks}  
-              trackAction={this.addToPlaylist} 
+            />
+            <ResultsTracklist
+              tracklist={searchResults.tracks}
+              addToPlaylist={this.addToPlaylist} 
             />
             <Albumslist 
               albums={searchResults.albums} 
