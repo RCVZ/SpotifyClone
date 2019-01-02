@@ -24,7 +24,7 @@ const SpotifyApi = {
   },
 
   async getUserId () {
-    const access = this.getAccesToken();
+    const access = SpotifyApi.getAccesToken();
     const authorization = {Authorization: `Bearer ${access}`};
     let userId = '';
 
@@ -45,7 +45,7 @@ const SpotifyApi = {
   },
 
   async searchPlaylists(searchTerm, offset=0, limit=50) {
-    const access = this.getAccesToken();
+    const access = await SpotifyApi.getAccesToken();
     const authorization = { Authorization: `Bearer ${access}` };
 
     try {
@@ -63,7 +63,7 @@ const SpotifyApi = {
   },
 
   async searchArtists(searchTerm, offset, limit=50) {
-    const access = this.getAccesToken();
+    const access = await SpotifyApi.getAccesToken();
     const authorization = { Authorization: `Bearer ${access}` };
 
     try {
@@ -82,7 +82,7 @@ const SpotifyApi = {
   },
 
   async searchAlbums(searchTerm, offset, limit=50) {
-    const access = this.getAccesToken();
+    const access = await SpotifyApi.getAccesToken();
     const authorization = { Authorization: `Bearer ${access}` };
 
     try {
@@ -100,7 +100,7 @@ const SpotifyApi = {
   },
 
   async searchTracks(searchTerm, offset, limit=50) {
-    const access = this.getAccesToken();
+    const access = await SpotifyApi.getAccesToken();
     const authorization = { Authorization: `Bearer ${access}` };
 
     try {
@@ -121,17 +121,17 @@ const SpotifyApi = {
     const offset = 0;
     const limit = 4;
     let resultsList = {
-      playlists: await this.searchPlaylists(searchTerm, offset, 3),
-      artists: await this.searchArtists(searchTerm, offset, limit),
-      albums: await this.searchAlbums(searchTerm, offset, 3),
-      tracks: await this.searchTracks(searchTerm, offset, limit)
+      playlists: await SpotifyApi.searchPlaylists(searchTerm, offset, 3),
+      artists: await SpotifyApi.searchArtists(searchTerm, offset, limit),
+      albums: await SpotifyApi.searchAlbums(searchTerm, offset, 3),
+      tracks: await SpotifyApi.searchTracks(searchTerm, offset, limit)
     };
     return resultsList
   },
 
   async sendPlayList(playlistName, playlistUris) {
-    const access = this.getAccesToken();
-    const userId = await this.getUserId();
+    const access = await SpotifyApi.getAccesToken();
+    const userId = await SpotifyApi.getUserId();
     const authorization = {Authorization: `Bearer ${access}`};
 
     try {
@@ -166,7 +166,7 @@ const SpotifyApi = {
   },
 
   async transferPlaybackHere(deviceId) { // should be changed
-    const access = this.getAccesToken();    
+    const access = await SpotifyApi.getAccesToken();    
 
     const authorization = {
       Authorization: `Bearer ${access}`,
@@ -184,7 +184,7 @@ const SpotifyApi = {
   },
 
   async getPlaylist(playlistId='', playlist='user' ) {
-    const access = await this.getAccesToken();
+    const access = await SpotifyApi.getAccesToken();
 
     const url = {
       user: `https://api.spotify.com/v1/me/playlists`,
@@ -212,7 +212,7 @@ const SpotifyApi = {
   },
 
   async playTrack(uri, uris=0) {
-    const access = this.getAccesToken();
+    const access = SpotifyApi.getAccesToken();
     const authorization = {Authorization: `Bearer ${access}`};
 
     try {
@@ -234,7 +234,7 @@ const SpotifyApi = {
   },
 
   async browserSpotify() {
-    const access = await this.getAccesToken();
+    const access = await SpotifyApi.getAccesToken();
 
     const authorization = {
       Authorization: `Bearer ${access}`,

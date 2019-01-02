@@ -75,10 +75,21 @@ class App extends PureComponent {
     }
   }
 
-  loadMore = (type) => {
-    SpotifyApi.searchPlaylists(this.state.searchTerm).then((results) => {
+  loadMore = (type, offset=0) => {
+    let searchType;
+    if (type === 'playlists') {
+      searchType = SpotifyApi.searchPlaylists;
+    } else if (type === 'tracks') {
+      searchType = SpotifyApi.searchTracks;
+    } else if (type === 'albums') {
+      searchType = SpotifyApi.searchAlbums;
+    } else {
+      console.log("error");
+      return
+    }
+    searchType(this.state.searchTerm, offset).then((results) => {
       console.log(results);
-      this.setState({ playlists: results }, () => {
+      this.setState({ [type]: results }, () => {
         this.props.history.push('/search/'+ type);
       })
     })
@@ -99,11 +110,13 @@ class App extends PureComponent {
             />
             <ResultsTracklist
               tracklist={tracks}
-              addToPlaylist={this.addToPlaylist} 
+              addToPlaylist={this.addToPlaylist}
+              buttonAction={() => this.loadMore('tracks')}   
             />
             <Albumslist 
               albums={albums} 
-              addToCurrentPlaylist={this.addToCurrentPlaylist} 
+              addToCurrentPlaylist={this.addToCurrentPlaylist}
+              buttonAction={() => this.loadMore('albums')}   
             />
           </SearchResults>
           <CurrentPlaylist playlist={currentPlaylist} />
