@@ -24,12 +24,11 @@ class App extends PureComponent {
     super(props);
 
     this.state = {
-      searchResults: {
-        playlists: [],
-        artists: [],
-        albums: [],
-        tracks: []
-      },
+      searchTerm: '',
+      playlists: [],
+      artists: [],
+      albums: [],
+      tracks: [],
       newPlaylist: [],
       currentPlaylist: []
     }
@@ -41,7 +40,14 @@ class App extends PureComponent {
   
   searchSpotify = (searchTerm) => {
     SpotifyApi.fullSearch(searchTerm).then((results) => {
-      this.setState({ searchResults: results }, () => {
+      const { playlists, artists, albums, tracks } = results;
+      this.setState({ 
+        searchTerm: searchTerm,
+        playlists: playlists,
+        artists: artists,
+        albums: albums,
+        tracks: tracks
+      }, () => {
         this.props.history.push('/search'); 
       })
     })
@@ -69,8 +75,17 @@ class App extends PureComponent {
     }
   }
 
+  loadMore = (type) => {
+    SpotifyApi.searchPlaylists(this.state.searchTerm).then((results) => {
+      console.log(results);
+      this.setState({ playlists: results }, () => {
+        this.props.history.push('/search/'+ type);
+      })
+    })
+  }
+
   render() {
-    const { searchResults, currentPlaylist } = this.state;
+    const { currentPlaylist, playlists, artists, albums, tracks } = this.state;
     return (
       <div className="App">
         <SearchBar search={this.searchSpotify}/>
@@ -78,15 +93,16 @@ class App extends PureComponent {
         <Main>
           <SearchResults>
             <Playlists 
-              playlists={searchResults.playlists}
-              addToCurrentPlaylist={this.addToCurrentPlaylist}  
+              playlists={playlists}
+              addToCurrentPlaylist={this.addToCurrentPlaylist}
+              buttonAction={() => this.loadMore('playlists')}  
             />
             <ResultsTracklist
-              tracklist={searchResults.tracks}
+              tracklist={tracks}
               addToPlaylist={this.addToPlaylist} 
             />
             <Albumslist 
-              albums={searchResults.albums} 
+              albums={albums} 
               addToCurrentPlaylist={this.addToCurrentPlaylist} 
             />
           </SearchResults>

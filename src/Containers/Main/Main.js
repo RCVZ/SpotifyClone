@@ -4,13 +4,6 @@ import './Main.css';
 import { Switch, Route, withRouter } from "react-router-dom";
 
 class Main extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      route: 'searchResults'
-    }
-  }
-
   render() {
     return(
       <div className="Main">
