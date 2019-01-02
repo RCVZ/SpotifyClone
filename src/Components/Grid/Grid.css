@@ -1,7 +1,6 @@
 .Grid {
   display: grid;
   grid: repeat(auto-fit, minmax(max-content, 20%)) / repeat(auto-fit, minmax(50%, max-content));
-  justify-items: center;
   height: auto;
   width: 100%;
   padding: 5%;

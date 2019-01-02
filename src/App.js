@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import './App.css';
-import './Components/Main/Main.css';
 
 import SearchBar from './Containers/SearchBar/SearchBar';
 import Navbar from './Components/Navbar/Navbar';
@@ -10,6 +9,8 @@ import CurrentPlaylist from './Components/CurrentPlaylist/CurrentPlaylist';
 import Library from './Components/Library/Library';
 import UserPlaylists from './Containers/UserPlaylists/UserPlaylists';
 import TrackList from './Components/TrackList/TrackList';
+import Albumslist from './Components/Albumslist/Albumslist';
+import Playlists from './Components/Playlists/Playlists';
 import PlaylistDisplay from './Containers/PlaylistDisplay/PlaylistDisplay';
 import Main from './Containers/Main/Main';
 import Player from './Containers/Player/Player'; 
@@ -77,17 +78,17 @@ class App extends PureComponent {
         <Navbar />
         <Main>
           <SearchResults>
-            <PlaylistDisplay  // playlists
-              playlists={searchResults.playlists}  
-              addToCurrentPlaylist={this.addToCurrentPlaylist} 
-            />
-            <TrackList  // tracks
+            <Playlists 
+              playlists={searchResults.playlists}
+              addToCurrentPlaylist={this.addToCurrentPlaylist}  
+              />
+            <TrackList
               trackList={searchResults.tracks}  
               trackAction={this.addToPlaylist} 
             />
-            <PlaylistDisplay // albums
+            <Albumslist 
+              albums={searchResults.albums} 
               addToCurrentPlaylist={this.addToCurrentPlaylist} 
-              playlists={searchResults.albums} albums 
             />
           </SearchResults>
           <CurrentPlaylist playlist={currentPlaylist} />

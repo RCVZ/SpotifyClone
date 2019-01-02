@@ -8,9 +8,7 @@ import DeleteButton from '../Buttons/DeleteButton/DeleteButton';
 const ActionOverlay = ({ trackAction, onPlayClick, inPlaylist }) => {
   return (
     <div className="Action-Overlay">
-      {inPlaylist ? 
-      <DeleteButton onDelete={trackAction} /> : 
-      <AddButton onAdd={trackAction} />}
+      {inPlaylist ? <DeleteButton onDelete={trackAction} /> : <AddButton onAdd={trackAction} />}
       <PlayButton onPlayClick={onPlayClick}/>
     </div>
   )
