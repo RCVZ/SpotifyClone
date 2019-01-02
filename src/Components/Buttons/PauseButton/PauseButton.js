@@ -4,7 +4,7 @@ import './PauseButton.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPause } from '@fortawesome/free-solid-svg-icons';
 
-const PlayButton = ({ onPlayClick }) => {
+const PauseButton = ({ onPlayClick }) => {
   return (
     <React.Fragment>
       <button className="play-pause" onClick={onPlayClick} >
@@ -14,4 +14,4 @@ const PlayButton = ({ onPlayClick }) => {
   );
 }
 
-export default PlayButton;
+export default PauseButton;

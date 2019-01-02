@@ -5,7 +5,7 @@ import ProgressionBar from '../../Components/ProgressionBar/ProgressionBar';
 import Track from '../../Components/Track/Track';
 import Time from '../../Components/Time/Time';
 import PlayButton from '../../Components/Buttons/PlayButton/PlayButton';
-import PauseButton from '../../Components/Buttons/PlayButton/PlayButton';
+import PauseButton from '../../Components/Buttons/PauseButton/PauseButton';
 import ForwardButton from '../../Components/Buttons/ForwardButton/ForwardButton';
 import BackwardButton from '../../Components/Buttons/BackwardButton/BackwardButton';
 import PlaylistButton from '../../Components/Buttons/PlaylistButton/PlaylistButton';
@@ -153,7 +153,7 @@ class Player extends PureComponent {
         <div className="Control">
           <div className="Player-buttons">
             <BackwardButton onBackward={this.onPrevClick} />        
-              {playing ? <PauseButton onPlayClick={this.onPlayClick} /> : <PlayButton onPlayClick={this.onPlayClick}/>}
+            {playing ? <PlayButton onPlayClick={this.onPlayClick} /> : <PauseButton onPlayClick={this.onPlayClick} />}
             <ForwardButton onForward={this.onNextClick} />             
           </div>
           <TrackProgression >
