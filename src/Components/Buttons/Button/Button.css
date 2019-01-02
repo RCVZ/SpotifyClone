@@ -1,9 +1,9 @@
 button.Button {
   cursor: pointer;
-  padding: .40rem 2rem;
-  margin: 0.5rem;
+  padding: .40rem 0;
   color: rgba(255, 255, 255, 0.6);
   font-size: .833rem;
+  float: right;
   transition: all 300ms;
 }
 
