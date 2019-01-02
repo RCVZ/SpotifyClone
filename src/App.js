@@ -110,7 +110,7 @@ class App extends PureComponent {
             />
             <ResultsTracklist
               tracklist={tracks}
-              addToPlaylist={this.addToPlaylist}
+              addToPlaylist={this.addToNewPlaylist}
               buttonAction={() => this.loadMore('tracks')}   
             />
             <Albumslist 
