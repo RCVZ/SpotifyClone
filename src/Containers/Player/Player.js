@@ -153,7 +153,7 @@ class Player extends PureComponent {
         <div className="Control">
           <div className="Player-buttons">
             <BackwardButton onBackward={this.onPrevClick} />        
-            {playing ? <PlayButton onPlayClick={this.onPlayClick} /> : <PauseButton onPlayClick={this.onPlayClick} />}
+            {!playing ? <PlayButton onPlayClick={this.onPlayClick} /> : <PauseButton onPlayClick={this.onPlayClick} />}
             <ForwardButton onForward={this.onNextClick} />             
           </div>
           <TrackProgression >
