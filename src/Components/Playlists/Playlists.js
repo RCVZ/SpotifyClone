@@ -4,10 +4,10 @@ import './Playlists.css';
 import PlaylistDisplay from '../../Containers/PlaylistDisplay/PlaylistDisplay';
 import Header from '../Header/Header';
 
-const Playlists = ({ playlists, addToCurrentPlaylist, buttonAction }) => {
+const Playlists = ({ playlists, addToCurrentPlaylist, buttonAction, state }) => {
   return (
     <div className="Playlists" >
-      <Header buttonAction={buttonAction}>Playlists</Header>
+      <Header state={state} buttonAction={buttonAction}>Playlists</Header>
       <PlaylistDisplay addToCurrentPlaylist={addToCurrentPlaylist} playlists={playlists} albums />
     </div>
   );

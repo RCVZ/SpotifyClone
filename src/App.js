@@ -30,7 +30,8 @@ class App extends PureComponent {
       albums: [],
       tracks: [],
       newPlaylist: [],
-      currentPlaylist: []
+      currentPlaylist: [],
+      expanded: false
     }
   }
 
@@ -75,8 +76,15 @@ class App extends PureComponent {
     }
   }
 
-  loadMore = (type, offset=0) => {
-    let searchType;
+  loadMore = (type, offset = 0) => {
+    let searchType, limit;    
+    if (!this.state.expanded) {
+      limit = 50;
+      this.setState({ expanded: true});
+    } else {
+      limit = 3;
+      this.setState({ expanded: false});
+    }
     if (type === 'playlists') {
       searchType = SpotifyApi.searchPlaylists;
     } else if (type === 'tracks') {
@@ -87,9 +95,9 @@ class App extends PureComponent {
       console.log("error");
       return
     }
-    searchType(this.state.searchTerm, offset).then((results) => {
-      console.log(results);
+    searchType(this.state.searchTerm, offset, limit).then((results) => {
       this.setState({ [type]: results }, () => {
+        !this.state.expanded ? this.props.history.push('/search') :
         this.props.history.push('/search/'+ type);
       })
     })
@@ -107,16 +115,19 @@ class App extends PureComponent {
               playlists={playlists}
               addToCurrentPlaylist={this.addToCurrentPlaylist}
               buttonAction={() => this.loadMore('playlists')}  
+              state={! this.state.expanded ? 'More...': 'Less...'}
             />
             <ResultsTracklist
               tracklist={tracks}
               addToPlaylist={this.addToNewPlaylist}
               buttonAction={() => this.loadMore('tracks')}   
+              state={!this.state.expanded ? 'More...' : 'Less...'}
             />
             <Albumslist 
               albums={albums} 
               addToCurrentPlaylist={this.addToCurrentPlaylist}
               buttonAction={() => this.loadMore('albums')}   
+              state={!this.state.expanded ? 'More...' : 'Less...'}
             />
           </SearchResults>
           <CurrentPlaylist playlist={currentPlaylist} />

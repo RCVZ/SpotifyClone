@@ -5,10 +5,10 @@ import TrackList from '../TrackList/TrackList';
 import Header from '../Header/Header';
 
 
-const ResultsTracklist = ({ tracklist, addToPlaylist, buttonAction }) => {
+const ResultsTracklist = ({ tracklist, addToPlaylist, buttonAction, state }) => {
   return (
     <div className="ResultsTracklist" >
-      <Header buttonAction={buttonAction}>Tracks</Header>
+      <Header state={state} buttonAction={buttonAction}>Tracks</Header>
       <TrackList trackAction={addToPlaylist} tracklist={tracklist}  />
     </div>
   );
