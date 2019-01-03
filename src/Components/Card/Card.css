@@ -14,9 +14,14 @@
   transform: scale(1.1);
 }
 
+.Card-Img {
+  height: 150px;
+  width: 150px;
+}
+
 .Card-Img img {
-  max-height: auto;
-  width: 100%;
-  background-color: black;
+  max-height: 100%;
+  max-width: 100%;
+  margin-top: auto;
 }
 
