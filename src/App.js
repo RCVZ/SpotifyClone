@@ -32,7 +32,8 @@ class App extends PureComponent {
       newPlaylist: [],
       currentPlaylist: [],
       expanded: false,
-      scroll: false
+      scroll: false,
+      offset: 0     
     }
   }
 
