@@ -5,8 +5,9 @@ import { Switch, Route, withRouter } from "react-router-dom";
 
 class Main extends PureComponent {
   render() {
+    const { loadOnScroll } = this.props;
     return(
-      <div className="Main">
+      <div className="Main" onScroll={loadOnScroll} >
         <Switch>
           <Route path="/search" render={() => this.props.children[0]}/>
           <Route path="/currentPlaylist" render={() => this.props.children[1]} />

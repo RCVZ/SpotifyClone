@@ -103,19 +103,24 @@ class App extends PureComponent {
     })
   }
 
+  loadOnScroll = (e) => {
+    e.persist()
+    console.log(e);
+  }
+
   render() {
     const { currentPlaylist, playlists, artists, albums, tracks } = this.state;
     return (
       <div className="App">
-        <SearchBar search={this.searchSpotify}/>
+        <SearchBar  search={this.searchSpotify}/>
         <Navbar />
-        <Main>
+        <Main  loadOnScroll={this.loadOnScroll}>
           <SearchResults>
             <Playlists 
               playlists={playlists}
               addToCurrentPlaylist={this.addToCurrentPlaylist}
               buttonAction={() => this.loadMore('playlists')}  
-              state={! this.state.expanded ? 'More...': 'Less...'}
+              state={!this.state.expanded ? 'More...': 'Less...'}
             />
             <ResultsTracklist
               tracklist={tracks}
