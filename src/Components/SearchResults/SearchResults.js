@@ -3,17 +3,17 @@ import './SearchResults.css';
 
 import Grid from '../Grid/Grid';
 
-import { Switch, Route, withRouter } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 const SearchResults = ({ children }) => {
   return (
     <Grid>
       <Switch>
-        <Route exact path="/search" render={() => (<React.Fragment>{children}</React.Fragment>)} />
-        <Route path="/search/playlists" render={() => (<React.Fragment>{children[0]}</React.Fragment>)} />
-        <Route path="/search/tracks" render={() => (<React.Fragment>{children[1]}</React.Fragment>)} />
-        <Route path="/search/albums" render={() => (<React.Fragment>{children[2]}</React.Fragment>)} />
-        <Route path="/search/artists" render={() => (<React.Fragment>{children[3]}</React.Fragment>)} />
+        <Route exact path="/search" render={() => children} />
+        <Route path="/search/playlists" render={() => children[0]} />
+        <Route path="/search/tracks" render={() => children[1]} />
+        <Route path="/search/albums" render={() => children[2]} />
+        <Route path="/search/artists" render={() => children[3]} />
       </Switch>
     </Grid>
   );
