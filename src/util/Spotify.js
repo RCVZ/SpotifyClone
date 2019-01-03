@@ -129,6 +129,26 @@ const SpotifyApi = {
     return resultsList
   },
 
+  async nextResults(type, searchTerm) {
+
+    if (type === 'playlists') {
+      SpotifyApi.searchPlaylists(searchTerm, offset, 3)
+
+    } else if (type === 'artist') {
+      SpotifyApi.searchArtists(searchTerm, offset, limit)
+
+    } else if (type === 'albums') {
+      SpotifyApi.searchAlbums(searchTerm, offset, 3)
+
+    } else if (type === 'tracks') {
+      SpotifyApi.searchTracks(searchTerm, offset, limit)
+
+    } else {
+      console.log("error");
+      return
+    }
+  },
+
   async sendPlayList(playlistName, playlistUris) {
     const access = await SpotifyApi.getAccesToken();
     const userId = await SpotifyApi.getUserId();

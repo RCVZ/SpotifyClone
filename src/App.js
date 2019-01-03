@@ -31,7 +31,8 @@ class App extends PureComponent {
       tracks: [],
       newPlaylist: [],
       currentPlaylist: [],
-      expanded: false
+      expanded: false,
+      scroll: false
     }
   }
 
@@ -78,7 +79,7 @@ class App extends PureComponent {
 
   loadMore = (type, offset = 0) => {
     let searchType, limit;    
-    if (!this.state.expanded) {
+    if (!this.state.expanded || this.state.scroll) {
       limit = 50;
       this.setState({ expanded: true});
     } else {
@@ -106,6 +107,11 @@ class App extends PureComponent {
   loadOnScroll = (e) => {
     e.persist()
     console.log(e);
+    this.setState({ scroll: true }, () => {
+      if (this.state.scroll) {
+        this.loadMore('playlists', this.state.playlists.length);
+      }
+    })
   }
 
   render() {
