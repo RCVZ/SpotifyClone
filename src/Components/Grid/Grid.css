@@ -3,5 +3,5 @@
   grid: repeat(auto-fit, minmax(max-content, 20%)) / repeat(auto-fit, minmax(50%, auto));
   height: auto;
   width: 100%;
-  padding: 5%;
+  padding: 2%;
 }

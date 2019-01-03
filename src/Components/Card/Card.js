@@ -9,8 +9,8 @@ const Card = ({ playlist, handleOnclick, id }) => {
     <div className="Card">
       <div className="Card-Img" >
         <img src={playlist.images[0].url} alt="img" />
-        <Text name={playlist.name} />
       </div>
+      <Text name={playlist.name} />
       <ActionOverlay trackAction={() => handleOnclick(id, playlist.images)}/>
     </div>
   )
