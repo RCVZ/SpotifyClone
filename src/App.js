@@ -114,6 +114,7 @@ class App extends PureComponent {
   }
 
   render() {
+    console.log(this.props.history, this.props.match)
     const { currentPlaylist, playlists, artists, albums, tracks } = this.state;
     return (
       <div className="App">

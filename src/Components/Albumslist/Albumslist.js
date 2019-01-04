@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Albumslist.css';
 
 import PlaylistDisplay from '../../Containers/PlaylistDisplay/PlaylistDisplay';
@@ -15,16 +15,22 @@ const Albumslist = ({ albums, addToCurrentPlaylist, history })  => {
   });
 
   const handleToggleExpand = () => {
+    if (history.location.pathname === '/search/albums') {
+      history.push('/search')
+    } else {
+      history.push('/search/albums')
+    }
+  }
+
+  useEffect(() => {
     toggleExpand(() => {
-      if (expand.expanded) {
-        history.push('/search')
-        return { expanded: false, state: 'More', results: 3 }
-      } else {
-        history.push('/search/albums')
+      if (history.location.pathname === '/search/albums') {
         return { expanded: true, state: 'Less', results: 20 }
+      } else {
+        return { expanded: false, state: 'More', results: 3 }
       }
     })
-  }
+  })
 
   return(
     <div className="Albumslist" >

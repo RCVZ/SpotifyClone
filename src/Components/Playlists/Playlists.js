@@ -16,7 +16,7 @@ const Playlists = ({ playlists, addToCurrentPlaylist, history }) => {
 
   const handleToggleExpand = () => {
     toggleExpand(() => {
-      if (expand.expanded) {
+      if (history.location.pathname === '/search/playlists') {
         history.push('/search')
         return { expanded: false, state: 'More', results: 3 }
       } else {
