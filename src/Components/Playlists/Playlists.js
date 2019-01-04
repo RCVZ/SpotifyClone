@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { } from 'react';
 import './Playlists.css';
 
 import PlaylistDisplay from '../../Containers/PlaylistDisplay/PlaylistDisplay';

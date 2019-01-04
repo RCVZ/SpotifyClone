@@ -78,6 +78,44 @@ class App extends PureComponent {
     }
   }
 
+  getUrisList = () => { // needs to be restructured 
+    const newList = [];
+    this.props.tracklist.map((track) => newList.push(track.uri));
+    return newList;
+  }
+
+  handleOnclick = (key, images) => { // needs to be restructured 
+    let newPlaylist = [];
+    let secondPram = 'spotify';
+    if (this.props.albums === true) {
+      secondPram = 'spotifyAlbum';
+      SpotifyApi.getPlaylist(key, secondPram).then((playlist) => {
+        playlist.map((item) => {
+          item['album'] = { images };
+          return newPlaylist.push(item);
+        });
+      });
+    } else {
+      SpotifyApi.getPlaylist(key, secondPram).then((playlist) => {
+        playlist.map((playlists) => {
+          return newPlaylist.push(playlists.track);
+        })
+      });
+    }
+    this.props.addToCurrentPlaylist(newPlaylist)
+  }
+
+  toggleMoreLess = () => {
+    let searchType, limit;
+    if (!this.state.expanded || this.state.scroll) {
+      limit = 50;
+      this.setState({ expanded: true });
+    } else {
+      limit = 3;
+      this.setState({ expanded: false });
+    }
+  }
+
   loadMore = (type, offset = 0) => {
     let searchType, limit;    
     if (!this.state.expanded || this.state.scroll) {
