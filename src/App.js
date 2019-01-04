@@ -105,16 +105,14 @@ class App extends PureComponent {
 
 
   loadOnScroll = (e) => {
-    // e.persist()
-    // this.setState({ scroll: true }, () => {
-    //   if (this.state.scroll) {
-    //     this.loadMore('playlists', this.state.playlists.length);
-    //   }
-    // })
+    console.log(e.target.scrollTop)
+    if (e.target.scrollTop === 50) {
+      
+    }
   }
 
   render() {
-    console.log(this.props.history, this.props.match)
+    console.log(this.props.history)
     const { currentPlaylist, playlists, artists, albums, tracks } = this.state;
     return (
       <div className="App">
