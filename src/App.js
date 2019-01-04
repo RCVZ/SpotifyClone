@@ -17,7 +17,6 @@ import Player from './Containers/Player/Player';
 import SpotifyApi from './util/Spotify';
 
 import { withRouter } from "react-router-dom";
-import { hot } from 'react-hot-loader'
 
 class App extends PureComponent {
   constructor(props) {
@@ -144,13 +143,12 @@ class App extends PureComponent {
   }
 
   loadOnScroll = (e) => {
-    e.persist()
-    console.log(e);
-    this.setState({ scroll: true }, () => {
-      if (this.state.scroll) {
-        this.loadMore('playlists', this.state.playlists.length);
-      }
-    })
+    // e.persist()
+    // this.setState({ scroll: true }, () => {
+    //   if (this.state.scroll) {
+    //     this.loadMore('playlists', this.state.playlists.length);
+    //   }
+    // })
   }
 
   render() {
@@ -164,8 +162,6 @@ class App extends PureComponent {
             <Playlists 
               playlists={playlists}
               addToCurrentPlaylist={this.addToCurrentPlaylist}
-              buttonAction={() => this.loadMore('playlists')}  
-              state={!this.state.expanded ? 'More...': 'Less...'}
             />
             <ResultsTracklist
               tracklist={tracks}
@@ -195,6 +191,6 @@ class App extends PureComponent {
   }
 }
 
-export default hot(module)(withRouter(App));
+export default withRouter(App);
 
 
