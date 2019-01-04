@@ -30,7 +30,6 @@ class App extends PureComponent {
       tracks: [],
       newPlaylist: [],
       currentPlaylist: [],
-      expanded: false,
       scroll: false,
       offset: 0     
     }
@@ -104,43 +103,6 @@ class App extends PureComponent {
     this.props.addToCurrentPlaylist(newPlaylist)
   }
 
-  toggleMoreLess = () => {
-    let searchType, limit;
-    if (!this.state.expanded || this.state.scroll) {
-      limit = 50;
-      this.setState({ expanded: true });
-    } else {
-      limit = 3;
-      this.setState({ expanded: false });
-    }
-  }
-
-  loadMore = (type, offset = 0) => {
-    let searchType, limit;    
-    if (!this.state.expanded || this.state.scroll) {
-      limit = 50;
-      this.setState({ expanded: true});
-    } else {
-      limit = 3;
-      this.setState({ expanded: false});
-    }
-    if (type === 'playlists') {
-      searchType = SpotifyApi.searchPlaylists;
-    } else if (type === 'tracks') {
-      searchType = SpotifyApi.searchTracks;
-    } else if (type === 'albums') {
-      searchType = SpotifyApi.searchAlbums;
-    } else {
-      console.log("error");
-      return
-    }
-    searchType(this.state.searchTerm, offset, limit).then((results) => {
-      this.setState({ [type]: results }, () => {
-        !this.state.expanded ? this.props.history.push('/search') :
-        this.props.history.push('/search/'+ type);
-      })
-    })
-  }
 
   loadOnScroll = (e) => {
     // e.persist()
@@ -170,8 +132,6 @@ class App extends PureComponent {
             <Albumslist 
               albums={albums} 
               addToCurrentPlaylist={this.addToCurrentPlaylist}
-              buttonAction={() => this.loadMore('albums')}   
-              state={!this.state.expanded ? 'More...' : 'Less...'}
             />
           </SearchResults>
           <CurrentPlaylist playlist={currentPlaylist} />
