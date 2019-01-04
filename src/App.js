@@ -166,8 +166,6 @@ class App extends PureComponent {
             <ResultsTracklist
               tracklist={tracks}
               addToPlaylist={this.addToNewPlaylist}
-              buttonAction={() => this.loadMore('tracks')}   
-              state={!this.state.expanded ? 'More...' : 'Less...'}
             />
             <Albumslist 
               albums={albums} 

@@ -1,16 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Albumslist.css';
 
 import PlaylistDisplay from '../../Containers/PlaylistDisplay/PlaylistDisplay';
 import Header from '../Header/Header';
 
-const Albumslist = ({ albums, addToCurrentPlaylist, buttonAction, state })  => {
+import { withRouter } from "react-router-dom";
+
+const Albumslist = ({ albums, addToCurrentPlaylist, history })  => {
+
+  const [expand, toggleExpand] = useState({
+    expanded: false,
+    state: 'More',
+    results: 3
+  });
+
+  const handleToggleExpand = () => {
+    toggleExpand(() => {
+      if (expand.expanded) {
+        history.push('/search')
+        return { expanded: false, state: 'More', results: 3 }
+      } else {
+        history.push('/search/albums')
+        return { expanded: true, state: 'Less', results: 20 }
+      }
+    })
+  }
+
   return(
     <div className="Albumslist" >
-      <Header state={state} buttonAction={buttonAction}>Albums</Header>
-      <PlaylistDisplay addToCurrentPlaylist={addToCurrentPlaylist} playlists={albums} albums />
+      <Header name={expand.state} buttonAction={handleToggleExpand}>Albums</Header>
+      <PlaylistDisplay addToCurrentPlaylist={addToCurrentPlaylist} playlists={albums.slice(0, expand.results)} albums />
     </div>
   );
 }
 
-export default Albumslist;
+export default withRouter(Albumslist);

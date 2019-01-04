@@ -119,11 +119,11 @@ const SpotifyApi = {
 
   async fullSearch(searchTerm) {
     const offset = 0;
-    const limit = 4;
+    const limit = 20;
     let resultsList = {
-      playlists: await SpotifyApi.searchPlaylists(searchTerm, offset, 20),
+      playlists: await SpotifyApi.searchPlaylists(searchTerm, offset, limit),
       artists: await SpotifyApi.searchArtists(searchTerm, offset, limit),
-      albums: await SpotifyApi.searchAlbums(searchTerm, offset, 3),
+      albums: await SpotifyApi.searchAlbums(searchTerm, offset, limit),
       tracks: await SpotifyApi.searchTracks(searchTerm, offset, limit)
     };
     return resultsList
