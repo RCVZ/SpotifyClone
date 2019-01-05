@@ -22,15 +22,15 @@ const Albumslist = ({ albums, addToCurrentPlaylist, history })  => {
     }
   }
 
-  useEffect(() => {
-    toggleExpand(() => {
-      if (history.location.pathname === '/search/albums') {
-        return { expanded: true, state: 'Less', results: 20 }
-      } else {
-        return { expanded: false, state: 'More', results: 3 }
-      }
-    })
-  })
+  // useEffect(() => {
+  //   toggleExpand(() => {
+  //     if (history.location.pathname === '/search/albums') {
+  //       return { expanded: true, state: 'Less', results: 20 }
+  //     } else {
+  //       return { expanded: false, state: 'More', results: 3 }
+  //     }
+  //   })
+  // })
 
   return(
     <div className="Albumslist" >

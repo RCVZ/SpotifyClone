@@ -130,21 +130,17 @@ const SpotifyApi = {
   async nextResults(searchTerm, offset, type) {
     const limit = 20;
     if (type === 'playlists') {
-      return SpotifyApi.searchPlaylists(searchTerm, offset, limit)
+      return await SpotifyApi.searchPlaylists(searchTerm, offset, limit);
 
     } else if (type === 'artist') {
-      return SpotifyApi.searchArtists(searchTerm, offset, limit)
+      return await SpotifyApi.searchArtists(searchTerm, offset, limit);
 
     } else if (type === 'albums') {
-      return SpotifyApi.searchAlbums(searchTerm, offset, limit)
+      return await SpotifyApi.searchAlbums(searchTerm, offset, limit);
 
     } else if (type === 'tracks') {
-      return SpotifyApi.searchTracks(searchTerm, offset, limit)
-
-    } else {
-      console.log("error");
-      return
-    }
+      return await SpotifyApi.searchTracks(searchTerm, offset, limit);
+    } 
   },
 
   async sendPlayList(playlistName, playlistUris) {
