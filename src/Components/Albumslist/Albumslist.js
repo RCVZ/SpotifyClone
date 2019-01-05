@@ -22,20 +22,14 @@ const Albumslist = ({ albums, addToCurrentPlaylist, history })  => {
     }
   }
 
-  // useEffect(() => {
-  //   toggleExpand(() => {
-  //     if (history.location.pathname === '/search/albums') {
-  //       return { expanded: true, state: 'Less', results: 20 }
-  //     } else {
-  //       return { expanded: false, state: 'More', results: 3 }
-  //     }
-  //   })
-  // })
+  const results = () => {
+    return history.location.pathname === '/search/albums' ? Infinity : 3;
+  }
 
   return(
     <div className="Albumslist" >
       <Header name={expand.state} buttonAction={handleToggleExpand}>Albums</Header>
-      <PlaylistDisplay addToCurrentPlaylist={addToCurrentPlaylist} playlists={albums.slice(0,expand.results)} albums />
+      <PlaylistDisplay addToCurrentPlaylist={addToCurrentPlaylist} playlists={albums.slice(0, results())} albums />
     </div>
   );
 }

@@ -99,7 +99,7 @@ const SpotifyApi = {
     }
   },
 
-  async searchTracks(searchTerm, offset= 0, limit= 20) {
+  async searchTracks(searchTerm, offset= 0, limit= 50) {
     const access = await SpotifyApi.getAccesToken();
     const authorization = { Authorization: `Bearer ${access}` };
 
@@ -128,7 +128,7 @@ const SpotifyApi = {
   },
 
   async nextResults(searchTerm, offset, type) {
-    const limit = 20;
+    const limit = 50;
     if (type === 'playlists') {
       return await SpotifyApi.searchPlaylists(searchTerm, offset, limit);
 

@@ -30,7 +30,7 @@ class App extends PureComponent {
       tracks: [],
       newPlaylist: [],
       currentPlaylist: [],
-      scroll: false,
+      scroll: 0,
       offset: 20     
     }
   }
@@ -104,13 +104,16 @@ class App extends PureComponent {
   }
 
 
-  loadOnScroll = (e) => {
+  loadOnScroll = (event) => {
     const route = this.props.location.pathname.split('/')[2];
-    const loadMore = e.target.scrollHeight / 3.5 <= e.target.scrollTop ;
+    const loadMore = event.target.clientHeight <= (event.target.scrollTop - this.state.scroll);
     if (loadMore) {
       SpotifyApi.nextResults(this.state.searchTerm, this.state.offset, route).then((newResults) => {
         this.setState((state) => {
-          return { [route]: state[route].concat(newResults), offset: state.offset + 20}})
+          const newState = [...state[route]];
+          const merged = [...newState, ...newResults]
+          console.log('newState', merged, 'currentoffset', this.state.offset, 'currentstate', this.state.tracks)
+          return { [route]: merged, offset: state.offset + 20, scroll: state.scroll + 715 }})
       })
      }
   }

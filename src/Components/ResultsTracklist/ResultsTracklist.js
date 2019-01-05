@@ -25,18 +25,7 @@ const ResultsTracklist = ({ tracklist, addToPlaylist, history }) => {
   const results = () => {
     return history.location.pathname === '/search/tracks' ? Infinity : 4;
   }
-
-  // useEffect(() => {
-  //   toggleExpand(() => {
-  //     if (history.location.pathname === '/search/tracks' && expand.results) {
-  //       return { expanded: true, state: 'Less', results: tracklist.length }
-  //     } else if (history.location.pathname === '/search' && expand.results ) {
-  //       return { expanded: false, state: 'More', results: 4 }
-  //     }
-  //   })
-  // })
-
-  console.log('test', tracklist);
+  console.log(tracklist);
 
   return (
     <div className="ResultsTracklist" >
