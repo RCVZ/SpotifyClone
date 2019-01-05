@@ -22,20 +22,26 @@ const ResultsTracklist = ({ tracklist, addToPlaylist, history }) => {
     }
   }
 
-  useEffect(() => {
-    toggleExpand(() => {
-      if (history.location.pathname === '/search/tracks') {
-        return { expanded: true, state: 'Less', results: 20 }
-      } else {
-        return { expanded: false, state: 'More', results: 4 }
-      }
-    })
-  })
+  const results = () => {
+    return history.location.pathname === '/search/tracks' ? Infinity : 4;
+  }
+
+  // useEffect(() => {
+  //   toggleExpand(() => {
+  //     if (history.location.pathname === '/search/tracks' && expand.results) {
+  //       return { expanded: true, state: 'Less', results: tracklist.length }
+  //     } else if (history.location.pathname === '/search' && expand.results ) {
+  //       return { expanded: false, state: 'More', results: 4 }
+  //     }
+  //   })
+  // })
+
+  console.log('test', tracklist);
 
   return (
     <div className="ResultsTracklist" >
       <Header name={expand.state} buttonAction={handleToggleExpand}>Tracks</Header>
-      <TrackList trackAction={addToPlaylist} tracklist={tracklist.slice(0, expand.results)}  />
+      <TrackList trackAction={addToPlaylist} tracklist={tracklist.slice(0, results())}  />
     </div>
   );
 }
