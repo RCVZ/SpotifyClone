@@ -20,7 +20,7 @@ class Track extends PureComponent {
   render() {
     const { id, trackIndex, artists, name, album, uri, duration_ms } = this.props.track;
     return(
-      <div className="Track" id={trackIndex} key={id}>
+      <div className="Track" id={id} key={trackIndex}>
         <div className="Track-information" value={uri}>
           <div className="Album-img" >
             <img src={album.images[2].url} alt="album" /> 

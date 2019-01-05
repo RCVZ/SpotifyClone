@@ -12,8 +12,8 @@ const TrackList = ({ trackAction, inPlaylist, tracklist, getUrisList }) => {
           <Track
             track={track}
             trackIndex={index}
-            id={index}
-            key={track.id}
+            id={track.id}
+            key={index}
             trackAction={trackAction}
             inPlaylist={inPlaylist}
             getUrisList={getUrisList}
