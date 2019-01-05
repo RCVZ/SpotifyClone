@@ -44,7 +44,7 @@ const SpotifyApi = {
     }
   },
 
-  async searchPlaylists(searchTerm, offset=0, limit=50) {
+  async searchPlaylists(searchTerm, offset = 0, limit = 20) {
     const access = await SpotifyApi.getAccesToken();
     const authorization = { Authorization: `Bearer ${access}` };
 
@@ -62,7 +62,7 @@ const SpotifyApi = {
     }
   },
 
-  async searchArtists(searchTerm, offset, limit=50) {
+  async searchArtists(searchTerm, offset = 0, limit = 20) {
     const access = await SpotifyApi.getAccesToken();
     const authorization = { Authorization: `Bearer ${access}` };
 
@@ -81,7 +81,7 @@ const SpotifyApi = {
 
   },
 
-  async searchAlbums(searchTerm, offset, limit=50) {
+  async searchAlbums(searchTerm, offset = 0, limit = 20) {
     const access = await SpotifyApi.getAccesToken();
     const authorization = { Authorization: `Bearer ${access}` };
 
@@ -99,7 +99,7 @@ const SpotifyApi = {
     }
   },
 
-  async searchTracks(searchTerm, offset, limit=50) {
+  async searchTracks(searchTerm, offset= 0, limit= 20) {
     const access = await SpotifyApi.getAccesToken();
     const authorization = { Authorization: `Bearer ${access}` };
 
@@ -118,20 +118,17 @@ const SpotifyApi = {
   },
 
   async fullSearch(searchTerm) {
-    const offset = 0;
-    const limit = 20;
     let resultsList = {
-      playlists: await SpotifyApi.searchPlaylists(searchTerm, offset, limit),
-      artists: await SpotifyApi.searchArtists(searchTerm, offset, limit),
-      albums: await SpotifyApi.searchAlbums(searchTerm, offset, limit),
-      tracks: await SpotifyApi.searchTracks(searchTerm, offset, limit)
+      playlists: await SpotifyApi.searchPlaylists(searchTerm),
+      artists: await SpotifyApi.searchArtists(searchTerm),
+      albums: await SpotifyApi.searchAlbums(searchTerm),
+      tracks: await SpotifyApi.searchTracks(searchTerm)
     };
     return resultsList
   },
 
   async nextResults(searchTerm, offset, type) {
-    const limit = 50;
-
+    const limit = 20;
     if (type === 'playlists') {
       return SpotifyApi.searchPlaylists(searchTerm, offset, limit)
 
