@@ -44,7 +44,7 @@ const SpotifyApi = {
     }
   },
 
-  async searchPlaylists(searchTerm, offset = 0, limit = 20) {
+  async searchPlaylists(searchTerm, offset = 0, limit = 50) {
     const access = await SpotifyApi.getAccesToken();
     const authorization = { Authorization: `Bearer ${access}` };
 
@@ -62,7 +62,7 @@ const SpotifyApi = {
     }
   },
 
-  async searchArtists(searchTerm, offset = 0, limit = 20) {
+  async searchArtists(searchTerm, offset = 0, limit = 50) {
     const access = await SpotifyApi.getAccesToken();
     const authorization = { Authorization: `Bearer ${access}` };
 
@@ -81,7 +81,7 @@ const SpotifyApi = {
 
   },
 
-  async searchAlbums(searchTerm, offset = 0, limit = 20) {
+  async searchAlbums(searchTerm, offset = 0, limit = 50) {
     const access = await SpotifyApi.getAccesToken();
     const authorization = { Authorization: `Bearer ${access}` };
 

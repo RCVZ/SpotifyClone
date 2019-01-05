@@ -21,7 +21,7 @@ const Playlists = ({ playlists, addToCurrentPlaylist, history }) => {
         return { expanded: false, state: 'More', results: 3 }
       } else {
         history.push('/search/playlists')
-        return { expanded: true, state: 'Less', results: 20 }
+        return { expanded: true, state: 'Less', results: Infinity }
       }
     })
   }
