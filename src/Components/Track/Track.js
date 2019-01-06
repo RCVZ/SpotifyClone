@@ -23,7 +23,11 @@ class Track extends PureComponent {
       <div className="Track">
         <div className="Track-information">
           <div className="Album-img" >
-            <img src={album.images[2].url} alt="album" /> 
+            {album.images[2] ? 
+              <img src={album.images[2].url} alt="album" /> :
+              null
+            }
+            
           </div> 
           <div className="Track-name">
             <Text name={name} artist={artists[0].name} />

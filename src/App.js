@@ -33,7 +33,7 @@ class App extends PureComponent {
       offset: 50     
     }
 
-    this.scrollHeight = 2075;
+    this.scrollHeight = 100;
   }  
 
   componentDidMount() {
@@ -43,13 +43,14 @@ class App extends PureComponent {
   componentDidUpdate() {    
     if (this.props.history.location.pathname === '/search') {
      this.setState({ offset: 50});
-     this.scrollHeight = 2075;
+     this.scrollHeight = 100;
     };
   }
   
   searchSpotify = (searchTerm) => {
     SpotifyApi.fullSearch(searchTerm).then((results) => {
       const { playlists, artists, albums, tracks } = results;
+      this.tracks = tracks;
       this.setState({ 
         searchTerm: searchTerm,
         playlists: playlists,
@@ -61,7 +62,7 @@ class App extends PureComponent {
   }
 
   addToNewPlaylist = (track, trackIndex = 0) => {
-    let tracks = this.state.newPlaylist.filter(element => element.id !== track.id);
+    const tracks = this.state.newPlaylist.filter(element => element.id !== track.id);
     tracks.splice(trackIndex, 0, track);
     this.setState({ newPlaylist: tracks });
   }
@@ -71,22 +72,23 @@ class App extends PureComponent {
   }
 
   deleteTrack = (track) => {
-    let tracks = this.state.newPlaylist.filter(element => element.id !== track.id);
+    const tracks = this.state.newPlaylist.filter(element => element.id !== track.id);
     this.setState({ newPlaylist: tracks });
   }
 
   loadOnScroll = (e) => {
     const { searchTerm, offset } =  this.state;
     const route = this.props.location.pathname.split('/')[2];
-    const loadMore = this.scrollHeight <= e.target.scrollTop + 715;
-    if (loadMore) {
+
+    if ( this.scrollHeight <= e.target.scrollTop ) {
       this.scrollHeight += 2075;
+
       SpotifyApi.nextResults(searchTerm, offset, route).then((newResults) => {
         this.setState((state) => {
-          const currentState = [...state[route]];
-          const merged = [...currentState, ...newResults];
-          return { [route]: merged, offset: state.offset + 50}})
-      })
+          return { 
+            [route]: [...state[route], ...newResults], 
+            offset: state.offset + 50}})
+       })
      }
   }
 
