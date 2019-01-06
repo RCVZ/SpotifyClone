@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import './Navbar.css';
 
 import { withRouter, NavLink } from "react-router-dom";
@@ -6,7 +6,7 @@ import { withRouter, NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faAlignJustify, faListUl, faPlusSquare, faTh } from '@fortawesome/free-solid-svg-icons';
 
-class Navbar extends Component {
+class Navbar extends PureComponent {
   render() {
     return(
       <div className='Navbar-wrapper'>

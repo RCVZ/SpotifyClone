@@ -25,7 +25,6 @@ const ResultsTracklist = ({ tracklist, addToPlaylist, history }) => {
   const results = () => {
     return history.location.pathname === '/search/tracks' ? Infinity : 4;
   }
-  console.log(tracklist);
 
   return (
     <div className="ResultsTracklist" >

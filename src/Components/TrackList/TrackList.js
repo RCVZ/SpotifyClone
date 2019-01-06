@@ -7,13 +7,11 @@ import Grid from '../Grid/Grid';
 const TrackList = ({ trackAction, inPlaylist, tracklist, getUrisList }) => {
   return (
     <Grid>
-      {tracklist.map((track, index) => {
+      {tracklist.map((track) => {
         return (
           <Track
             track={track}
-            trackIndex={index}
-            id={track.id}
-            key={index}
+            key={track.id}
             trackAction={trackAction}
             inPlaylist={inPlaylist}
             getUrisList={getUrisList}
