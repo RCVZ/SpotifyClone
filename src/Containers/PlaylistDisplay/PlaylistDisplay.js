@@ -6,12 +6,12 @@ import SpotifyApi from '../../util/Spotify';
 import Card from '../../Components/Card/Card';
 
 
-const PlaylistDisplay = ({ playlists, addToCurrentPlaylist }, props) => {
+const PlaylistDisplay = ({ playlists, addToCurrentPlaylist, albums }) => {
 
   const handleOnclick = (key, images) => {
     let newPlaylist = [];
     let secondPram = 'spotify';
-    if (props.albums) {
+    if (albums) {
       secondPram = 'spotifyAlbum';
       SpotifyApi.getPlaylist(key, secondPram).then((playlist) => {
         playlist.map((item) => {
