@@ -8,11 +8,15 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 
 class SearchBar extends PureComponent {
+  constructor(props){
+    super(props);
+
+    this.delay = null
+  }
   handleSearchTerm = (e) => {
     let searchTerm = e.target.value;
-    const delay = null;
-    clearTimeout(delay);
-    setTimeout(this.props.search(searchTerm), 100);
+    clearTimeout(this.delay);
+    this.delay = setTimeout(this.props.search(searchTerm), 100);
   }
 
   render() {
