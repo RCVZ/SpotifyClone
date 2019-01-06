@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect  } from 'react';
 import './Albumslist.css';
 
 import PlaylistDisplay from '../../Containers/PlaylistDisplay/PlaylistDisplay';
@@ -21,7 +21,7 @@ const Albumslist = ({ albums, addToCurrentPlaylist, history })  => {
       history.push('/search/albums')
     }
   }
-
+  
   const results = () => {
     return history.location.pathname === '/search/albums' ? Infinity : 3;
   }

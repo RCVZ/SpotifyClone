@@ -31,7 +31,8 @@ class App extends PureComponent {
       tracks: [],
       newPlaylist: [],
       currentPlaylist: [],
-      offset: 50     
+      offset: 50,
+      route: ''    
     }
 
     this.scrollHeight = 100;
@@ -94,30 +95,37 @@ class App extends PureComponent {
   }
 
   changeRoute = (route) => {
+    this.setState({ route: route })
     this.props.history.push(route)
   }
 
   render() {
-    const { currentPlaylist, playlists, artists, albums, tracks } = this.state;
+    const { currentPlaylist, playlists, artists, albums, tracks, route } = this.state;
     return (
       <div className="App">
         <SearchBar  search={this.searchSpotify}/>
         <Navbar />
         <Main  loadOnScroll={this.loadOnScroll}>
-          <SearchResults>
+          <SearchResults route={route}>
             <Playlists 
+              changeRoute={this.changeRoute}
               playlists={playlists}
               addToCurrentPlaylist={this.addToCurrentPlaylist}
             />
-            <ResultsTracklist
+            <ResultsTracklist 
+              changeRoute={this.changeRoute}
               tracklist={tracks}
               addToPlaylist={this.addToNewPlaylist}
             />
-            <Albumslist 
+            <Albumslist  
+              changeRoute={this.changeRoute}
               albums={albums} 
               addToCurrentPlaylist={this.addToCurrentPlaylist}
             />
-            <Artists artists={artists}/>
+            <Artists 
+              artists={artists} 
+              changeRoute={this.changeRoute}
+            />
           </SearchResults>
           <CurrentPlaylist playlist={currentPlaylist} />
           <NewPlaylist 
