@@ -28,8 +28,8 @@ const Artists = ({ artists, addToCurrentPlaylist, history }) => {
 
   return (
     <div className="Artists" >
-      <Header name={expand.state} buttonAction={handleToggleExpand}>Artists</Header>
-      <PlaylistDisplay addToCurrentPlaylist={addToCurrentPlaylist} playlists={artists.slice(0, results())} artists />
+      <Header name={expand.state} buttonAction={handleToggleExpand} artists>Artists</Header>
+      <PlaylistDisplay addToCurrentPlaylist={addToCurrentPlaylist} playlists={artists.slice(0, results())} />
     </div>
   );
 }

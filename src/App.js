@@ -10,6 +10,7 @@ import Library from './Components/Library/Library';
 import UserPlaylists from './Containers/UserPlaylists/UserPlaylists';
 import ResultsTracklist from './Components/ResultsTracklist/ResultsTracklist';
 import Albumslist from './Components/Albumslist/Albumslist';
+import Artists from './Components/Artists/Artists';
 import Playlists from './Components/Playlists/Playlists';
 import Main from './Containers/Main/Main';
 import Player from './Containers/Player/Player'; 
@@ -57,7 +58,7 @@ class App extends PureComponent {
         artists: artists,
         albums: albums,
         tracks: tracks
-      }, this.props.history.push('/search'))
+      }, this.changeRoute('/search'))
     })
   }
 
@@ -92,6 +93,10 @@ class App extends PureComponent {
      }
   }
 
+  changeRoute = (route) => {
+    this.props.history.push(route)
+  }
+
   render() {
     const { currentPlaylist, playlists, artists, albums, tracks } = this.state;
     return (
@@ -112,6 +117,7 @@ class App extends PureComponent {
               albums={albums} 
               addToCurrentPlaylist={this.addToCurrentPlaylist}
             />
+            <Artists artists={artists}/>
           </SearchResults>
           <CurrentPlaylist playlist={currentPlaylist} />
           <NewPlaylist 

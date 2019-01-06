@@ -14,3 +14,8 @@
 .Action-Overlay:hover {
   opacity: 1;
 }
+
+
+.Action-Overlay .artist {
+  border-radius: 50%;
+}

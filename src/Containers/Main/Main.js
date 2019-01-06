@@ -1,10 +1,10 @@
 import React, { PureComponent, cloneElement } from 'react';
 import './Main.css';
 
-import { Switch, Route, withRouter } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 class Main extends PureComponent {
-    
+
   render() {
     const { loadOnScroll } = this.props;
     return(
@@ -21,4 +21,4 @@ class Main extends PureComponent {
   }
 }
 
-export default withRouter(Main);
+export default Main;
