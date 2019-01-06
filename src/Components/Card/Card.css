@@ -25,3 +25,8 @@
   margin-top: auto;
 }
 
+.artist, 
+.artist img{
+  border-radius: 50%;
+}
+
