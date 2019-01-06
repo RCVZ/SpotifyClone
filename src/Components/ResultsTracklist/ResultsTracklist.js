@@ -23,13 +23,17 @@ const ResultsTracklist = ({ tracklist, addToPlaylist, history }) => {
   }
 
   const results = () => {
-    return history.location.pathname === '/search/tracks' ? Infinity : 4;
+    if (history.location.pathname === '/search/tracks') {
+      return tracklist;
+    } else {
+      return tracklist.slice(0, 4)
+    }    
   }
 
   return (
     <div className="ResultsTracklist" >
       <Header name={expand.state} buttonAction={handleToggleExpand}>Tracks</Header>
-      <TrackList trackAction={addToPlaylist} tracklist={tracklist.slice(0, results())}  />
+      <TrackList trackAction={addToPlaylist} tracklist={results()}  />
     </div>
   );
 }

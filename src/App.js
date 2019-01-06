@@ -30,13 +30,22 @@ class App extends PureComponent {
       tracks: [],
       newPlaylist: [],
       currentPlaylist: [],
-      scroll: 2075,
       offset: 50     
     }
-  }
+
+    this.scrollHeight = 2075;
+  }  
 
   componentDidMount() {
     SpotifyApi.getAccesToken();
+  }
+
+  componentDidUpdate() {    
+    if (this.props.history.location.pathname === '/search') {
+     this.setState({ offset: 50});
+     this.scrollHeight = 2075;
+     console.log('update')
+    };
   }
   
   searchSpotify = (searchTerm) => {
@@ -48,9 +57,7 @@ class App extends PureComponent {
         artists: artists,
         albums: albums,
         tracks: tracks
-      }, () => {
-        this.props.history.push('/search'); 
-      })
+      }, this.props.history.push('/search'))
     })
   }
 
@@ -105,24 +112,19 @@ class App extends PureComponent {
 
 
   loadOnScroll = (e) => {
+    const { searchTerm, offset } =  this.state;
     const route = this.props.location.pathname.split('/')[2];
-    const loadMore = this.state.scroll <= e.target.scrollTop + 715;
-    console.dir(e.target)
-
-    console.log(e.target.scrollHeight, e.target.offsetHeight, e.target.clientHeight, e.target.scrollTop)
+    const loadMore = this.scrollHeight <= e.target.scrollTop + 715;
     if (loadMore) {
-
-      SpotifyApi.nextResults(this.state.searchTerm, this.state.offset, route).then((newResults) => {
+      this.scrollHeight += 2075;
+      SpotifyApi.nextResults(searchTerm, offset, route).then((newResults) => {
         this.setState((state) => {
-          const merged = [...state[route], ...newResults];
-          return { [route]: merged, offset: state.offset + 50, scroll: state.scroll + 2075 }})
+          const currentState = [...state[route]];
+          const merged = [...currentState, ...newResults];
+          return { [route]: merged, offset: state.offset + 50}})
       })
      }
   }
-  // 2260 715 715 757.5  2075
-  // 4335 715 715 762.5  2075
-  // 6410 715 715 1450.5
-  // 10560 715 715 4
 
   render() {
     const { currentPlaylist, playlists, artists, albums, tracks } = this.state;
