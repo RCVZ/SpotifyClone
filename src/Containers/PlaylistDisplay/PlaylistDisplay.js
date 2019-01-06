@@ -1,10 +1,34 @@
 import React from 'react';
 import './PlaylistDisplay.css';
 
+import SpotifyApi from '../../util/Spotify';
+
 import Card from '../../Components/Card/Card';
 
 
-const PlaylistDisplay = ({ playlists, handleOnClick }) => {
+const PlaylistDisplay = ({ playlists, addToCurrentPlaylist }, props) => {
+
+  const handleOnclick = (key, images) => {
+    let newPlaylist = [];
+    let secondPram = 'spotify';
+    if (props.albums) {
+      secondPram = 'spotifyAlbum';
+      SpotifyApi.getPlaylist(key, secondPram).then((playlist) => {
+        playlist.map((item) => {
+          item['album'] = { images };
+          return newPlaylist.push(item);
+        });
+      });
+    } else {
+      SpotifyApi.getPlaylist(key, secondPram).then((playlist) => {
+        playlist.map((playlists) => {
+          return newPlaylist.push(playlists.track);
+        })
+      });
+    }
+    addToCurrentPlaylist(newPlaylist)
+  }
+
   return (
     <div className="PlaylistDisplay">
       {playlists.map(playlist => {
@@ -13,7 +37,7 @@ const PlaylistDisplay = ({ playlists, handleOnClick }) => {
             playlist={playlist}
             id={playlist.id}
             key={playlist.id}
-            handleOnclick={handleOnClick}
+            handleOnclick={handleOnclick}
           />)
       })}
     </div>

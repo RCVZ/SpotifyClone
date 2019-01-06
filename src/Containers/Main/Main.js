@@ -1,9 +1,10 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, cloneElement } from 'react';
 import './Main.css';
 
 import { Switch, Route, withRouter } from "react-router-dom";
 
 class Main extends PureComponent {
+    
   render() {
     const { loadOnScroll } = this.props;
     return(

@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import './NewPlaylist.css';
 
+import SpotifyApi from '../../util/Spotify';
+
 import TrackList from '../../Components/TrackList/TrackList';
 import Button from '../../Components/Buttons/Button/Button';
 
@@ -13,12 +15,17 @@ class NewPlaylist extends PureComponent {
     }
   }
 
-  handleChange = (e) => {
-    this.setState({ playlistName: e.target.value });
+  savePlayList = () => {
+    const { playlist } = this.props;
+    const { playlistName } = this.state;
+    if (playlist.length > 0 && playlistName.length > 0) {
+      const playlistUris = playlist.map(track => track.uri);
+      SpotifyApi.sendPlayList(playlistName, playlistUris);
+    }
   }
 
-  handleOnsubmit = () => {
-    this.props.savePlayList(this.state.playlistName);
+  handleChange = (e) => {
+    this.setState({ playlistName: e.target.value });
   }
 
   render() {
@@ -31,8 +38,9 @@ class NewPlaylist extends PureComponent {
         <TrackList 
           tracklist={playlist}
           trackAction={deleteTrack}
-          inPlaylist/>
-        <Button type="submit" onClick={this.handleOnsubmit} name="SAVE TO SPOTIFY" />
+          inPlaylist
+        />
+        <Button type="submit" buttonAction={this.savePlayList} name="SAVE TO SPOTIFY" />
       </div>
     );
   }

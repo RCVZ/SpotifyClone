@@ -54,7 +54,7 @@ class Player extends PureComponent {
       this.player = new window.Spotify.Player({ name: "SpotifyClone", getOAuthToken: cb => { cb(token) } });
       this.createEventHandlers();
       this.player.connect();
-      //this.getPlayerStateTimer = setInterval(() => this.getPlayerCurrentstate(), 600);
+      this.getPlayerStateTimer = setInterval(() => this.getPlayerCurrentstate(), 600);
     }
   }
 
@@ -67,7 +67,7 @@ class Player extends PureComponent {
     this.player.on('ready', data => {
       let { device_id } = data;
       this.setState({ deviceId: device_id });
-      //SpotifyApi.transferPlaybackHere(device_id)
+      SpotifyApi.transferPlaybackHere(device_id)
     });
   }
 

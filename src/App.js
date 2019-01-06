@@ -44,7 +44,6 @@ class App extends PureComponent {
     if (this.props.history.location.pathname === '/search') {
      this.setState({ offset: 50});
      this.scrollHeight = 2075;
-     console.log('update')
     };
   }
   
@@ -75,41 +74,6 @@ class App extends PureComponent {
     let tracks = this.state.newPlaylist.filter(element => element.id !== track.id);
     this.setState({ newPlaylist: tracks });
   }
-
-  savePlayList = (playlistName) => {
-    if (this.state.newPlaylist.length > 0 && playlistName.length > 0) {
-      const playlistUris = this.state.newPlaylist.map(track => track.uri);
-      SpotifyApi.sendPlayList(playlistName, playlistUris);
-    }
-  }
-
-  getUrisList = () => { // needs to be restructured 
-    const newList = [];
-    this.props.tracklist.map((track) => newList.push(track.uri));
-    return newList;
-  }
-
-  handleOnclick = (key, images) => { // needs to be restructured 
-    let newPlaylist = [];
-    let secondPram = 'spotify';
-    if (this.props.albums === true) {
-      secondPram = 'spotifyAlbum';
-      SpotifyApi.getPlaylist(key, secondPram).then((playlist) => {
-        playlist.map((item) => {
-          item['album'] = { images };
-          return newPlaylist.push(item);
-        });
-      });
-    } else {
-      SpotifyApi.getPlaylist(key, secondPram).then((playlist) => {
-        playlist.map((playlists) => {
-          return newPlaylist.push(playlists.track);
-        })
-      });
-    }
-    this.props.addToCurrentPlaylist(newPlaylist)
-  }
-
 
   loadOnScroll = (e) => {
     const { searchTerm, offset } =  this.state;

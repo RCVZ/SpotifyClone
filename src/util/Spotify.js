@@ -103,7 +103,6 @@ const SpotifyApi = {
     const access = await SpotifyApi.getAccesToken();
     const authorization = { Authorization: `Bearer ${access}` };
     let url = `https://api.spotify.com/v1/search?q=${searchTerm}&type=track&limit=${limit}&offset=${offset}`;
-    console.log('url', url)
 
     try {
       const response = await fetch(url, {
