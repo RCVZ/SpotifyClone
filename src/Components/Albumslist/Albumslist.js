@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect  } from 'react';
+import React, { useState  } from 'react';
 import './Albumslist.css';
 
 import PlaylistDisplay from '../../Containers/PlaylistDisplay/PlaylistDisplay';
