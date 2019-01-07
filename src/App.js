@@ -34,7 +34,8 @@ class App extends PureComponent {
       offset: 50     
     }
 
-    this.scrollHeight = 100;
+    this.scrollHeight = 200;
+    this.offset = 50;
   }  
 
   componentDidMount() {
@@ -44,7 +45,7 @@ class App extends PureComponent {
   componentDidUpdate() {    
     if (this.props.history.location.pathname === '/search') {
      this.setState({ offset: 50});
-     this.scrollHeight = 100;
+     this.scrollHeight = 200;
     };
   }
   
@@ -58,7 +59,7 @@ class App extends PureComponent {
         artists: artists,
         albums: albums,
         tracks: tracks
-      }, this.changeRoute('/search'))
+      }, this.props.history.push('/search'))
     })
   }
 
@@ -78,23 +79,19 @@ class App extends PureComponent {
   }
 
   loadOnScroll = (e) => {
-    const { searchTerm, offset } =  this.state;
+    const { searchTerm } =  this.state;
     const route = this.props.location.pathname.split('/')[2];
 
     if ( this.scrollHeight <= e.target.scrollTop ) {
       this.scrollHeight += 2075;
+      this.offset += 50;
 
-      SpotifyApi.nextResults(searchTerm, offset, route).then((newResults) => {
-        this.setState((state) => {
-          return { 
-            [route]: [...state[route], ...newResults], 
-            offset: state.offset + 50}})
+      SpotifyApi.nextResults(searchTerm, this.offset, route).then((newResults) => {
+        this.setState( state => {
+          return { [route]: [...state[route],...newResults] }
+          })
        })
      }
-  }
-
-  changeRoute = (route) => {
-    this.props.history.push(route)
   }
 
   render() {
@@ -108,14 +105,17 @@ class App extends PureComponent {
             <Playlists 
               playlists={playlists}
               addToCurrentPlaylist={this.addToCurrentPlaylist}
+              key={1}
             />
             <ResultsTracklist
               tracklist={tracks}
               addToPlaylist={this.addToNewPlaylist}
+              key={2}
             />
             <Albumslist 
               albums={albums} 
               addToCurrentPlaylist={this.addToCurrentPlaylist}
+              key={3}
             />
             <Artists artists={artists}/>
           </SearchResults>

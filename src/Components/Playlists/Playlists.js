@@ -6,7 +6,7 @@ import Header from '../Header/Header';
 
 import { withRouter } from "react-router-dom";
 
-const Playlists = ({ playlists, addToCurrentPlaylist, history }) => {
+const Playlists = ({ playlists, addToCurrentPlaylist, history  }) => {
 
   const [expand, toggleExpand] = useState({
     expanded: false,

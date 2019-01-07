@@ -1,4 +1,4 @@
-import React, { PureComponent, cloneElement } from 'react';
+import React, { PureComponent } from 'react';
 import './Main.css';
 
 import { Switch, Route } from "react-router-dom";
