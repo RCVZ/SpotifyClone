@@ -15,21 +15,20 @@ const Albumslist = ({ albums, addToCurrentPlaylist, history })  => {
   });
 
   const handleToggleExpand = () => {
-    if (history.location.pathname === '/search/albums') {
-      history.push('/search')
-    } else {
-      history.push('/search/albums')
-    }
+    toggleExpand(() => {
+      if (history.location.pathname === '/search/albums') {
+        history.push('/search')
+        return { expanded: false, state: 'More', results: 4 }
+      } else {
+        history.push('/search/albums')
+        return { expanded: true, state: 'Less', results: Infinity }
+      }
+    })
   }
-  
-  const results = () => {
-    return history.location.pathname === '/search/albums' ? Infinity : 3;
-  }
-
   return(
     <div className="Albumslist" >
       <Header name={expand.state} buttonAction={handleToggleExpand}>Albums</Header>
-      <PlaylistDisplay addToCurrentPlaylist={addToCurrentPlaylist} playlists={albums.slice(0, results())} albums />
+      <PlaylistDisplay addToCurrentPlaylist={addToCurrentPlaylist} playlists={albums.slice(0, expand.results)} albums />
     </div>
   );
 }
