@@ -11,7 +11,10 @@ const Card = ({ playlist, handleOnclick, id }) => {
         {playlist.images[0] ? <img src={playlist.images[0].url} alt="img" /> : null}
       </div>
       <Text name={playlist.name} />
-      <ActionOverlay trackAction={() => handleOnclick(id, playlist.images)} playlist={ playlist.type === "artist" ? "artist" : null }/>
+      <ActionOverlay 
+        trackAction={() => handleOnclick(id, playlist)} 
+        playlist={ playlist.type === "artist" ? "artist" : null }
+      />
     </div>
   )
 }

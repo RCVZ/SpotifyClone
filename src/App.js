@@ -44,8 +44,8 @@ class App extends PureComponent {
 
   componentDidUpdate() {    
     if (this.props.history.location.pathname === '/search') {
-     this.setState({ offset: 50});
-     this.scrollHeight = 200;
+      this.offset = 50;
+      this.scrollHeight = 200;
     };
   }
   

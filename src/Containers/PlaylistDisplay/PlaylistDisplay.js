@@ -8,26 +8,30 @@ import Card from '../../Components/Card/Card';
 
 const PlaylistDisplay = ({ playlists, addToCurrentPlaylist, albums }) => {
 
-  const handleOnclick = (key, images) => {
+  const handleOnclick = (key, playlist) => {
+    SpotifyApi.fetchSpotify(playlist.href); // test
+    let image = playlist.images //<======== quick fix
     let newPlaylist = [];
     let secondPram = 'spotify';
     if (albums) {
       secondPram = 'spotifyAlbum';
       SpotifyApi.getPlaylist(key, secondPram).then((playlist) => {
         playlist.map((item) => {
-          item['album'] = { images };
+          item['album'] = { image }; //<======== quick fix
           return newPlaylist.push(item);
         });
       });
     } else {
-      SpotifyApi.getPlaylist(key, secondPram).then((playlist) => {
-        playlist.map((playlists) => {
-          return newPlaylist.push(playlists.track);
+      SpotifyApi.getPlaylist(key, secondPram).then((playlists) => {
+        playlists.map((playlist) => {
+          return newPlaylist.push(playlist.track);
         })
       });
     }
+    console.log('test:', newPlaylist);
     addToCurrentPlaylist(newPlaylist)
   }
+
 
   return (
     <div className="PlaylistDisplay">
