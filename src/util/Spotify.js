@@ -273,6 +273,28 @@ const SpotifyApi = {
     } catch (e) {
       console.log(e);
     }
+  },
+
+    async fetchSpotify(url) {
+    const access = await SpotifyApi.getAccesToken();
+
+    const authorization = {
+      Authorization: `Bearer ${access}`,
+      "Content-Type": "application/json"
+    };
+
+    try {
+      const response = await fetch(url, {
+        headers: authorization
+      });
+
+      if (response.ok) {
+        const jsonResponse = await response.json();
+        console.log(jsonResponse);
+      }
+    } catch (e) {
+      console.log(e);
+    }
   }
 
 };
