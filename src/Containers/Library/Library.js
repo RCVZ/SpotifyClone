@@ -24,12 +24,13 @@ class Library extends PureComponent {
 
   render() {
     const { playlists } = this.state;
-    //const { addToCurrentPlaylist } = this.props;
+    const { addToCurrentPlaylist } = this.props;
     return (
       <Grid>
         <PlaylistDisplay
           playlists={playlists}
-          addToCurrentPlaylist={console.log('not working yet')}
+          addToCurrentPlaylist={addToCurrentPlaylist}
+          libary
         />
       </Grid>
     );

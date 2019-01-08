@@ -6,10 +6,10 @@ import SpotifyApi from '../../util/Spotify';
 import Card from '../../Components/Card/Card';
 
 
-const PlaylistDisplay = ({ playlists, addToCurrentPlaylist, albums }) => {
+const PlaylistDisplay = ({ playlists, addToCurrentPlaylist, albums, libary }) => {
 
   const handleOnclick = (key, playlist) => {
-    SpotifyApi.fetchSpotify(playlist.href); // test
+    //SpotifyApi.fetchSpotify(playlist.href); // test
     let image = playlist.images //<======== quick fix
     let newPlaylist = [];
     let secondPram = 'spotify';
@@ -21,6 +21,11 @@ const PlaylistDisplay = ({ playlists, addToCurrentPlaylist, albums }) => {
           return newPlaylist.push(item);
         });
       });
+    } else if (libary) {
+      SpotifyApi.getCategoriePlaylist(playlist.id).then((playlist) => {
+        console.log('testlibary',playlist)
+        addToCurrentPlaylist(playlist)
+      })
     } else {
       SpotifyApi.getPlaylist(key, secondPram).then((playlists) => {
         playlists.map((playlist) => {
@@ -29,7 +34,7 @@ const PlaylistDisplay = ({ playlists, addToCurrentPlaylist, albums }) => {
       });
     }
     console.log('test:', newPlaylist);
-    addToCurrentPlaylist(newPlaylist)
+    //addToCurrentPlaylist(newPlaylist)
   }
 
 
