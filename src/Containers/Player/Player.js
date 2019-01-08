@@ -39,14 +39,14 @@ class Player extends PureComponent {
     }
 
     this.playerCheckInterval = null;
-    this.getPlayerStateTimer = null;      
+    this.getPlayerStateTimer = null;
   }
 
   componentDidMount() {
     this.setState({ token: SpotifyApi.getAccesToken() });
     this.playerCheckInterval = setInterval(() => this.checkForPlayer(), 800);
   }
- 
+
   checkForPlayer = () => {
     const { token } = this.state;
     if (window.Spotify !== null) {
@@ -54,7 +54,7 @@ class Player extends PureComponent {
       this.player = new window.Spotify.Player({ name: "SpotifyClone", getOAuthToken: cb => { cb(token) } });
       this.createEventHandlers();
       this.player.connect();
-      this.getPlayerStateTimer = setInterval(() => this.getPlayerCurrentstate(), 600);
+      setTimeout( () => this.getPlayerStateTimer = setInterval(() => this.getPlayerCurrentstate(), 500), 1000)
     }
   }
 
@@ -81,7 +81,7 @@ class Player extends PureComponent {
       const playing = !state.paused;
       const duration = current_track.duration_ms;
       this.setState({
-        currentTrack: current_track, 
+        currentTrack: current_track,
         duration: duration,
         trackName: trackName,
         albumName: albumName,
@@ -122,9 +122,9 @@ class Player extends PureComponent {
   handleMouseUp = (e) => {
     this.player.seek(this.state.position).then(() => {
       this.getPlayerStateTimer = setInterval(() => this.getPlayerCurrentstate(), 100);
-    });    
+    });
   }
- 
+
   toggleMute = (e) => {
     if (!this.state.mute) {
       this.player.setVolume(0);
@@ -132,7 +132,7 @@ class Player extends PureComponent {
     } else {
       this.player.setVolume(this.state.volume/100);
       this.setState({ mute: false });
-    }   
+    }
   }
 
   togglePlaylist = (e) => {
@@ -141,26 +141,26 @@ class Player extends PureComponent {
     } else {
       this.setState({ showPlaylist: 'hidden' });
     }
-  } 
+  }
 
   render() {
-    const { playing, currentTrack, volume, duration, position, artistName, trackName, showPlaylist } = this.state;    
+    const { playing, currentTrack, volume, duration, position, artistName, trackName, showPlaylist } = this.state;
     return(
       <div className="Player">
         <div className="Track-info">
-          {this.state.playing ? <Track track={currentTrack} /> : <p>{artistName}: {trackName}</p>   }          
+          {this.state.playing ? <Track track={currentTrack} /> : <p>{artistName}: {trackName}</p>   }
         </div>
         <div className="Control">
           <div className="Player-buttons">
-            <BackwardButton onBackward={this.onPrevClick} />        
+            <BackwardButton onBackward={this.onPrevClick} />
             {!playing ? <PlayButton onPlayClick={this.onPlayClick} /> : <PauseButton onPlayClick={this.onPlayClick} />}
-            <ForwardButton onForward={this.onNextClick} />             
+            <ForwardButton onForward={this.onNextClick} />
           </div>
           <TrackProgression >
             <Time ms={position} />
             <div className="Track-Bar">
               <ProgressionBar currentPostion={position} sliderAction={this.onSeek} maxValue={duration} handleMouseUp={this.handleMouseUp} />
-            </div>            
+            </div>
             <Time ms={duration} />
           </TrackProgression>
         </div>
@@ -175,7 +175,7 @@ class Player extends PureComponent {
               <ProgressionBar currentPostion={volume} sliderAction={this.onVolumeClick} maxValue={"100"} />
             </div>
           </div>
-        </div>        
+        </div>
       </div>
     );
   }
