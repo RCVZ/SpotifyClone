@@ -7,12 +7,15 @@ import Card from '../../Components/Card/Card';
 
 
 const PlaylistDisplay = ({ playlists, addToCurrentPlaylist, albums, libary }) => {
+  
+
 
   const handleOnclick = (key, playlist) => {
-    //SpotifyApi.fetchSpotify(playlist.href); // test
     let image = playlist.images //<======== quick fix
     let newPlaylist = [];
     let secondPram = 'spotify';
+    console.log('input', playlist)
+
     if (albums) {
       secondPram = 'spotifyAlbum';
       SpotifyApi.getPlaylist(key, secondPram).then((playlist) => {
@@ -21,20 +24,27 @@ const PlaylistDisplay = ({ playlists, addToCurrentPlaylist, albums, libary }) =>
           return newPlaylist.push(item);
         });
       });
-    } else if (libary) {
+      addToCurrentPlaylist(newPlaylist)
+
+    } 
+
+    else if (libary && playlist.type === undefined) {
       SpotifyApi.getCategoriePlaylist(playlist.id).then((playlist) => {
-        console.log('testlibary',playlist)
-        addToCurrentPlaylist(playlist)
-      })
-    } else {
+        console.log('playlist:', playlist);
+        return addToCurrentPlaylist(playlist)
+      });      
+    } 
+
+    else {
       SpotifyApi.getPlaylist(key, secondPram).then((playlists) => {
         playlists.map((playlist) => {
+          console.log('tracks:', playlist);
           return newPlaylist.push(playlist.track);
         })
       });
+      addToCurrentPlaylist(newPlaylist)
     }
-    console.log('test:', newPlaylist);
-    //addToCurrentPlaylist(newPlaylist)
+
   }
 
 

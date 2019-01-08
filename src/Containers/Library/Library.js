@@ -11,6 +11,7 @@ class Library extends PureComponent {
     super(props);
     this.state = {
       playlists: [],
+      istrackList: false,
       results: 6
     }
   }
@@ -21,15 +22,24 @@ class Library extends PureComponent {
     })
   }
 
+  setNewPlaylist = (playlists) => {
+    console.log('set',playlists)
+    if (this.state.istrackList === true) {
+      this.props.addToCurrentPlaylist(playlists)
+    } else {
+      this.setState({ playlists: playlists, istrackList: true });
+    }
+  }
+
 
   render() {
     const { playlists } = this.state;
-    const { addToCurrentPlaylist } = this.props;
+    //const { addToCurrentPlaylist } = this.props;
     return (
       <Grid>
         <PlaylistDisplay
           playlists={playlists}
-          addToCurrentPlaylist={addToCurrentPlaylist}
+          addToCurrentPlaylist={this.setNewPlaylist}
           libary
         />
       </Grid>
