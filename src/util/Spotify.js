@@ -141,7 +141,7 @@ const SpotifyApi = {
 
     } else if (type === 'tracks') {
       return await SpotifyApi.searchTracks(searchTerm, offset, limit);
-    } 
+    }
   },
 
   async sendPlayList(playlistName, playlistUris) {
@@ -159,7 +159,7 @@ const SpotifyApi = {
       if(response.ok) {
         const jsonResponse = await response.json();
         const playlistId = jsonResponse.id;
-        
+
         try {
           const response = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
             headers: authorization,
@@ -181,13 +181,13 @@ const SpotifyApi = {
   },
 
   async transferPlaybackHere(deviceId) { // should be changed
-    const access = await SpotifyApi.getAccesToken();    
+    const access = await SpotifyApi.getAccesToken();
 
     const authorization = {
       Authorization: `Bearer ${access}`,
       "Content-Type": "application/json"
     };
-    
+
     fetch("https://api.spotify.com/v1/me/player", {
       method: "PUT",
       headers: authorization,
@@ -204,9 +204,9 @@ const SpotifyApi = {
     const url = {
       user: `https://api.spotify.com/v1/me/playlists`,
       spotify: `https://api.spotify.com/v1/playlists/${playlistId}/tracks` ,
-      spotifyAlbum: `https://api.spotify.com/v1/albums/${playlistId}/tracks` 
+      spotifyAlbum: `https://api.spotify.com/v1/albums/${playlistId}/tracks`
     }
-    
+
     const authorization = {
       Authorization: `Bearer ${access}`,
      "Content-Type": "application/json"
@@ -295,7 +295,32 @@ const SpotifyApi = {
     } catch (e) {
       console.log(e);
     }
+  },
+
+  async getCategoriePlaylist(categoryId) {
+  const access = await SpotifyApi.getAccesToken();
+
+  const authorization = {
+    Authorization: `Bearer ${access}`,
+    "Content-Type": "application/json"
+  };
+
+
+
+  try {
+    const response = await fetch(`https://api.spotify.com/v1/browse/categories/${categoryId}/playlists`, {
+      headers: authorization
+    });
+
+    if (response.ok) {
+      const jsonResponse = await response.json();
+      console.log(jsonResponse)
+      return jsonResponse.playlists.items;
+    }
+  } catch (e) {
+    console.log(e);
   }
+}
 
 };
 
