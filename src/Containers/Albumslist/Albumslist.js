@@ -1,8 +1,8 @@
 import React, { useState  } from 'react';
 import './Albumslist.css';
 
-import PlaylistDisplay from '../../Containers/PlaylistDisplay/PlaylistDisplay';
-import Header from '../Header/Header';
+import PlaylistDisplay from '../PlaylistDisplay/PlaylistDisplay';
+import Header from '../../Components/Header/Header';
 
 import { withRouter } from "react-router-dom";
 

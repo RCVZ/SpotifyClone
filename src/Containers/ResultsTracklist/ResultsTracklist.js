@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './ResultsTracklist.css';
 
-import TrackList from '../TrackList/TrackList';
-import Header from '../Header/Header';
+import TrackList from '../../Components/TrackList/TrackList';
+import Header from '../../Components/Header/Header';
 
 import { withRouter } from "react-router-dom";
 

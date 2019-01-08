@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
 import './Library.css';
 
-import PlaylistDisplay from '../../Containers/PlaylistDisplay/PlaylistDisplay';
-import Grid from '../Grid/Grid';
+import PlaylistDisplay from '../PlaylistDisplay/PlaylistDisplay';
+import Grid from '../../Components/Grid/Grid';
 
 import SpotifyApi from './../../util/Spotify';
 
@@ -24,11 +24,11 @@ class Library extends PureComponent {
 
   render() {
     const { playlists } = this.state;
-    //const { addToCurrentPlaylist } = this.props; 
+    //const { addToCurrentPlaylist } = this.props;
     return (
       <Grid>
-        <PlaylistDisplay 
-          playlists={playlists} 
+        <PlaylistDisplay
+          playlists={playlists}
           addToCurrentPlaylist={console.log('not working yet')}
         />
       </Grid>

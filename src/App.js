@@ -6,14 +6,14 @@ import Navbar from './Components/Navbar/Navbar';
 import SearchResults from './Components/SearchResults/SearchResults';
 import NewPlaylist from './Containers/NewPlaylist/NewPlaylist';
 import CurrentPlaylist from './Components/CurrentPlaylist/CurrentPlaylist';
-import Library from './Components/Library/Library';
+import Library from './Containers/Library/Library';
 import UserPlaylists from './Containers/UserPlaylists/UserPlaylists';
-import ResultsTracklist from './Components/ResultsTracklist/ResultsTracklist';
-import Albumslist from './Components/Albumslist/Albumslist';
-import Artists from './Components/Artists/Artists';
-import Playlists from './Components/Playlists/Playlists';
+import ResultsTracklist from './Containers/ResultsTracklist/ResultsTracklist';
+import Albumslist from './Containers/Albumslist/Albumslist';
+import Artists from './Containers/Artists/Artists';
+import Playlists from './Containers/Playlists/Playlists';
 import Main from './Containers/Main/Main';
-import Player from './Containers/Player/Player'; 
+import Player from './Containers/Player/Player';
 
 import SpotifyApi from './util/Spotify';
 
@@ -31,29 +31,29 @@ class App extends PureComponent {
       tracks: [],
       newPlaylist: [],
       currentPlaylist: [],
-      offset: 50     
+      offset: 50
     }
 
     this.scrollHeight = 200;
     this.offset = 50;
-  }  
+  }
 
   componentDidMount() {
     SpotifyApi.getAccesToken();
   }
 
-  componentDidUpdate() {    
+  componentDidUpdate() {
     if (this.props.history.location.pathname === '/search') {
       this.offset = 50;
       this.scrollHeight = 200;
     };
   }
-  
+
   searchSpotify = (searchTerm) => {
     SpotifyApi.fullSearch(searchTerm).then((results) => {
       const { playlists, artists, albums, tracks } = results;
       this.tracks = tracks;
-      this.setState({ 
+      this.setState({
         searchTerm: searchTerm,
         playlists: playlists,
         artists: artists,
@@ -102,7 +102,7 @@ class App extends PureComponent {
         <Navbar />
         <Main  loadOnScroll={this.loadOnScroll}>
           <SearchResults>
-            <Playlists 
+            <Playlists
               playlists={playlists}
               addToCurrentPlaylist={this.addToCurrentPlaylist}
               key={1}
@@ -112,22 +112,22 @@ class App extends PureComponent {
               addToPlaylist={this.addToNewPlaylist}
               key={2}
             />
-            <Albumslist 
-              albums={albums} 
+            <Albumslist
+              albums={albums}
               addToCurrentPlaylist={this.addToCurrentPlaylist}
               key={3}
             />
             <Artists artists={artists}/>
           </SearchResults>
           <CurrentPlaylist playlist={currentPlaylist} />
-          <NewPlaylist 
+          <NewPlaylist
             savePlayList={this.savePlayList}
             playlist={this.state.newPlaylist}
             deleteTrack={this.deleteTrack}
           />
           <Library addToCurrentPlaylist={this.addToCurrentPlaylist} />
           <UserPlaylists  addToCurrentPlaylist={this.addToCurrentPlaylist}  />
-        </Main>        
+        </Main>
         <Player currentPlaylist={currentPlaylist} />
       </div>
     );
@@ -135,5 +135,3 @@ class App extends PureComponent {
 }
 
 export default withRouter(App);
-
-
