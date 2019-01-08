@@ -6,6 +6,9 @@ import Grid from '../../Components/Grid/Grid';
 
 import SpotifyApi from './../../util/Spotify';
 
+
+// can be made cleaner 
+
 class Library extends PureComponent {
   constructor(props) {
     super(props);

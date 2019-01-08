@@ -80,9 +80,10 @@ class App extends PureComponent {
 
   loadOnScroll = (e) => {
     const { searchTerm } =  this.state;
+    const search = this.props.location.pathname.split('/')[1];
     const route = this.props.location.pathname.split('/')[2];
-
-    if ( this.scrollHeight <= e.target.scrollTop ) {
+    
+    if (this.scrollHeight <= e.target.scrollTop && search === 'search' ) {
       this.scrollHeight += 2075;
       this.offset += 50;
 

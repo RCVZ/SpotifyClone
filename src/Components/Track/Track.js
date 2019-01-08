@@ -26,8 +26,7 @@ class Track extends PureComponent {
             {album.images[2] ? 
               <img src={album.images[2].url} alt="album" /> :
               null
-            }
-            
+            }            
           </div> 
           <div className="Track-name">
             <Text name={name} artist={artists[0].name} />

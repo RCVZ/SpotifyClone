@@ -6,15 +6,14 @@ import SpotifyApi from '../../util/Spotify';
 import Card from '../../Components/Card/Card';
 
 
+
+// can be made cleaner 
+
 const PlaylistDisplay = ({ playlists, addToCurrentPlaylist, albums, libary }) => {
-  
-
-
   const handleOnclick = (key, playlist) => {
     let image = playlist.images //<======== quick fix
     let newPlaylist = [];
     let secondPram = 'spotify';
-    console.log('input', playlist)
 
     if (albums) {
       secondPram = 'spotifyAlbum';
@@ -30,7 +29,6 @@ const PlaylistDisplay = ({ playlists, addToCurrentPlaylist, albums, libary }) =>
 
     else if (libary && playlist.type === undefined) {
       SpotifyApi.getCategoriePlaylist(playlist.id).then((playlist) => {
-        console.log('playlist:', playlist);
         return addToCurrentPlaylist(playlist)
       });      
     } 
@@ -38,7 +36,6 @@ const PlaylistDisplay = ({ playlists, addToCurrentPlaylist, albums, libary }) =>
     else {
       SpotifyApi.getPlaylist(key, secondPram).then((playlists) => {
         playlists.map((playlist) => {
-          console.log('tracks:', playlist);
           return newPlaylist.push(playlist.track);
         })
       });
