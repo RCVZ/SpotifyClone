@@ -51,7 +51,7 @@ class Main extends PureComponent {
   }
 
   loadOnScroll = (e) => {
-    const { searchTerm } =  this.state;
+    const { searchTerm } =  this.prop.state;
     const search = this.props.location.pathname.split('/')[1];
     const route = this.props.location.pathname.split('/')[2];
 
@@ -61,11 +61,12 @@ class Main extends PureComponent {
 
       SpotifyApi.nextResults(searchTerm, this.offset, route).then((newResults) => {
         this.setState( state => {
-          return { [route]: [...state[route],...newResults] }
-          })
+          return { [route]: [...state[route],...newResults]
        })
      }
   }
+
+  /this.props.searchMore(newResults);
 
 
   render() {

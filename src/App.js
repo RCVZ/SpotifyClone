@@ -66,37 +66,12 @@ class App extends PureComponent {
     })
   }
 
-  // addToNewPlaylist = (track, trackIndex = 0) => {
-  //   const tracks = this.state.newPlaylist.filter(element => element.id !== track.id);
-  //   tracks.splice(trackIndex, 0, track);
-  //   this.setState({ newPlaylist: tracks });
-  // }
-  //
-  // addToCurrentPlaylist = (tracks) => {
-  //   this.setState({ currentPlaylist: tracks });
-  // }
-  //
-  // deleteTrack = (track) => {
-  //   const tracks = this.state.newPlaylist.filter(element => element.id !== track.id);
-  //   this.setState({ newPlaylist: tracks });
-  // }
-  //
-  // loadOnScroll = (e) => {
-  //   const { searchTerm } =  this.state;
-  //   const search = this.props.location.pathname.split('/')[1];
-  //   const route = this.props.location.pathname.split('/')[2];
-  //
-  //   if (this.scrollHeight <= e.target.scrollTop && search === 'search' ) {
-  //     this.scrollHeight += 2075;
-  //     this.offset += 50;
-  //
-  //     SpotifyApi.nextResults(searchTerm, this.offset, route).then((newResults) => {
-  //       this.setState( state => {
-  //         return { [route]: [...state[route],...newResults] }
-  //         })
-  //      })
-  //    }
-  // }
+  searchMore = (newResults) => {  // temp
+    this.setState( state => {
+      return { [route]: [...state[route],...newResults]
+   })
+  }
+
 
   render() {
     const { currentPlaylist, playlists, artists, albums, tracks } = this.state;
@@ -104,7 +79,7 @@ class App extends PureComponent {
       <div className="App">
         <SearchBar  search={this.searchSpotify}/>
         <Navbar />
-        <Main  results={this.state}>
+        <Main  results={this.state} searchMore={this.searchMore} >
           <CurrentPlaylist playlist={currentPlaylist} />
           <NewPlaylist
             savePlayList={this.savePlayList}
@@ -141,3 +116,35 @@ export default withRouter(App);
     />
     <Artists artists={artists}/>
   </SearchResults>*/
+
+  // addToNewPlaylist = (track, trackIndex = 0) => {
+  //   const tracks = this.state.newPlaylist.filter(element => element.id !== track.id);
+  //   tracks.splice(trackIndex, 0, track);
+  //   this.setState({ newPlaylist: tracks });
+  // }
+  //
+  // addToCurrentPlaylist = (tracks) => {
+  //   this.setState({ currentPlaylist: tracks });
+  // }
+  //
+  // deleteTrack = (track) => {
+  //   const tracks = this.state.newPlaylist.filter(element => element.id !== track.id);
+  //   this.setState({ newPlaylist: tracks });
+  // }
+  //
+  // loadOnScroll = (e) => {
+  //   const { searchTerm } =  this.state;
+  //   const search = this.props.location.pathname.split('/')[1];
+  //   const route = this.props.location.pathname.split('/')[2];
+  //
+  //   if (this.scrollHeight <= e.target.scrollTop && search === 'search' ) {
+  //     this.scrollHeight += 2075;
+  //     this.offset += 50;
+  //
+  //     SpotifyApi.nextResults(searchTerm, this.offset, route).then((newResults) => {
+  //       this.setState( state => {
+  //         return { [route]: [...state[route],...newResults] }
+  //         })
+  //      })
+  //    }
+  // }
