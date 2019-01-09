@@ -34,6 +34,13 @@ class Main extends PureComponent {
     this.offset = 50;
   }
 
+  componentDidUpdate() {
+    if (this.props.history.location.pathname === '/search') {
+      this.offset = 50;
+      this.scrollHeight = 200;
+    };
+  }
+
 
   addToNewPlaylist = (track, trackIndex = 0) => {
     const tracks = this.state.newPlaylist.filter(element => element.id !== track.id);
@@ -51,7 +58,7 @@ class Main extends PureComponent {
   }
 
   loadOnScroll = (e) => {
-    const { searchTerm } =  this.prop.state;
+    const { searchTerm } =  this.props.results;
     const search = this.props.location.pathname.split('/')[1];
     const route = this.props.location.pathname.split('/')[2];
 
@@ -59,14 +66,13 @@ class Main extends PureComponent {
       this.scrollHeight += 2075;
       this.offset += 50;
 
-      SpotifyApi.nextResults(searchTerm, this.offset, route).then((newResults) => {
-        this.setState( state => {
-          return { [route]: [...state[route],...newResults]
-       })
+      SpotifyApi.nextResults(searchTerm, this.offset, route).then((results) => {
+        this.props.searchMore(results, route);
+      })
      }
   }
 
-  /this.props.searchMore(newResults);
+  //this.props.searchMore(newResults);
 
 
   render() {

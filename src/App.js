@@ -1,26 +1,19 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, createContext } from 'react';
 import './App.css';
 
 import SearchBar from './Containers/SearchBar/SearchBar';
 import Navbar from './Components/Navbar/Navbar';
-
-// import SearchResults from './Components/SearchResults/SearchResults';
 import NewPlaylist from './Containers/NewPlaylist/NewPlaylist';
 import CurrentPlaylist from './Components/CurrentPlaylist/CurrentPlaylist';
-
-// import ResultsTracklist from './Containers/ResultsTracklist/ResultsTracklist';
-// import Albumslist from './Containers/Albumslist/Albumslist';
-// import Artists from './Containers/Artists/Artists';
-// import Playlists from './Containers/Playlists/Playlists';
-
 import Main from './Containers/Main/Main';
 import Player from './Containers/Player/Player';
 import Library from './Containers/Library/Library';
 import UserPlaylists from './Containers/UserPlaylists/UserPlaylists';
-
 import SpotifyApi from './util/Spotify';
 
 import { withRouter } from "react-router-dom";
+
+const ContextStore = createContext()
 
 class App extends PureComponent {
   constructor(props) {
@@ -45,13 +38,6 @@ class App extends PureComponent {
     SpotifyApi.getAccesToken();
   }
 
-  componentDidUpdate() {
-    if (this.props.history.location.pathname === '/search') {
-      this.offset = 50;
-      this.scrollHeight = 200;
-    };
-  }
-
   searchSpotify = (searchTerm) => {
     SpotifyApi.fullSearch(searchTerm).then((results) => {
       const { playlists, artists, albums, tracks } = results;
@@ -66,31 +52,33 @@ class App extends PureComponent {
     })
   }
 
-  searchMore = (newResults) => {  // temp
+  searchMore = (newResults, route) => {  // temp
     this.setState( state => {
-      return { [route]: [...state[route],...newResults]
-   })
+      return { [route]: [...state[route],...newResults] }
+   });
   }
 
 
   render() {
     const { currentPlaylist, playlists, artists, albums, tracks } = this.state;
     return (
-      <div className="App">
-        <SearchBar  search={this.searchSpotify}/>
-        <Navbar />
-        <Main  results={this.state} searchMore={this.searchMore} >
-          <CurrentPlaylist playlist={currentPlaylist} />
-          <NewPlaylist
-            savePlayList={this.savePlayList}
-            playlist={this.state.newPlaylist}
-            deleteTrack={this.deleteTrack}
-          />
-          <Library addToCurrentPlaylist={this.addToCurrentPlaylist} />
-          <UserPlaylists  addToCurrentPlaylist={this.addToCurrentPlaylist}  />
-        </Main>
-        <Player currentPlaylist={currentPlaylist} />
-      </div>
+      <ContextStore.Provider value={this.state} >
+        <div className="App">
+          <SearchBar search={this.searchSpotify} />
+          <Navbar />
+          <Main results={this.state} searchMore={this.searchMore} >
+            <CurrentPlaylist playlist={currentPlaylist} />
+            <NewPlaylist
+              savePlayList={this.savePlayList}
+              playlist={this.state.newPlaylist}
+              deleteTrack={this.deleteTrack}
+            />
+            <Library addToCurrentPlaylist={this.addToCurrentPlaylist} />
+            <UserPlaylists addToCurrentPlaylist={this.addToCurrentPlaylist} />
+          </Main>
+          <Player currentPlaylist={currentPlaylist} />
+        </div>
+      </ContextStore.Provider>
     );
   }
 }
@@ -148,3 +136,10 @@ export default withRouter(App);
   //      })
   //    }
   // }
+
+
+  // import SearchResults from './Components/SearchResults/SearchResults';
+// import ResultsTracklist from './Containers/ResultsTracklist/ResultsTracklist';
+// import Albumslist from './Containers/Albumslist/Albumslist';
+// import Artists from './Containers/Artists/Artists';
+// import Playlists from './Containers/Playlists/Playlists';
