@@ -16,7 +16,7 @@ class SearchBar extends PureComponent {
   handleSearchTerm = (e) => {
     let searchTerm = e.target.value;
     clearTimeout(this.delay);
-    this.delay = setTimeout(this.props.search(searchTerm), 100);
+    this.delay = setTimeout(this.props.search(searchTerm), 16.7);
   }
 
   render() {
