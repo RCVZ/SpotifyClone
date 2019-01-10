@@ -18,7 +18,8 @@ export class MainContext extends Component {
       offset: 50,
       addToNewPlaylist: this.addToNewPlaylist,
       addToCurrentPlaylist: this.addToCurrentPlaylist,
-      deleteTrack: this.deleteTrack
+      deleteTrack: this.deleteTrack,
+      updateState: this.updateState
 
     }
 
@@ -28,6 +29,10 @@ export class MainContext extends Component {
 
   componentDidMount() {
     SpotifyApi.getAccesToken();
+  }
+
+  updateState = (property, newState) => {
+    this.setState({ [property]: newState })
   }
 
   searchSpotify = (searchTerm) => {
