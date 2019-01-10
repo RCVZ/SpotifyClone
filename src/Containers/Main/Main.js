@@ -10,6 +10,7 @@ import ResultsTracklist from '../ResultsTracklist/ResultsTracklist';
 import Albumslist from '../Albumslist/Albumslist';
 import Artists from '../Artists/Artists';
 import Playlists from '../Playlists/Playlists';
+import { ContextStore} from '../../Context/MainContext';
 
 import SpotifyApi from '../../util/Spotify';
 
@@ -34,13 +35,14 @@ class Main extends PureComponent {
     this.offset = 50;
   }
 
+  static contextType = ContextStore;
+
   componentDidUpdate() {
     if (this.props.history.location.pathname === '/search') {
       this.offset = 50;
       this.scrollHeight = 200;
     };
   }
-
 
   addToNewPlaylist = (track, trackIndex = 0) => {
     const tracks = this.state.newPlaylist.filter(element => element.id !== track.id);
@@ -76,8 +78,13 @@ class Main extends PureComponent {
 
 
   render() {
+    // let one = this.context
     const { currentPlaylist  } = this.state;
     const { playlists, artists, albums, tracks } = this.props.results;
+
+    let value = this.context;
+    console.log(value)
+    
     return(
       <div className="Main" onScroll={this.loadOnScroll} >
         <Switch>
@@ -114,4 +121,6 @@ class Main extends PureComponent {
   }
 }
 
-export default withRouter(Main);
+//Main.contextType = ContextStore;
+
+export default Main;
