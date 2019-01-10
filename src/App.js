@@ -12,8 +12,8 @@ import UserPlaylists from './Containers/UserPlaylists/UserPlaylists';
 import SpotifyApi from './util/Spotify';
 
 import { withRouter } from "react-router-dom";
+import {MainContext} from './Context/MainContext';
 
-const ContextStore = createContext()
 
 class App extends PureComponent {
   constructor(props) {
@@ -62,11 +62,16 @@ class App extends PureComponent {
   render() {
     const { currentPlaylist, playlists, artists, albums, tracks } = this.state;
     return (
-      <ContextStore.Provider value={this.state} >
+      <MainContext>
         <div className="App">
           <SearchBar search={this.searchSpotify} />
           <Navbar />
-          <Main results={this.state} searchMore={this.searchMore} >
+          <Main 
+            results={this.state} 
+            searchMore={this.searchMore} 
+            history={this.props.history} //temp  <----    workaround
+            location={this.props.location} //temp <----  
+          >
             <CurrentPlaylist playlist={currentPlaylist} />
             <NewPlaylist
               savePlayList={this.savePlayList}
@@ -78,7 +83,7 @@ class App extends PureComponent {
           </Main>
           <Player currentPlaylist={currentPlaylist} />
         </div>
-      </ContextStore.Provider>
+      </MainContext>
     );
   }
 }
