@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import './ResultsTracklist.css';
 
 import TrackList from '../../Components/TrackList/TrackList';
 import Header from '../../Components/Header/Header';
 
 import { withRouter } from "react-router-dom";
+import { ContextStore } from '../../Context/MainContext';
 
 const ResultsTracklist = ({ tracklist, addToPlaylist, history }) => {
+
+  const context = useContext(ContextStore);
+  console.log(context)
 
   const [expand, toggleExpand] = useState({
     expanded: false,
