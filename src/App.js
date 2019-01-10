@@ -1,4 +1,4 @@
-import React, { PureComponent, createContext } from 'react';
+import React, { PureComponent } from 'react';
 import './App.css';
 
 import SearchBar from './Containers/SearchBar/SearchBar';
@@ -60,7 +60,7 @@ class App extends PureComponent {
 
 
   render() {
-    const { currentPlaylist, playlists, artists, albums, tracks } = this.state;
+    const { currentPlaylist } = this.state;
     return (
       <MainContext>
         <div className="App">

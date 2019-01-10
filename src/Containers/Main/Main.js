@@ -2,10 +2,10 @@ import React, { PureComponent } from 'react';
 import './Main.css';
 
 import SearchResults from '../../Components/SearchResults/SearchResults';
-import NewPlaylist from '../NewPlaylist/NewPlaylist';
-import CurrentPlaylist from '../../Components/CurrentPlaylist/CurrentPlaylist';
-import Library from '../Library/Library';
-import UserPlaylists from '../UserPlaylists/UserPlaylists';
+// import NewPlaylist from '../NewPlaylist/NewPlaylist';
+// import CurrentPlaylist from '../../Components/CurrentPlaylist/CurrentPlaylist';
+// import Library from '../Library/Library';
+// import UserPlaylists from '../UserPlaylists/UserPlaylists';
 import ResultsTracklist from '../ResultsTracklist/ResultsTracklist';
 import Albumslist from '../Albumslist/Albumslist';
 import Artists from '../Artists/Artists';
@@ -14,7 +14,7 @@ import { ContextStore} from '../../Context/MainContext';
 
 import SpotifyApi from '../../util/Spotify';
 
-import { withRouter, Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 class Main extends PureComponent {
   constructor(props) {
@@ -74,17 +74,8 @@ class Main extends PureComponent {
      }
   }
 
-  //this.props.searchMore(newResults);
-
-
   render() {
-    // let one = this.context
-    const { currentPlaylist  } = this.state;
-    const { playlists, artists, albums, tracks } = this.props.results;
-
-    let value = this.context;
-    console.log(value)
-    
+    const { playlists, artists, albums, tracks } = this.props.results;    
     return(
       <div className="Main" onScroll={this.loadOnScroll} >
         <Switch>
@@ -121,6 +112,5 @@ class Main extends PureComponent {
   }
 }
 
-//Main.contextType = ContextStore;
 
 export default Main;
