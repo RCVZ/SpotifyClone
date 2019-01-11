@@ -10,7 +10,6 @@ import { ContextStore } from '../../Context/MainContext';
 const ResultsTracklist = ({ tracklist, addToPlaylist, history }) => {
 
   const context = useContext(ContextStore);
-  console.log(context)
 
   const [expand, toggleExpand] = useState({
     expanded: false,
@@ -33,7 +32,7 @@ const ResultsTracklist = ({ tracklist, addToPlaylist, history }) => {
   return (
     <div className="ResultsTracklist" >
       <Header name={expand.state} buttonAction={handleToggleExpand}>Tracks</Header>
-      <TrackList trackAction={addToPlaylist} tracklist={tracklist.slice(0, expand.results)}  />
+      <TrackList trackAction={context.addToNewPlaylist} tracklist={tracklist.slice(0, expand.results)}  />
     </div>
   );
 }
