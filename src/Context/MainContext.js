@@ -50,16 +50,17 @@ export class MainContext extends Component {
   }
 
   searchMore = (newResults, route) => {  // temp
-    this.setState(state => {
-      return { [route]: [...state[route], ...newResults] }
-    });
+    this.setState(state => ({
+      [route]: [...state[route], ...newResults]
+    }));
   }
 
 
   addToNewPlaylist = (track, trackIndex = 0) => {
-    const tracks = this.state.newPlaylist.filter(element => element.id !== track.id);
-    tracks.splice(trackIndex, 0, track);
-    this.setState({ newPlaylist: tracks });
+    this.setState((state) => {
+      const tracks = state.newPlaylist.filter(element => element.id !== track.id); 
+      return { newPlaylist: [...tracks, track] }
+    });
   }
 
   addToCurrentPlaylist = (tracks) => {

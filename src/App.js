@@ -12,7 +12,7 @@ import UserPlaylists from './Containers/UserPlaylists/UserPlaylists';
 import SpotifyApi from './util/Spotify';
 
 import { withRouter } from "react-router-dom";
-import {MainContext} from './Context/MainContext';
+import { MainContext } from './Context/MainContext';
 
 
 class App extends PureComponent {
@@ -41,7 +41,6 @@ class App extends PureComponent {
   searchSpotify = (searchTerm) => {
     SpotifyApi.fullSearch(searchTerm).then((results) => {
       const { playlists, artists, albums, tracks } = results;
-      this.tracks = tracks;
       this.setState({
         searchTerm: searchTerm,
         playlists: playlists,
