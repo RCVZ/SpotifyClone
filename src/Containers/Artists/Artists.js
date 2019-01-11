@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import './Artists.css';
 
 import PlaylistDisplay from '../PlaylistDisplay/PlaylistDisplay';
 import Header from '../../Components/Header/Header';
 
 import { withRouter } from "react-router-dom";
+import { ContextStore } from '../../Context/MainContext';
 
 const Artists = ({ artists, addToCurrentPlaylist, history }) => {
+
+  const context = useContext(ContextStore);
 
   const [expand, toggleExpand] = useState({
     expanded: false,

@@ -6,6 +6,8 @@ import SpotifyApi from '../../util/Spotify';
 import TrackList from '../../Components/TrackList/TrackList';
 import Button from '../../Components/Buttons/Button/Button';
 
+import { ContextStore } from '../../Context/MainContext';
+
 class NewPlaylist extends PureComponent {
   constructor(props){
     super(props);
@@ -15,11 +17,13 @@ class NewPlaylist extends PureComponent {
     }
   }
 
+  static contextType = ContextStore; 
+
   savePlayList = () => {
-    const { playlist } = this.props;
+    const { newPlaylist } = this.context;
     const { playlistName } = this.state;
-    if (playlist.length > 0 && playlistName.length > 0) {
-      const playlistUris = playlist.map(track => track.uri);
+    if (newPlaylist.length > 0 && playlistName.length > 0) {
+      const playlistUris = newPlaylist.map(track => track.uri);
       SpotifyApi.sendPlayList(playlistName, playlistUris);
     }
   }
@@ -29,14 +33,14 @@ class NewPlaylist extends PureComponent {
   }
 
   render() {
-    const { playlist, deleteTrack } = this.props;
+    const { newPlaylist, deleteTrack } = this.context;
     return(
       <div className="Playlist">
         <input
           onChange={this.handleChange}
           placeholder="Playlist"/>
         <TrackList 
-          tracklist={playlist}
+          tracklist={newPlaylist}
           trackAction={deleteTrack}
           inPlaylist
         />
