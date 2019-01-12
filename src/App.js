@@ -29,7 +29,10 @@ class App extends PureComponent {
   render() {
     return (
       <div className="App">
-        <SearchBar />
+        <SearchBar 
+          history={this.props.history} //temp  <----    workaround
+          location={this.props.location} //temp <----  
+        />
         <Navbar />
         <Main
           history={this.props.history} //temp  <----    workaround
