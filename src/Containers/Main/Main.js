@@ -20,17 +20,6 @@ class Main extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = {
-      searchTerm: '',
-      playlists: [],
-      artists: [],
-      albums: [],
-      tracks: [],
-      newPlaylist: [],
-      currentPlaylist: [],
-      offset: 50
-    }
-
     this.scrollHeight = 200;
     this.offset = 50;
   }
@@ -44,23 +33,8 @@ class Main extends PureComponent {
     };
   }
 
-  addToNewPlaylist = (track, trackIndex = 0) => {
-    const tracks = this.state.newPlaylist.filter(element => element.id !== track.id);
-    tracks.splice(trackIndex, 0, track);
-    this.setState({ newPlaylist: tracks });
-  }
-
-  addToCurrentPlaylist = (tracks) => {
-    this.setState({ currentPlaylist: tracks });
-  }
-
-  deleteTrack = (track) => {
-    const tracks = this.state.newPlaylist.filter(element => element.id !== track.id);
-    this.setState({ newPlaylist: tracks });
-  }
-
   loadOnScroll = (e) => {
-    const { searchTerm } =  this.props.results;
+    const { searchTerm, searchMore } =  this.context;
     const search = this.props.location.pathname.split('/')[1];
     const route = this.props.location.pathname.split('/')[2];
 
@@ -69,37 +43,21 @@ class Main extends PureComponent {
       this.offset += 50;
 
       SpotifyApi.nextResults(searchTerm, this.offset, route).then((results) => {
-        this.props.searchMore(results, route);
+        searchMore(results, route);
       })
      }
   }
 
   render() {
-    const { playlists, artists, albums, tracks } = this.props.results;    
     return(
       <div className="Main" onScroll={this.loadOnScroll} >
         <Switch>
           <Route path="/search" render={() => (
             <SearchResults>
-              <Playlists
-                playlists={playlists}
-                addToCurrentPlaylist={this.addToCurrentPlaylist}
-                key={1}
-               />
-              <ResultsTracklist
-                tracklist={tracks}
-                addToPlaylist={this.addToNewPlaylist}
-                key={2}
-                />
-              <Albumslist
-                albums={albums}
-                addToCurrentPlaylist={this.addToCurrentPlaylist}
-                key={3}
-              />
-            <Artists
-              artists={artists}
-              key={4}
-            />
+              <Playlists key={1} />
+              <ResultsTracklist key={2} />
+              <Albumslist key={3} />
+            <Artists key={4}  />
             </SearchResults>
           )}/>
           <Route path="/currentPlaylist" render={() => this.props.children[0]} />
