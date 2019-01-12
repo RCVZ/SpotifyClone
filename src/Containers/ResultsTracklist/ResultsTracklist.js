@@ -32,7 +32,7 @@ const ResultsTracklist = ({ tracklist, addToPlaylist, history }) => {
   return (
     <div className="ResultsTracklist" >
       <Header name={expand.state} buttonAction={handleToggleExpand}>Tracks</Header>
-      <TrackList trackAction={context.addToNewPlaylist} tracklist={tracklist.slice(0, expand.results)}  />
+      <TrackList trackAction={context.addToNewPlaylist} tracklist={context.tracks.slice(0, expand.results)}  />
     </div>
   );
 }
