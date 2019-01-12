@@ -4,10 +4,9 @@ import './Artists.css';
 import PlaylistDisplay from '../PlaylistDisplay/PlaylistDisplay';
 import Header from '../../Components/Header/Header';
 
-import { withRouter } from "react-router-dom";
 import { ContextStore } from '../../Context/MainContext';
 
-const Artists = ({ artists, addToCurrentPlaylist, history }) => {
+const Artists = ({ addToCurrentPlaylist, history }) => {
 
   const context = useContext(ContextStore);
 
@@ -37,4 +36,4 @@ const Artists = ({ artists, addToCurrentPlaylist, history }) => {
   );
 }
 
-export default withRouter(Artists);
+export default Artists;

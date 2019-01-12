@@ -37,4 +37,4 @@ const ResultsTracklist = ({ tracklist, addToPlaylist, history }) => {
   );
 }
 
-export default withRouter(ResultsTracklist);
+export default ResultsTracklist;

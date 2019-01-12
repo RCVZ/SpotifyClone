@@ -4,10 +4,9 @@ import './Albumslist.css';
 import PlaylistDisplay from '../PlaylistDisplay/PlaylistDisplay';
 import Header from '../../Components/Header/Header';
 
-import { withRouter } from "react-router-dom";
 import { ContextStore } from '../../Context/MainContext';
 
-const Albumslist = ({ albums, addToCurrentPlaylist, history })  => {
+const Albumslist = ({ addToCurrentPlaylist, history })  => {
 
   const context = useContext(ContextStore);
 
@@ -21,7 +20,7 @@ const Albumslist = ({ albums, addToCurrentPlaylist, history })  => {
     toggleExpand(() => {
       if (history.location.pathname === '/search/albums') {
         history.push('/search')
-        return { expanded: false, state: 'More', results: 4 }
+        return { expanded: false, state: 'More', results: 3 }
       } else {
         history.push('/search/albums')
         return { expanded: true, state: 'Less', results: Infinity }
@@ -36,4 +35,4 @@ const Albumslist = ({ albums, addToCurrentPlaylist, history })  => {
   );
 }
 
-export default withRouter(Albumslist);
+export default Albumslist;

@@ -13,7 +13,6 @@ import UserPlaylists from './Containers/UserPlaylists/UserPlaylists';
 import SpotifyApi from './util/Spotify';
 
 import { withRouter } from "react-router-dom";
-import { MainContext } from './Context/MainContext';
 
 class App extends PureComponent {
   constructor(props) {
@@ -29,22 +28,20 @@ class App extends PureComponent {
 
   render() {
     return (
-      <MainContext>
-        <div className="App">
-          <SearchBar />
-          <Navbar />
-          <Main 
-            history={this.props.history} //temp  <----    workaround
-            location={this.props.location} //temp <----  
-          >
+      <div className="App">
+        <SearchBar />
+        <Navbar />
+        <Main
+          history={this.props.history} //temp  <----    workaround
+          location={this.props.location} //temp <----  
+        >
           <CurrentPlaylist />
           <NewPlaylist />
           <Library />
           <UserPlaylists />
-          </Main>
-          <Player />
-        </div>
-      </MainContext>
+        </Main>
+        <Player />
+      </div>
     );
   }
 }
