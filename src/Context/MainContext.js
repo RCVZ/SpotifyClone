@@ -15,7 +15,6 @@ export class MainContext extends Component {
       tracks: [],
       newPlaylist: [],
       currentPlaylist: [],
-      offset: 50,
       addToNewPlaylist: this.addToNewPlaylist,
       addToCurrentPlaylist: this.addToCurrentPlaylist,
       deleteTrack: this.deleteTrack,

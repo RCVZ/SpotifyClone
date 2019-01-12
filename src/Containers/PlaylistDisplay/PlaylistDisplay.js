@@ -2,14 +2,13 @@ import React, { useContext } from 'react';
 import './PlaylistDisplay.css';
 
 import SpotifyApi from '../../util/Spotify';
-
 import Card from '../../Components/Card/Card';
 
 import { ContextStore } from '../../Context/MainContext';
 
 const PlaylistDisplay = ({ playlists, traverse, albums, libary }) => {
 
-  const context = useContext(ContextStore)
+  const context = useContext(ContextStore);  
 
   const handleOnclick = (key, playlist) => {
     let images = playlist.images //<======== temp
