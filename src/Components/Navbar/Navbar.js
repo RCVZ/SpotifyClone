@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import './Navbar.css';
 
-import { withRouter, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faAlignJustify, faListUl, faPlusSquare, faTh } from '@fortawesome/free-solid-svg-icons';
@@ -22,4 +22,4 @@ class Navbar extends PureComponent {
   }
 }
 
-export default withRouter(Navbar);
+export default Navbar;
