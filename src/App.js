@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+
 import './App.css';
 
 import SearchBar from './Containers/SearchBar/SearchBar';
@@ -14,21 +15,9 @@ import SpotifyApi from './util/Spotify';
 import { withRouter } from "react-router-dom";
 import { MainContext } from './Context/MainContext';
 
-
 class App extends PureComponent {
   constructor(props) {
     super(props);
-
-    this.state = {
-      searchTerm: '',
-      playlists: [],
-      artists: [],
-      albums: [],
-      tracks: [],
-      newPlaylist: [],
-      currentPlaylist: [],
-      offset: 50
-    }
 
     this.scrollHeight = 200;
     this.offset = 50;
@@ -38,49 +27,22 @@ class App extends PureComponent {
     SpotifyApi.getAccesToken();
   }
 
-  searchSpotify = (searchTerm) => {
-    SpotifyApi.fullSearch(searchTerm).then((results) => {
-      const { playlists, artists, albums, tracks } = results;
-      this.setState({
-        searchTerm: searchTerm,
-        playlists: playlists,
-        artists: artists,
-        albums: albums,
-        tracks: tracks
-      }, this.props.history.push('/search'))
-    })
-  }
-
-  searchMore = (newResults, route) => {  // temp
-    this.setState( state => {
-      return { [route]: [...state[route],...newResults] }
-   });
-  }
-
-
   render() {
-    const { currentPlaylist } = this.state;
     return (
       <MainContext>
         <div className="App">
-          <SearchBar search={this.searchSpotify} />
+          <SearchBar />
           <Navbar />
           <Main 
-            results={this.state} 
-            searchMore={this.searchMore} 
             history={this.props.history} //temp  <----    workaround
             location={this.props.location} //temp <----  
           >
-            <CurrentPlaylist playlist={currentPlaylist} />
-            <NewPlaylist
-              savePlayList={this.savePlayList}
-              playlist={this.state.newPlaylist}
-              deleteTrack={this.deleteTrack}
-            />
-            <Library addToCurrentPlaylist={this.addToCurrentPlaylist} />
-            <UserPlaylists addToCurrentPlaylist={this.addToCurrentPlaylist} />
+          <CurrentPlaylist />
+          <NewPlaylist />
+          <Library />
+          <UserPlaylists />
           </Main>
-          <Player currentPlaylist={currentPlaylist} />
+          <Player />
         </div>
       </MainContext>
     );
@@ -88,62 +50,3 @@ class App extends PureComponent {
 }
 
 export default withRouter(App);
-
-
- /*  <SearchResults>
-    <Playlists
-      playlists={playlists}
-      addToCurrentPlaylist={this.addToCurrentPlaylist}
-      key={1}
-    />
-    <ResultsTracklist
-      tracklist={tracks}
-      addToPlaylist={this.addToNewPlaylist}
-      key={2}
-    />
-    <Albumslist
-      albums={albums}
-      addToCurrentPlaylist={this.addToCurrentPlaylist}
-      key={3}
-    />
-    <Artists artists={artists}/>
-  </SearchResults>*/
-
-  // addToNewPlaylist = (track, trackIndex = 0) => {
-  //   const tracks = this.state.newPlaylist.filter(element => element.id !== track.id);
-  //   tracks.splice(trackIndex, 0, track);
-  //   this.setState({ newPlaylist: tracks });
-  // }
-  //
-  // addToCurrentPlaylist = (tracks) => {
-  //   this.setState({ currentPlaylist: tracks });
-  // }
-  //
-  // deleteTrack = (track) => {
-  //   const tracks = this.state.newPlaylist.filter(element => element.id !== track.id);
-  //   this.setState({ newPlaylist: tracks });
-  // }
-  //
-  // loadOnScroll = (e) => {
-  //   const { searchTerm } =  this.state;
-  //   const search = this.props.location.pathname.split('/')[1];
-  //   const route = this.props.location.pathname.split('/')[2];
-  //
-  //   if (this.scrollHeight <= e.target.scrollTop && search === 'search' ) {
-  //     this.scrollHeight += 2075;
-  //     this.offset += 50;
-  //
-  //     SpotifyApi.nextResults(searchTerm, this.offset, route).then((newResults) => {
-  //       this.setState( state => {
-  //         return { [route]: [...state[route],...newResults] }
-  //         })
-  //      })
-  //    }
-  // }
-
-
-  // import SearchResults from './Components/SearchResults/SearchResults';
-// import ResultsTracklist from './Containers/ResultsTracklist/ResultsTracklist';
-// import Albumslist from './Containers/Albumslist/Albumslist';
-// import Artists from './Containers/Artists/Artists';
-// import Playlists from './Containers/Playlists/Playlists';

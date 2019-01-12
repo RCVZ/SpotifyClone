@@ -6,6 +6,12 @@ import registerServiceWorker from './registerServiceWorker';
 import { BrowserRouter } from "react-router-dom";
 
 
+// if (process.env.NODE_ENV !== 'production') {
+//   const { whyDidYouUpdate } = require('why-did-you-update')
+//   whyDidYouUpdate(React)
+// }
+
+
 ReactDOM.render(
   <BrowserRouter>
     <App />
