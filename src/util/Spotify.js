@@ -226,18 +226,30 @@ const SpotifyApi = {
     }
   },
 
-  async playTrack(uri, uris=0) {
+  async playTrack(postion, uris=[''], type = 'track') {
+    
     const access = SpotifyApi.getAccesToken();
     const authorization = {Authorization: `Bearer ${access}`};
+
+    let body;
+
+    if (type === 'playlist' || type === 'album' || type === 'artist') {
+      body = {
+        "context_uri": uris,
+        "offset": { "postion": postion }
+      }
+    } else {
+      body = {
+        "uris": uris,
+        "offset": { "uri": postion }
+      }
+    }
 
     try {
       const response = await fetch('https://api.spotify.com/v1/me/player/play', {
         method: "PUT",
         headers: authorization,
-        body: JSON.stringify({
-          "uris": uris ,
-          "offset": {"uri": uri }
-        })
+        body: JSON.stringify({body})
       });
       if (response.ok) {
         const jsonResponse = await response.json();
