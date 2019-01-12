@@ -20,7 +20,7 @@ class Main extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.scrollHeight = 200;
+    this.scrollHeight = 300;
     this.offset = 50;
   }
 
@@ -29,7 +29,7 @@ class Main extends PureComponent {
   componentDidUpdate() {
     if (this.props.history.location.pathname === '/search') {
       this.offset = 50;
-      this.scrollHeight = 200;
+      this.scrollHeight = 300;
     };
   }
 
@@ -52,12 +52,12 @@ class Main extends PureComponent {
     return(
       <div className="Main" onScroll={this.loadOnScroll} >
         <Switch>
-          <Route path="/search" render={() => (
+          <Route path="/search" render={(props) => (
             <SearchResults>
-              <Playlists key={1} />
-              <ResultsTracklist key={2} />
-              <Albumslist key={3} />
-            <Artists key={4}  />
+              <Playlists key={1} {...props}/>
+              <ResultsTracklist key={2} {...props}/>
+              <Albumslist key={3} {...props}/>
+              <Artists key={4}  {...props}/>
             </SearchResults>
           )}/>
           <Route path="/currentPlaylist" render={() => this.props.children[0]} />
