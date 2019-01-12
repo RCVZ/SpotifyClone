@@ -12,17 +12,14 @@ import { ContextStore } from '../../Context/MainContext';
 
 
 class SearchBar extends PureComponent {
-  constructor(props){
-    super(props);
-
-    this.delay = null;
-  }
-
+  
   static contextType = ContextStore;
 
   handleSearchTerm = (e) => {
     let searchTerm = e.target.value;
-    this.context.updateState('searchTerm', searchTerm);
+    this.context.updateState('searchTerm', searchTerm)
+    clearTimeout(this.delay);
+    this.delay = setTimeout(this.context.searchSpotify(searchTerm), 16.7);
   }
 
   searchSpotify = (searchTerm) => {
