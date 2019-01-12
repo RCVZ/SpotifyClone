@@ -19,8 +19,9 @@ export class MainContext extends Component {
       addToNewPlaylist: this.addToNewPlaylist,
       addToCurrentPlaylist: this.addToCurrentPlaylist,
       deleteTrack: this.deleteTrack,
-      updateState: this.updateState
-
+      updateState: this.updateState,
+      searchSpotify: this.searchSpotify,
+      searchMore: this.searchMore
     }
 
     this.scrollHeight = 200;
@@ -45,7 +46,8 @@ export class MainContext extends Component {
         artists: artists,
         albums: albums,
         tracks: tracks
-      }, this.props.history.push('/search'))
+      } //, this.props.history.push('/search') temp
+      )
     })
   }
 
