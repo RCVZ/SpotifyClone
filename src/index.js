@@ -5,6 +5,8 @@ import registerServiceWorker from './registerServiceWorker';
 
 import { BrowserRouter } from "react-router-dom";
 
+import { MainContext } from './Context/MainContext';
+
 
 // if (process.env.NODE_ENV !== 'production') {
 //   const { whyDidYouUpdate } = require('why-did-you-update')
@@ -14,7 +16,9 @@ import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
   <BrowserRouter>
-    <App />
+    <MainContext>
+      <App />
+    </MainContext>
   </BrowserRouter>,
    document.getElementById('root'));
 registerServiceWorker();
