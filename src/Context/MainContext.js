@@ -58,10 +58,11 @@ export class MainContext extends Component {
   }
 
 
-  addToNewPlaylist = (track, trackIndex = 0) => {
+  addToNewPlaylist = (track, type = 'track', trackIndex = 0) => {
     this.setState((state) => {
       const tracks = state.newPlaylist.filter(element => element.id !== track.id); 
-      return { newPlaylist: [...tracks, track] }
+      const newItem = type === 'track' ? [...tracks, track] : [...tracks, ...track];
+      return { newPlaylist: newItem }
     });
   }
 

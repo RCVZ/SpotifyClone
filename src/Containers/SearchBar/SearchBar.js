@@ -1,17 +1,19 @@
 import React, { PureComponent } from 'react';
 import './SearchBar.css';
 
-import SpotifyApi from '../../util/Spotify';
-
 import { Link } from "react-router-dom";
+import { ContextStore } from '../../Context/MainContext';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
-import { ContextStore } from '../../Context/MainContext';
-
 
 class SearchBar extends PureComponent {
+  constructor(props){
+    super(props);
+
+    this.delay = null;
+  }
   
   static contextType = ContextStore;
 
@@ -19,21 +21,14 @@ class SearchBar extends PureComponent {
     let searchTerm = e.target.value;
     this.context.updateState('searchTerm', searchTerm)
     clearTimeout(this.delay);
-    this.delay = setTimeout(this.context.searchSpotify(searchTerm), 16.7);
+    this.delay = setTimeout(this.search(searchTerm), 16.7); // makes the results transition more natural delay is set to 60frames per second. can be improved by taking the time react/api takes to update/fetch into account.
   }
 
-  searchSpotify = (searchTerm) => {
-    SpotifyApi.fullSearch(searchTerm).then((results) => {
-      const { playlists, artists, albums, tracks } = results;
-      this.tracks = tracks;
-      this.setState({
-        searchTerm: searchTerm,
-        playlists: playlists,
-        artists: artists,
-        albums: albums,
-        tracks: tracks
-      }, this.props.history.push('/search'))
-    })
+  search = (searchTerm) => {
+    this.context.searchSpotify(searchTerm);
+    if (this.props.location.pathname === '/') { 
+      this.props.history.push('/search')
+    }
   }
 
   render() {

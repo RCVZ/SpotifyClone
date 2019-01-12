@@ -6,9 +6,6 @@ import Grid from '../../Components/Grid/Grid';
 
 import SpotifyApi from './../../util/Spotify';
 
-
-// can be made cleaner 
-
 class Library extends PureComponent {
   constructor(props) {
     super(props);
@@ -25,8 +22,7 @@ class Library extends PureComponent {
     })
   }
 
-  setNewPlaylist = (playlists) => {
-    console.log('set',playlists)
+  traverse = (playlists) => {
     if (this.state.istrackList === true) {
       this.props.addToCurrentPlaylist(playlists)
     } else {
@@ -37,12 +33,11 @@ class Library extends PureComponent {
 
   render() {
     const { playlists } = this.state;
-    //const { addToCurrentPlaylist } = this.props;
     return (
       <Grid>
         <PlaylistDisplay
           playlists={playlists}
-          addToCurrentPlaylist={this.setNewPlaylist}
+          traverse={this.traverse}
           libary
         />
       </Grid>
