@@ -3,7 +3,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(3, 0, 51);
+  background-color: #100e17;
+  /* background-color: rgb(3, 0, 51); */
   height: 100px;
   width: 100%;
   padding: 0 2rem;
