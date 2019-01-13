@@ -45,8 +45,7 @@ export class MainContext extends Component {
         artists: artists,
         albums: albums,
         tracks: tracks
-      } //, this.props.history.push('/search') temp
-      )
+      })
     })
   }
 
