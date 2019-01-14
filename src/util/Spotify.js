@@ -37,7 +37,7 @@ const SpotifyApi = {
         const jsonResponse = await response.json();
         userId = jsonResponse.id;
         return userId;
-      }
+      } 
     }
     catch(error) {
       console.log(error);
@@ -55,6 +55,8 @@ const SpotifyApi = {
       if (response.ok) {
         const playlists = await response.json();
         return playlists.playlists.items;
+      } else {
+        return []
       }
     }
     catch (error) {
@@ -73,6 +75,8 @@ const SpotifyApi = {
       if (response.ok) {
         const artists = await response.json();
         return artists.artists.items;
+      } else {
+        return []
       }
     }
     catch (error) {
@@ -92,6 +96,8 @@ const SpotifyApi = {
       if (response.ok) {
         const albums = await response.json();
         return albums.albums.items;
+      } else {
+        return []
       }
     }
     catch (error) {
@@ -111,6 +117,8 @@ const SpotifyApi = {
       if (response.ok) {
         const tracks = await response.json();
         return tracks.tracks.items;
+      } else {
+        return []
       }
     }
     catch (error) {
