@@ -32,12 +32,14 @@ class Library extends PureComponent {
 
 
   render() {
-    const { playlists } = this.state;
+    const { playlists, istrackList } = this.state;
     return (
       <Grid>
         <PlaylistDisplay
           playlists={playlists}
           traverse={this.traverse}
+          history={this.props.history}
+          istrackList={istrackList}
           libary
         />
       </Grid>
