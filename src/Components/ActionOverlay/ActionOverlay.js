@@ -5,9 +5,9 @@ import PlayButton from '../Buttons/PlayButton/PlayButton';
 import AddButton from '../Buttons/AddButton/AddButton';
 import DeleteButton from '../Buttons/DeleteButton/DeleteButton';
 
-const ActionOverlay = ({ trackAction, onPlayClick, inPlaylist, playlist }) => {
+const ActionOverlay = ({ trackAction, onPlayClick, inPlaylist, playlist, clickOnOverlay }) => {
   return (
-    <div className={`Action-Overlay ${playlist === "artist" ? "artist" : null}`}>
+    <div className={`Action-Overlay ${playlist === "artist" ? "artist" : null}`} onClick={clickOnOverlay}>
       {inPlaylist ? <DeleteButton onDelete={trackAction} /> : <AddButton onAdd={trackAction} />}
       <PlayButton onPlayClick={onPlayClick}/>
     </div>
