@@ -8,10 +8,11 @@ import { ContextStore } from '../../Context/MainContext';
 
 const PlaylistDisplay = ({ playlists, traverse, albums, libary }) => {
 
-  const context = useContext(ContextStore);  
+  const context = useContext(ContextStore); 
 
   const handleOnclick = (key, playlist) => {
-    let images = playlist.images //<======== temp
+    console.log(playlist)  
+    let images = playlist.images 
     let newPlaylist = [];
     let secondPram = 'spotify';
 
@@ -19,7 +20,7 @@ const PlaylistDisplay = ({ playlists, traverse, albums, libary }) => {
       secondPram = 'spotifyAlbum';
       SpotifyApi.getPlaylist(key, secondPram).then((playlist) => {
         playlist.map((item) => {
-          item['album'] = { images }; //<======== temp
+          item['album'] = { images }; 
           return newPlaylist.push(item);
         });
         context.addToNewPlaylist(newPlaylist, 'tracklist')
