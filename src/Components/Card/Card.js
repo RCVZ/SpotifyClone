@@ -9,9 +9,22 @@ import ActionOverlay from '../ActionOverlay/ActionOverlay';
 const Card = ({ playlist, handleOnclick, id }) => {
 
   const onPlayClick = () => {
-    const uri = playlist.uri.split(':').slice(2).join(':');
-    SpotifyApi.playTrack('', uri);
+    let uri;
+    if (playlist.uri.includes('user')) {
+      playlist.uri.split(':').splice(1, 2).join(':');
+      uri = playlist.uri;
+    } else {
+      uri = playlist.uri.split(':').slice(2).join(':');
+    }
+    console.log(playlist.uri)
+    // const uri = playlist.uri.split(':').slice(2).join(':');
+    console.log(uri)
+    SpotifyApi.playTrack('1', uri, playlist.type);
   }
+
+  //spotify:user:1120095756:playlist:3ftnOdvI6GB3kTde5e8KgO
+  // spotify:user:1120095756:playlist:3ftnOdvI6GB3kTde5e8KgO
+   //spotify: playlist: 37i9dQZF1DWSBi5svWQ9Nk
 
   return (
     <div className={`Card ${playlist.type === "artist" ? "artist" : false}`}>
