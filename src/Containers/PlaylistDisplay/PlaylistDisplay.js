@@ -6,7 +6,7 @@ import Card from '../../Components/Card/Card';
 
 import { ContextStore } from '../../Context/MainContext';
 
-const PlaylistDisplay = ({ playlists, traverse, albums, libary }) => {
+const PlaylistDisplay = ({ playlists, traverse, albums, libary, history, istrackList }) => {
 
   const context = useContext(ContextStore); 
 
@@ -53,6 +53,8 @@ const PlaylistDisplay = ({ playlists, traverse, albums, libary }) => {
             id={playlist.id}
             key={playlist.id}
             handleOnclick={handleOnclick}
+            history={history}
+            istrackList={istrackList}
           />)
       })}
     </div>

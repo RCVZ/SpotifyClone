@@ -31,7 +31,11 @@ const Playlists = ({ addToCurrentPlaylist, history  }) => {
   return (
     <div className="Playlists" >
       <Header name={expand.state} buttonAction={handleToggleExpand}>Playlists</Header>
-      <PlaylistDisplay addToCurrentPlaylist={addToCurrentPlaylist} playlists={context.playlists.slice(0,expand.results)}/>
+      <PlaylistDisplay 
+        addToCurrentPlaylist={addToCurrentPlaylist} 
+        playlists={context.playlists.slice(0,expand.results)}
+        history={history}
+      />
     </div>
   );
 }

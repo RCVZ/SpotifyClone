@@ -2,10 +2,11 @@ import React, { PureComponent } from 'react';
 import './Main.css';
 
 import SearchResults from '../../Components/SearchResults/SearchResults';
-// import NewPlaylist from '../NewPlaylist/NewPlaylist';
-// import CurrentPlaylist from '../../Components/CurrentPlaylist/CurrentPlaylist';
-// import Library from '../Library/Library';
-// import UserPlaylists from '../UserPlaylists/UserPlaylists';
+import NewPlaylist from '../NewPlaylist/NewPlaylist';
+import CurrentPlaylist from '../../Components/CurrentPlaylist/CurrentPlaylist';
+import Library from '../Library/Library';
+import UserPlaylists from '../UserPlaylists/UserPlaylists';
+//import Playlist from '../../Components/Playlist/Playlist';
 import ResultsTracklist from '../ResultsTracklist/ResultsTracklist';
 import Albumslist from '../Albumslist/Albumslist';
 import Artists from '../Artists/Artists';
@@ -60,10 +61,13 @@ class Main extends PureComponent {
               <Artists key={4}  {...props}/>
             </SearchResults>
           )}/>
-          <Route path="/currentPlaylist" render={() => this.props.children[0]} />
-          <Route path="/newPlaylist" render={() => this.props.children[1]} />
-          <Route path="/library" render={() => this.props.children[2]} />
-          <Route path="/userPlaylists" render={() => this.props.children[3]} />
+          <Route path="/currentPlaylist" render={(props) => <CurrentPlaylist {...props} />} />
+          <Route path="/newPlaylist" render={(props) => <NewPlaylist {...props} />} />
+          <Route path="/library" render={(props) => <Library {...props} />} />
+          <Route path="/userPlaylists" render={(props) => <UserPlaylists {...props} />} />
+          <Route path="/userPlaylists" render={(props) => (
+            <ResultsTracklist key={2} {...props} fromPlaylist/>
+          )} />
         </Switch>
       </div>
     );
@@ -72,3 +76,8 @@ class Main extends PureComponent {
 
 
 export default Main;
+
+
+
+
+
