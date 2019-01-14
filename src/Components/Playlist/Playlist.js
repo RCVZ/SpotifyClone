@@ -1,18 +1,19 @@
-import React, { PureComponent } from 'react';
-import './Playlist.css';
+import React,{ useContext } from 'react';
+//import './Playlist.css';
 
-import PlaylistDisplay from '../PlaylistDisplay/PlaylistDisplay';
+import TrackList from '../TrackList/TrackList';
 
-class Playlist extends PureComponent {
+const context = useContext;
 
-  render() {
-    const { results, addToCurrentPlaylist } = this.props;
-    return (
-      <div className="Playlist" >
-        <PlaylistDisplay addToCurrentPlaylist={addToCurrentPlaylist} playlists={results.albums} albums />
-      </div>
+const Playlist = ({ trackAction }) => {
+  return(
+    <div className="Playlist" >
+      <TrackList 
+        tracklist={context.tracklist} 
+        trackAction={trackAction}
+      />
+    </div>
     );
-  }
 }
 
 
