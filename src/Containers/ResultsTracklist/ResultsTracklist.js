@@ -4,17 +4,16 @@ import './ResultsTracklist.css';
 import TrackList from '../../Components/TrackList/TrackList';
 import Header from '../../Components/Header/Header';
 
-import { withRouter } from "react-router-dom";
 import { ContextStore } from '../../Context/MainContext';
 
-const ResultsTracklist = ({ tracklist, addToPlaylist, history }) => {
+const ResultsTracklist = ({ history, fromPlaylist }) => {
 
   const context = useContext(ContextStore);
 
   const [expand, toggleExpand] = useState({
     expanded: false,
     state: 'More',
-    results: 4
+    results: fromPlaylist ? Infinity : 4 
   });
 
   const handleToggleExpand = () => {
