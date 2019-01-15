@@ -4,7 +4,7 @@ import './Card.css';
 import SpotifyApi from '../../util/Spotify';
 
 import Text from '../Text/Text';
-import ActionOverlay from '../ActionOverlay/ActionOverlay';
+import ActionOverlay, { ActionOverlayOpen } from '../ActionOverlay/ActionOverlay';
 
 import { ContextStore } from '../../Context/MainContext';
 
@@ -26,15 +26,14 @@ const Card = ({ playlist, handleOnclick, id, history, istrackList }) => {
   }
 
   const clickOnOverlay = () => {
+    let newPlaylist = [];
+
     if (!istrackList) {
       return handleOnclick(playlist.id, playlist);
     }
-    let newPlaylist =[];
+    
     SpotifyApi.getPlaylist(playlist.id, 'spotify').then((tracklist) => {
-      tracklist.map((playlist) => {
-        return newPlaylist.push(playlist.track);
-      })
-      console.log(newPlaylist)
+      tracklist.map((playlist) => newPlaylist.push(playlist.track));
       context.updateState('tracks', newPlaylist);
       history.push('/search/tracks')
     })
@@ -42,17 +41,18 @@ const Card = ({ playlist, handleOnclick, id, history, istrackList }) => {
 
 
   return (
-    <div className={`Card ${playlist.type === "artist" ? "artist" : "playlist"}`}>
+    <div className={`Card ${playlist.type === "artist" ? "artist" : "playlist"}`}  >
       <div className={`Card-Img ${playlist.type === "artist" ? "artist" : "playlist"}`} >
-        {playlist.images[0] ? <img src={playlist.images[0].url} alt="img" /> : "loading"}
+        {playlist.images[0] ? <img src={playlist.images[0].url} alt="img" /> : ""}
       </div>
       <Text name={playlist.name} />
-      <ActionOverlay 
-        trackAction={() => handleOnclick(id, playlist)} 
-        playlist={ playlist.type === "artist" ? "artist" : null }
+      {istrackList ? 
+      <ActionOverlay
+        trackAction={() => handleOnclick(id, playlist)}
+        playlist={playlist.type === "artist" ? "artist" : null}
         onPlayClick={onPlayClick}
         clickOnOverlay={clickOnOverlay}
-      />
+        /> : <ActionOverlayOpen onOpen={() => handleOnclick(id, playlist)} /> }
     </div>
   )
 }
