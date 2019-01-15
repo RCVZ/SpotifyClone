@@ -51,11 +51,6 @@
   margin: 0 0.22rem;
 }
 
-.Track-info .Track:hover {
-  box-shadow: none;
-  transform: none;
-}
-
 .Track-Bar {
   width: 80%;
   margin: 0 10px;
