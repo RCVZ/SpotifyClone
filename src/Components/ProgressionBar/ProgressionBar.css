@@ -9,7 +9,7 @@
 
 .Bar {
   height: 3px;
-  background-color: yellow;
+  background-color: rgb(27, 255, 19);
   width: 100%;
   opacity: 0.5;
   appearance: none;
@@ -34,7 +34,7 @@ input[type=range]::-webkit-slider-thumb {
 .progression {
   position: absolute;
   height: 4px;
-  background-color: yellow;
+  background-color: rgb(27, 255, 19);
   border-radius: 10px;
   z-index: 1;
 }
