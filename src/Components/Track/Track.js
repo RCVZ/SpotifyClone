@@ -24,14 +24,18 @@ class Track extends PureComponent {
         <div className="Track-information">
           <div className="Album-img" >
             {album.images[2] ? 
-              <img src={album.images[2].url} alt="album" /> :
+              <img className="shadow" src={album.images[2].url} alt="album" /> :
               null
             }            
           </div> 
           <div className="Track-name">
-            <Text name={name} artist={artists[0].name} />
+            <Text 
+              name={name} 
+              artist={artists[0].name} 
+              shadow={'0 15px 40px 1px rgba(0,0,0,0.30)' }
+            />
           </div>  
-          <Time ms={duration_ms} />          
+          <Time className="shadow" ms={duration_ms} />          
         </div>    
         <ActionOverlay trackAction={this.handleTrackAction} onPlayClick={this.handlePlay} inPlaylist={this.props.inPlaylist}/>   
       </div> 
