@@ -19,6 +19,12 @@ a.LinkButton  {
   color: white;
 }
 
-a.active.LinkButton {
+a {
+  color: white;
+}
+
+.active {
   color: rgb(247, 9, 9);
 }
+
+
