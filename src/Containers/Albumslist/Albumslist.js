@@ -33,6 +33,7 @@ const Albumslist = ({ addToCurrentPlaylist, history })  => {
       <PlaylistDisplay 
         addToCurrentPlaylist={addToCurrentPlaylist} 
         playlists={context.albums.slice(0, expand.results)} 
+        istrackList
         albums 
       />
     </div>

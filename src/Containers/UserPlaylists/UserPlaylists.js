@@ -29,6 +29,7 @@ class UserPlaylists extends PureComponent {
           playlists={userPlaylists} 
           addToCurrentPlaylist={addToCurrentPlaylist}
           history={history}
+          istrackList
         />
       </Grid>
     );

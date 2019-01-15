@@ -35,6 +35,7 @@ const Playlists = ({ addToCurrentPlaylist, history  }) => {
         addToCurrentPlaylist={addToCurrentPlaylist} 
         playlists={context.playlists.slice(0,expand.results)}
         history={history}
+        istrackList
       />
     </div>
   );
