@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import './Player.css';
 
 import ProgressionBar from '../../Components/ProgressionBar/ProgressionBar';
-import Track from '../../Components/Track/Track';
+import Text from '../../Components/Text/Text';
 import Time from '../../Components/Time/Time';
 import PlayButton from '../../Components/Buttons/PlayButton/PlayButton';
 import PauseButton from '../../Components/Buttons/PauseButton/PauseButton';
@@ -80,6 +80,7 @@ class Player extends PureComponent {
       const artistName = current_track.artists.map(artist => artist.name).join(", ");
       const playing = !state.paused;
       const duration = current_track.duration_ms;
+      console.log(state)
       this.setState({
         currentTrack: current_track,
         duration: duration,
@@ -144,11 +145,17 @@ class Player extends PureComponent {
   }
 
   render() {
+    console.log()
     const { playing, currentTrack, volume, duration, position, artistName, trackName, showPlaylist } = this.state;
     return(
       <div className="Player">
         <div className="Track-info">
-          {this.state.playing ? <Track track={currentTrack} /> : <p>{artistName}: {trackName}</p>   }
+          <Text track={currentTrack} 
+            name={trackName} 
+            artist={artistName}
+            textSize={'16px'}
+            overfl={'visible'}
+          />
         </div>
         <div className="Control">
           <div className="Player-buttons">
