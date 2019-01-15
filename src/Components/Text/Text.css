@@ -9,6 +9,7 @@
   width: 130px;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-shadow: 4px 4px 8px #000000;
 }
 
 p:last-child {
