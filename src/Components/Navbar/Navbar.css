@@ -1,7 +1,7 @@
 .Navbar-wrapper {
   grid-area: Navbar;
   height: 100%;
-  background-color: rgb(9, 99, 10);
+  background-color: #003809;
   /* background-color: rgb(0, 8, 33); */
 }
 
@@ -13,7 +13,7 @@
   margin: 9rem 0 auto 1rem;
 }
 
-a.LinkButton  {
+a {
   text-decoration: none;
   text-align: left;
   color: white;
@@ -24,7 +24,7 @@ a {
 }
 
 .active {
-  color: rgb(247, 9, 9);
+  color: rgb(27, 255, 19);
 }
 
 
