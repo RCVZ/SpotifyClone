@@ -34,7 +34,7 @@ class Player extends PureComponent {
       duration: 0,
       volume: 0,
       mute: false,
-      showPlaylist: 'hidden',
+      showPlaylist: 'hidden'
     }
 
     this.playerCheckInterval = null;
@@ -160,13 +160,14 @@ class Player extends PureComponent {
             {!playing ? <PlayButton onPlayClick={this.onPlayClick} /> : <PauseButton onPlayClick={this.onPlayClick} />}
             <ForwardButton onForward={this.onNextClick} />
           </div>
+          { playing ?
           <TrackProgression 
             player={this.player}
             playing={playing}
             duration={duration} 
             sliderAction={this.onSeek} 
             handleMouseUp={this.handleMouseUp} 
-          />
+          /> : null}
         </div>
         <div className="Control-Leftside">
           <div className="Current-Playlist-Container" style={{ visibility: showPlaylist }}>
