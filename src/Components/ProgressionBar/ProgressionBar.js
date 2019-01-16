@@ -6,7 +6,7 @@ const ProgressionBar = ({ currentPostion, sliderAction, maxValue, handleMouseUp 
     <div className="Bar-container">
       <input className="Bar" 
         onMouseUp={handleMouseUp}
-        onChange={(e) => sliderAction(e)} 
+        onChange={sliderAction} 
         step='1' 
         type="range" 
         min="1" 
