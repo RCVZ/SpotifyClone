@@ -16,15 +16,11 @@
 a {
   text-decoration: none;
   text-align: left;
-  color: white;
-}
-
-a {
-  color: white;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .active {
-  color: rgb(27, 255, 19);
+  color: rgb(255, 255, 255);
 }
 
 
