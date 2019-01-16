@@ -37,7 +37,7 @@ const SpotifyApi = {
         const jsonResponse = await response.json();
         userId = jsonResponse.id;
         return userId;
-      } 
+      }
     }
     catch(error) {
       console.log(error);
@@ -235,7 +235,7 @@ const SpotifyApi = {
   },
 
   async playTrack(position = 1, uris=[''], type = 'track') {
-    
+
     const access = SpotifyApi.getAccesToken();
     const authorization = {Authorization: `Bearer ${access}`};
 

@@ -7,8 +7,16 @@ import DeleteButton from '../Buttons/DeleteButton/DeleteButton';
 import OpenButton from '../Buttons/OpenButton/OpenButton';
 
 const ActionOverlay = ({ trackAction, onPlayClick, inPlaylist, playlist, clickOnOverlay }) => {
+
+  let className;
+  if (playlist === "artist" ) {
+    className = "Action-Overlay artist"
+  } else {
+    className = "Action-Overlay"
+  }
+
   return (
-    <div className={`Action-Overlay ${playlist === "artist" ? "artist" : "playlist"}`} onClick={clickOnOverlay}>
+    <div className={className} onClick={clickOnOverlay}>
       {inPlaylist ? <DeleteButton onDelete={trackAction} /> : <AddButton onAdd={trackAction} />}
       <PlayButton onPlayClick={onPlayClick}/>
     </div>

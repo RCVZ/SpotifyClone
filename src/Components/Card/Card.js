@@ -31,7 +31,7 @@ const Card = ({ playlist, handleOnclick, id, history, istrackList }) => {
     if (!istrackList) {
       return handleOnclick(playlist.id, playlist);
     }
-    
+
     SpotifyApi.getPlaylist(playlist.id, 'spotify').then((tracklist) => {
       tracklist.map((playlist) => newPlaylist.push(playlist.track));
       context.updateState('tracks', newPlaylist);
@@ -41,12 +41,12 @@ const Card = ({ playlist, handleOnclick, id, history, istrackList }) => {
 
 
   return (
-    <div className={`Card ${playlist.type === "artist" ? "artist" : "playlist"}`}  >
-      <div className={`Card-Img ${playlist.type === "artist" ? "artist" : "playlist"}`} >
+    <div className={`Card ${playlist.type}`}  >
+      <div className={`Card-Img ${playlist.type}`} >
         {playlist.images[0] ? <img src={playlist.images[0].url} alt="img" /> : ""}
       </div>
       <Text name={playlist.name} />
-      {istrackList ? 
+      {istrackList ?
       <ActionOverlay
         trackAction={() => handleOnclick(id, playlist)}
         playlist={playlist.type === "artist" ? "artist" : null}
