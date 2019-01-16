@@ -18,7 +18,7 @@ const SpotifyApi = {
       window.history.pushState('Access Token', null, '/');
       return userAccesToken;
     } else {
-      const authorizeUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&redirect_uri=http://localhost:3000/&scope=playlist-modify-public%20playlist-modify-private%20streaming%20user-read-birthdate%20user-read-email%20user-read-private&response_type=token`;
+      const authorizeUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&redirect_uri=http://localhost:3000/&scope=playlist-modify-public%20playlist-modify-private%20streaming%20user-read-birthdate%20user-read-email%20user-read-private%20user-read-currently-playing%20user-read-playback-state&response_type=token`;
       window.location = authorizeUrl;
     }
   },

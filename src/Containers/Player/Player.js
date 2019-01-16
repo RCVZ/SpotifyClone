@@ -3,7 +3,7 @@ import './Player.css';
 
 import ProgressionBar from '../../Components/ProgressionBar/ProgressionBar';
 import Text from '../../Components/Text/Text';
-import Time from '../../Components/Time/Time';
+// import Time from '../../Components/Time/Time';
 import PlayButton from '../../Components/Buttons/PlayButton/PlayButton';
 import PauseButton from '../../Components/Buttons/PauseButton/PauseButton';
 import ForwardButton from '../../Components/Buttons/ForwardButton/ForwardButton';
@@ -54,7 +54,6 @@ class Player extends PureComponent {
       this.player = new window.Spotify.Player({ name: "SpotifyClone", getOAuthToken: cb => { cb(token) } });
       this.createEventHandlers();
       this.player.connect();
-      setTimeout( () => this.getPlayerStateTimer = setInterval(() => this.getPlayerCurrentstate(), 500), 1000)
     }
   }
 
@@ -89,7 +88,6 @@ class Player extends PureComponent {
         artistName: artistName,
         playing: playing
       });
-
       this.player.getVolume().then(volume => this.setState({ volume: volume * 100 }));
     }
   }
@@ -145,7 +143,7 @@ class Player extends PureComponent {
   }
 
   render() {
-    console.log()
+    //SpotifyApi.fetchSpotify('https://api.spotify.com/v1/me/player/currently-playing');
     const { playing, currentTrack, volume, duration, position, artistName, trackName, showPlaylist } = this.state;
     return(
       <div className="Player">
@@ -163,13 +161,13 @@ class Player extends PureComponent {
             {!playing ? <PlayButton onPlayClick={this.onPlayClick} /> : <PauseButton onPlayClick={this.onPlayClick} />}
             <ForwardButton onForward={this.onNextClick} />
           </div>
-          <TrackProgression >
-            <Time ms={position} />
-            <div className="Track-Bar">
-              <ProgressionBar currentPostion={position} sliderAction={this.onSeek} maxValue={duration} handleMouseUp={this.handleMouseUp} />
-            </div>
-            <Time ms={duration} />
-          </TrackProgression>
+          <TrackProgression 
+            player={this.player}
+            playing={playing}
+            duration={duration} 
+            sliderAction={this.onSeek} 
+            handleMouseUp={this.handleMouseUp} 
+          />
         </div>
         <div className="Control-Leftside">
           <div className="Current-Playlist-Container" style={{ visibility: showPlaylist }}>
