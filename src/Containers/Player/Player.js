@@ -3,7 +3,6 @@ import './Player.css';
 
 import ProgressionBar from '../../Components/ProgressionBar/ProgressionBar';
 import Text from '../../Components/Text/Text';
-// import Time from '../../Components/Time/Time';
 import PlayButton from '../../Components/Buttons/PlayButton/PlayButton';
 import PauseButton from '../../Components/Buttons/PauseButton/PauseButton';
 import ForwardButton from '../../Components/Buttons/ForwardButton/ForwardButton';
