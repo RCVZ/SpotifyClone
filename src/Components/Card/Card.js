@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import './Card.css';
 
 import SpotifyApi from '../../util/Spotify';
@@ -23,7 +23,7 @@ const Card = ({ playlist, handleOnclick, id, history, istrackList }) => {
     }
 
     SpotifyApi.playTrack('1', uri, playlist.type);
-    this.context.addToCurrentPlaylist(playlist)
+    context.addToCurrentPlaylist(playlist)
   }
 
   const clickOnOverlay = () => {

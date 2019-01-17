@@ -207,7 +207,7 @@ const SpotifyApi = {
   },
 
   async getPlaylist(playlistId='', playlist='user' ) {
-    const access = await SpotifyApi.getAccesToken();
+    const access = SpotifyApi.getAccesToken();
 
     const url = {
       user: `https://api.spotify.com/v1/me/playlists`,
