@@ -4,11 +4,10 @@ import './TrackProgression.css';
 import ProgressionBar from '../../Components/ProgressionBar/ProgressionBar';
 import Time from '../../Components/Time/Time';
 
-const TrackProgression = ({ playing, duration, player }) => {
+const TrackProgression = ({ playing, duration, player, basisPostion }) => {
 
-  let getPlayerStateTimer;
-
-  const [position, setPosition] = useState(0);
+  const [position, setPosition] = useState(() => basisPostion);
+  const [timer, setTimer] = useState(() => null);
 
   const getPlayerCurrentstate = useCallback(() => {
     player.getCurrentState()
@@ -19,28 +18,25 @@ const TrackProgression = ({ playing, duration, player }) => {
 
   useEffect(
     () => {
-      getPlayerStateTimer = setInterval( () => getPlayerCurrentstate(), 1000);
-      console.log('test')
+      setTimer(setInterval( () => getPlayerCurrentstate(), 500));
       return () => {
-        clearInterval(getPlayerStateTimer);
+        setTimer(clearInterval(timer));
       };
     },
     [playing],
   );
 
   const onSeek = (e) => {
-    clearInterval(getPlayerStateTimer);
+    setTimer(clearInterval(timer));
     setPosition(e.target.value);
   }
 
   const handleMouseUp = (e) => {
-    player.seek(position).then(() => {
-      getPlayerStateTimer = setInterval(() => getPlayerCurrentstate(), 1000);
+    player.seek(position)
+    .then(() => {
+      setTimer(setInterval(() => getPlayerCurrentstate(), 500));
     });
   }
-
-
-  console.log(getPlayerStateTimer, playing)
 
   return (
     <div className="Track-Progression" >

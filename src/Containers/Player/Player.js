@@ -161,7 +161,8 @@ class Player extends PureComponent {
             <ForwardButton onForward={this.onNextClick} />
           </div>
           { playing ?
-          <TrackProgression 
+          <TrackProgression
+            basisPostion={position}
             player={this.player}
             playing={playing}
             duration={duration} 
