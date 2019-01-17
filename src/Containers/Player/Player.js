@@ -34,7 +34,7 @@ class Player extends PureComponent {
       duration: 0,
       volume: 0,
       mute: false,
-      showPlaylist: 'hidden'
+      showPlaylist: false
     }
 
     this.playerCheckInterval = null;
@@ -78,7 +78,6 @@ class Player extends PureComponent {
       const artistName = current_track.artists.map(artist => artist.name).join(", ");
       const playing = !state.paused;
       const duration = current_track.duration_ms;
-      console.log(state)
       this.setState({
         currentTrack: current_track,
         duration: duration,
@@ -123,17 +122,14 @@ class Player extends PureComponent {
   }
 
   togglePlaylist = (e) => {
-    if (this.state.showPlaylist === 'hidden') {
-      this.setState({ showPlaylist: 'visible' });
-    } else {
-      this.setState({ showPlaylist: 'hidden' });
-    }
+    this.setState((state) => {
+      return { showPlaylist: !state.showPlaylist } 
+    });
   }
 
   render() {    
     //SpotifyApi.fetchSpotify('https://api.spotify.com/v1/me/player/currently-playing');
     const { playing, currentTrack, volume, duration, position, artistName, trackName, showPlaylist } = this.state;
-    console.log(playing)
     return(
       <div className="Player">
         <div className="Track-info">
@@ -158,9 +154,10 @@ class Player extends PureComponent {
           /> 
         </div>
         <div className="Control-Leftside">
-          <div className="Current-Playlist-Container" style={{ visibility: showPlaylist }}>
-            <CurrentPlaylist playlist={this.props.currentPlaylist} />
-          </div>
+          {showPlaylist ?
+            <div className="Current-Playlist-Container" >
+              <CurrentPlaylist playlist={this.props.currentPlaylist} />
+            </div> : null}
           <PlaylistButton togglePlaylist={this.togglePlaylist} />
           <div className="volume">
             <FontAwesomeIcon icon={faVolumeUp} size="sm" onClick={this.toggleMute} />
