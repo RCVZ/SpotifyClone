@@ -141,9 +141,10 @@ class Player extends PureComponent {
     }
   }
 
-  render() {
+  render() {    
     //SpotifyApi.fetchSpotify('https://api.spotify.com/v1/me/player/currently-playing');
     const { playing, currentTrack, volume, duration, position, artistName, trackName, showPlaylist } = this.state;
+    console.log(playing)
     return(
       <div className="Player">
         <div className="Track-info">
@@ -160,13 +161,12 @@ class Player extends PureComponent {
             {!playing ? <PlayButton onPlayClick={this.onPlayClick} /> : <PauseButton onPlayClick={this.onPlayClick} />}
             <ForwardButton onForward={this.onNextClick} />
           </div>
-          { playing ?
           <TrackProgression
             basisPostion={position}
             player={this.player}
             playing={playing}
             duration={duration}
-          /> : null}
+          /> 
         </div>
         <div className="Control-Leftside">
           <div className="Current-Playlist-Container" style={{ visibility: showPlaylist }}>
