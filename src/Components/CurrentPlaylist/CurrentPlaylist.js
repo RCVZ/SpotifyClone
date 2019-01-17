@@ -1,14 +1,17 @@
-import React, { PureComponent } from 'react';
+import React, { useContext} from 'react';
 import './CurrentPlaylist.css';
 
 import TrackList from '../TrackList/TrackList';
 
-class CurrentPlaylist extends PureComponent {
-  render() {
-    return (
-        <TrackList tracklist={[]} />    
-    );
-  }
+import { ContextStore } from '../../Context/MainContext';
+
+const CurrentPlaylist = () => {
+
+  const context = useContext(ContextStore)
+  
+  return (
+    <TrackList tracklist={context.currentPlaylist} />
+  );
 }
 
 export default CurrentPlaylist;
