@@ -6,6 +6,8 @@ import Time from '../../Components/Time/Time';
 
 const TrackProgression = ({ playing, duration, onSeek, handleMouseUp, player }) => {
 
+  let getPlayerStateTimer;
+
   const [position, setPosition] = useState(0);
 
   const getPlayerCurrentstate = useCallback(() => {
@@ -13,14 +15,22 @@ const TrackProgression = ({ playing, duration, onSeek, handleMouseUp, player }) 
     .then((state) => {
       setPosition(state.position)
     });
-  },[])  
+  },[])
 
   // const setTimer = useCallback( () => {
   //   playing ? getPlayerStateTimer = setInterval( getPlayerCurrentstate(), 1000) : clearInterval(getPlayerStateTimer);
-  // }, [playing]) 
+  // }, [playing])
 
-  useEffect(() =>  getPlayerCurrentstate());
-  
+  useEffect(
+    () => {
+      getPlayerStateTimer = setInterval( () => getPlayerCurrentstate(), 1000);
+      return () => {
+        clearInterval(getPlayerStateTimer);
+      };
+    },
+    [playing],
+  );
+
   return (
     <div className="Track-Progression" >
       <Time ms={position} />
