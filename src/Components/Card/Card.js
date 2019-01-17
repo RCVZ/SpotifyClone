@@ -23,6 +23,7 @@ const Card = ({ playlist, handleOnclick, id, history, istrackList }) => {
     }
 
     SpotifyApi.playTrack('1', uri, playlist.type);
+    this.context.addToCurrentPlaylist(playlist)
   }
 
   const clickOnOverlay = () => {

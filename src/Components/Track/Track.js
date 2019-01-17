@@ -6,11 +6,16 @@ import Text from '../Text/Text';
 import Time from '../Time/Time'; 
 import ActionOverlay from '../ActionOverlay/ActionOverlay';
 
+import { ContextStore } from '../../Context/MainContext';
+
 class Track extends PureComponent {
+
+  static contextType = ContextStore;
   
   handlePlay = (e) => {    
-    const urisList = this.props.getUrisList();
+    const [urisList, tracklist] = this.props.getUrisList();
     SpotifyApi.playTrack(this.props.track.uri, urisList);
+    this.context.addToCurrentPlaylist(tracklist)
   }
 
   handleTrackAction = (e) => {

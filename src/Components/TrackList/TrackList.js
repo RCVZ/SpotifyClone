@@ -7,10 +7,10 @@ import Grid from '../Grid/Grid';
 const TrackList = ({ trackAction, inPlaylist, tracklist }) => {
 
  const getUrisList = () => {
-    const newList = [];
-    tracklist.map((track) => newList.push(track.uri));
-    return newList;
-  }
+   const newList = [];
+   tracklist.map((track) => newList.push(track.uri));
+   return [newList, tracklist];
+ }
 
   return (
     <Grid>
