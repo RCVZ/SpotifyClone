@@ -112,17 +112,6 @@ class Player extends PureComponent {
     this.player.setVolume(volume/100).then(() => this.setState( { volume: volume } ));
   }
 
-  onSeek = (e) => {
-    clearInterval(this.getPlayerStateTimer);
-    this.setState({ position: e.target.value });
-  }
-
-  handleMouseUp = (e) => {
-    this.player.seek(this.state.position).then(() => {
-      this.getPlayerStateTimer = setInterval(() => this.getPlayerCurrentstate(), 100);
-    });
-  }
-
   toggleMute = (e) => {
     if (!this.state.mute) {
       this.player.setVolume(0);

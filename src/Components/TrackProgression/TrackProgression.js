@@ -10,11 +10,15 @@ const TrackProgression = ({ playing, duration, player, basisPostion }) => {
   const [timer, setTimer] = useState(() => null);
 
   const getPlayerCurrentstate = useCallback(() => {
-    if (!playing) {return}
+    if (!playing) {
+      return
+    }
+
     player.getCurrentState()
     .then((state) => {
       setPosition(state.position)
     });
+    
   }, [playing]);
 
   useEffect(
