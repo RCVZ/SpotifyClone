@@ -165,9 +165,7 @@ class Player extends PureComponent {
             basisPostion={position}
             player={this.player}
             playing={playing}
-            duration={duration} 
-            sliderAction={this.onSeek} 
-            handleMouseUp={this.handleMouseUp} 
+            duration={duration}
           /> : null}
         </div>
         <div className="Control-Leftside">
