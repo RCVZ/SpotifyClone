@@ -23,7 +23,11 @@ const TrackProgression = ({ playing, duration, player, basisPostion }) => {
 
   useEffect(
     () => {
-      setTimer(setInterval( () => getPlayerCurrentstate(), 500));
+      if (playing) {
+        setTimer(setInterval(() => getPlayerCurrentstate(), 500));
+      } else {
+        setTimer(clearInterval(timer));
+      }           
       return () => {
         setTimer(clearInterval(timer));
       };
