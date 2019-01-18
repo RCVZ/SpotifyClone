@@ -8,7 +8,7 @@ import ActionOverlay, { ActionOverlayOpen } from '../ActionOverlay/ActionOverlay
 
 import { ContextStore } from '../../Context/MainContext';
 
-const Card = ({ playlist, handleOnclick, id, history, istrackList }) => {
+const Card = ({ playlist, handleOnAdd, id, history, istrackList }) => {
 
   const context = useContext(ContextStore);
 
@@ -23,15 +23,14 @@ const Card = ({ playlist, handleOnclick, id, history, istrackList }) => {
     }
 
     SpotifyApi.playTrack('1', uri, playlist.type);
-    context.addToCurrentPlaylist(playlist)
   }
 
   const clickOnOverlay = () => {
     let newPlaylist = [];
 
-    if (!istrackList) {
-      return handleOnclick(playlist.id, playlist);
-    }
+    // if (!istrackList) {
+    //   return handleOnclick(playlist.id, playlist); 
+    // }
 
     SpotifyApi.getPlaylist(playlist.id, 'spotify').then((tracklist) => {
       tracklist.map((playlist) => newPlaylist.push(playlist.track));
@@ -49,11 +48,11 @@ const Card = ({ playlist, handleOnclick, id, history, istrackList }) => {
       <Text name={playlist.name} />
       {istrackList ?
       <ActionOverlay
-        trackAction={() => handleOnclick(id, playlist)}
+        trackAction={() => handleOnAdd(id, playlist)}
         playlist={playlist.type === "artist" ? "artist" : null}
         onPlayClick={onPlayClick}
         clickOnOverlay={clickOnOverlay}
-        /> : <ActionOverlayOpen onOpen={() => handleOnclick(id, playlist)} /> }
+        /> : <ActionOverlayOpen onOpen={() => handleOnAdd(id, playlist)} /> }
     </div>
   )
 }
