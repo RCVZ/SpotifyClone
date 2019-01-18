@@ -27,12 +27,19 @@ const Card = ({ playlist, handleOnAdd, id, history, istrackList }) => {
 
   const clickOnOverlay = () => {
     let newPlaylist = [];
+    let type;
+
+    if (playlist.type === 'album') {
+       type = 'spotifyAlbum' 
+     } else {
+       type = 'spotify' 
+     }
 
     // if (!istrackList) {
     //   return handleOnclick(playlist.id, playlist); 
     // }
 
-    SpotifyApi.getPlaylist(playlist.id, 'spotify').then((tracklist) => {
+    SpotifyApi.getPlaylist(playlist.id, type).then((tracklist) => {
       tracklist.map((playlist) => newPlaylist.push(playlist.track));
       context.updateState('tracks', newPlaylist);
       history.push('/search/tracks')
