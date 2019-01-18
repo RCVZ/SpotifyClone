@@ -1,49 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import './PlaylistDisplay.css';
 
-import SpotifyApi from '../../util/Spotify';
 import Card from '../../Components/Card/Card';
 
-import { ContextStore } from '../../Context/MainContext';
-
-const PlaylistDisplay = ({ playlists, traverse, albums, libary, history, istrackList }) => {
-
-  const context = useContext(ContextStore); 
-
-  const handleOnclick = (key, playlist) => {
-    console.log(playlist)  
-    let images = playlist.images 
-    let newPlaylist = [];
-    let secondPram = 'spotify';
-
-    if (albums) {
-      secondPram = 'spotifyAlbum';
-      SpotifyApi.getPlaylist(key, secondPram).then((playlist) => {
-        playlist.map((item) => {
-          item['album'] = { images }; 
-          return newPlaylist.push(item);
-        });
-        context.addToNewPlaylist(newPlaylist, 'tracklist')
-      });
-    } 
-
-    else if (libary && playlist.type === undefined) {
-      SpotifyApi.getCategoriePlaylist(playlist.id).then((playlist) => {
-        return traverse(playlist)
-      });      
-    } 
-
-    else {
-      SpotifyApi.getPlaylist(key, secondPram).then((playlists) => {
-        playlists.map((playlist) => {
-          return newPlaylist.push(playlist.track);
-        })
-        context.addToNewPlaylist(newPlaylist, 'tracklist')
-      });
-    }
-  }
-
-
+const PlaylistDisplay = ({ playlists, traverse, albums, libary, history, istrackList, handleOnAdd }) => {
   return (
     <div className="PlaylistDisplay">
       {playlists.map(playlist => {
@@ -52,7 +12,7 @@ const PlaylistDisplay = ({ playlists, traverse, albums, libary, history, istrack
             playlist={playlist}
             id={playlist.id}
             key={playlist.id}
-            handleOnclick={handleOnclick}
+            handleOnAdd={handleOnAdd}
             history={history}
             istrackList={istrackList}
           />)
