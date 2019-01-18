@@ -6,6 +6,8 @@ import Header from '../../Components/Header/Header';
 
 import { ContextStore } from '../../Context/MainContext';
 
+import SpotifyApi from '../../util/Spotify';
+
 const Playlists = ({ addToCurrentPlaylist, history  }) => {
 
   const context = useContext(ContextStore);
@@ -28,12 +30,26 @@ const Playlists = ({ addToCurrentPlaylist, history  }) => {
     })
   }
 
+
+  const handleOnAdd = (key, playlist) => {
+    let newPlaylist = [];
+
+    SpotifyApi.getPlaylist(key, 'spotify').then((playlists) => {
+      playlists.map((playlist) => {
+        return newPlaylist.push(playlist.track);
+      })
+      context.addToNewPlaylist(newPlaylist, 'tracklist')
+    });
+
+  }
+
   return (
     <div className="Playlists" >
       <Header name={expand.state} buttonAction={handleToggleExpand}>Playlists</Header>
       <PlaylistDisplay 
         addToCurrentPlaylist={addToCurrentPlaylist} 
         playlists={context.playlists.slice(0,expand.results)}
+        handleOnAdd={handleOnAdd}
         history={history}
         istrackList
       />
