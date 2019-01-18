@@ -212,7 +212,8 @@ const SpotifyApi = {
     const url = {
       user: `https://api.spotify.com/v1/me/playlists`,
       spotify: `https://api.spotify.com/v1/playlists/${playlistId}/tracks` ,
-      spotifyAlbum: `https://api.spotify.com/v1/albums/${playlistId}/tracks`
+      spotifyAlbum: `https://api.spotify.com/v1/albums/${playlistId}/tracks`,
+      spotifyArtist: `https://api.spotify.com/v1/artist/${playlistId}/top-tracks `
     }
 
     const authorization = {
