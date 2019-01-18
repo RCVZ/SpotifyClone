@@ -4,6 +4,8 @@ import './Albumslist.css';
 import PlaylistDisplay from '../PlaylistDisplay/PlaylistDisplay';
 import Header from '../../Components/Header/Header';
 
+import SpotifyApi from '../../util/Spotify';
+
 import { ContextStore } from '../../Context/MainContext';
 
 const Albumslist = ({ addToCurrentPlaylist, history })  => {
@@ -27,12 +29,26 @@ const Albumslist = ({ addToCurrentPlaylist, history })  => {
       }
     })
   }
+
+  const handleOnAdd = (key, playlist) => {
+    let images = playlist.images
+    let newPlaylist = [];
+    SpotifyApi.getPlaylist(key, 'spotifyAlbum').then((playlist) => {
+      playlist.map((item) => {
+        item['album'] = { images };
+        return newPlaylist.push(item);
+      });
+      context.addToNewPlaylist(newPlaylist, 'tracklist')
+    });
+  }
+
   return(
     <div className="Albumslist" >
       <Header name={expand.state} buttonAction={handleToggleExpand}>Albums</Header>
       <PlaylistDisplay 
         addToCurrentPlaylist={addToCurrentPlaylist} 
         playlists={context.albums.slice(0, expand.results)} 
+        handleOnAdd={handleOnAdd}
         istrackList
         albums 
       />
