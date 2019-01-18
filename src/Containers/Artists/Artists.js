@@ -4,6 +4,8 @@ import './Artists.css';
 import PlaylistDisplay from '../PlaylistDisplay/PlaylistDisplay';
 import Header from '../../Components/Header/Header';
 
+import SpotifyApi from '../../util/Spotify';
+
 import { ContextStore } from '../../Context/MainContext';
 
 const Artists = ({ addToCurrentPlaylist, history }) => {
@@ -28,12 +30,19 @@ const Artists = ({ addToCurrentPlaylist, history }) => {
     return history.location.pathname === '/search/albums' ? Infinity : 3;
   }
 
+  const handleOnAdd = (key, playlist) => {
+    SpotifyApi.getPlaylist(key, 'spotifyArtist').then((playlist) => {
+      context.addToNewPlaylist(playlist, 'tracklist');
+    });
+  }
+
   return (
     <div className="Artists" >
       <Header name={expand.state} buttonAction={handleToggleExpand} artists>Artists</Header>
       <PlaylistDisplay
         addToCurrentPlaylist={addToCurrentPlaylist}
         playlists={context.artists.slice(0, results())}
+        handleOnAdd={handleOnAdd}
         istrackList
       />
     </div>
