@@ -55,8 +55,7 @@ class UserPlaylists extends PureComponent {
   }
   
   render() {
-    const { userPlaylists } = this.state;
-    const { history } = this.props; 
+    const { userPlaylists } = this.state; 
     return (
       <Grid>
         <PlaylistDisplay 
