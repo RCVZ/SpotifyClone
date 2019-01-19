@@ -34,20 +34,42 @@ class Library extends PureComponent {
     }
   }
 
-  handleOnAdd = (key, playlist) => {
+  getPlaylistTracks = (key, playlist) => {
     const newPlaylist = [];
+    return SpotifyApi.getPlaylist(key, 'spotify').then((playlists) => {
+      playlists.map((playlist) => {
+        return newPlaylist.push(playlist.track);
+      })
+      return newPlaylist;
+    });
+  }
+
+  getCategoriePlaylists = (playlist) => {
+    SpotifyApi.getCategoriePlaylist(playlist.id).then((playlists) => {
+      this.setState({ playlists: playlists, istrackList: true });
+    });
+  }
+
+  openTracks = (key, playlist) => {
     if (playlist.type === undefined) {
-      SpotifyApi.getCategoriePlaylist(playlist.id).then((playlist) => {
-        this.traverse(playlist)
-      });
-    }  else {
-      SpotifyApi.getPlaylist(key, 'spotify').then((playlists) => {
-        playlists.map((playlist) => {
-          return newPlaylist.push(playlist.track);
-        })
-        this.context.addToNewPlaylist(newPlaylist, 'tracklist')
-      });
+      return this.getCategoriePlaylists(playlist)
     }
+    this.getPlaylistTracks(key, playlist).then((newPlaylist) => {
+      this.context.updateState('tracks', newPlaylist);
+      this.props.history.push('/search/tracks')
+    });
+  } 
+
+  addToNewPlaylist = (key, playlist) => {
+    this.getPlaylistTracks(key, playlist).then((newPlaylist) => {
+      this.context.addToNewPlaylist(newPlaylist, 'tracklist')
+    });
+  }
+
+  addToCurrentPlaylist = (key, playlist) => {
+    this.getPlaylistTracks(key, playlist).then((newPlaylist) => {
+      this.context.addToCurrentPlaylist(newPlaylist, 'tracklist')
+    });
   }
 
 
@@ -57,11 +79,11 @@ class Library extends PureComponent {
       <Grid>
         <PlaylistDisplay
           playlists={playlists}
-          traverse={this.traverse}
           history={this.props.history}
           istrackList={istrackList}
-          handleOnAdd={this.handleOnAdd}
-          libary
+          addToCurrentPlaylist={this.addToCurrentPlaylist}
+          addToNewPlaylist={this.addToNewPlaylist}
+          openTracks={this.openTracks}
         />
       </Grid>
     );

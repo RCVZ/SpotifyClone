@@ -23,29 +23,47 @@ class UserPlaylists extends PureComponent {
     })
   }
 
-  handleOnAdd = (key, playlist) => {
-    let newPlaylist = [];
+  getPlaylistTracks = (key, playlist) => {
+    const newPlaylist = [];
+    return (
+      SpotifyApi.getPlaylist(key, 'spotify')
+        .then((playlist) => {
+          playlist.map((playlist) => {
+            return newPlaylist.push(playlist.track)
+          })
+          return newPlaylist
+        }));
+  };
 
-    SpotifyApi.getPlaylist(key, 'spotify').then((playlists) => {
-      playlists.map((playlist) => {
-        return newPlaylist.push(playlist.track);
-      })
+  addToNewPlaylist = (key, playlist) => {
+    this.getPlaylistTracks(key, playlist).then((newPlaylist) => {
       this.context.addToNewPlaylist(newPlaylist, 'tracklist')
     });
+  }
 
+  addToCurrentPlaylist = (key, playlist) => {
+    this.getPlaylistTracks(key, playlist).then((newPlaylist) => {
+      this.context.addToCurrentPlaylist(newPlaylist, 'tracklist')
+    });
+  }
+
+  openTracks = (key, playlist) => {
+    this.getPlaylistTracks(key, playlist).then((newPlaylist) => {
+      this.context.updateState('tracks', newPlaylist);
+      this.props.history.push('/search/tracks')
+    });
   }
   
   render() {
     const { userPlaylists } = this.state;
-    const { addToCurrentPlaylist, history } = this.props; 
+    const { history } = this.props; 
     return (
       <Grid>
         <PlaylistDisplay 
           playlists={userPlaylists} 
-          addToCurrentPlaylist={addToCurrentPlaylist}
-          handleOnAdd={this.handleOnAdd}
-          history={history}
-          istrackList
+          addToCurrentPlaylist={this.addToCurrentPlaylist}
+          addToNewPlaylist={this.addToNewPlaylist}
+          openTracks={this.openTracks}
         />
       </Grid>
     );
