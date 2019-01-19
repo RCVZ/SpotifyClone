@@ -8,7 +8,7 @@ import SpotifyApi from '../../util/Spotify';
 
 import { ContextStore } from '../../Context/MainContext';
 
-const Artists = ({ addToCurrentPlaylist, history }) => {
+const Artists = ({ history }) => {
 
   const context = useContext(ContextStore);
 
@@ -19,20 +19,34 @@ const Artists = ({ addToCurrentPlaylist, history }) => {
   });
 
   const handleToggleExpand = () => {
-    if (history.location.pathname === '/search/artists') {
-      history.push('/search')
-    } else {
-      history.push('/search/artists')
-    }
+    toggleExpand(() => {
+      if (history.location.pathname === '/search/artists') {
+        history.push('/search')
+        return { expanded: false, state: 'More', results: 3 }
+      } else {
+        history.push('/search/artists')
+        return { expanded: true, state: 'Less', results: Infinity }
+      }
+    })
   }
 
-  const results = () => {
-    return history.location.pathname === '/search/albums' ? Infinity : 3;
+  const getPlaylistTracks = (key, playlist) => {
+    return (
+      SpotifyApi.getPlaylist(key, 'spotifyArtist')
+        .then((newPlaylist) => {
+          return newPlaylist
+        }));
+  };
+
+  const addToNewPlaylist = (key, playlist) => {
+    getPlaylistTracks(key, playlist).then((newPlaylist) => {
+      context.addToNewPlaylist(newPlaylist, 'tracklist')
+    });
   }
 
-  const handleOnAdd = (key, playlist) => {
-    SpotifyApi.getPlaylist(key, 'spotifyArtist').then((playlist) => {
-      context.addToNewPlaylist(playlist, 'tracklist');
+  const addToCurrentPlaylist = (key, playlist) => {
+    getPlaylistTracks(key, playlist).then((newPlaylist) => {
+      context.addToCurrentPlaylist(newPlaylist, 'tracklist')
     });
   }
 
@@ -40,9 +54,9 @@ const Artists = ({ addToCurrentPlaylist, history }) => {
     <div className="Artists" >
       <Header name={expand.state} buttonAction={handleToggleExpand} artists>Artists</Header>
       <PlaylistDisplay
+        playlists={context.artists.slice(0, expand.results)}
         addToCurrentPlaylist={addToCurrentPlaylist}
-        playlists={context.artists.slice(0, results())}
-        handleOnAdd={handleOnAdd}
+        addToNewPlaylist={addToNewPlaylist}
         istrackList
       />
     </div>
