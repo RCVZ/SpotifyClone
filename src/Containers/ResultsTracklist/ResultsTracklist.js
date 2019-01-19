@@ -6,31 +6,26 @@ import Header from '../../Components/Header/Header';
 
 import { ContextStore } from '../../Context/MainContext';
 
-const ResultsTracklist = ({ history, fromPlaylist }) => {
+const ResultsTracklist = ({ history }) => {
 
   const context = useContext(ContextStore);
 
   const [expand, toggleExpand] = useState(() => ({
     expanded: false,
     state: 'More',
-    results: fromPlaylist ? Infinity : 4 
+    results: 4 
   }));
 
   const handleToggleExpand = () => {
-    if (history.location.pathname === '/search/tracks') {
-      history.push('/search')
-    } else {
-      history.push('/search/tracks')
-    }  
+    history.location.pathname === '/search/tracks' ? history.push('/search') : history.push('/search/tracks');  
   }
 
   useEffect(
     () => {
-      if (history.location.pathname === '/search') {
-        toggleExpand({ expanded: false, state: 'More', results: 4 });
-      } else {
+      history.location.pathname === '/search' ?
+        toggleExpand({ expanded: false, state: 'More', results: 4 })
+      :
         toggleExpand({ expanded: true, state: 'Less', results: Infinity });
-      }
     }, [history.location.pathname]
   )
 

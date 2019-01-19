@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import './Playlists.css';
 
 import PlaylistDisplay from '../PlaylistDisplay/PlaylistDisplay';
@@ -12,23 +12,24 @@ const Playlists = ({ history  }) => {
 
   const context = useContext(ContextStore);
 
-  const [expand, toggleExpand] = useState({
+  const [expand, toggleExpand] = useState(() => ({
     expanded: false,
     state: 'More',
     results: 3
-  });
+  }));
 
   const handleToggleExpand = () => {
-    toggleExpand(() => {
-      if (history.location.pathname === '/search/playlists') {
-        history.push('/search')
-        return { expanded: false, state: 'More', results: 3 }
-      } else {
-        history.push('/search/playlists')
-        return { expanded: true, state: 'Less', results: Infinity }
-      }
-    })
+    history.location.pathname === '/search/playlists' ? history.push('/search') : history.push('/search/playlists');
   }
+
+  useEffect(
+    () => {
+      history.location.pathname === '/search' ?
+        toggleExpand({ expanded: false, state: 'More', results: 3 })
+        :
+        toggleExpand({ expanded: true, state: 'Less', results: Infinity });
+    }, [history.location.pathname]
+  )
 
   const getPlaylistTracks = (key, playlist) => {
     const newPlaylist = [];
