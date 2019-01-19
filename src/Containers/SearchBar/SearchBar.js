@@ -21,7 +21,7 @@ class SearchBar extends PureComponent {
     let searchTerm = e.target.value;
     this.context.updateState('searchTerm', searchTerm)
     clearTimeout(this.delay);
-    this.delay = setTimeout(this.search(searchTerm), 16.7); // makes the results transition more natural delay is set to 60frames per second. can be improved by taking the time react/api takes to update/fetch into account.
+    this.delay = setTimeout(this.search(searchTerm), 16.7); 
   }
 
   search = (searchTerm) => {
