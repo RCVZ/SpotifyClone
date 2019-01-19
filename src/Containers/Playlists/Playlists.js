@@ -54,6 +54,13 @@ const Playlists = ({ history  }) => {
     });
   }
 
+  const openTracks = (key, playlist) => {
+    getPlaylistTracks(key, playlist).then((newPlaylist) => {
+      context.updateState('tracks', newPlaylist);
+      history.push('/search/tracks')
+    });
+  }
+
   return (
     <div className="Playlists" >
       <Header name={expand.state} buttonAction={handleToggleExpand}>Playlists</Header>
@@ -61,6 +68,7 @@ const Playlists = ({ history  }) => {
         playlists={context.playlists.slice(0, expand.results)}
         addToCurrentPlaylist={addToCurrentPlaylist}
         addToNewPlaylist={addToNewPlaylist}
+        openTracks={openTracks}
         history={history}
         istrackList
       />
