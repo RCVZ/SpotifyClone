@@ -221,9 +221,6 @@ const SpotifyApi = {
       spotifyArtist: `https://api.spotify.com/v1/artists/${playlistId}/top-tracks?country=NL`
     }
 
-
-    console.log(playlistId, playlist, url[playlist])
-
     try {
       const response = await fetch(url[playlist], {
         headers: authorization
@@ -231,7 +228,6 @@ const SpotifyApi = {
 
       if(response.ok) {
         const jsonResponse = await response.json();
-        console.log(jsonResponse)
         if (jsonResponse.items === undefined){
           return jsonResponse.tracks;
         }
@@ -249,8 +245,6 @@ const SpotifyApi = {
 
     let body;
 
-    console.log(type)
-
     if (type === 'playlist' || type === 'album' || type === 'artist') {
       body = {
         "context_uri": uris,
@@ -262,8 +256,6 @@ const SpotifyApi = {
         "offset": { "uri": position }
       }
     }
-
-    console.log(body)
 
     try {
       const response = await fetch('https://api.spotify.com/v1/me/player/play', {
@@ -330,30 +322,27 @@ const SpotifyApi = {
   },
 
   async getCategoriePlaylist(categoryId) {
-  const access = await SpotifyApi.getAccesToken();
+    const access = await SpotifyApi.getAccesToken();
 
-  const authorization = {
-    Authorization: `Bearer ${access}`,
-    "Content-Type": "application/json"
-  };
+    const authorization = {
+      Authorization: `Bearer ${access}`,
+      "Content-Type": "application/json"
+    };
 
+    try {
+      const response = await fetch(`https://api.spotify.com/v1/browse/categories/${categoryId}/playlists`, {
+        headers: authorization
+      });
 
-
-  try {
-    const response = await fetch(`https://api.spotify.com/v1/browse/categories/${categoryId}/playlists`, {
-      headers: authorization
-    });
-
-    if (response.ok) {
-      const jsonResponse = await response.json();
-      console.log(jsonResponse)
-      return jsonResponse.playlists.items;
+      if (response.ok) {
+        const jsonResponse = await response.json();
+        console.log(jsonResponse)
+        return jsonResponse.playlists.items;
+      }
+    } catch (e) {
+      console.log(e);
     }
-  } catch (e) {
-    console.log(e);
   }
-}
-
 };
 
 
