@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import './ResultsTracklist.css';
 
 import TrackList from '../../Components/TrackList/TrackList';
@@ -10,23 +10,29 @@ const ResultsTracklist = ({ history, fromPlaylist }) => {
 
   const context = useContext(ContextStore);
 
-  const [expand, toggleExpand] = useState({
+  const [expand, toggleExpand] = useState(() => ({
     expanded: false,
     state: 'More',
     results: fromPlaylist ? Infinity : 4 
-  });
+  }));
 
   const handleToggleExpand = () => {
-    toggleExpand(() => {
-      if (history.location.pathname === '/search/tracks') {
-        history.push('/search')
-        return { expanded: false, state: 'More', results: 4 }
-      } else {
-        history.push('/search/tracks')
-        return { expanded: true, state: 'Less', results: Infinity }
-      }
-    })
+    if (history.location.pathname === '/search/tracks') {
+      history.push('/search')
+    } else {
+      history.push('/search/tracks')
+    }  
   }
+
+  useEffect(
+    () => {
+      if (history.location.pathname === '/search') {
+        toggleExpand({ expanded: false, state: 'More', results: 4 });
+      } else {
+        toggleExpand({ expanded: true, state: 'Less', results: Infinity });
+      }
+    }, [history.location.pathname]
+  )
 
   return (
     <div className="ResultsTracklist" >
