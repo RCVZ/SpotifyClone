@@ -35,6 +35,9 @@ class Main extends PureComponent {
   }
 
   loadOnScroll = (e) => {
+    if (!this.props.history.location.pathname.startsWith('/search/')) {
+      return // temp fix
+    };
     const { searchTerm, searchMore } =  this.context;
     const search = this.props.location.pathname.split('/')[1];
     const route = this.props.location.pathname.split('/')[2];
@@ -66,7 +69,7 @@ class Main extends PureComponent {
           <Route path="/library" render={(props) => <Library {...props} />} />
           <Route path="/userPlaylists" render={(props) => <UserPlaylists {...props} />} />
           <Route path="/userPlaylists" render={(props) => (
-            <ResultsTracklist key={2} {...props} fromPlaylist/>
+            <ResultsTracklist  {...props} fromPlaylist/>
           )} />
         </Switch>
       </div>

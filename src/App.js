@@ -15,13 +15,6 @@ import SpotifyApi from './util/Spotify';
 import { withRouter } from "react-router-dom";
 
 class App extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.scrollHeight = 200;
-    this.offset = 50;
-  }
-
   componentDidMount() {
     SpotifyApi.getAccesToken();
   }

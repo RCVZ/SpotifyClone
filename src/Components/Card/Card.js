@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import './Card.css';
 
 import SpotifyApi from '../../util/Spotify';
