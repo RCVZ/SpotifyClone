@@ -6,11 +6,7 @@ import SpotifyApi from '../../util/Spotify';
 import Text from '../Text/Text';
 import ActionOverlay, { ActionOverlayOpen } from '../ActionOverlay/ActionOverlay';
 
-import { ContextStore } from '../../Context/MainContext';
-
-const Card = ({ playlist, handleOnAdd, id, history, istrackList }) => {
-
-  const context = useContext(ContextStore);
+const Card = ({ playlist, handleOnAdd, id, openTracks, istrackList, addToNewPlaylist, addToCurrentPlaylist }) => {
 
   const onPlayClick = () => {
     let uri;
@@ -23,27 +19,15 @@ const Card = ({ playlist, handleOnAdd, id, history, istrackList }) => {
     }
 
     SpotifyApi.playTrack('1', uri, playlist.type);
+    addToCurrentPlaylist(playlist.id, playlist)
   }
 
   const clickOnOverlay = () => {
-    let newPlaylist = [];
-    let type;
+    openTracks(playlist.id, playlist);
+  }
 
-    if (playlist.type === 'album') {
-       type = 'spotifyAlbum' 
-     } else {
-       type = 'spotify' 
-     }
-
-    // if (!istrackList) {
-    //   return handleOnclick(playlist.id, playlist); 
-    // }
-
-    SpotifyApi.getPlaylist(playlist.id, type).then((tracklist) => {
-      tracklist.map((playlist) => newPlaylist.push(playlist.track));
-      context.updateState('tracks', newPlaylist);
-      history.push('/search/tracks')
-    })
+  const onAddClick = () => {
+    addToNewPlaylist(id, playlist);
   }
 
 
@@ -55,7 +39,7 @@ const Card = ({ playlist, handleOnAdd, id, history, istrackList }) => {
       <Text name={playlist.name} />
       {istrackList ?
       <ActionOverlay
-        trackAction={() => handleOnAdd(id, playlist)}
+        trackAction={onAddClick}
         playlist={playlist.type === "artist" ? "artist" : null}
         onPlayClick={onPlayClick}
         clickOnOverlay={clickOnOverlay}
