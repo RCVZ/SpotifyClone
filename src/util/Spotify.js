@@ -207,19 +207,22 @@ const SpotifyApi = {
   },
 
   async getPlaylist(playlistId='', playlist='user' ) {
-    const access = SpotifyApi.getAccesToken();
+    const access = await SpotifyApi.getAccesToken();
+
+    const authorization = {
+      Authorization: `Bearer ${access}`,
+      "Content-Type": "application/json"
+    };
 
     const url = {
       user: `https://api.spotify.com/v1/me/playlists`,
       spotify: `https://api.spotify.com/v1/playlists/${playlistId}/tracks` ,
       spotifyAlbum: `https://api.spotify.com/v1/albums/${playlistId}/tracks`,
-      spotifyArtist: `https://api.spotify.com/v1/artist/${playlistId}/top-tracks `
+      spotifyArtist: `https://api.spotify.com/v1/artists/${playlistId}/top-tracks?country=NL`
     }
 
-    const authorization = {
-      Authorization: `Bearer ${access}`,
-     "Content-Type": "application/json"
-    };
+
+    console.log(playlistId, playlist, url[playlist])
 
     try {
       const response = await fetch(url[playlist], {
@@ -228,6 +231,10 @@ const SpotifyApi = {
 
       if(response.ok) {
         const jsonResponse = await response.json();
+        console.log(jsonResponse)
+        if (jsonResponse.items === undefined){
+          return jsonResponse.tracks;
+        }
         return jsonResponse.items;
       }
     } catch (e) {
