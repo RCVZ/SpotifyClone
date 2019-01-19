@@ -6,10 +6,10 @@ import AddButton from '../Buttons/AddButton/AddButton';
 import DeleteButton from '../Buttons/DeleteButton/DeleteButton';
 import OpenButton from '../Buttons/OpenButton/OpenButton';
 
-const ActionOverlay = ({ trackAction, onPlayClick, inPlaylist, playlist, clickOnOverlay }) => {
+const ActionOverlay = ({ trackAction, onPlayClick, inPlaylist, playlistType, clickOnOverlay }) => {
 
   let className;
-  if (playlist === "artist" ) {
+  if (playlistType === "artist" ) {
     className = "Action-Overlay artist"
   } else {
     className = "Action-Overlay"

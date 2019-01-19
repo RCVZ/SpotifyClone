@@ -6,7 +6,7 @@ import SpotifyApi from '../../util/Spotify';
 import Text from '../Text/Text';
 import ActionOverlay, { ActionOverlayOpen } from '../ActionOverlay/ActionOverlay';
 
-const Card = ({ playlist, handleOnAdd, id, openTracks, istrackList, addToNewPlaylist, addToCurrentPlaylist }) => {
+const Card = ({ playlist, openTracks, addToNewPlaylist, addToCurrentPlaylist }) => {
 
   const onPlayClick = () => {
     let uri;
@@ -27,9 +27,8 @@ const Card = ({ playlist, handleOnAdd, id, openTracks, istrackList, addToNewPlay
   }
 
   const onAddClick = () => {
-    addToNewPlaylist(id, playlist);
+    addToNewPlaylist(playlist.id, playlist);
   }
-
 
   return (
     <div className={`Card ${playlist.type}`}  >
@@ -37,13 +36,13 @@ const Card = ({ playlist, handleOnAdd, id, openTracks, istrackList, addToNewPlay
         {playlist.images[0] ? <img src={playlist.images[0].url} alt="img" /> : ""}
       </div>
       <Text name={playlist.name} />
-      {istrackList ?
+      {playlist.type !== undefined ?
       <ActionOverlay
         trackAction={onAddClick}
-        playlist={playlist.type === "artist" ? "artist" : null}
+        playlistType={playlist.type}
         onPlayClick={onPlayClick}
         clickOnOverlay={clickOnOverlay}
-        /> : <ActionOverlayOpen onOpen={() => handleOnAdd(id, playlist)} /> }
+        /> : <ActionOverlayOpen onOpen={clickOnOverlay} /> }
     </div>
   )
 }

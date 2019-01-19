@@ -69,8 +69,6 @@ const Playlists = ({ history  }) => {
         addToCurrentPlaylist={addToCurrentPlaylist}
         addToNewPlaylist={addToNewPlaylist}
         openTracks={openTracks}
-        history={history}
-        istrackList
       />
     </div>
   );

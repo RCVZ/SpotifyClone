@@ -3,7 +3,7 @@ import './PlaylistDisplay.css';
 
 import Card from '../../Components/Card/Card';
 
-const PlaylistDisplay = ({ playlists, traverse, albums, libary, history, istrackList, addToNewPlaylist, addToCurrentPlaylist }) => {
+const PlaylistDisplay = ({ playlists, openTracks, addToNewPlaylist, addToCurrentPlaylist }) => {
   return (
     <div className="PlaylistDisplay">
       {playlists.map(playlist => {
@@ -14,8 +14,7 @@ const PlaylistDisplay = ({ playlists, traverse, albums, libary, history, istrack
             playlist={playlist}
             id={playlist.id}
             key={playlist.id}
-            history={history}
-            istrackList={istrackList}
+            openTracks={openTracks}
           />)
       })}
     </div>
