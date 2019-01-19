@@ -8,7 +8,7 @@ import SpotifyApi from '../../util/Spotify';
 
 import { ContextStore } from '../../Context/MainContext';
 
-const Albumslist = ({ addToCurrentPlaylist, history })  => {
+const Albumslist = ({ history })  => {
 
   const context = useContext(ContextStore);
 
@@ -30,25 +30,39 @@ const Albumslist = ({ addToCurrentPlaylist, history })  => {
     })
   }
 
-  const handleOnAdd = (key, playlist) => {
+  const getPlaylistTracks = (key, playlist) => {
     let images = playlist.images
     let newPlaylist = [];
-    SpotifyApi.getPlaylist(key, 'spotifyAlbum').then((playlist) => {
+    return (
+      SpotifyApi.getPlaylist(key, 'spotifyAlbum')
+      .then((playlist) => {
       playlist.map((item) => {
         item['album'] = { images };
         return newPlaylist.push(item);
       });
+      return newPlaylist;
+    }));
+  }
+
+  const addToNewPlaylist = (key, playlist) => {
+    getPlaylistTracks(key, playlist).then((newPlaylist) => {
       context.addToNewPlaylist(newPlaylist, 'tracklist')
+    });
+  }
+
+  const addToCurrentPlaylist = (key, playlist) => {
+    getPlaylistTracks(key, playlist).then((newPlaylist) => {
+      context.addToCurrentPlaylist(newPlaylist, 'tracklist')
     });
   }
 
   return(
     <div className="Albumslist" >
       <Header name={expand.state} buttonAction={handleToggleExpand}>Albums</Header>
-      <PlaylistDisplay 
-        addToCurrentPlaylist={addToCurrentPlaylist} 
+      <PlaylistDisplay
         playlists={context.albums.slice(0, expand.results)} 
-        handleOnAdd={handleOnAdd}
+        addToCurrentPlaylist={addToCurrentPlaylist} 
+        addToNewPlaylist={addToNewPlaylist}
         istrackList
         albums 
       />
