@@ -330,13 +330,12 @@ const SpotifyApi = {
     };
 
     try {
-      const response = await fetch(`https://api.spotify.com/v1/browse/categories/${categoryId}/playlists`, {
+      const response = await fetch(`https://api.spotify.com/v1/browse/categories/${categoryId}/playlists?&limit=50`, {
         headers: authorization
       });
 
       if (response.ok) {
         const jsonResponse = await response.json();
-        console.log(jsonResponse)
         return jsonResponse.playlists.items;
       }
     } catch (e) {
