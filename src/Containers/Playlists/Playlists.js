@@ -8,7 +8,7 @@ import { ContextStore } from '../../Context/MainContext';
 
 import SpotifyApi from '../../util/Spotify';
 
-const Playlists = ({ addToCurrentPlaylist, history  }) => {
+const Playlists = ({ history  }) => {
 
   const context = useContext(ContextStore);
 
@@ -30,26 +30,37 @@ const Playlists = ({ addToCurrentPlaylist, history  }) => {
     })
   }
 
+  const getPlaylistTracks = (key, playlist) => {
+    const newPlaylist = [];
+    return (
+      SpotifyApi.getPlaylist(key, 'spotify')
+      .then((playlist) => {
+        playlist.map((playlist) => {
+          return newPlaylist.push(playlist.track)
+        })
+        return newPlaylist
+      }));
+  };
 
-  const handleOnAdd = (key, playlist) => {
-    let newPlaylist = [];
-
-    SpotifyApi.getPlaylist(key, 'spotify').then((playlists) => {
-      playlists.map((playlist) => {
-        return newPlaylist.push(playlist.track);
-      })
+  const addToNewPlaylist = (key, playlist) => {
+    getPlaylistTracks(key, playlist).then((newPlaylist) => {
       context.addToNewPlaylist(newPlaylist, 'tracklist')
     });
+  }
 
+  const addToCurrentPlaylist = (key, playlist) => {
+    getPlaylistTracks(key, playlist).then((newPlaylist) => {
+      context.addToCurrentPlaylist(newPlaylist, 'tracklist')
+    });
   }
 
   return (
     <div className="Playlists" >
       <Header name={expand.state} buttonAction={handleToggleExpand}>Playlists</Header>
       <PlaylistDisplay 
-        addToCurrentPlaylist={addToCurrentPlaylist} 
-        playlists={context.playlists.slice(0,expand.results)}
-        handleOnAdd={handleOnAdd}
+        playlists={context.playlists.slice(0, expand.results)}
+        addToCurrentPlaylist={addToCurrentPlaylist}
+        addToNewPlaylist={addToNewPlaylist}
         history={history}
         istrackList
       />
@@ -58,3 +69,12 @@ const Playlists = ({ addToCurrentPlaylist, history  }) => {
 }
 
 export default Playlists;
+
+
+
+
+
+
+
+
+
