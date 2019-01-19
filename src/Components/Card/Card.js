@@ -22,8 +22,10 @@ const Card = ({ playlist, openTracks, addToNewPlaylist, addToCurrentPlaylist }) 
     addToCurrentPlaylist(playlist.id, playlist)
   }
 
-  const clickOnOverlay = () => {
-    openTracks(playlist.id, playlist);
+  const clickOnOverlay = (e) => {
+    if (e.target.className === 'Action-Overlay' ) {
+       openTracks(playlist.id, playlist);
+    }
   }
 
   const onAddClick = () => {
