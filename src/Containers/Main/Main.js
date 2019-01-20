@@ -35,6 +35,13 @@ class Main extends PureComponent {
   }
 
   loadOnScroll = (e) => {
+    console.log('scrollHeight',e.target.scrollHeight,
+    'scrollTop', e.target.scrollTop,
+    'clientHeight', e.target.clientHeight,
+    'offsetHeight', e.target.offsetHeight,
+    'offsetTop', e.target.offsetTop)
+
+    if (e.target.scrollTop )
     if (!this.props.history.location.pathname.startsWith('/search/')) {
       return // temp fix
     };

@@ -29,8 +29,12 @@ const ResultsTracklist = ({ history }) => {
     }, [history.location.pathname]
   )
 
+  const loadOnScroll = (e) => {
+    console.log('test')
+  } 
+
   return (
-    <div className="ResultsTracklist" >
+    <div className="ResultsTracklist" onScroll={loadOnScroll}>
       <Header name={expand.state} buttonAction={handleToggleExpand}>Tracks</Header>
       <TrackList trackAction={context.addToNewPlaylist} tracklist={context.tracks.slice(0, expand.results)}  />
     </div>

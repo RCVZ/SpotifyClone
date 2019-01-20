@@ -1,4 +1,5 @@
 .ResultsTracklist {
   justify-self: stretch;
   width: auto;
+  overflow: scroll;
 }
