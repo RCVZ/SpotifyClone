@@ -44,7 +44,7 @@ const Card = ({ playlist, openTracks, addToNewPlaylist, addToCurrentPlaylist }) 
         playlistType={playlist.type}
         onPlayClick={onPlayClick}
         clickOnOverlay={clickOnOverlay}
-        /> : <ActionOverlayOpen onOpen={clickOnOverlay} /> }
+        /> : <ActionOverlayOpen onOpen={() => openTracks(playlist.id, playlist)} /> }
     </div>
   )
 }
