@@ -4,9 +4,9 @@
 
 .Text p {
   font-size: 0.67rem;
-  margin: 8px 0;  
+  margin: 0.44rem 0;  
   white-space: nowrap;
-  width: 130px;
+  width: 7.222rem;
   overflow: hidden;
   text-overflow: ellipsis;
   text-shadow: 4px 4px 8px #000000;

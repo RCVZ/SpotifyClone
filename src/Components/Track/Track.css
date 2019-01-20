@@ -5,7 +5,7 @@
   transition: transform 300ms;
   /* background-color: #100e17; */
   width: 99%;
-  margin: 5px;
+  margin: 0.55rem;
   
 }
 
@@ -20,8 +20,8 @@
 }
 
 .Track-information img {
-  height: 60px;
-  margin: 10px;
+  height: 3.333rem;
+  margin: 0.5rem;
 }
 
 .Track-information {
@@ -31,11 +31,11 @@
 }
 
 .Album-img {
-  flex-grow: 0.5;
+  flex-grow: 1;
 }
 
 .Track-name {
-  flex-grow: 6;
+  flex-grow: 2;
 }
 
 .Track-information .Time {

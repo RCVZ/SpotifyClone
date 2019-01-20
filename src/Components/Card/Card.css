@@ -1,8 +1,8 @@
 .Card {
   position: relative;
-  width: 150px;
-  height: 150px;
-  margin: 1.5rem;
+  width: 8.333rem;
+  height: 8.333rem;
+  margin: 1rem;
   background-color: rgba(0, 0, 20, 0.7);
   /* box-shadow: 0 0 3rem #000, 0 0 1rem #072; */
   /* box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.8), 0px -8px 25px rgba(0, 0, 0, 0.6); */
@@ -17,14 +17,14 @@
   transform: scale(1.1);
 }
 
-.Card-Img {
+/* .Card-Img {
   height: 150px;
   width: 150px;
-}
+} */
 
 .Card-Img img {
-  max-height: 100%;
-  max-width: 100%;
+  height: 100%;
+  width: 100%;
   margin-top: auto;
 }
 
@@ -32,4 +32,6 @@
 .artist img{
   border-radius: 50%;
 }
+
+@media only screen and (max-width: )
 
