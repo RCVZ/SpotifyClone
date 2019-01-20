@@ -136,7 +136,7 @@ class Player extends PureComponent {
           <Text track={currentTrack} 
             name={trackName} 
             artist={artistName}
-            textSize={'16px'}
+            textSize={'1rem'}
             overfl={'visible'}
           />
         </div>

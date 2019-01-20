@@ -33,5 +33,17 @@
   border-radius: 50%;
 }
 
-@media only screen and (max-width: )
+@media only screen and (max-width: 1100px) {
+  .Card {
+    width: 12rem;
+    height: 12rem;
+    margin: 1rem 3rem;
+  }
+}
 
+
+@media only screen and (max-width: 900px) {
+  .Card {
+    margin: 1rem 1.5rem;
+  }
+}

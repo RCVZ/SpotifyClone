@@ -3,5 +3,17 @@
   grid: repeat(auto-fit, minmax(max-content, 20%)) / repeat(auto-fit, minmax(50%, auto));
   height: auto;
   width: 100%;
+  justify-items: center;
   padding: 2%;
+}
+
+
+@media only screen and (max-width: 1100px) {
+  .Grid {
+    display: grid;
+    grid: repeat(auto-fit, minmax(max-content, 20%)) / repeat(auto-fit, minmax(50%, 100%));
+    height: auto;
+    width: 100%;
+    padding: 2%;
+  }
 }

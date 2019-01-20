@@ -36,8 +36,9 @@ class SearchBar extends PureComponent {
       <div className='SearchBar'>
         <input onChange={this.handleSearchTerm}  placeholder="Enter A Song, Album, or Artist"/>
         <Link to="/search">
-          <FontAwesomeIcon className="Search_Button" icon={faSearch}/>
-          <button type="submit" onClick={this.submitSearch} name="SEARCH" />
+          <button type="submit" onClick={this.submitSearch} name="SEARCH">
+            <FontAwesomeIcon className="Search_Button" icon={faSearch} />
+          </button>
         </Link>
       </div>
     );

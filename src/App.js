@@ -3,7 +3,7 @@ import React, { PureComponent } from 'react';
 import './App.css';
 
 import SearchBar from './Containers/SearchBar/SearchBar';
-import Navbar from './Components/Navbar/Navbar';
+import Navigation from './Components/Navigation/Navigation';
 import NewPlaylist from './Containers/NewPlaylist/NewPlaylist';
 import CurrentPlaylist from './Components/CurrentPlaylist/CurrentPlaylist';
 import Main from './Containers/Main/Main';
@@ -26,7 +26,7 @@ class App extends PureComponent {
           history={this.props.history} //temp  <----    workaround
           location={this.props.location} //temp <----  
         />
-        <Navbar />
+        <Navigation />
         <Main
           history={this.props.history} //temp  <----    workaround
           location={this.props.location} //temp <----  

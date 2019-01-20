@@ -1,11 +1,11 @@
 .back,
 .forward {
-  width: 40px;
+  width: 2.223rem;
   transition: 300ms;
 }
 
 .back:hover,
 .forward:hover {
-  width: 40px;
+  width: 2.223rem;
   transform: scale(1.1);
 }
