@@ -20,7 +20,7 @@
 
 @media only screen and (max-width: 1400px) {
   html {    
-    font-size: 16px;
+    font-size: 17px;
   }
 }
 
@@ -32,13 +32,17 @@
     grid-template-columns: 0.4fr repeat(3, 2fr);
     grid-template-rows: 2.22rem 1fr 6.375rem;    
   }
+
+  html {    
+    font-size: 16px;
+  }
 }
 
-/* @media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1000px) {
   html {    
-    font-size: 14px;
+    font-size: 15px;
   }
-} */
+}
 
 /* @media only screen and (max-width: 1200px) {
   .App {    
@@ -50,10 +54,10 @@
   }
 } */
 
-
-
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 900px) {
   html {    
-    font-size: 12px;
+    font-size: 14px;
   }
 }
+
+
