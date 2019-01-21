@@ -7,10 +7,10 @@ import CurrentPlaylist from '../../Components/CurrentPlaylist/CurrentPlaylist';
 import Library from '../Library/Library';
 import UserPlaylists from '../UserPlaylists/UserPlaylists';
 //import Playlist from '../../Components/Playlist/Playlist';
-import ResultsTracklist from '../ResultsTracklist/ResultsTracklist';
-import Albumslist from '../Albumslist/Albumslist';
-import Artists from '../Artists/Artists';
-import Playlists from '../Playlists/Playlists';
+// import ResultsTracklist from '../ResultsTracklist/ResultsTracklist';
+// import Albumslist from '../Albumslist/Albumslist';
+// import Artists from '../Artists/Artists';
+// import Playlists from '../Playlists/Playlists';
 import { ContextStore} from '../../Context/MainContext';
 
 import SpotifyApi from '../../util/Spotify';
@@ -56,13 +56,8 @@ class Main extends PureComponent {
     return(
       <div className="Main" onScroll={this.loadOnScroll} >
         <Switch>
-          <Route path="/search" render={(props) => (
-            <SearchResults>
-              <Playlists key={1} {...props}/>
-              <ResultsTracklist key={2} {...props}/>
-              <Albumslist key={3} {...props}/>
-              <Artists key={4}  {...props}/>
-            </SearchResults>
+          <Route path="/search/" render={(props) => (
+            <SearchResults {...props} />
           )}/>
           <Route path="/currentPlaylist" render={(props) => <CurrentPlaylist {...props} />} />
           <Route path="/newPlaylist" render={(props) => <NewPlaylist {...props} />} />
