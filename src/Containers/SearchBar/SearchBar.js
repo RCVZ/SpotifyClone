@@ -26,8 +26,10 @@ class SearchBar extends PureComponent {
 
   search = (searchTerm) => {
     this.context.searchSpotify(searchTerm);
-    if (this.props.location.pathname !== '/search') { 
-      this.props.history.push('/search')
+    if (searchTerm.length <= 0) {
+      this.props.history.push("/search/no-results");      
+    } else {
+      this.props.history.push(`/search?q=${searchTerm}`);
     }
   }
 
