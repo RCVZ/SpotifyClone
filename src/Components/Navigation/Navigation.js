@@ -20,7 +20,7 @@ class Navigation extends Component {
         </button>
         <div className='Navigation-wrapper'>
           <div className='Navigation'>
-            <NavLink to="/search"><FontAwesomeIcon icon={faSearch} />  <span>Search</span></NavLink>
+            <NavLink to="/search/no-results"><FontAwesomeIcon icon={faSearch} />  <span>Search</span></NavLink>
             <NavLink to="/currentPlaylist"><FontAwesomeIcon icon={faAlignJustify} /> <span>Current Playlist</span></NavLink>
             <NavLink to="/newPlaylist"><FontAwesomeIcon icon={faPlusSquare} /> <span>New Playlist</span></NavLink>
             <NavLink to="/library"><FontAwesomeIcon icon={faTh} /> <span>Library</span></NavLink>
