@@ -5,8 +5,7 @@
   transition: transform 300ms;
   /* background-color: #100e17; */
   width: 99%;
-  margin: 0.55rem;
-  
+  margin: 0.55rem;  
 }
 
 .shadow {
@@ -40,4 +39,20 @@
 
 .Track-information .Time {
   flex-grow: 1;
+}
+
+
+@media only screen and (max-width: 1100px) {
+  .Track-information img {
+    height: 4.333rem;
+    margin: 0.5rem;
+  }
+}
+
+
+@media only screen and (max-width: 900px) {
+  .Track-information img {
+    height: 5.333rem;
+    margin: 0.5rem;
+  }
 }
