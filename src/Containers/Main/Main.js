@@ -63,9 +63,6 @@ class Main extends PureComponent {
           <Route path="/newPlaylist" render={(props) => <NewPlaylist {...props} />} />
           <Route path="/library" render={(props) => <Library {...props} />} />
           <Route path="/userPlaylists" render={(props) => <UserPlaylists {...props} />} />
-          <Route path="/userPlaylists" render={(props) => (
-            <ResultsTracklist  {...props} fromPlaylist/>
-          )} />
         </Switch>
       </div>
     );

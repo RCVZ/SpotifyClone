@@ -1,5 +1,4 @@
 import React from 'react';
-import './PauseButton.css';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPause } from '@fortawesome/free-solid-svg-icons';
