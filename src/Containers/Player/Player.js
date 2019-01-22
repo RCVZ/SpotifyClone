@@ -127,8 +127,7 @@ class Player extends PureComponent {
     });
   }
 
-  render() {    
-    //SpotifyApi.fetchSpotify('https://api.spotify.com/v1/me/player/currently-playing');
+  render() { 
     const { playing, currentTrack, volume, duration, position, artistName, trackName, showPlaylist } = this.state;
     return(
       <div className="Player">

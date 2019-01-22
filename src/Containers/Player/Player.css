@@ -18,8 +18,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-around;
   width: 40%;
-  height: auto;
+  height: 100%;
 }
 
 .Player .Player-buttons {
@@ -76,9 +77,30 @@
 }
 
 
-/* @media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 900px) {
   .Player {
     font-size: 10px;
+    padding: 0 0.7rem;
   }
-} */
+
+  .Control-Leftside {
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  .Player .Player-buttons {
+    font-size: 14px;
+    width: 75%;
+  }
+
+  .Playlist-Button {
+    display: none;
+  }
+
+  .Track-info {
+    overflow: hidden;
+  }
+}
+  
 
