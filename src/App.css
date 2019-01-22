@@ -44,15 +44,6 @@
   }
 }
 
-/* @media only screen and (max-width: 1200px) {
-  .App {    
-    grid-template-areas: "SearchBar SearchBar SearchBar"
-                       "Main Main Main"
-                       "Player Player Player";
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 2.22rem 1fr 6.375rem;    
-  }
-} */
 
 @media only screen and (max-width: 900px) {
   html {    
