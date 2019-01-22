@@ -1,15 +1,12 @@
 .play-pause {
   border: 1px solid grey;
-  width: 2.278rem;
-  height: 2.278rem;
+  width: 2.9rem;
+  height: 2.9rem;
   border-radius: 100%;
   transition: all 300ms;
 }
 
 .play-pause:hover {
   border: 1px solid white;
-  width: 2.278rem;
-  height: 2.278rem;
-  border-radius: 100%;
   transform: scale(1.1);
 }
