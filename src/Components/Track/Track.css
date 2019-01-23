@@ -42,10 +42,18 @@
 }
 
 
-@media only screen and (max-width: 1100px) {
+@media only screen and (max-width: 1200px) {
   .Track-information img {
     height: 4.333rem;
     margin: 0.5rem;
+  }
+
+  .Track {
+    width: 80%;
+  }
+
+  .Track-name {
+    flex-grow: 10;
   }
 }
 
