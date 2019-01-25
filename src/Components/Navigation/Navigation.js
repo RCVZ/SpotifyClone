@@ -8,26 +8,34 @@ import { faSearch, faAlignJustify, faListUl, faPlusSquare, faTh, faBars } from '
 
 class Navigation extends Component {
 
-  onclick = (e) => {
-
-  }
-
   render() {
     return(
-      <>
-        <button onClick={this.onclick} className="Mobile-Navigation" >
-          <FontAwesomeIcon icon={faBars} size="lg"/>
-        </button>
-        <div className='Navigation-wrapper'>
-          <div className='Navigation'>
-            <NavLink to="/search/no-results"><FontAwesomeIcon icon={faSearch} />  <span>Search</span></NavLink>
-            <NavLink to="/currentPlaylist"><FontAwesomeIcon icon={faAlignJustify} /> <span>Current Playlist</span></NavLink>
-            <NavLink to="/newPlaylist"><FontAwesomeIcon icon={faPlusSquare} /> <span>New Playlist</span></NavLink>
-            <NavLink to="/library"><FontAwesomeIcon icon={faTh} /> <span>Library</span></NavLink>
-            <NavLink to="/userPlaylists"><FontAwesomeIcon icon={faListUl} /> <span>Playlists</span></NavLink>
-          </div>
+      <div className='Navigation-wrapper'>
+        <div className='Navigation'>
+          <NavLink className="Menu-Button" to="/search/no-results">
+            <FontAwesomeIcon icon={faSearch} />  
+            <span>Search</span>
+          </NavLink>
+          <NavLink className="Menu-Button" to="/currentPlaylist">
+            <FontAwesomeIcon icon={faAlignJustify} /> 
+            <span>Current </span>
+            <span> Playlist </span>
+          </NavLink>
+          <NavLink className="Menu-Button" to="/newPlaylist">
+            <FontAwesomeIcon icon={faPlusSquare} /> 
+            <span>New </span>
+            <span> Playlist </span>
+          </NavLink>
+          <NavLink className="Menu-Button" to="/library">
+            <FontAwesomeIcon icon={faTh} /> 
+            <span>Library</span>
+          </NavLink>
+          <NavLink className="Menu-Button" to="/userPlaylists">
+            <FontAwesomeIcon icon={faListUl} /> 
+            <span>Playlists</span>
+          </NavLink>
         </div>
-      </>
+      </div>  
     );
   }
 }
