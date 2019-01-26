@@ -2,7 +2,8 @@
   grid-area: Main;
   background-color: #17141d;
   /* background-color: rgb(0, 5, 56); */
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
+  height: 100%;
 }
 
 ::-webkit-scrollbar {

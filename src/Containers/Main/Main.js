@@ -60,8 +60,9 @@ class Main extends PureComponent {
   }
 
   render() {
+    //onScroll={this.loadOnScroll}
     return(
-      <div className="Main" onScroll={this.loadOnScroll} >
+      <div className="Main"  >
         <Switch>
           <Route path="/search" render={(props) => (
             <SearchResults>
