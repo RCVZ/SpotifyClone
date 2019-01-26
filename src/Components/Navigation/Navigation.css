@@ -14,7 +14,7 @@
   flex-direction: column;
   justify-content: space-between;
   height: 400px;
-  margin: 5rem auto;
+  margin-top: 2rem;
 }
 
 .Menu-Button {
@@ -49,17 +49,3 @@ a:hover {
     display: none;
   }
 }
-
-/* @media only screen and (max-width: 800px) {
-  .Navigation-wrapper {
-    display: none;
-    height: 100%;
-  }
-
-  .Mobile-Navigation {
-    display: inline-block;
-    position: absolute;
-    top: 2rem;
-    left: 2rem;
-  }
-} */

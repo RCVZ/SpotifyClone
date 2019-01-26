@@ -4,7 +4,7 @@ import './Navigation.css';
 import { NavLink } from "react-router-dom";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faAlignJustify, faListUl, faPlusSquare, faTh, faBars } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faAlignJustify, faListUl, faPlusSquare, faTh } from '@fortawesome/free-solid-svg-icons';
 
 class Navigation extends Component {
 
