@@ -1,5 +1,20 @@
 .ResultsTracklist {
   justify-self: stretch;
   width: auto;
+<<<<<<< Updated upstream
   overflow: scroll;
+=======
+  height: 100%;
+}
+
+.viewport {
+  position: relative;
+  overflow-y: scroll;
+  height: 700px;
+  width: 100%;
+}
+
+.list {
+  position: absolute;
+>>>>>>> Stashed changes
 }
