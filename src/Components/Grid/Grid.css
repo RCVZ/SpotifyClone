@@ -3,5 +3,17 @@
   grid: repeat(auto-fit, minmax(max-content, 20%)) / repeat(auto-fit, minmax(50%, auto));
   height: auto;
   width: 100%;
+<<<<<<< Updated upstream
   padding: 2%;
+=======
+  justify-items: center;
+  /* padding: 2%; */
+}
+
+
+@media only screen and (max-width: 1200px) {
+  .Grid {
+    grid: repeat(auto-fit, minmax(max-content, 20%)) / repeat(auto-fit, minmax(50%, 100%));
+  }
+>>>>>>> Stashed changes
 }
