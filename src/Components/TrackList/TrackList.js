@@ -2,9 +2,9 @@ import React from 'react';
 import './TrackList.css'
 
 import Track from '../Track/Track';
-import Grid from '../Grid/Grid';
+//import Grid from '../Grid/Grid';
 
-const TrackList = ({ trackAction, inPlaylist, tracklist }) => {
+const TrackList = ({ trackAction, inPlaylist, tracklist, position, start, end }) => {
 
  const getUrisList = () => {
    const newList = [];
@@ -13,20 +13,24 @@ const TrackList = ({ trackAction, inPlaylist, tracklist }) => {
  }
 
   return (
-    <Grid>
-      {tracklist.map((track) => {
-        return (
-          <Track
-            track={track}
-            key={track.id}
-            trackAction={trackAction}
-            inPlaylist={inPlaylist}
-            getUrisList={getUrisList}
-          />
-        )
+    <>
+      {tracklist.map((track, index) => {
+        if(index >= start && index<= end) {
+          return (
+            <Track
+              position={position}
+              topPosition={index * 100}
+              track={track}
+              key={track.id}
+              trackAction={trackAction}
+              inPlaylist={inPlaylist}
+              getUrisList={getUrisList}
+            />
+          )
+        }
       })
       }
-    </Grid>
+    </>
   );
 }
 
