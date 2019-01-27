@@ -15,7 +15,7 @@ const Playlists = ({ history  }) => {
   const [expand, toggleExpand] = useState(() => ({
     expanded: false,
     state: 'More',
-    results: 3
+    results: 6
   }));
 
   const handleToggleExpand = () => {
@@ -25,7 +25,7 @@ const Playlists = ({ history  }) => {
   useEffect(
     () => {
       history.location.pathname === '/search' ?
-        toggleExpand({ expanded: false, state: 'More', results: 3 })
+        toggleExpand({ expanded: false, state: 'More', results: 6 })
         :
         toggleExpand({ expanded: true, state: 'Less', results: Infinity });
     }, [history.location.pathname]
