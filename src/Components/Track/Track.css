@@ -1,11 +1,11 @@
 .Track {
   display: flex;
-  position: relative;
+  position: absolute;
   cursor: pointer;
   transition: transform 300ms;
   /* background-color: #100e17; */
-  width: 99%;
-  margin: 0.55rem;  
+  width: 50%;
+  height: 100px;
 }
 
 .shadow {
@@ -20,7 +20,7 @@
 
 .Track-information img {
   height: 3.333rem;
-  margin: 0.5rem;
+  margin: 0.5rem 1rem 0.5rem 0.33rem;
 }
 
 .Track-information {
@@ -29,16 +29,12 @@
   width: 100%;
 }
 
-.Album-img {
-  flex-grow: 1;
-}
-
 .Track-name {
-  flex-grow: 2;
+  flex-grow: 4;
 }
 
 .Track-information .Time {
-  flex-grow: 1;
+  margin-right: 0.50rem;
 }
 
 
@@ -46,14 +42,6 @@
   .Track-information img {
     height: 4.333rem;
     margin: 0.5rem;
-  }
-
-  .Track {
-    width: 80%;
-  }
-
-  .Track-name {
-    flex-grow: 10;
   }
 }
 
