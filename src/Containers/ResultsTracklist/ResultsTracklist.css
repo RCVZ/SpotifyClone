@@ -7,7 +7,6 @@
 .viewport {
   position: relative;
   overflow-y: scroll;
-  height: 700px;
   width: 100%;
 }
 

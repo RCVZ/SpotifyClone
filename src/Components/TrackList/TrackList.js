@@ -15,11 +15,12 @@ const TrackList = ({ trackAction, inPlaylist, tracklist, position, start, end })
   return (
     <>
       {tracklist.map((track, index) => {
-        if(index >= start && index<= end) {
+        if(index >= start && index <= end ) {
           return (
             <Track
               position={position}
-              topPosition={index * 100}
+              topPosition={index % 2 === 0 ? index * 50 : (index - 1) * 50  }  // 
+              leftPosition={ index % 2 === 0 ? '0px' : '300px' }
               track={track}
               key={track.id}
               trackAction={trackAction}

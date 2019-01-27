@@ -25,7 +25,7 @@ class Track extends PureComponent {
   render() {
     const { artists, name, album, duration_ms } = this.props.track;
     return(
-      <div className="Track" style={{ top: `${this.props.topPosition}px` }}>
+      <div className="Track" style={{ top: `${this.props.topPosition}px`, left: this.props.leftPosition }}>
         <div className="Track-information">
           <div className="Album-img" >
             {album.images[2] ? 
