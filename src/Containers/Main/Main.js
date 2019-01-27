@@ -21,7 +21,7 @@ class Main extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.scrollHeight = 800;
+    this.scrollHeight = 600;
     this.offset = 50;
   }
 
@@ -30,11 +30,12 @@ class Main extends PureComponent {
   componentDidUpdate() {
     if (this.props.history.location.pathname === '/search') {
       this.offset = 50;
-      this.scrollHeight = 300;
+      this.scrollHeight = 600;
     };
   }
 
   loadOnScroll = (e) => {
+    console.log(e.target.scrollTop)
     if (!this.props.history.location.pathname.startsWith('/search/')) {
       return // temp fix
     };
@@ -43,7 +44,7 @@ class Main extends PureComponent {
     const route = this.props.location.pathname.split('/')[2];
 
     if (this.scrollHeight <= e.target.scrollTop && search === 'search' ) {
-      this.scrollHeight += 2075;
+      this.scrollHeight += 1200;
       this.offset += 50;
 
       SpotifyApi.nextResults(searchTerm, this.offset, route).then((results) => {
@@ -57,12 +58,15 @@ class Main extends PureComponent {
       <div className="Main" onScroll={this.loadOnScroll}  >
         <Switch>
           <Route path="/search/" render={(props) => (
-            <SearchResults {...props} />
-          )}/>
-          <Route path="/currentPlaylist" render={(props) => <CurrentPlaylist {...props} />} />
-          <Route path="/newPlaylist" render={(props) => <NewPlaylist {...props} />} />
-          <Route path="/library" render={(props) => <Library {...props} />} />
-          <Route path="/userPlaylists" render={(props) => <UserPlaylists {...props} />} />
+            <SearchResults {...props} /> )}/>
+          <Route path="/currentPlaylist" render={(props) => (
+            <CurrentPlaylist {...props} /> )} />
+          <Route path="/newPlaylist" render={(props) => (
+            <NewPlaylist {...props} /> )} />
+          <Route path="/library" render={(props) => (
+            <Library {...props} /> )} />
+          <Route path="/userPlaylists" render={(props) => (
+            <UserPlaylists {...props} /> )} />
         </Switch>
       </div>
     );
