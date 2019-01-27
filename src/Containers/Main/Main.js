@@ -6,7 +6,7 @@ import NewPlaylist from '../NewPlaylist/NewPlaylist';
 import CurrentPlaylist from '../../Components/CurrentPlaylist/CurrentPlaylist';
 import Library from '../Library/Library';
 import UserPlaylists from '../UserPlaylists/UserPlaylists';
-//import Playlist from '../../Components/Playlist/Playlist';
+// import Playlist from '../../Components/Playlist/Playlist';
 // import ResultsTracklist from '../ResultsTracklist/ResultsTracklist';
 // import Albumslist from '../Albumslist/Albumslist';
 // import Artists from '../Artists/Artists';
@@ -21,7 +21,7 @@ class Main extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.scrollHeight = 300;
+    this.scrollHeight = 800;
     this.offset = 50;
   }
 
@@ -54,7 +54,7 @@ class Main extends PureComponent {
 
   render() {
     return(
-      <div className="Main" onScroll={this.loadOnScroll} >
+      <div className="Main" onScroll={this.loadOnScroll}  >
         <Switch>
           <Route path="/search/" render={(props) => (
             <SearchResults {...props} />
