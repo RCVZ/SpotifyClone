@@ -1,9 +1,6 @@
 .ResultsTracklist {
   justify-self: stretch;
   width: auto;
-<<<<<<< Updated upstream
-  overflow: scroll;
-=======
   height: 100%;
 }
 
@@ -16,5 +13,4 @@
 
 .list {
   position: absolute;
->>>>>>> Stashed changes
 }

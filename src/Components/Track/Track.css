@@ -4,15 +4,9 @@
   cursor: pointer;
   transition: transform 300ms;
   /* background-color: #100e17; */
-<<<<<<< Updated upstream
-  width: 99%;
-  margin: 5px;
-  
-=======
   width: 300px;
   height: 100px;
   margin: 0.55rem;  
->>>>>>> Stashed changes
 }
 
 .shadow {
