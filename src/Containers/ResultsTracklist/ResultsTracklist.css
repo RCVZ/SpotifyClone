@@ -1,4 +1,18 @@
 .ResultsTracklist {
   justify-self: stretch;
-  width: auto;
+  width: 100%;
+  height: 100%;
+}
+
+.viewport {
+  position: relative;
+  overflow-y: scroll;
+  width: 100%;
+}
+
+.list {
+  position: absolute;
+  width: 80%;
+  left: 50%;
+  transform: translateX(-50%);
 }
