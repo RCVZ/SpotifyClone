@@ -1,4 +1,4 @@
-const clientId = '7234ae8b9cac4739b9af4f2806d43c7c';
+const clientId = 'e81c1af21c5a439ab6ebc0a235cb6ad7';
 let userAccesToken;
 
 const SpotifyApi = {
