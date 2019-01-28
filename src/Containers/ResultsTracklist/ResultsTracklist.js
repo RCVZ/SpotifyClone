@@ -10,42 +10,28 @@ const ResultsTracklist = ({ history }) => {
 
   const context = useContext(ContextStore);
 
-  const [expand, toggleExpand] = useState(() => ({
-    expanded: false,
-    state: 'More',
-    height: 200
-  }));
+  const [expanded, toggleExpand] = useState(false);
 
-  const [visibleItems, updateVisibility] = useState(() => ({
+  const [visibleItems, updateVisibility] = useState({
+    scrollTopPosition: 100,
     start: 0,
     end: 5
-  }));
-
-  const [scroll, updateScroll] = useState(() => ({
-    scrollTopPosition: 100,
-    prevScrollPosition: 0
-  }));
+  });
 
   const handleToggleExpand = () => {
     if (history.location.pathname === '/search/tracks') {
       history.push('/search');
-      toggleExpand({
-        expanded: false,
-        state: 'More',
-        height: 350
-      });
+      toggleExpand(false);
       updateVisibility({
+        scrollTopPosition: 100,
         start: 0,
         end: 5
       });
     } else {
       history.push('/search/tracks');
-      toggleExpand({
-        expanded: true,
-        state: 'Less',
-        height: (context.tracks.length - 1) * 50
-      });
+      toggleExpand(true);
       updateVisibility({
+        scrollTopPosition: 100,
         start: 0,
         end: 18
       });
@@ -53,42 +39,32 @@ const ResultsTracklist = ({ history }) => {
   };
 
   const scrollPosition = (e) => {
-    if (!expand.expanded) return
+    if (!expanded) return
 
-    if (e.target.scrollTop >= scroll.scrollTopPosition) {
+    if (e.target.scrollTop >= visibleItems.scrollTopPosition) {
       updateVisibility({
+        scrollTopPosition: visibleItems.scrollTopPosition + 100,
         start: visibleItems.start + 2,
         end: visibleItems.end + 2
       });
-      updateScroll({
-        scrollTopPosition: scroll.scrollTopPosition + 100,
-        prevScrollPosition: e.target.scrollTop
-      });
     }
 
-    else if ((e.target.scrollTop + 100) <= scroll.scrollTopPosition) {
+    else if ((e.target.scrollTop + 100) <= visibleItems.scrollTopPosition) {
       updateVisibility({
+        scrollTopPosition: visibleItems.scrollTopPosition - 100,
         start: visibleItems.start - 2,
         end: visibleItems.end - 2
       });
-      updateScroll({
-        scrollTopPosition: scroll.scrollTopPosition - 100,
-        prevScrollPosition: e.target.scrollTop
-      });
     }
-    console.log(scroll.scrollTopPosition)
+    console.log(visibleItems.scrollTopPosition)
     console.log(e.target.scrollTop)
   }
 
-  const loadOnScroll = (e) => {
-    console.log('test')
-  };
-
   return (
-    <div className="ResultsTracklist" onScroll={loadOnScroll}>
-      <Header name={expand.state} buttonAction={handleToggleExpand}>Tracks</Header>
-      <div className="viewport" onScroll={scrollPosition} style={{ height: expand.expanded ? '650px' : '350px' }} >
-        <div className="list" style={{ height: expand.height }}>
+    <div className="ResultsTracklist">
+      <Header name={expanded ? 'Less' : 'More' } buttonAction={handleToggleExpand}>Tracks</Header>
+      <div className="viewport" onScroll={scrollPosition} style={{ height: expanded ? '650px' : '350px' }} >
+        <div className="list" style={{ height: expanded ? context.tracks.length * 50 : '350px'  }}>
           <TrackList
             trackAction={context.addToNewPlaylist}
             tracklist={context.tracks}
