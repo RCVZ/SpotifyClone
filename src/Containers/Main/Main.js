@@ -46,6 +46,7 @@ class Main extends PureComponent {
     if (this.scrollHeight <= e.target.scrollTop && search === 'search' ) {
       this.scrollHeight += 1200;
       this.offset += 50;
+      
 
       SpotifyApi.nextResults(searchTerm, this.offset, route).then((results) => {
         searchMore(results, route);
