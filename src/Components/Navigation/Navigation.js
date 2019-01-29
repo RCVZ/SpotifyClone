@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import './Navigation.css';
 
 import { NavLink } from "react-router-dom";
@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faAlignJustify, faListUl, faPlusSquare, faTh } from '@fortawesome/free-solid-svg-icons';
 
-class Navigation extends Component {
+class Navigation extends PureComponent {
 
   render() {
     return(
