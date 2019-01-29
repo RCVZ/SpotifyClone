@@ -33,7 +33,7 @@ const ResultsTracklist = ({ history }) => {
       updateVisibility({
         scrollTopPosition: 100,
         start: 0,
-        end: 18
+        end: 36
       });
     }
   };
@@ -63,7 +63,7 @@ const ResultsTracklist = ({ history }) => {
   return (
     <div className="ResultsTracklist">
       <Header name={expanded ? 'Less' : 'More' } buttonAction={handleToggleExpand}>Tracks</Header>
-      <div className="viewport" onScroll={scrollPosition} style={{ height: expanded ? '650px' : '350px' }} >
+      <div className="viewport" onScroll={scrollPosition} style={{ height: expanded ? '675px' : '350px' }} >
         <div className="list" style={{ height: expanded ? context.tracks.length * 50 : '350px'  }}>
           <TrackList
             trackAction={context.addToNewPlaylist}
