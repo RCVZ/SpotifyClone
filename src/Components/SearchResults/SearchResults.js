@@ -11,7 +11,7 @@ import Playlists from '../../Containers/Playlists/Playlists';
 import { Switch, Route } from "react-router-dom";
 
 
-const SearchResults = ({ children }) => {
+const SearchResults = () => {
   return (
     <Grid>
       <Switch>

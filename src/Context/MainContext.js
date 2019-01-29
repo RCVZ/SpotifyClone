@@ -22,9 +22,6 @@ export class MainContext extends Component {
       searchSpotify: this.searchSpotify,
       searchMore: this.searchMore
     }
-
-    this.scrollHeight = 200;
-    this.offset = 50;
   }
 
   componentDidMount() {
