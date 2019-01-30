@@ -12,8 +12,9 @@ const ResultsTracklist = ({ history }) => {
 
   const [expanded, toggleExpand] = useState(false);
 
+  const [scrollTopPosition, updateScrollTopPosition] = useState(300)
+
   const [visibleItems, updateVisibility] = useState({
-    scrollTopPosition: 100,
     start: 0,
     end: 5
   });
@@ -22,41 +23,27 @@ const ResultsTracklist = ({ history }) => {
     if (history.location.pathname === '/search/tracks') {
       history.push('/search');
       toggleExpand(false);
-      updateVisibility({
-        scrollTopPosition: 100,
-        start: 0,
-        end: 5
-      });
+      updateVisibility({ start: 0, end: 5 });
     } else {
       history.push('/search/tracks');
       toggleExpand(true);
-      updateVisibility({
-        scrollTopPosition: 100,
-        start: 0,
-        end: 36
-      });
+      updateVisibility({ start: 0,  end: 35 });
     }
   };
 
   const scrollPosition = (e) => {
     if (!expanded) return
 
-    if (e.target.scrollTop >= visibleItems.scrollTopPosition) {
-      updateVisibility({
-        scrollTopPosition: visibleItems.scrollTopPosition + 100,
-        start: visibleItems.start + 2,
-        end: visibleItems.end + 2
-      });
+    if (e.target.scrollTop >= scrollTopPosition) {
+      updateVisibility({ start: visibleItems.start + 6, end: visibleItems.end + 6 });
+      updateScrollTopPosition(scrollTopPosition + 300)
     }
 
-    else if ((e.target.scrollTop + 100) <= visibleItems.scrollTopPosition) {
-      updateVisibility({
-        scrollTopPosition: visibleItems.scrollTopPosition - 100,
-        start: visibleItems.start - 2,
-        end: visibleItems.end - 2
-      });
+    else if ((e.target.scrollTop + 300) <= scrollTopPosition) {
+      updateVisibility({ start: visibleItems.start - 6, end: visibleItems.end - 6 });
+      updateScrollTopPosition(scrollTopPosition - 300)
     }
-    console.log(visibleItems.scrollTopPosition)
+    console.log(scrollTopPosition)
     console.log(e.target.scrollTop)
   }
 
