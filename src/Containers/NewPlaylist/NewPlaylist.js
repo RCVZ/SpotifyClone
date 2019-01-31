@@ -5,6 +5,7 @@ import SpotifyApi from '../../util/Spotify';
 
 import TrackList from '../../Components/TrackList/TrackList';
 import Button from '../../Components/Buttons/Button/Button';
+import Grid from '../../Components/Grid/Grid';
 
 import { ContextStore } from '../../Context/MainContext';
 
@@ -39,11 +40,15 @@ class NewPlaylist extends PureComponent {
         <input
           onChange={this.handleChange}
           placeholder="Playlist"/>
-        <TrackList 
-          tracklist={newPlaylist}
-          trackAction={deleteTrack}
-          inPlaylist
-        />
+        <Grid>
+          <TrackList
+            tracklist={newPlaylist}
+            trackAction={deleteTrack}
+            start={0}
+            end={Infinity}
+            inPlaylist
+          />          
+        </Grid>
         <Button type="submit" buttonAction={this.savePlayList} name="SAVE TO SPOTIFY" />
       </div>
     );

@@ -1,7 +1,8 @@
 .Grid {
   display: grid;
   grid: repeat(auto-fit, minmax(max-content, 20%)) / repeat(auto-fit, minmax(50%, auto));
-  height: 90%;
+  position: relative;
+  height: 100%;
   width: 95%;
   justify-items: center;
   margin: 1rem auto 0 auto;

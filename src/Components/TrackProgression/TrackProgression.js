@@ -4,10 +4,10 @@ import './TrackProgression.css';
 import ProgressionBar from '../../Components/ProgressionBar/ProgressionBar';
 import Time from '../../Components/Time/Time';
 
-const TrackProgression = ({ playing, duration, player, basisPostion }) => {
+const TrackProgression = ({ playing, duration, player, basePosition }) => {
 
-  const [position, setPosition] = useState(() => basisPostion);
-  const [timer, setTimer] = useState(() => null);
+  const [position, setPosition] = useState(basePosition);
+  const [timer, setTimer] = useState(null);
 
   const getPlayerCurrentstate = useCallback(() => {
     if (!playing) {
