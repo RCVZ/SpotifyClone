@@ -3,7 +3,6 @@ import './ResultsTracklist.css';
 
 import TrackList from '../../Components/TrackList/TrackList';
 import Header from '../../Components/Header/Header';
-
 import { ContextStore } from '../../Context/MainContext';
 
 const ResultsTracklist = ({ history }) => {
@@ -43,8 +42,6 @@ const ResultsTracklist = ({ history }) => {
       updateVisibility({ start: visibleItems.start - 6, end: visibleItems.end - 6 });
       updateScrollTopPosition(scrollTopPosition - 300)
     }
-    console.log(scrollTopPosition)
-    console.log(e.target.scrollTop)
   }
 
   return (
