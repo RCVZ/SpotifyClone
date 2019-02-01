@@ -35,7 +35,6 @@ class Main extends PureComponent {
   }
 
   loadOnScroll = (e) => {
-    console.log(e.target.scrollTop)
     if (!this.props.history.location.pathname.startsWith('/search/')) {
       return // temp fix
     };
@@ -51,7 +50,7 @@ class Main extends PureComponent {
       SpotifyApi.nextResults(searchTerm, this.offset, route).then((results) => {
         searchMore(results, route);
       })
-     }
+    }
   }
 
   render() {
