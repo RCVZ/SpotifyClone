@@ -26,7 +26,7 @@ const ResultsTracklist = ({ history }) => {
     } else {
       history.push('/search/tracks');
       toggleExpand(true);
-      updateVisibility({ start: 0,  end: 35 });
+      updateVisibility({ start: 0,  end: 41 });
     }
   };
 
@@ -34,13 +34,13 @@ const ResultsTracklist = ({ history }) => {
     if (!expanded) return
 
     if (e.target.scrollTop >= scrollTopPosition) {
-      updateVisibility({ start: visibleItems.start + 6, end: visibleItems.end + 6 });
-      updateScrollTopPosition(scrollTopPosition + 300)
+      updateVisibility({ start: visibleItems.start + 2, end: visibleItems.end + 2 });
+      updateScrollTopPosition(scrollTopPosition + 100)
     }
 
-    else if ((e.target.scrollTop + 300) <= scrollTopPosition) {
-      updateVisibility({ start: visibleItems.start - 6, end: visibleItems.end - 6 });
-      updateScrollTopPosition(scrollTopPosition - 300)
+    else if ((e.target.scrollTop + 100) <= scrollTopPosition) {
+      updateVisibility({ start: visibleItems.start - 2, end: visibleItems.end - 2 });
+      updateScrollTopPosition(scrollTopPosition - 100)
     }
   }
 
