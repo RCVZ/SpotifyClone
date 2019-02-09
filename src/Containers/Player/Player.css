@@ -34,6 +34,7 @@
 
 .Control-Leftside {
   display: flex;
+  position: relative;
   align-items: center;
   justify-content: flex-end;
   width: 30%;
@@ -59,21 +60,23 @@
 
 .Current-Playlist-Container {
   position: absolute;
-  width: 275px;
+  width: 360px;
   height: 400px;
   background-color: #003809;
-  right: 0;
-  bottom: 102px;
+  right: -35px;
+  bottom: 100px;
   overflow-y: scroll;
-}
-
-.Current-Playlist-Container .Grid {
-  display: block;
 }
 
 .Player .Track-information img,
 .Player .Action-Overlay {
   display: none;
+}
+
+.Player .Track:hover {
+    box-shadow: none;
+    transform: scale(1);
+    z-index: 999;
 }
 
 
