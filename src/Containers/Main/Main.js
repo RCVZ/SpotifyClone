@@ -38,19 +38,21 @@ class Main extends PureComponent {
     if (!this.props.history.location.pathname.startsWith('/search/')) {
       return // temp fix
     };
-    const { searchTerm, searchMore } =  this.context;
+    
     const search = this.props.location.pathname.split('/')[1];
-    const route = this.props.location.pathname.split('/')[2];
-
     if (this.scrollHeight <= e.target.scrollTop && search === 'search' ) {
       this.scrollHeight += 1200;
-      this.offset += 50;
-      
-
-      SpotifyApi.nextResults(searchTerm, this.offset, route).then((results) => {
-        searchMore(results, route);
-      })
+      this.offset += 50; 
+      this.loadMore()
     }
+  }
+
+  loadMore = () => {
+    const { searchTerm, searchMore } = this.context;
+    const route = this.props.location.pathname.split('/')[2];
+    SpotifyApi.nextResults(searchTerm, this.offset, route).then((results) => {
+      searchMore(results, route);
+    })    
   }
 
   render() {

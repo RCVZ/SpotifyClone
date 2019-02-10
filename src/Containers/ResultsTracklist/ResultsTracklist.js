@@ -11,7 +11,7 @@ const ResultsTracklist = ({ history }) => {
 
   const [expanded, toggleExpand] = useState(false);
 
-  const [scrollTopPosition, updateScrollTopPosition] = useState(300)
+  const [scrollTopPosition, updateScrollTopPosition] = useState(() => 300);
 
   const [visibleItems, updateVisibility] = useState({
     start: 0,
@@ -23,6 +23,7 @@ const ResultsTracklist = ({ history }) => {
       history.push('/search');
       toggleExpand(false);
       updateVisibility({ start: 0, end: 5 });
+      updateScrollTopPosition(300);
     } else {
       history.push('/search/tracks');
       toggleExpand(true);
@@ -34,21 +35,26 @@ const ResultsTracklist = ({ history }) => {
     if (!expanded) return
 
     if (e.target.scrollTop >= scrollTopPosition) {
-      updateVisibility({ start: visibleItems.start + 2, end: visibleItems.end + 2 });
-      updateScrollTopPosition(scrollTopPosition + 100)
+      updateVisibility({ start: visibleItems.start + 6, end: visibleItems.end + 6 });
+      updateScrollTopPosition(scrollTopPosition + 300)
+      console.log(scrollTopPosition);
     }
 
-    else if ((e.target.scrollTop + 100) <= scrollTopPosition) {
-      updateVisibility({ start: visibleItems.start - 2, end: visibleItems.end - 2 });
-      updateScrollTopPosition(scrollTopPosition - 100)
+    else if ((e.target.scrollTop + 300) <= scrollTopPosition) {
+      updateVisibility({ start: visibleItems.start - 6, end: visibleItems.end - 6 });
+      updateScrollTopPosition(scrollTopPosition - 300)
     }
   }
+
+  // const doublyLinkedList = {
+
+  // }
 
   return (
     <div className="ResultsTracklist">
       <Header name={expanded ? 'Less' : 'More' } buttonAction={handleToggleExpand}>Tracks</Header>
       <div className="viewport" onScroll={scrollPosition} style={{ height: expanded ? '675px' : '350px' }} >
-        <div className="list" style={{ height: expanded ? context.tracks.length * 50 : '350px'  }}>
+        <div className="list" style={{ height: expanded ? (context.tracks.length * 50 ) + 50: '350px'  }}>
           <TrackList
             trackAction={context.addToNewPlaylist}
             tracklist={context.tracks}
