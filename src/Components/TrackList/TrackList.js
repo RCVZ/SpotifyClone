@@ -12,6 +12,16 @@ const TrackList = ({ trackAction, inPlaylist, tracklist, start, end }) => {
     return [newList, tracklist];
   }
 
+  const getPosition = (index) => {
+      if (index % 2 === 0) {
+        let position = index * 50
+        return { top: position, left: 0 }
+      } else {
+        let position = (index - 1) * 50
+        return { top: position, right: 0 }
+      }
+    }
+
   return (
     <>
       {/* eslint-disable-next-line array-callback-return */}
@@ -19,6 +29,7 @@ const TrackList = ({ trackAction, inPlaylist, tracklist, start, end }) => {
         if (index >= start && index <= end) {
           return (
             <Track
+              position={getPosition(index)}
               index={index}
               track={track}
               key={track.id}

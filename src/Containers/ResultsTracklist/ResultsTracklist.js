@@ -31,13 +31,14 @@ const ResultsTracklist = ({ history }) => {
     }
   };
 
-  const scrollPosition = (e) => {
+  const scrollPosition = (e) => {    
     if (!expanded) return
+    //console.log(e.target.scrollTop)
 
     if (e.target.scrollTop >= scrollTopPosition) {
       updateVisibility({ start: visibleItems.start + 6, end: visibleItems.end + 6 });
       updateScrollTopPosition(scrollTopPosition + 300)
-      console.log(scrollTopPosition);
+      //console.log(scrollTopPosition);
     }
 
     else if ((e.target.scrollTop + 300) <= scrollTopPosition) {
@@ -45,10 +46,6 @@ const ResultsTracklist = ({ history }) => {
       updateScrollTopPosition(scrollTopPosition - 300)
     }
   }
-
-  // const doublyLinkedList = {
-
-  // }
 
   return (
     <div className="ResultsTracklist">

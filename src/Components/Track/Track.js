@@ -22,21 +22,10 @@ class Track extends PureComponent {
     this.props.trackAction(this.props.track)
   }
 
-  getPosition = () => {
-    const { index } = this.props
-    if (index % 2 === 0) {
-      let position = index * 50
-      return { top: position, left: 0}
-    } else {
-      let position = (index - 1) * 50
-      return { top: position, right: 0}
-    }
-  }
-
   render() {
     const { artists, name, album, duration_ms } = this.props.track;
     return (
-      <div className="Track" style={ this.getPosition() }>
+      <div className="Track" style={this.props.position}>
         <div className="Track-information">
           <div className="Album-img" >
             {album.images[2] ?
