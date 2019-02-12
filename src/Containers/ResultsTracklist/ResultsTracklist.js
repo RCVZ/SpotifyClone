@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect, useCallback } from 'react';
 import './ResultsTracklist.css';
 
 import TrackList from '../../Components/TrackList/TrackList';
@@ -6,16 +6,17 @@ import Header from '../../Components/Header/Header';
 import { ContextStore } from '../../Context/MainContext';
 
 const ResultsTracklist = ({ history }) => {
-
   const context = useContext(ContextStore);
 
-  const [expanded, toggleExpand] = useState(false);
-
-  const [scrollTopPosition, updateScrollTopPosition] = useState(() => 300);
-
+  const [scrollTopPosition, updateScrollTopPosition] = useState(
+         100
+    );
+  const [expanded, toggleExpand] = useState(
+         false
+    );
   const [visibleItems, updateVisibility] = useState({
-    start: 0,
-    end: 5
+         start: 0,
+         end: 5
   });
 
   const handleToggleExpand = () => {
@@ -27,7 +28,28 @@ const ResultsTracklist = ({ history }) => {
     } else {
       history.push('/search/tracks');
       toggleExpand(true);
-      updateVisibility({ start: 0,  end: 41 });
+      updateVisibility({ start: 0,  end: 15 });
+    }
+  };
+
+  const tracksWithPosition = (list) => {
+    let cList = [...list]
+    
+    cList.forEach((element, index) => {
+      element['position'] = getPosition(index);
+    });
+    console.log(cList)
+    return cList
+  }
+
+  const getPosition = (index) => {
+    let position;
+    if (index % 2 === 0) {
+      position = index * 50;
+      return { top: position, left: 0 }
+    } else {
+      position = (index - 1) * 50;
+      return { top: position, right: 0 }
     }
   };
 
@@ -36,16 +58,20 @@ const ResultsTracklist = ({ history }) => {
     //console.log(e.target.scrollTop)
 
     if (e.target.scrollTop >= scrollTopPosition) {
-      updateVisibility({ start: visibleItems.start + 6, end: visibleItems.end + 6 });
-      updateScrollTopPosition(scrollTopPosition + 300)
+      updateVisibility({ start: visibleItems.start + 2, end: visibleItems.end + 2 });
+      updateScrollTopPosition(scrollTopPosition + 100)
       //console.log(scrollTopPosition);
     }
 
-    else if ((e.target.scrollTop + 300) <= scrollTopPosition) {
-      updateVisibility({ start: visibleItems.start - 6, end: visibleItems.end - 6 });
-      updateScrollTopPosition(scrollTopPosition - 300)
+    else if ((e.target.scrollTop + 100) <= scrollTopPosition) {
+      updateVisibility({ start: visibleItems.start - 2, end: visibleItems.end - 2 });
+      updateScrollTopPosition(scrollTopPosition - 100)
     }
   }
+
+  const memoTracksWithPosition = useCallback(() => {
+    return tracksWithPosition(context.tracks)
+  }, [context.tracks])
 
   return (
     <div className="ResultsTracklist">
@@ -54,7 +80,7 @@ const ResultsTracklist = ({ history }) => {
         <div className="list" style={{ height: expanded ? (context.tracks.length * 50 ) + 50: '350px'  }}>
           <TrackList
             trackAction={context.addToNewPlaylist}
-            tracklist={context.tracks}
+            tracklist={memoTracksWithPosition()}
             start={visibleItems.start}
             end={visibleItems.end}
           />

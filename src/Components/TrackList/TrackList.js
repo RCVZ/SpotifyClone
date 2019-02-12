@@ -20,7 +20,7 @@ const TrackList = ({ trackAction, inPlaylist, tracklist, start, end }) => {
         let position = (index - 1) * 50
         return { top: position, right: 0 }
       }
-    }
+  }
 
   return (
     <>
