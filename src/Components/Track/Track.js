@@ -9,6 +9,13 @@ import ActionOverlay from '../ActionOverlay/ActionOverlay';
 import { ContextStore } from '../../Context/MainContext';
 
 class Track extends PureComponent {
+  constructor(props){
+    super(props);
+
+    this.state = {
+      mouseOver: false
+    }
+  }
 
   static contextType = ContextStore;
 
@@ -22,10 +29,18 @@ class Track extends PureComponent {
     this.props.trackAction(this.props.track)
   }
 
+  handleMouseEnter = () => {
+    this.setState({ mouseOver: true})
+  }
+
+  handleMouseLeave = () => {
+    this.setState({ mouseOver: false })
+  }
+
   render() {
     const { artists, name, album, duration_ms, position } = this.props.track;
     return (
-      <div className="Track" style={position}>
+      <div className="Track" style={position} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
         <div className="Track-information">
           <div className="Album-img" >
             {album.images[2] ?
@@ -42,7 +57,9 @@ class Track extends PureComponent {
           </div>
           <Time className="shadow" ms={duration_ms} />
         </div>
-        <ActionOverlay trackAction={this.handleTrackAction} onPlayClick={this.handlePlay} inPlaylist={this.props.inPlaylist} />
+        {this.state.mouseOver 
+          ? <ActionOverlay trackAction={this.handleTrackAction} onPlayClick={this.handlePlay} inPlaylist={this.props.inPlaylist} />
+           : null}
       </div>
     );
   }
