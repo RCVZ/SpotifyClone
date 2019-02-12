@@ -38,7 +38,6 @@ const ResultsTracklist = ({ history }) => {
     cList.forEach((element, index) => {
       element['position'] = getPosition(index);
     });
-    console.log(cList)
     return cList
   }
 
@@ -55,7 +54,7 @@ const ResultsTracklist = ({ history }) => {
 
   const scrollPosition = (e) => {    
     if (!expanded) return
-    //console.log(e.target.scrollTop)
+    console.log(e.target.scrollTop)
 
     if (e.target.scrollTop >= scrollTopPosition) {
       updateVisibility({ start: visibleItems.start + 2, end: visibleItems.end + 2 });
@@ -77,7 +76,7 @@ const ResultsTracklist = ({ history }) => {
     <div className="ResultsTracklist">
       <Header name={expanded ? 'Less' : 'More' } buttonAction={handleToggleExpand}>Tracks</Header>
       <div className="viewport" onScroll={scrollPosition} style={{ height: expanded ? '675px' : '350px' }} >
-        <div className="list" style={{ height: expanded ? (context.tracks.length * 50 ) + 50: '350px'  }}>
+        <div className="list" style={{ height: expanded ? (context.tracks.length * 50 ) + 100: '350px'  }}>
           <TrackList
             trackAction={context.addToNewPlaylist}
             tracklist={memoTracksWithPosition()}
