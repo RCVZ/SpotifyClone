@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, useCallback } from 'react';
+import React, { useState, useContext, useCallback } from 'react';
 import './ResultsTracklist.css';
 
 import TrackList from '../../Components/TrackList/TrackList';
@@ -33,8 +33,7 @@ const ResultsTracklist = ({ history }) => {
   };
 
   const tracksWithPosition = (list) => {
-    let cList = [...list]
-    
+    let cList = [...list];    
     cList.forEach((element, index) => {
       element['position'] = getPosition(index);
     });
@@ -54,7 +53,6 @@ const ResultsTracklist = ({ history }) => {
 
   const scrollPosition = (e) => {    
     if (!expanded) return
-    console.log(e.target.scrollTop)
 
     if (e.target.scrollTop >= scrollTopPosition) {
       updateVisibility({ start: visibleItems.start + 2, end: visibleItems.end + 2 });
