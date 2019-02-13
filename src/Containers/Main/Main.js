@@ -57,18 +57,38 @@ class Main extends PureComponent {
 
   render() {
     return(
-      <div className="Main" onScroll={this.loadOnScroll}  >
+      <div className="Main">
         <Switch>
           <Route path="/search/" render={(props) => (
-            <SearchResults {...props} /> )}/>
+            <SearchResults 
+              loadMore={this.loadMore}
+              {...props} 
+            /> )}
+          />
           <Route path="/currentPlaylist" render={(props) => (
-            <CurrentPlaylist {...props} /> )} />
+            <CurrentPlaylist 
+              loadMore={this.loadMore}
+              {...props} 
+            /> )} 
+          />
           <Route path="/newPlaylist" render={(props) => (
-            <NewPlaylist {...props} /> )} />
+            <NewPlaylist 
+              loadMore={this.loadMore}
+              {...props} 
+            /> )} 
+          />
           <Route path="/library" render={(props) => (
-            <Library {...props} /> )} />
+            <Library 
+              loadMore={this.loadMore}
+              {...props} 
+            /> )} 
+          />
           <Route path="/userPlaylists" render={(props) => (
-            <UserPlaylists {...props} /> )} />
+            <UserPlaylists 
+              loadMore={this.loadMore}
+              {...props} 
+            /> )} 
+          />
         </Switch>
       </div>
     );
