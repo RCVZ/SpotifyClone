@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import SpotifyApi from '../../util/Spotify';
 import './Track.css'
 
@@ -8,12 +8,20 @@ import ActionOverlay from '../ActionOverlay/ActionOverlay';
 
 import { ContextStore } from '../../Context/MainContext';
 
-class Track extends PureComponent {
+class Track extends Component {
   constructor(props){
     super(props);
 
     this.state = {
       mouseOver: false
+    }
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.state.mouseOver !== nextState.mouseOver) {
+      return true;
+    } else {
+      return false;
     }
   }
 
@@ -43,9 +51,9 @@ class Track extends PureComponent {
       <div className="Track" style={position} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
         <div className="Track-information">
           <div className="Album-img" >
-            {album.images[2] ?
-              <img className="shadow" src={album.images[2].url} alt="album" /> :
-              null
+            {album.images[2] 
+              ?  <img className="shadow" src={album.images[2].url} alt="album" />
+              :  null 
             }
           </div>
           <div className="Track-name">
