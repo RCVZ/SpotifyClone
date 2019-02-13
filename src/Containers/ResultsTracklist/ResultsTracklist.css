@@ -6,8 +6,9 @@
 
 .viewport {
   position: relative;
-  overflow-y: scroll;
+  overflow: auto;
   width: 100%;
+  will-change: scroll-position;
 }
 
 .list {
