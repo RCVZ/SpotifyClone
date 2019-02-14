@@ -13,21 +13,18 @@ const TrackList = ({ trackAction, inPlaylist, tracklist, start, end }) => {
 
   return (
     <>
-      {/* eslint-disable-next-line array-callback-return */}
-      {tracklist.map((track, index) => { 
-        if (index >= start && index <= end) {
-          return (
-            <Track
-              index={index}
-              track={track}
-              key={index}
-              trackAction={trackAction}
-              inPlaylist={inPlaylist}
-              getUrisList={getUrisList}
-            />
-          )
-        }
-      })
+      {tracklist.map((track, index) => {
+        return (
+          <Track
+            index={index}
+            track={track}
+            key={track.id}
+            trackAction={trackAction}
+            inPlaylist={inPlaylist}
+            getUrisList={getUrisList}
+          />
+        )
+       })
       }
     </>
   );
