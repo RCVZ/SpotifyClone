@@ -8,7 +8,7 @@ import { ContextStore } from '../../Context/MainContext';
 const ResultsTracklist = ({ history, loadMore }) => {
   const context = useContext(ContextStore);
 
-  const [visibleItems, updateVisibility] = useState(() => ({ start: 0, end: 5 }));
+  const [visibleItems, updateVisibility] = useState(() => ({ start: 0, end: 6 }));
   const [scrollTopPosition, updateScrollTopPosition] = useState(() => 100 );
   const [expanded, toggleExpand] = useState(() => false );
   const [scrollActive, activeScroll] = useState(() => ({active: false, timer: null}))
@@ -17,17 +17,17 @@ const ResultsTracklist = ({ history, loadMore }) => {
     if (history.location.pathname === '/search/tracks') {
       history.push('/search');
       toggleExpand(false);
-      updateVisibility({ start: 0, end: 5 });
+      updateVisibility({ start: 0, end: 6 });
       updateScrollTopPosition(300);
     } else {
       history.push('/search/tracks');
       toggleExpand(true);
-      updateVisibility({ start: 0,  end: 15 });
+      updateVisibility({ start: 0,  end: 18 });
     }
   };
 
   const tracksWithPosition = (list) => {
-    let cList = [...list];    
+    let cList = [...list];
     cList.forEach((element, index) => {
       element['position'] = getPosition(index);
     });
@@ -45,10 +45,10 @@ const ResultsTracklist = ({ history, loadMore }) => {
     }
   };
 
-  const scrollPosition = (e) => {    
+  const scrollPosition = (e) => {
     if (!expanded) return
-    activeScroll({ active: true, timer: clearTimeout(scrollActive.timer) })
-    activeScroll({ active: true, timer: setTimeout(() => activeScroll({active: false, timer: null}), 66)})
+    // activeScroll({ active: true, timer: clearTimeout(scrollActive.timer) })
+    // activeScroll({ active: true, timer: setTimeout(() => activeScroll({active: false, timer: null}), 66)})
     if (e.target.scrollTop >= scrollTopPosition) {
       updateVisibility({ start: visibleItems.start + 2, end: visibleItems.end + 2 });
       updateScrollTopPosition(scrollTopPosition + 100)
@@ -66,17 +66,20 @@ const ResultsTracklist = ({ history, loadMore }) => {
   }
 
   const memoTracksWithPosition = useCallback(() => {
-    return tracksWithPosition(context.tracks)
+    return tracksWithPosition(context.tracks);
   }, [context.tracks]);
+
+  let test = memoTracksWithPosition().slice(visibleItems.start, visibleItems.end);
+  //, pointerEvents: scrollActive.active ? 'none': 'auto'
 
   return (
     <div className="ResultsTracklist">
       <Header name={expanded ? 'Less' : 'More' } buttonAction={handleToggleExpand}>Tracks</Header>
       <div className="viewport" onScroll={scrollPosition} style={{ height: expanded ? '675px' : '350px' }} >
-        <div className="list" style={{ height: expanded ? (context.tracks.length * 50 ) + 100 : '350px', pointerEvents: scrollActive.active ? 'none': 'auto'  }}>
+        <div className="list" style={{ height: expanded ? (context.tracks.length * 50 ) + 100 : '350px' }}>
           <TrackList
             trackAction={context.addToNewPlaylist}
-            tracklist={memoTracksWithPosition()}
+            tracklist={test}
             start={visibleItems.start}
             end={visibleItems.end}
           />
