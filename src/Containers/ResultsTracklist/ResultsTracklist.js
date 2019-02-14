@@ -1,17 +1,19 @@
-import React, { useState, useContext, useCallback, useRef } from 'react';
+import React, { useState, useContext, useCallback } from 'react';
 import './ResultsTracklist.css';
 
 import TrackList from '../../Components/TrackList/TrackList';
 import Header from '../../Components/Header/Header';
+import Viewport from '../../Components/Viewport/Viewport';
 import { ContextStore } from '../../Context/MainContext';
+
+let count = 0;
 
 const ResultsTracklist = ({ history, loadMore }) => {
   const context = useContext(ContextStore);
 
-  const [visibleItems, updateVisibility] = useState(() => ({ start: 0, end: 6 }));
-  const [scrollTopPosition, updateScrollTopPosition] = useState(() => 100 );
-  const [expanded, toggleExpand] = useState(() => false );
-  const [scrollActive, activeScroll] = useState(() => false);
+  const [visibleItems, updateVisibility] = useState({ start: 0, end: 6 });
+  const [expanded, toggleExpand] = useState(false);
+  const [scrollActive, activeScroll] = useState(false);
 
   let timer = null;
 
@@ -20,7 +22,6 @@ const ResultsTracklist = ({ history, loadMore }) => {
       history.push('/search');
       toggleExpand(false);
       updateVisibility({ start: 0, end: 6 });
-      updateScrollTopPosition(300);
     } else {
       history.push('/search/tracks');
       toggleExpand(true);
@@ -47,27 +48,26 @@ const ResultsTracklist = ({ history, loadMore }) => {
     }
   };
 
-  const scrollPosition = (e) => {
+  const renderNext = () => {
     if (!expanded) return
 
     activeScroll(true);
     clearTimeout(timer)
     timer = setTimeout(() => activeScroll(false), 66);
+    updateVisibility({ start: visibleItems.start + 2, end: visibleItems.end + 2 });
 
-    if (e.target.scrollTop >= scrollTopPosition) {
-      updateVisibility({ start: visibleItems.start + 2, end: visibleItems.end + 2 });
-      updateScrollTopPosition(scrollTopPosition + 100)
-      //console.log(scrollTopPosition);
-    }
-
-    else if ((e.target.scrollTop + 100) <= scrollTopPosition) {
-      updateVisibility({ start: visibleItems.start - 2, end: visibleItems.end - 2 });
-      updateScrollTopPosition(scrollTopPosition - 100)
-    }
-
-    if (context.tracks.length <= (visibleItems.end + 6)) {
+    if (context.tracks.length <= (visibleItems.end + 10)) {
       loadMore();
     }
+  }
+
+  const renderPrev = () => {
+    if (!expanded) return
+
+    activeScroll(true);
+    clearTimeout(timer)
+    timer = setTimeout(() => activeScroll(false), 66);
+    updateVisibility({ start: visibleItems.start - 2, end: visibleItems.end - 2 });
   }
 
   const memoTracksWithPosition = useCallback(() => {
@@ -75,10 +75,11 @@ const ResultsTracklist = ({ history, loadMore }) => {
   }, [context.tracks]);
 
   let test = memoTracksWithPosition().slice(visibleItems.start, visibleItems.end);
+  console.log("rerender:", count++)
   return (
     <div className="ResultsTracklist">
       <Header name={expanded ? 'Less' : 'More' } buttonAction={handleToggleExpand}>Tracks</Header>
-      <div className="viewport" onScroll={scrollPosition} style={{ height: expanded ? '675px' : '350px' }} >
+      <Viewport renderNext={renderNext} renderPrev={renderPrev} style={{ height: expanded ? '675px' : '350px' }} >
         <div className="list" style={{ height: expanded ? (context.tracks.length * 50 ) + 100 : '350px', pointerEvents: scrollActive ? 'none': 'auto' }}>
           <TrackList
             trackAction={context.addToNewPlaylist}
@@ -87,9 +88,34 @@ const ResultsTracklist = ({ history, loadMore }) => {
             end={visibleItems.end}
           />
         </div>
-      </div>
+      </Viewport>
     </div>
   );
 }
 
 export default ResultsTracklist;
+
+
+
+  // const scrollPosition = (e) => {
+  //   if (!expanded) return
+
+  //   activeScroll(true);
+  //   clearTimeout(timer)
+  //   timer = setTimeout(() => activeScroll(false), 66);
+
+  //   if (e.target.scrollTop >= scrollTopPosition) {
+  //     updateVisibility({ start: visibleItems.start + 2, end: visibleItems.end + 2 });
+  //     updateScrollTopPosition(scrollTopPosition + 100);
+  //     //console.log(scrollTopPosition);
+  //   }
+
+  //   else if ((e.target.scrollTop + 100) <= scrollTopPosition) {
+  //     updateVisibility({ start: visibleItems.start - 2, end: visibleItems.end - 2 });
+  //     updateScrollTopPosition(scrollTopPosition - 100);
+  //   }
+
+  //   if (context.tracks.length <= (visibleItems.end + 6)) {
+  //     loadMore();
+  //   }
+  // }
