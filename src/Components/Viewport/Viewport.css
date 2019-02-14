@@ -1,0 +1,6 @@
+.Viewport {
+  position: relative;
+  overflow: auto;
+  width: 100%;
+  will-change: transform;
+}
