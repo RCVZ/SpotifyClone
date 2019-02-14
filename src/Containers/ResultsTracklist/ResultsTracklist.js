@@ -47,8 +47,8 @@ const ResultsTracklist = ({ history, loadMore }) => {
 
   const scrollPosition = (e) => {
     if (!expanded) return
-    // activeScroll({ active: true, timer: clearTimeout(scrollActive.timer) })
-    // activeScroll({ active: true, timer: setTimeout(() => activeScroll({active: false, timer: null}), 66)})
+    activeScroll({ active: true, timer: clearTimeout(scrollActive.timer) })
+    activeScroll({ active: true, timer: setTimeout(() => activeScroll({active: false, timer: null}), 66)})
     if (e.target.scrollTop >= scrollTopPosition) {
       updateVisibility({ start: visibleItems.start + 2, end: visibleItems.end + 2 });
       updateScrollTopPosition(scrollTopPosition + 100)
@@ -69,14 +69,13 @@ const ResultsTracklist = ({ history, loadMore }) => {
     return tracksWithPosition(context.tracks);
   }, [context.tracks]);
 
-  let test = memoTracksWithPosition().slice(visibleItems.start, visibleItems.end);
-  //, pointerEvents: scrollActive.active ? 'none': 'auto'
+  let test = memoTracksWithPosition().slice(visibleItems.start, (visibleItems.start + 18));
 
   return (
     <div className="ResultsTracklist">
       <Header name={expanded ? 'Less' : 'More' } buttonAction={handleToggleExpand}>Tracks</Header>
       <div className="viewport" onScroll={scrollPosition} style={{ height: expanded ? '675px' : '350px' }} >
-        <div className="list" style={{ height: expanded ? (context.tracks.length * 50 ) + 100 : '350px' }}>
+        <div className="list" style={{ height: expanded ? (context.tracks.length * 50 ) + 100 : '350px', pointerEvents: scrollActive.active ? 'none': 'auto' }}>
           <TrackList
             trackAction={context.addToNewPlaylist}
             tracklist={test}
