@@ -8,7 +8,7 @@
   position: relative;
   overflow: auto;
   width: 100%;
-  will-change: scroll-position;
+  will-change: transform;
 }
 
 .list {
