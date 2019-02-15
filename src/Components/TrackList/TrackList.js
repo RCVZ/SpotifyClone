@@ -4,7 +4,7 @@ import './TrackList.css'
 import Track from '../Track/Track';
 
 
-const TrackList = ({ trackAction, inPlaylist, tracklist, start, end }) => {
+const TrackList = ({ trackAction, inPlaylist, tracklist }) => {
   const getUrisList = () => {
     const newList = [];
     tracklist.map((track) => newList.push(track.uri));
