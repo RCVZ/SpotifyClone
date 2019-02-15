@@ -51,9 +51,9 @@ class Track extends Component {
       <div className="Track" style={position} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
         <div className="Track-information">
           <div className="Album-img" >
-            {album.images[2] 
+            {album.images[2]
               ?  <img className="shadow" src={album.images[2].url} alt="album" />
-              :  null 
+              :  null
             }
           </div>
           <div className="Track-name">
@@ -65,7 +65,7 @@ class Track extends Component {
           </div>
           <Time className="shadow" ms={duration_ms} />
         </div>
-        {this.state.mouseOver 
+        {this.state.mouseOver
           ? <ActionOverlay trackAction={this.handleTrackAction} onPlayClick={this.handlePlay} inPlaylist={this.props.inPlaylist} />
            : null}
       </div>

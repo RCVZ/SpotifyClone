@@ -6,14 +6,13 @@ import Header from '../../Components/Header/Header';
 import Viewport from '../../Components/Viewport/Viewport';
 import { ContextStore } from '../../Context/MainContext';
 
-let count = 0;
 
 const ResultsTracklist = ({ history, loadMore }) => {
   const context = useContext(ContextStore);
 
-  const [visibleItems, updateVisibility] = useState({ start: 0, end: 6 });
-  const [expanded, toggleExpand] = useState(false);
-  const [scrollActive, activeScroll] = useState(false);
+  const [visibleItems, updateVisibility] = useState(() => ({ start: 0, end: 6 }));
+  const [expanded, toggleExpand] = useState(() => false);
+  const [scrollActive, activeScroll] = useState(() => false);
 
   let timer = null;
 
@@ -25,7 +24,7 @@ const ResultsTracklist = ({ history, loadMore }) => {
     } else {
       history.push('/search/tracks');
       toggleExpand(true);
-      updateVisibility({ start: 0,  end: 18 });
+      updateVisibility({ start: 0,  end: 32 });
     }
   };
 
@@ -75,12 +74,11 @@ const ResultsTracklist = ({ history, loadMore }) => {
   }, [context.tracks]);
 
   let test = memoTracksWithPosition().slice(visibleItems.start, visibleItems.end);
-  console.log("rerender:", count++)
   return (
     <div className="ResultsTracklist">
       <Header name={expanded ? 'Less' : 'More' } buttonAction={handleToggleExpand}>Tracks</Header>
       <Viewport renderNext={renderNext} renderPrev={renderPrev} style={{ height: expanded ? '675px' : '350px' }} >
-        <div className="list" style={{ height: expanded ? (context.tracks.length * 50 ) + 100 : '350px', pointerEvents: scrollActive ? 'none': 'auto' }}>
+        <div className="list" style={{ height: expanded ? (memoTracksWithPosition.length * 50 ) + 100 +'px' : '350px', pointerEvents: scrollActive ? 'none': 'auto' }}>
           <TrackList
             trackAction={context.addToNewPlaylist}
             tracklist={test}
