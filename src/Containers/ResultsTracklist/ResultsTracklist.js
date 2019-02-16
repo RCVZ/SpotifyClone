@@ -59,15 +59,26 @@ const ResultsTracklist = ({ history, loadMore }) => {
     }
   };
 
-  let start = Math.floor(scroll.offSet / 50);
+  let start = Math.floor(scroll.offSet / 50 );
   let end = start + 20;
   let listHeight = context.tracks.length * 50 + 100 + 'px';
+
+  if(scroll.direction === 'down') {
+    end += 2
+  } else {
+    start -=2
+  }
 
   if(!expanded) {
     start = 0;
     end = 5;
     listHeight = end * 50 + 100 + 'px'
+  } else {
+    if (start % 2 !== 0) {
+    start -= 1      
+    }
   }
+
 
   return (
     <div className="ResultsTracklist">
