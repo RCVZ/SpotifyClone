@@ -48,7 +48,7 @@ class Track extends Component {
   render() {
     const { artists, name, album, duration_ms, position } = this.props.track;
     return (
-      <div className="Track" style={position} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
+      <div className="Track" style={this.props.position} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
         <div className="Track-information">
           <div className="Album-img" >
             {album.images[2]
