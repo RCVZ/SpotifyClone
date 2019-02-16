@@ -46,7 +46,7 @@ class Track extends Component {
   }
 
   render() {
-    const { artists, name, album, duration_ms, position } = this.props.track;
+    const { artists, name, album, duration_ms } = this.props.track;
     return (
       <div className="Track" style={this.props.position} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
         <div className="Track-information">
