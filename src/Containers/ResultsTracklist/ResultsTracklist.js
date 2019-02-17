@@ -31,7 +31,7 @@ const ResultsTracklist = ({ history, loadMore }) => {
   const scrollPosition = e => {
     activeScroll(true);
     clearTimeout(timer);
-    timer = setTimeout(() => activeScroll(false), 300);
+    timer = setTimeout(() => activeScroll(false), 500);
     
     scroll.offSet < e.target.scrollTop
       ? updateScroll({
@@ -43,42 +43,20 @@ const ResultsTracklist = ({ history, loadMore }) => {
           direction: "up"
         });
 
-    if (context.tracks.length <= start + 26) {
+    if (context.tracks.length <= start + 40) {
       loadMore();
     }
   };
-  
-  const getPosition = index => {
-    let position;
-    if (index % 2 === 0) {
-      position = index * 50;
-      return { top: position, left: 0 };
-    } else {
-      position = (index - 1) * 50;
-      return { top: position, right: 0 };
-    }
-  };
 
-  let start = Math.floor(scroll.offSet / 50 );
-  let end = start + 20;
+  let start = Math.floor(scroll.offSet / 100 );
+  let end = start + 10;
   let listHeight = context.tracks.length * 50 + 100 + 'px';
-
-  if(scroll.direction === 'down') {
-    end += 2
-  } else {
-    start -=2
-  }
 
   if(!expanded) {
     start = 0;
-    end = 5;
-    listHeight = end * 50 + 100 + 'px'
-  } else {
-    if (start % 2 !== 0) {
-    start -= 1      
-    }
-  }
-
+    end = 2;
+    listHeight = end * 100 + 'px'
+  } 
 
   return (
     <div className="ResultsTracklist">
@@ -92,7 +70,7 @@ const ResultsTracklist = ({ history, loadMore }) => {
                   index={index} 
                   track={track} 
                   key={track.id}
-                  position={getPosition(index)}
+                  position={{top: index * 100, left: 0 }}
                 />
               )
             }
