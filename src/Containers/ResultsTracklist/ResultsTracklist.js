@@ -52,11 +52,18 @@ const ResultsTracklist = ({ history, loadMore }) => {
   let end = start + 10;
   let listHeight = context.tracks.length * 50 + 100 + 'px';
 
+  if(!scrollActive) {
+    start -= 2;
+    end += 2;
+  }
+
+
   if(!expanded) {
     start = 0;
     end = 2;
     listHeight = end * 100 + 'px'
   } 
+
 
   return (
     <div className="ResultsTracklist">
