@@ -2,7 +2,7 @@
   display: flex;
   position: absolute;
   cursor: pointer;
-  /* transition: transform 300ms; */
+  transition: transform 300ms;
   contain: layout;
   will-change: scroll-position;
   width: 100%;

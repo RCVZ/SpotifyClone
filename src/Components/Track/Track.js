@@ -52,8 +52,10 @@ class Track extends Component {
         <div className="Track-information">
           <div className="Album-img" >
             {album.images[2]
-              ?  <img className="shadow" src={album.images[2].url} alt="album" />
-              :  null
+              ?  
+                <img className="shadow" src={album.images[2].url} alt="album" />
+              :  
+                null
             }
           </div>
           <div className="Track-name">
@@ -66,8 +68,11 @@ class Track extends Component {
           <Time className="shadow" ms={duration_ms} />
         </div>
         {this.state.mouseOver
-          ? <ActionOverlay trackAction={this.handleTrackAction} onPlayClick={this.handlePlay} inPlaylist={this.props.inPlaylist} />
-           : null}
+          ? 
+            <ActionOverlay trackAction={this.handleTrackAction} onPlayClick={this.handlePlay} inPlaylist={this.props.inPlaylist} />
+          : 
+          null
+          }
       </div>
     );
   }
