@@ -57,13 +57,11 @@ const ResultsTracklist = ({ history, loadMore }) => {
     end += 2;
   }
 
-
   if(!expanded) {
     start = 0;
     end = 2;
     listHeight = end * 100 + 'px'
-  } 
-
+  }
 
   return (
     <div className="ResultsTracklist">
@@ -73,10 +71,11 @@ const ResultsTracklist = ({ history, loadMore }) => {
           {context.tracks.map((track, index) => {
             if (index >= start && index <= end) {
               return (
-                <Track 
+                <Track
                   index={index} 
                   track={track} 
-                  key={track.id}
+                  key={track.id} 
+                  scrollActive={scrollActive}
                   position={{top: index * 100, left: 0 }}
                 />
               )

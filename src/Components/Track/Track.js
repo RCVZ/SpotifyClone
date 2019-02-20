@@ -18,7 +18,7 @@ class Track extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    if (this.state.mouseOver !== nextState.mouseOver) {
+    if (this.state.mouseOver !== nextState.mouseOver || this.props.scrollActive !== nextProps.scrollActive) {
       return true;
     } else {
       return false;
@@ -47,13 +47,22 @@ class Track extends Component {
 
   render() {
     const { artists, name, album, duration_ms } = this.props.track;
+    const { position, scrollActive, inPlaylist } = this.props;
     return (
-      <div className="Track" style={this.props.position} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
+      <div 
+        className="Track" style={position} 
+        onMouseEnter={this.handleMouseEnter} 
+        onMouseLeave={this.handleMouseLeave}
+      >
         <div className="Track-information">
           <div className="Album-img" >
             {album.images[2]
               ?  
-                <img className="shadow" src={album.images[2].url} alt="album" />
+                <img 
+                  className={scrollActive ? null :"shadow"} 
+                  src={album.images[2].url}
+                  alt="album" 
+                />
               :  
                 null
             }
@@ -69,9 +78,13 @@ class Track extends Component {
         </div>
         {this.state.mouseOver
           ? 
-            <ActionOverlay trackAction={this.handleTrackAction} onPlayClick={this.handlePlay} inPlaylist={this.props.inPlaylist} />
+            <ActionOverlay 
+              trackAction={this.handleTrackAction} 
+              onPlayClick={this.handlePlay} 
+              inPlaylist={inPlaylist} 
+            />
           : 
-          null
+            null
           }
       </div>
     );
