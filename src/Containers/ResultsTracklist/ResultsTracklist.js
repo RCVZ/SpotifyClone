@@ -4,6 +4,7 @@ import "./ResultsTracklist.css";
 import Track from "../../Components/Track/Track";
 import Header from "../../Components/Header/Header";
 import Viewport from "../../Components/Viewport/Viewport";
+import useScrollPosition from "../../Hooks/testHook.js";
 import { ContextStore } from "../../Context/MainContext";
 
 const ResultsTracklist = ({ history, loadMore }) => {
@@ -29,17 +30,18 @@ const ResultsTracklist = ({ history, loadMore }) => {
   };
 
   const scrollPosition = e => {
+    
     activeScroll(true);
     clearTimeout(timer);
     timer = setTimeout(() => activeScroll(false), 500);
     
     scroll.offSet < e.target.scrollTop
       ? updateScroll({
-          offSet: e.target.scrollTop,
+          offSet: useScrollPosition(e),
           direction: "down"
         })
       : updateScroll({
-          offSet: e.target.scrollTop,
+          offSet: useScrollPosition(e),
           direction: "up"
         });
 
