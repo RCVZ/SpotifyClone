@@ -1,22 +1,22 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
-  const useScrollPosition = (e) => {
+  const useScrollPosition = () => {
     const [scroll, updateScroll] = useState({
       offSet: 0,
       direction: "down"
     });
 
-    scroll.offSet < e.target.scrollTop
-    ? updateScroll({
-        offSet: e.target.scrollTop,
-        direction: "down"
-      })
-    : updateScroll({
-        offSet: e.target.scrollTop,
-        direction: "up"
-      });
+    // scroll.offSet < e.target.scrollTop
+    // ? updateScroll({
+    //     offSet: e.target.scrollTop,
+    //     direction: "down"
+    //   })
+    // : updateScroll({
+    //     offSet: e.target.scrollTop,
+    //     direction: "up"
+    //   });
 
-    return scroll.offSet
+    return [scroll.offSet, updateScroll]
   }
 
   export default useScrollPosition;
