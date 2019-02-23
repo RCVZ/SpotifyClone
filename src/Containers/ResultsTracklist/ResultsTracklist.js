@@ -10,8 +10,6 @@ import { ContextStore } from "../../Context/MainContext";
 const ResultsTracklist = ({ history, loadMore }) => {
   const context = useContext(ContextStore);  
 
-  const [scrollOffSetTest, scrollTest] = useScrollPosition();
-
   const [expanded, toggleExpand] = useState(() => false);
   const [scrollActive, activeScroll] = useState(() => false);
   const [scroll, updateScroll] = useState({
@@ -32,28 +30,23 @@ const ResultsTracklist = ({ history, loadMore }) => {
   };
 
   const scrollPosition = e => {
-    scrollTest({
-      offSet: e.target.scrollTop,
-      direction: "down"
-    })
-    // activeScroll(true);
-    // clearTimeout(timer);
-    // timer = setTimeout(() => activeScroll(false), 500);
+    activeScroll(true);
+    clearTimeout(timer);
+    timer = setTimeout(() => activeScroll(false), 500);
     
-    // scroll.offSet < e.target.scrollTop
-    //   ? updateScroll({
-    //       offSet: useScrollPosition(e),
-    //       direction: "down"
-    //     })
-    //   : updateScroll({
-    //       offSet: useScrollPosition(e),
-    //       direction: "up"
-    //     });
+    scroll.offSet < e.target.scrollTop
+      ? updateScroll({
+          offSet: e.target.scrollTop,
+          direction: "down"
+        })
+      : updateScroll({
+          offSet: e.target.scrollTop,
+          direction: "up"
+        });
 
-    // if (context.tracks.length <= start + 40) {
-    //   loadMore();
-    // }
-    console.log('test', scrollOffSetTest)
+    if (context.tracks.length <= start + 40) {
+      loadMore();
+    }
   };
 
   let start = Math.floor(scroll.offSet / 100 );
